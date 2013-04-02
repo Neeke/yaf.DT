@@ -1,0 +1,73 @@
+   <?php include_once(VIEW_PATH.'/layout/header.phtml')?>
+   <div class="container">
+   <div class="row">
+   <?php include_once(VIEW_PATH.'/layout/admin_menu.phtml')?>
+<div class="span9">
+      <div class="page-header">
+            <h2>管理博客</h2>
+             <a href="<?php echo helper_common::site_url('admin/blogadd')?>"><span class="label label-success">new blog</span></a>
+       </div>
+           <form class="form-search">
+    <div class="input-append">
+    <input type="text" class="span2 search-query">
+    <button type="submit" class="btn">Search</button>
+    </div>
+    </form>
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="myModal" style="display: none;">
+            <div class="modal-header">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+              <h3 id="myModalLabel">编辑</h3>
+            </div>
+            <div class="modal-body">
+                  <div class="control-group">
+			    	<label class="control-label" for="inputEmail">标题</label>
+			    	<div class="controls">
+				    <input type="text" value="" name="title" id="title" class="input-large" placeholder="此处填写标题">
+				    <input type="hidden" name="blog_id" id="blog_id" value="">
+			    	</div>
+   				 </div>
+   				 
+   				     <div class="control-group">
+    <div class="control-group">
+	    <label class="control-label" for="inputEmail">简介</label>
+	    <div class="controls">
+	    	<textarea rows="2" name="keys" id="keys" placeholder="简单描述" class="input-xlarge"></textarea>
+	    </div>
+    </div>
+    </div>
+		    <div class="control-group">
+			    <label class="control-label" for="inputPassword">内容</label>
+			    <div class="controls">
+			    	<textarea name="content" id="content" rows="10" style="width:800px" placeholder="内容"></textarea>
+			    </div>
+		    </div>   
+         </div>
+            <div class="modal-footer">
+              <button data-dismiss="modal" class="btn">Close</button>
+              <button class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+         <ul class="nav nav-tabs nav-stacked">
+        <?php foreach ($list as $k => $v) {?>
+        <li>
+        	<a href="<?php echo helper_common::site_url('blog/view/id/'.$v['blog_id']);?>"><?php echo $v['title']?></a>
+        </li>
+        <a href="<?php echo helper_common::site_url('admin/blogadd/id/'.$v['blog_id'])?>"><span class="label label-info">Edite</span></a>
+        <span class="label label-important" onclick="del(<?php echo $v['blog_id'];?>)">Delete</span>
+        <?php }?>
+        </ul>
+        
+		<div class="pagination pagination-centered">
+		<?php echo $page_str;?>
+		</div>
+    </div>
+</div>
+<script type="text/javascript">
+function del(id){
+	$.post("blog/del", {blog_id:id},
+			   function(data){
+			     alert(data.msg);
+			   });
+	}
+          </script>
+      <?php include_once(VIEW_PATH.'/layout/footer.phtml')?>

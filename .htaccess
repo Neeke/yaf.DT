@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond $1 !^(index\.php|tools|static)
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+
+#RewriteEngine on
+#RewriteRule !\.(jpg|jpeg|gif|png|bmp|ico|css|txt|js|html|swf)$ index.php [NC,L]

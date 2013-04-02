@@ -1,0 +1,82 @@
+  <?php include_once(VIEW_PATH.'/layout/header.phtml')?>
+  
+    <div class="container">
+      <div class="tooltip-demo well">
+
+      </div>
+       <div class="mini-layout fluid">
+            <div class="mini-layout-body">
+            	 <ul class="nav nav-tabs nav-stacked">
+		        <?php foreach ($list as $k => $v) {?>
+		        <legend><a href="<?php echo helper_common::site_url('blog/view/id/'.$v['blog_id']);?>"><?php echo $v['title']?></a></legend>
+		        	<span class="help-block"><?php echo $v['keys'];?></span>
+		        	
+		        	<span class="label label-info" title="<?php echo date('Y-m-d H:i:s',$v['dateline']);?>">Time</span> <?php echo helper_timer::how_long($v['dateline']);?>
+		        	<span class="label label-info">Tags</span> 
+		        	<?php helper_common::tagsurl($v['tags']);?>
+		        	<span class="label label-info"><?php echo $v['posts'];?> Comments</span> 
+<hr class="bs-docs-separator">
+		        <?php }?>
+		        </ul>
+		        
+				<div class="pagination pagination-centered">
+				<?php echo $page_str;?>
+				</div>  
+            </div>
+            
+             <div class="mini-layout-sidebar">
+             <i class="icon-th-list"></i>
+		      <?php foreach ($classes as $v){
+		      	$b = '';
+		
+		      	if ($v['id'] == $classid) {
+		      		$b = 'btn-inverse';
+		      	}else{
+		      		//$rand = rand(1, 3); 随机显示样式
+		      		//if ($rand%2 == 0) {
+		      			$b = 'btn-success';
+		      		//}elseif ($rand%3 == 0){
+		      		//	$b = 'btn-warning';
+		      		//}
+		      	}
+		      	?>
+		      	<p><a href="<?php echo helper_common::site_url('blog/index/c/'.$v['id']);?>"><button class="btn btn-small <?php echo $b?>" type="button"><?php echo $v['classname']?></button></a>
+		      </p>
+		      <?php }?>
+		      </div>
+		      <div style="height:20px;float:left;margin-top:20px">tags</div>
+		          <div class="mini-layout-sidebar">
+
+<?php
+$tagsArr = $tags;
+//$tagsArr = array('PHP','CMS','YAF','百度');
+$tagsStr = '<tags>';
+foreach ($tagsArr as $value){
+    $tagsStr .= urlencode('<a href="'.helper_common::site_url('blog').'?s='.urlencode($value).'" style="font-size:'.rand(5,20).'pt;">'.$value.'</a>');
+}
+$tagsStr .= '</tags>'; 
+?>
+<div id="Tags"></div>
+<script type="text/javascript" src="/static/tags/swfobject.js"></script>
+<script type="text/javascript">
+var rnumber = Math.floor(Math.random()*9999999);
+var cloud = new SWFObject("/static/tags/tagcloud.swf?r="+rnumber, "tagcloudflash", "220", "250", "9", "#ffffff");
+cloud.addParam("wmode", "transparent");
+cloud.addParam("allowScriptAccess", "always");
+cloud.addVariable("tspeed", "100");
+cloud.addVariable("mode", "tags");
+cloud.addVariable("tagcloud", '<?php echo $tagsStr;?>');
+cloud.write("Tags");
+</script> 
+		      
+            </div>  
+          </div>     
+
+      	
+
+      
+
+
+
+		
+<?php include_once(VIEW_PATH .'/layout/footer.phtml')?>

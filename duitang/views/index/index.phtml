@@ -1,0 +1,91 @@
+<?php include_once(VIEW_PATH .'/layout/header.phtml')?>
+
+    <div class="mwidth box">
+    <div class="box_left">
+        <?php include_once('list.phtml')?>
+   </div>
+   <div class="box_right" id="login_back">
+        <div class="bor_light rightlabel">
+            <div class="bor_lightt"></div>
+            <div class="nemu">
+                <ul>
+                    <li class="icont icont1"><a href="#">我的专辑</a></li>
+                    <li class="icont icont2"><a href="#">我的发布</a></li>
+                    <li class="icont icont3"><a href="#">我的收藏</a></li>
+                </ul>
+                <a href="#"><img src="/static/images/btn_a.gif" alt="邀请朋友加入小萌Avi" /></a> </div>
+            <div class="bor_lightf"></div>
+        </div>
+        <div class="bor_light rightlabel">
+            <div class="bor_lightt"></div>
+            <div class="box_center">
+                <h1 class="pink">我的标签</h1>
+                <a href="javascript:;">短袖</a> <a href="javascript:;">圆领</a> <a href="javascript:;">蝙蝠袖</a> <a href="javascript:;">中长款</a> <a href="javascript:;">打底衫</a> <a href="javascript:;">印花T恤</a> </div>
+            <div class="bor_lightf"></div>
+        </div>
+        <div class="bor_light hourshot">
+            <div class="bor_lightt"></div>
+            <div class="box_center">
+                <h1 class="blue">可能感兴趣的用户</h1>
+                <div class="user_list">
+                    <ul>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                        <li><a href="#"><img src="/static/images/photo02.gif" class="user_img" /></a>
+                            <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                            发布到 <span class="blue">短发~</span>专辑中</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bor_lightf"></div>
+        </div>
+    </div>
+    <div class="box_right" id="before_logging">
+        <div class="bor_light rightlabel">
+            <div class="bor_lightt"></div>
+            <div class="box_center">
+                <h1 class="blue">标签</h1>
+                <?php echo spall_tag::index_tag($tags);?>
+             </div>
+            <div class="bor_lightf"></div>
+        </div>
+        <div class="bor_light hourshot">
+            <div class="bor_lightt"></div>
+            <div class="box_center">
+                <h1 class="pink">热门专辑</h1>
+                <div class="photo_list"> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> </div>
+            </div>
+            <div class="bor_lightf"></div>
+        </div>
+    </div>
+    </div>
+
+<?php include_once(VIEW_PATH.'/layout/footer.phtml')?>

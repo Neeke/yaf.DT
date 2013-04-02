@@ -1,0 +1,6 @@
+db4free.net:3306
+
+username: ciogao
+pwd: yaf_blog
+
+db: yafblog

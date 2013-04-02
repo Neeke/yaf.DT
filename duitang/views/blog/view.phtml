@@ -1,0 +1,22 @@
+  <?php include_once(VIEW_PATH.'/layout/header.phtml')?>
+  
+    <div class="container">
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="page-header">
+            <h1><?php echo $info['title'];?></h1>
+       </div>
+      
+      <div class="alert alert-info">
+      <a class="close" data-dismiss="alert">×</a>
+      <strong>前言：</strong>
+      <?php echo $info['keys'];?>
+      </div>
+	<div class="bs-docs-example">
+	<?php echo $info['content'];?>
+	</div>
+
+	<?php include_once(VIEW_PATH .'/blog/replay_list.phtml')?>
+	<?php include_once(VIEW_PATH .'/layout/replay.phtml')?>
+	
+	
+<?php include_once(VIEW_PATH .'/layout/footer.phtml')?>

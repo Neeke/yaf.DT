@@ -1,0 +1,81 @@
+   <?php include_once(VIEW_PATH.'/layout/header.phtml')?>
+   <div class="container">
+   <div class="row">
+   <?php include_once(VIEW_PATH.'/layout/admin_menu.phtml')?>
+<div class="span9">
+      <div class="page-header">
+            <h2>管理分类</h2>
+             <span class="label label-success" href="#myModal" data-toggle="modal">new class</span>
+       </div>
+   
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="myModal" style="display: none;">
+            <div class="modal-header">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+              <h3 id="myModalLabel">编辑</h3>
+            </div>
+            <div class="modal-body">
+                  <div class="control-group">
+			    	<label class="control-label" for="inputEmail">名称</label>
+			    	<div class="controls">
+				    <input type="text" value="" name="title" id="title" class="input-large" placeholder="分类名称">
+				    <input type="hidden" name="classid" id="classid" value="">
+			    	</div>
+   				 </div>
+   				 
+   				     <div class="control-group">
+    <div class="control-group">
+	    <label class="control-label" for="inputEmail">简述</label>
+	    <div class="controls">
+	    	<textarea rows="2" name="keys" id="keys" placeholder="简单描述" class="input-xlarge"></textarea>
+	    </div>
+    </div>
+    </div>
+         </div>
+            <div class="modal-footer">
+              <button data-dismiss="modal" class="btn">Close</button>
+              <button class="btn btn-primary" onclick="edit()">Save changes</button>
+            </div>
+          </div>
+          <script type="text/javascript">
+function info(v){
+	$.post('/api/classadmin/info','classid='+v,function(data){
+		$("#classid").attr("value", data.data.id);
+		$("#title").attr("placeholder", data.data.classname);
+		$("#title").attr("value", data.data.classname);
+		$("#keys").val(data.data.keys);
+		});
+}
+
+function edit(){
+	var postdata = {
+							classid:$("#classid").attr('value'),
+							keys:$("#keys").val(),
+							title:$("#title").attr('value')
+							};
+	$.post('/api/classadmin/classadd',postdata,function(data){
+		alert(data.msg);location.href=data.data.url;
+		});
+}
+
+function del(v){
+	$.post('/api/classadmin/del','classid='+v,function(data){
+		alert(data.msg);location.href=data.data.url;
+		});
+}
+          </script>
+         <ul class="nav nav-tabs nav-stacked">
+        <?php foreach ($list as $k => $v) {?>
+        <li>
+        	<a href="<?php echo helper_common::site_url('blog/view/id/'.$v['id']);?>"><?php echo $v['classname']?></a>
+        </li>
+        <a href="#myModal" data-toggle="modal" onclick="info(<?php echo $v['id'];?>);"><span class="label label-info">Edite</span></a>
+        <a href="#" onclick="del(<?php echo $v['id']?>);"><span class="label label-important">Delete</span></a>
+        <?php }?>
+        </ul>
+        
+		<div class="pagination pagination-centered">
+		<?php echo $page_str;?>
+		</div>
+    </div>
+</div>
+      <?php include_once(VIEW_PATH.'/layout/footer.phtml')?>

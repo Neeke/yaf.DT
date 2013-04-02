@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* --- Reset default browser CSS.--- */
+html{
+	background:#f5f5f5;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	border: 0;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+}
+body {
+	background:#fff;
+	font-size:12px;
+	font-family:'Microsoft YaHei','SimSun';
+}
+input, textarea {
+	font-family:'Microsoft YaHei','SimSun';
+	color:#333;
+}
+:focus {/* remember to define focus styles! */
+	outline: 0;
+}
+ol, ul {
+	list-style: none;
+}
+table {/* tables still need 'cellspacing="0"' in the markup */
+	border-collapse: separate;
+	border-spacing: 0;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+a img{
+	border: 0;
+}
+a{
+ color:#1572b3;
+ text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+em {
+	color:#e25f17;
+	font-style:normal;
+}
+del{
+	color:#999;
+	text-decoration:none;
+}
+select {
+	color: #333;
+	height: 26px;
+	padding: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #DDD;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+input, textarea {
+	background: #fff;
+	font-family:'Microsoft YaHei','SimSun';
+	font-size: 12px;
+}
+
+textarea {
+	border: 1px solid #ddd;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+.clear {
+	float:none;
+	clear:both;
+}
+
+.breakword {
+	word-break: break-all;
+	word-wrap: break-word;
+}

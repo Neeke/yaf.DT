@@ -1,0 +1,65 @@
+   <?php include_once(VIEW_PATH.'/layout/header.phtml')?>
+   <div class="container">
+   <div class="row">
+   <?php include_once(VIEW_PATH.'/layout/admin_menu.phtml')?>
+  <script type="text/javascript" src="/static/kind/kindeditor.js" charset="utf-8"></script>
+  	<script>
+		KE.show({
+			id : 'content',
+			imageUploadJson : '/static/kind/php/upload_json.php',
+			fileManagerJson : '/static/kind/php/file_manager_json.php',
+			allowFileManager : true,
+		});
+	</script>
+<div class="span9">
+      <div class="page-header">
+            <h1>添加博客</h1>
+       </div>
+           <form class="form-horizontal" action="<?php echo helper_common::site_url('admin/blogadd');?>" method="POST">
+    <div class="control-group">
+	    <label class="control-label" for="inputEmail">分类</label>
+	    <div class="controls">
+			<select name="class_id">
+			<?php foreach ($classes as $v){?>
+			<option value="<?php echo $v['id'];?>" <?php if ($info['class_id'] == $v['id']) echo 'selected="true"';?>><?php echo $v['classname'];?></option>
+			<?php }?>
+			</select>
+	    </div>
+    </div>
+    <div class="control-group">
+	    <label class="control-label" for="inputEmail">标题</label>
+	    <div class="controls">
+		    <input type="text" name="title" class="input-xxlarge" placeholder="此处填写标题" value="<?php echo $info['title'];?>">
+		    <input type="hidden" name="blog_id" value="<?php echo $info['blog_id'];?>">
+	    </div>
+    </div>
+    <div class="control-group">
+	    <label class="control-label" for="inputEmail">简介</label>
+	    <div class="controls">
+	    	<textarea rows="3" name="keys" placeholder="简单描述" class="input-xxlarge"><?php echo $info['keys'];?></textarea>
+	    </div>
+    </div>
+    <div class="control-group">
+	    <label class="control-label" for="inputEmail">Tags</label>
+	    <div class="controls">
+	    	<?php $ids = explode(',', $info['tags']);?>
+	    	<?php foreach ($tags as $v){?>
+	     	<label class="checkbox"><input type="checkbox" name="tags[]" value="<?php echo $v['id']?>" <?php if (helper_common::ifInTags($v['id'],$ids)) echo 'checked';?>><?php echo $v['tag']?></label>
+	    	<?php }?>
+	    </div>
+    </div>
+    <div class="control-group">
+	    <label class="control-label" for="inputPassword">内容</label>
+	    <div class="controls">
+	    	<textarea name="content" rows="10" style="width:800px" placeholder="内容"><?php echo $info['content'];?></textarea>
+	    </div>
+    </div>
+    <div class="control-group">
+    <div class="controls">
+	<button type="submit" class="btn btn-primary">保存博客</button>
+    </div>
+    </div>
+    </form>
+    </div>
+</div>
+      <?php include_once(VIEW_PATH.'/layout/footer.phtml')?>

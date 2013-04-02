@@ -1,0 +1,18 @@
+	<hr class="bs-docs-separator">
+	共有<?php echo count($posts);?>条评论：
+	<?php 
+	if (is_array($posts)) {
+		foreach ($posts as $v){?>
+		<div class="well well-small">
+		<?php echo date('Y-m-d H:i:s',$v['dateline']) . ' | ' . $v['email'];?><br />
+		<p>
+			<img src="<?php echo helper_common::avatar($v['email'])?>">
+		<?php echo $v['content']?></p>
+		</div>
+		<?php 
+		}
+	}
+	if (count($posts) == 0) {
+		echo '暂无评论';
+	}
+	?>

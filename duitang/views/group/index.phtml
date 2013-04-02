@@ -1,0 +1,47 @@
+﻿<?php include_once(VIEW_PATH .'/layout/header.phtml')?>
+<div class="main">
+  <div class="bor_light2">
+    <div class="bor_lightt2"></div>
+    <div class="classification">
+
+        <?php
+        if (is_array($classes) && count($classes) > 0){
+            foreach ($classes as $k => $v){
+                $parent = array_pop($v);
+                echo "<h1 class='pink'>{$parent['class_name']}</h1>";
+
+                ?>
+                <ul>
+                <?php
+                foreach ($v as $cls){
+                ?>
+                    <li>
+                        <a href='<?php echo helper_common::site_url('group/list/n/'.$cls['cid']);?>'>
+                            <?php echo $cls['class_name'];?>(<?php echo $cls['pics_count'];?>)
+                        </a>
+                    </li>
+                <?php }?>
+                </ul>
+
+     <?php
+            }
+        }
+        ?>
+    </div>
+    <div class="bor_lightf2"></div>
+  </div>
+  <div class="box_right">
+    <div class="bor_light">
+      <div class="bor_lightt"></div>
+      <div class="box_center find_labels">
+        <h1 class="blue">查找标签</h1>
+        <div class="search">
+      <input type="text" class="ipt_text" id="ipt_search" value="输入文字..." />
+      <a href="javascript:;" class="search_ok" title="搜索"></a></div>
+        </div>
+      <div class="bor_lightf"></div>
+    </div>    
+  </div>
+</div>
+
+<?php include_once(VIEW_PATH.'/layout/footer.phtml')?>
