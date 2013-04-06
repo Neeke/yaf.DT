@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @author firefly
+ * @author ciogao@gmail.com
  *
  */
 class models_collect extends Models
@@ -26,9 +26,10 @@ class models_collect extends Models
 
     public function mkdata($v){
 		return $data = array(
-				'pics_id' => $v->test,
 				'user_id' => $v->test,
-//				'alipay_id' => helper_common::number_format($v->alipay_id),
+                'album_id' => $v->test,
+				'items_id' => $v->test,
+                'flag' =>  $v->test,
 		);
 	}
 }

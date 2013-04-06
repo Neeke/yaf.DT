@@ -39,8 +39,12 @@
 		var obj = $.makeArray(obj)		
 		$(".tu_list").setwaterfall();
 		var i=0;
-		$(window).scroll(function () {	
-		$("#popup_layer,#login").show();		
+		$(window).scroll(function () {
+
+		if ($CONFIG.if_login == 0){
+			$("#popup_layer,#login").show();
+		}
+
 			var clienth = document.documentElement.clientHeight;
 			var scrollh = document.documentElement.scrollHeight;
 			var scrollt = document.documentElement.scrollTop + document.body.scrollTop;

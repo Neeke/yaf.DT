@@ -11,7 +11,8 @@ html, body, div, span, p, table, td, tr,dl,dt,dd,ul,h1,h2,h3,h4,h5,h6,form,input
 
 
 /*公用文件区*/
-.mwidth{width:1000px;margin:0 auto;position:relative;}
+/*.mwidth{width:1000px;margin:0 auto;position:relative;}*/
+.mwidth{margin:0 auto;position:relative;}
 .fr{ float:right;}.fl{ float:left;}
 
 /*按钮区*/

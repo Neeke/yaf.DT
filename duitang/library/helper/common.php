@@ -1,7 +1,7 @@
 <?php
 /**
  * 单例公共函数
- * @author Firefly
+ * @author ciogao@gmail.com
  *
  */
 class helper_common{
@@ -26,6 +26,16 @@ class helper_common{
 		$ext = $config->pro->ext;
 		$site = $config->pro->site;
 		return $site.$a.$ext;
+	}
+
+    /**
+     * 生成用户链接
+     * @param $a
+     *
+     * @return string
+     */
+    public static function site_url_user($a){
+		return self::site_url('user/my/u/'.$a);
 	}
 
     /**
@@ -100,7 +110,7 @@ class helper_common{
      */
 	public static function ifInTags($id = 0,$ids = array()){
 		if (in_array($id, $ids)) return true;
-		return FALSE;
+		return false;
 	}
 	
 	/**
@@ -111,4 +121,21 @@ class helper_common{
 	public static function number_format($num){
         return number_format($num,0,'','');
 	}
+
+    /**
+     * 从数组中取得某字段并返回数组，一般为主键
+     * @param $data
+     * @param $column
+     *
+     * @return array
+     */
+    public static function get_column($data,$column){
+        if (!is_array($data) || count($data) < 1) return false;
+
+        $result = array();
+        foreach($data as $v){
+            if (array_key_exists($column,$v)) $result[] = $v[$column];
+        }
+        return $result;
+    }
 }

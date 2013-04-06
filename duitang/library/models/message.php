@@ -1,7 +1,7 @@
 <?php
 /**
  * 消息
- * @author firefly
+ * @author ciogao@gmail.com
  *
  */
 class models_message extends Models

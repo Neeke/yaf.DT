@@ -1,8 +1,10 @@
 <?php
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(-1);
 /* INI配置文件支持常量替换 */
 define ("APPLICATION_PATH", dirname(__FILE__) . "/duitang");
 define ("VIEW_PATH", dirname(__FILE__) . "/duitang/views");
+define ("STATIC_PATH", dirname(__FILE__) . "/static");
+
 /**
  * 默认的, Yaf_Application将会读取配置文件中在php.ini中设置的ap.environ的配置节
  * 另外在配置文件中, 可以替换PHP的常量, 比如此处的APPLICATION_PATH
@@ -14,7 +16,7 @@ $application = new Yaf_Application("conf/appcrm.ini");
  */
 //$application->getDispatcher()->flushInstantly(TRUE);
 
-/* 如果没有关闭自动response(通过Yaf_Dispatcher::getInstance()->returnResponse(TRUE)), 
+/* 如果没有关闭自动response(通过Yaf_Dispatcher::getInstance()->returnResponse(TRUE)),
  * 则$response会被自动输出, 此处也不需要再次输出Response
  */
 $response = $application

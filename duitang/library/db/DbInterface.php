@@ -13,6 +13,7 @@ interface db_DbInterface {
     function cache_on();
     function cache_off();
 
+    function debug();   //开启debug
     function query($query); //执行sql语句
     
     /**

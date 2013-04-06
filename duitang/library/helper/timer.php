@@ -1,7 +1,7 @@
 <?php
 /**
  * 时间辅助函数 
- * @author Firefly
+ * @author ciogao@gmail.com
  */
 class  Helper_timer
 {
@@ -17,13 +17,14 @@ class  Helper_timer
 		$time['end'] = mktime(23,59,59,$m,$d,$Y);
 		return $time;
 	}
-	
-	/**
-	 * 返回时间戳所在周的起未时间戳
-	 * 无传入时，返回当前周的时间戳
-	 * @param unknown_type $time_
-	 * @return array $time
-	 */
+
+    /**
+     * 返回时间戳所在周的起未时间戳
+     * 无传入时，返回当前周的时间戳
+     * @param string|\unknown_type $time_
+     *
+     * @return array $time
+     */
 	public static function week($time_ = ''){
 		$time = $time_?$time_:time();
 		$day = date('w',$time);
@@ -44,13 +45,14 @@ class  Helper_timer
 		unset($start_time,$end_time);
 		return $time;
 	}
-	
-	/**
-	 * 返回时间戳所在月的起未时间戳
-	 * 无传入时，返回当前月的时间戳
-	 * @param int $time_
-	 * @return array $time
-	 */
+
+    /**
+     * 返回时间戳所在月的起未时间戳
+     * 无传入时，返回当前月的时间戳
+     * @param int|string $time_
+     *
+     * @return array $time
+     */
 	public static function month($time_ = ''){
 		$time = $time_?$time_:time();
 		$month = date('m',$time);
@@ -62,13 +64,14 @@ class  Helper_timer
 		unset($start_time,$end_time);
 		return $time;
 	}
-	
-	/**
-	 * 返回该时间戳距离现在多久  1小时前 1天前 1周前 1月前
-	 *
-	 * @param int $time_tem
-	 * @return 多久前
-	 */
+
+    /**
+     * 返回该时间戳距离现在多久  1小时前 1天前 1周前 1月前
+     *
+     * @param int $time_tem
+     *
+     * @return string 多久前
+     */
 	public static function how_long($time_tem = 0){
 		$time = time() - $time_tem;
 		switch ($time){

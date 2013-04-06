@@ -4,7 +4,7 @@
  * 
  * 根据uri与$_GET\$_POST参数计算cache_key
  * 确保用户对每个uri请求参数相同的情况下,采用此类
- * @author firefly
+ * @author ciogao@gmail.com
  * @access 注意,只在GET请求时生效
  * 			jquery已经对GET默认启用了modified方法,没过期的缓存不再请求
  * 			jquery的POST方法已经不再发送HTTP_IF_MODIFIED_SINCE头

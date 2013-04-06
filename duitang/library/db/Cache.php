@@ -1,7 +1,7 @@
 <?php
 /**
  * 单例cache
- * @author firefly
+ * @author ciogao@gmail.com
  *
  */
 class db_Cache {

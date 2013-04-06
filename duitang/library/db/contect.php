@@ -1,7 +1,7 @@
 <?php
 /**
  * 连接数据库
- * @author Firefly
+ * @author ciogao@gmail.com
  *
  */
 class db_contect{

@@ -5,7 +5,6 @@ class ApiController extends Controller
     public function init()
     {
         parent::init();
-        $this->setaction('api');
     }
 
     public function indexAction()

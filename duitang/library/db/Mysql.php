@@ -8,14 +8,16 @@
 class db_Mysql implements db_DbInterface {
 
     private static $_instances;
+    private $_debug = false;
+    private $_update_cache = false;
     private $_dbh;
     private $_sth;
     private $_sql;
     private $_cache;
-    private $_cache_on = FALSE;
-    private $_cache_off = FALSE;
+    private $_cache_on = false;
+    private $_cache_off = false;
     private $_cache_time = 60;
-    private $_cache_if_have = FALSE;
+    private $_cache_if_have = false;
     
     private function __construct($dbhost, $dbport, $username, $password, $dbname, $dbcharset, $cachesys, $cachetype, $cachehost, $cacheport) {
     	
@@ -33,7 +35,6 @@ class db_Mysql implements db_DbInterface {
         }
         
         $this->_cache = db_Cache::instance($cachehost, $cacheport, $cachetype, $cachesys);
-        //$this->_cache = new db_Cache($cachesys,$cachetype,$cachehost,$cacheport);
     }
 
     /**
@@ -92,17 +93,31 @@ class db_Mysql implements db_DbInterface {
     }
 
     /**
+     * 起用debug
+     */
+    function debug(){
+        $this->_debug = true;
+    }
+
+    /**
+     * 起用强制更新cache
+     */
+    function update_cache(){
+        $this->_update_cache = true;
+    }
+
+    /**
      * 是否使用缓存
      * @access 只对selete操作有效 对insert\delete\update无效
      */
     function cache_on($time = ''){
-    	$this->_cache_on = TRUE;
+    	$this->_cache_on = true;
     	$this->_cache_time = !empty($time)?(int)$time:$this->_cache_time;
     }
     
     function cache_off(){
-    	$this->_cache_on = FALSE;
-    	$this->_cache_if_have = FALSE;
+    	$this->_cache_on = false;
+    	$this->_cache_if_have = false;
 //     	$this->_cache->close();
     }
     
@@ -121,14 +136,14 @@ class db_Mysql implements db_DbInterface {
    	 * @see db_DbInterface::query()
    	 */
     function query($sql, $values = array()) {
-    	if ($this->_cache_on) {
+    	if ($this->_cache_on && $this->_update_cache == false) {
     	    	$cache_key = $this->cache_made_key($sql, $values);
 		    	$if_have_cache = $this->_cache->get($cache_key);
 		    	if ($if_have_cache) {
-		    		$this->_cache_if_have = TRUE;
+		    		$this->_cache_if_have = true;
 		    		return $if_have_cache;
 		    	}else{
-		    		$this->_cache_if_have = FALSE;
+		    		$this->_cache_if_have = false;
 		    	}
     	}
 
@@ -139,7 +154,13 @@ class db_Mysql implements db_DbInterface {
         if ('00000' !== $this->_sth->errorCode()) {
             $this->halt();
         }
-        
+
+        if ($this->_debug == true){
+            echo '<pre>';
+            var_dump($sql);echo '<br>';
+            var_dump($values);echo '<br><br>';
+        }
+
         return $bool;
     }
 
@@ -155,9 +176,9 @@ class db_Mysql implements db_DbInterface {
 
         $result = $this->_sth->fetchAll($fetch_style);
         
-        if ($this->_cache_on) {
+        if ($this->_cache_on || $this->_update_cache) {
     	    $cache_key = $this->cache_made_key($sql, $values);
-        	$this->_cache->set($cache_key, $result, $this->_cache_time);
+        	$this->_cache->set($cache_key.'_all', $result, $this->_cache_time);
         }
                 
         return $result;
@@ -186,9 +207,9 @@ class db_Mysql implements db_DbInterface {
         
         $result = $this->_sth->fetch($fetch_style);
         
-        if ($this->_cache_on) {
+        if ($this->_cache_on || $this->_update_cache) {
         	$cache_key = $this->cache_made_key($sql, $values);
-        	$a = $this->_cache->set($cache_key, $result, $this->_cache_time);
+        	$a = $this->_cache->set($cache_key.'_row', $result, $this->_cache_time);
         }
         
         return $result;

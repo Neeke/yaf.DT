@@ -1,12 +1,12 @@
 <?php
 /**
  * 用户
- * @author Firefly
+ * @author ciogao@gmail.com
  *
  */
 class models_user extends Models
 {
-    private static $_instance = NULL;
+    private static $_instance = null;
 
     /**
      * @return models_user
@@ -22,7 +22,7 @@ class models_user extends Models
     function __construct()
     {
         parent::__construct();
-        $this->_table = 'avi_user';
+        $this->_table   = 'avi_user';
         $this->_primary = 'user_id';
     }
 
@@ -30,12 +30,13 @@ class models_user extends Models
      * 检查该用户是否合法用户
      * @param string $username
      * @param string $pwd
+     *
      * @return false || array
      */
     function is_user($username, $pwd)
     {
         $sql = 'select ' . $this->_primary . ' from ' . $this->_table . ' where user_name = ? and pwd = ?';
-        $a = $this->db->getOne($sql, array($username, $pwd));
+        $a   = $this->db->getOne($sql, array($username, $pwd));
         return $a;
     }
 
@@ -46,36 +47,41 @@ class models_user extends Models
     {
         $s = Yaf_Session::getInstance();
         if ($s->has('userinfo')) {
-            $userinfo = $s->get('userinfo');
-            $array['user_id'] = $userinfo['user_id'];
+            $userinfo           = $s->get('userinfo');
+            $array['user_id']   = $userinfo['user_id'];
             $array['user_name'] = $userinfo['user_name'];
             return $array;
         }
-        return FALSE;
+        return false;
     }
 
     /**
      * 登录
-     * @todo 非法检测 非空检测
-     * @param $user_id
+     * @todo     非法检测 非空检测
+     *
+     * @param $user_name
+     * @param $pwd
+     *
      * @return boolean
      */
-    public function login($user_id)
+    public function login($user_name, $pwd)
     {
         $this->db->cache_off();
-        $a = $this->db->getRow('select * from ' . $this->_table . ' where ' . $this->_primary . ' = ?', array($user_id));
-        $session = Yaf_Session::getInstance();
-        $session->userinfo = $a;
-        return TRUE;
+        $aResult           = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
+        if ($aResult == false) return false;
+
+        $session           = Yaf_Session::getInstance();
+        $session->userinfo = $aResult;
+        return true;
     }
 
     public function mkdata($v)
     {
         return array(
-            'email' => $v->test,
-            'user_name' => $v->test,
-            'pwd' => $v->test,
-            'remark' => $v->test,
+            'user_email'   => $v['email'],
+            'user_name'    => $v['user_name'],
+            'user_pwd'     => md5($v['pwd']),
+            'remark'       => $v['remark'],
             'created_time' => time(),
         );
     }

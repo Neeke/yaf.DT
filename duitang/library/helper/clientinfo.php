@@ -1,7 +1,7 @@
 <?php 
 /**
  * 获取客户端信息
- * @author firefly
+ * @author ciogao@gmail.com
  *
  */
 class helper_clientinfo

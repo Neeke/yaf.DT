@@ -35,4 +35,22 @@ class TestController extends Controller
 		$loger->error($log);
 		die;
 	}
+
+    public function loginAction(){
+        $username = $this->getRequest()->getPost('email');
+        $pwd = md5($this->getRequest()->getPost('pwd'));
+        $b = $this->model->is_user($username, $pwd);
+        if ($b == FALSE) {
+            $this->forward('notlogin',array('error' => '没有此用户'));
+        }else{
+            $session = Yaf_Session::getInstance();
+            $session->username = $username;
+            $this->redirect('/test/admin');
+        }
+        Yaf_Dispatcher::getInstance()->disableView();
+    }
+
+    public function notloginAction(){
+        helper_common::msg($this->getRequest()->getParam('error'));
+    }
 }

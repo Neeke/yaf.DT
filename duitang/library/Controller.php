@@ -5,7 +5,10 @@
  *
  */
 class Controller extends Yaf_Controller_Abstract {
-	public $model;
+    /**
+     * @var Models
+     */
+    public $model;
 	public $db ;
 	public $meta;
 	const ACTIVE = 'class="current"';
@@ -34,6 +37,11 @@ class Controller extends Yaf_Controller_Abstract {
 	 */
 	protected $modified;
 
+    /**
+     * @var Yaf_Session
+     */
+    protected $session;
+
 	function init(){
 		$this->userinfo = models_user::getInstance()->getUserInfo();
         $this->modules = explode(',',Yaf_Registry::get("config")->get('yaf')->get('modules'));
@@ -47,6 +55,7 @@ class Controller extends Yaf_Controller_Abstract {
  		$this->quantity = rest_Quantity::instance();
 		$this->rest = rest_Server::instance();
  		$this->modified = rest_Modified::instance();
+        $this->session = Yaf_Session::getInstance();
 		
 		$this->appconfig = Yaf_Registry::get("config")->get('taobaoapp')->toArray();
 	}
@@ -55,8 +64,8 @@ class Controller extends Yaf_Controller_Abstract {
      * 检测状态
      */
     private function check_login(){
-
-        if ($this->userinfo == FALSE
+        $this->set('userinfo',$this->userinfo);
+        if ($this->userinfo == false
             && !($this->_request->module == 'Index' && $this->_request->controller == 'Index' && $this->_request->action == 'index')
             && !in_array($this->_request->module, $this->modules)
         ) {

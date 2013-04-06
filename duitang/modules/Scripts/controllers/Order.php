@@ -2,7 +2,7 @@
 
 /**
  * 订单脚本
- * @author firefly
+ * @author ciogao@gmail.com
  *
  */
 class OrderController extends Controller{

@@ -1,7 +1,7 @@
 <?php
 /**
  * 日志base类
- * @author firefly
+ * @author ciogao@gmail.com
  *
  */
 class Log_Base

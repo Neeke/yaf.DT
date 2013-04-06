@@ -1,7 +1,7 @@
 <?php
 /**
  * 图片rgb&&灰度计算　辅助函数 
- * @author Firefly
+ * @author ciogao@gmail.com
  */
 class  helper_pics
 {

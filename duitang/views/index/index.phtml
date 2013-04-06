@@ -81,7 +81,12 @@
             <div class="bor_lightt"></div>
             <div class="box_center">
                 <h1 class="pink">热门专辑</h1>
-                <div class="photo_list"> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo03.jpg" /></a> <a href="javascript:;"><img src="/static/images/photo04.jpg" /></a> </div>
+                <div class="photo_list">
+                    <?php foreach($hotalbums as $v){?>
+                    <a href="javascript:;" title="<?php echo $v['album_name'];?>"><img src="/static/images/photo03.jpg" /></a>
+
+                    <?php }?>
+                </div>
             </div>
             <div class="bor_lightf"></div>
         </div>

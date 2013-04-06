@@ -1,12 +1,12 @@
 <?php
 /**
  * 图片
- * @author firefly
+ * @author ciogao@gmail.com
  *
  */
 class models_items extends Models
 {
-    private static $_instance = NULL;
+    private static $_instance = null;
 
     /**
      * @return models_items
@@ -30,10 +30,22 @@ class models_items extends Models
      * 首页获取图片
      */
     function getIndexItems(){
+        $this->db->cache_on();
         return $this->getAll(array('items_id','items_name','items_pic','reply_hits','like_hits','remark'),
                                            array('flag' => contast_items::ITEMS_FLAG_YES),
                                            array('items_id' => 'asc')
         );
+    }
+
+    /**
+     * 浏览hist+1
+     *
+     * @param $items_id
+     *
+     * @return bool
+     */
+    function viewItems($items_id){
+        return $this->update(array('hits' => 'hits + 1'),$items_id);
     }
 
     function mkdata($v)
