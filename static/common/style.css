@@ -292,7 +292,7 @@ html, body, div, span, p, table, td, tr,dl,dt,dd,ul,h1,h2,h3,h4,h5,h6,form,input
 .detailed_ar .wen,.detailed_ar .wen p{ color:#8c8b8b; line-height:18px;padding-bottom:10px;}
 .detailed_ar .btn{ float:right; background:url(../images/btn_c.gif) no-repeat;height:20px;width:70px; text-align:center; line-height:20px; color:#fff; font-family:"微软雅黑";padding:0;}
 
-.pho_list li{ float:left;padding:10px 1px 0;width:175px; overflow:hidden;}
+.pho_list li{ float:left;padding:10px 1px 0;width:168px; overflow:hidden;}
 .pho_list li span{ display:block; text-align:center;color:#848484;}
 
 

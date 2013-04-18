@@ -64,6 +64,7 @@ class models_album extends Models
             'hits' => $v->test,
             'remark' => $v->test,
             'dateline' => time(),
+            'face_url' => $v->test,
         );
     }
 }

@@ -30,12 +30,22 @@ class helper_common{
 
     /**
      * 生成用户链接
-     * @param $a
+     * @param $id
      *
      * @return string
      */
-    public static function site_url_user($a){
-		return self::site_url('user/my/u/'.$a);
+    public static function site_url_user($id){
+		return self::site_url('user/my/u/'.$id);
+	}
+
+    /**
+     * 生成专辑链接
+     * @param $id
+     *
+     * @return string
+     */
+    public static function site_url_album($id){
+		return self::site_url('album/view/a/'.$id);
 	}
 
     /**

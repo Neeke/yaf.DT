@@ -67,7 +67,7 @@ class models_user extends Models
     public function login($user_name, $pwd)
     {
         $this->db->cache_off();
-        $aResult           = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
+        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
         if ($aResult == false) return false;
 
         $session           = Yaf_Session::getInstance();
@@ -78,11 +78,16 @@ class models_user extends Models
     public function mkdata($v)
     {
         return array(
-            'user_email'   => $v['email'],
-            'user_name'    => $v['user_name'],
-            'user_pwd'     => md5($v['pwd']),
-            'remark'       => $v['remark'],
-            'created_time' => time(),
+            'user_email'    => $v['email'],
+            'user_name'     => $v['user_name'],
+            'user_pwd'      => md5($v['pwd']),
+            'remark'        => $v['remark'],
+            'follower_count'  => $v['follower_count'],
+            'items_count'   => $v['items_count'],
+            'collect_count' => $v['collect_count'],
+            'album_count'   => $v['album_count'],
+            'interest_count'   => $v['interest_count'],
+            'created_time'  => time(),
         );
     }
 
