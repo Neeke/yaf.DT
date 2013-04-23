@@ -10,7 +10,7 @@ if (is_array($items) && count($items) > 0) {
                         <img src="<?php echo $itemsinfo['items_pic']; ?>"/>
                     </a>
                     <a href="javascript:;" class="icon_like"><b class="icon icon01">喜欢</b></a>
-                    <a href="javascript:;" class="icon_collect"><b class="icon icon02">收藏</b></a>
+                    <a href="javascript:;" class="icon_collect" data-items-id="<?php echo $itemsinfo['items_id'];?>"><b class="icon icon02">收藏</b></a>
                 </div>
                 <div class="sharenumber">
                     <b class="icon icon03"><?php echo $itemsinfo['like_hits'];?></b>

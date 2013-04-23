@@ -17,7 +17,7 @@ class helper_common{
 	private function __clone() {}
 	
     /**生成链接
-     * 	@example  set_url('blog/11')  ->  http://yaf.my/test/blog/11.html
+     * @example  set_url('blog/11')  ->  http://yaf.my/test/blog/11.html
      * @param string $a
      * @return string
      */
@@ -45,7 +45,7 @@ class helper_common{
      * @return string
      */
     public static function site_url_album($id){
-		return self::site_url('album/view/a/'.$id);
+		return self::site_url('album/v/a/'.$id);
 	}
 
     /**

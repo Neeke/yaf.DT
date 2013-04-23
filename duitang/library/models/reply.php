@@ -60,10 +60,10 @@ class models_reply extends Models
     function mkdata($tem)
     {
         return $data = array(
-            'items_id'   => $tem->test,
-            'user_id'    => $tem->test,
-            'p_reply_id' => $tem->test,
-            'content'    => $tem->test,
+            'items_id'   => $tem['items_id'],
+            'from_user_id'    => $tem['user_id'],
+            'p_reply_id' => $tem['p_reply_id'],
+            'content'    => $tem['content'],
             'dateline'   => time(),
         );
     }

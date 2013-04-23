@@ -1,7 +1,6 @@
 <?php
 /**
  * @author ciogao
- * Date: 13-3-25 上午1:10
  */
 class spall_tag
 {
@@ -15,7 +14,7 @@ class spall_tag
         if (is_array($tags) && count($tags) > 0){
             foreach ($tags as $v) {
                 $str .= '<a href="';
-                $str .= helper_common::site_url('/tags/list/n/'.$v['tid']);
+                $str .= helper_common::site_url('tags/list/n/'.$v['tid']);
                 $str .=  '">';
                 $str .=  $v['tag'];
                 $str .= '</a>';

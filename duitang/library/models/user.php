@@ -6,7 +6,7 @@
  */
 class models_user extends Models
 {
-    private static $_instance = null;
+    private static $_instance = NULL;
 
     /**
      * @return models_user
@@ -52,7 +52,7 @@ class models_user extends Models
             $array['user_name'] = $userinfo['user_name'];
             return $array;
         }
-        return false;
+        return FALSE;
     }
 
     /**
@@ -68,11 +68,33 @@ class models_user extends Models
     {
         $this->db->cache_off();
         $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
-        if ($aResult == false) return false;
+        if ($aResult == FALSE) return FALSE;
 
         $session           = Yaf_Session::getInstance();
         $session->userinfo = $aResult;
-        return true;
+        return TRUE;
+    }
+
+    /**
+     * 相册总数加１
+     * @return bool
+     */
+    public function addalbum()
+    {
+        $userinfo = $this->getUserInfo();
+        $this->db->query('update '.$this->_table.' set album_count = album_count + 1 where user_id = ?', array($userinfo['user_id']));
+        return TRUE;
+    }
+
+    /**
+     * 收藏总数加１
+     * @return bool
+     */
+    public function addcollect()
+    {
+        $userinfo = $this->getUserInfo();
+        $this->db->query('update '.$this->_table.' set collect_count = collect_count + 1 where user_id = ?', array($userinfo['user_id']));
+        return TRUE;
     }
 
     public function mkdata($v)

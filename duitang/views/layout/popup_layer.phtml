@@ -48,12 +48,15 @@
         <h1 class="pink">收藏</h1>
         <div class="Favorites"> <a href="javascript:;"><img src="images/photo05.jpg" class="pho_left"></a>
             <h2>收藏到</h2>
+            <input name="items_id" value="" type="hidden">
             <?php foreach($myalbums as $v){?>
                 <input type="radio" name="albums" value="<?php echo $v['album_id'];?>"><?php echo $v['album_name'];?>
-            <?php }?>
+            <?php }?><br />
+            <a href="javascript:;" class="btn collection"><b>确认收藏</b></a>
             <div class="Favorites_a">
                 <input name="" type="text" class="ipt_text">
-                <a href="javascript:;" class="btn btn2"><b>创建</b></a></div>
+                <a href="javascript:;" class="btn btn2"><b>创建</b></a>
+            </div>
         </div>
     </div>
 </div>
@@ -74,4 +77,5 @@
     $("#login_btn_submit").click(function(){
        login();
     });
+
 </script>

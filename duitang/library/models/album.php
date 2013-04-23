@@ -5,7 +5,7 @@
  */
 class models_album extends Models
 {
-    private static $_instance = null;
+    private static $_instance = NULL;
 
     /**
      * @return models_album
@@ -36,12 +36,17 @@ class models_album extends Models
 
     /**
      * 当前用户名下的专辑
+     * @param int $user_id
+     *
      * @return array
      */
-    function myAlbum(){
+    function myAlbum($user_id = 0){
         $this->db->cache_on(3600);
-        $userinfo = models_user::getInstance()->getUserInfo();
-        return $this->getAll('*',array('user_id' => $userinfo['user_id']));
+        if ((int)$user_id < 1) {
+            $userinfo = models_user::getInstance()->getUserInfo();
+            $user_id = (int)$userinfo['user_id'];
+        }
+        return $this->getAll('*',array('user_id' => $user_id));
     }
 
     /**
@@ -57,14 +62,15 @@ class models_album extends Models
     function mkdata($v)
     {
         return $data = array(
-            'album_name' => $v->test,
-            'user_id' => $v->test,
-            'class_id' => $v->test,
-            'tag_ids' => $v->test,
-            'hits' => $v->test,
-            'remark' => $v->test,
-            'dateline' => time(),
-            'face_url' => $v->test,
+            'album_name' => $v['album_name'],
+            'user_id' => $v['user_id'],
+            'class_id' => '',
+            'tag_ids' => '',
+            'hits' => 1,
+            'album_remark' => '',
+            'created_time' => time(),
+            'face_url' => '',
+            'is_open' => (int)$v['is_open'],
         );
     }
 }

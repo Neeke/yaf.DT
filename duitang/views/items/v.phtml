@@ -23,7 +23,8 @@
                     </div>
                     <!--<div class="currcetc"><a class="fr btn_d" href="javascript:;">查看来源</a>来源：www.bitauto.com  </div>-->
                     <div class="currcetd">
-                        <textarea name="" cols="" class="ipt_textarea" rows="">添加你的评论...</textarea></div>
+                        <input name="replay_items_id" value="<?php echo $iteminfo['items_id'];?>" type="hidden">
+                        <textarea name="items_reply" cols="" class="ipt_textarea" rows="" onfocus="if(this.value=='添加你的评论...'){this.value='';}" onblur="if(this.value==''){this.value='添加你的评论...';}">添加你的评论...</textarea></div>
                     <div class="currcete"><a href="javascript:;" class="fr blue btn_e">查看全部评论</a>
                         <span class="fr">共<?php echo $iteminfo['reply_hits'];?>条评论</span>
                         <a href="javascript:;" class="btn btn1 reply_submit"><b>发布</b></a></div>

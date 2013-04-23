@@ -277,7 +277,6 @@ class db_Mysql implements db_DbInterface {
      * @return boolean
      */
     function update($table, $data, $where) {
-
         $values = $bits = $wheres = array();
         foreach ($data as $k => $v) {
             $bits[] = "`$k` = ?";

@@ -26,10 +26,10 @@ class models_collect extends Models
 
     public function mkdata($v){
 		return $data = array(
-				'user_id' => $v->test,
-                'album_id' => $v->test,
-				'items_id' => $v->test,
-                'flag' =>  $v->test,
+				'user_id' => $v['user_id'],
+                'album_id' => $v['album_id'],
+				'items_id' => $v['items_id'],
+                'flag' =>  array_key_exists('flag',$v) ? $v['flag'] : 0,
 		);
 	}
 }

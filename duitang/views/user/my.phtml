@@ -25,7 +25,7 @@
   <div class="bor_light2">
     <div class="bor_lightt2"></div>
     <div class="myadmin_left">
-    <div class="myadmin_left_a"><a href="#"><img src="/static/images/zhuanj.jpg" alt="创建专辑" /></a></div>
+    <div class="myadmin_left_a"><a href="javascript:;" id="createAlbum"><img src="/static/images/zhuanj.jpg" alt="创建专辑" /></a></div>
     <h1 class="pink">我的专辑</h1>
     <ul class="pho_list">
         <?php if (is_array($albums) && count($albums) > 0){
@@ -55,5 +55,10 @@
     <div class="bor_lightf"></div>
   </div>
 </div>
+
+<script>
+    createAlbum();
+</script>
+
 
 <?php include_once(VIEW_PATH.'/layout/footer.phtml')?>

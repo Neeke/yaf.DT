@@ -1,7 +1,6 @@
 <?php
 /**
  * @author ciogao@gmail.com
- * Date: 13-4-6 下午4:12
  */
 class spall_user
 {

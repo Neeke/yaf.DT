@@ -3,7 +3,7 @@
         <div class="bor_lightt"></div>
         <div class="nemu">
             <ul>
-                <li class="icont icont1"><a href="#">我的专辑</a></li>
+                <li class="icont icont1"><a href="<?php echo helper_common::site_url_user($userinfo['user_id']);?>">我的专辑</a></li>
                 <li class="icont icont2"><a href="#">我的发布</a></li>
                 <li class="icont icont3"><a href="#">我的收藏</a></li>
             </ul>
@@ -77,10 +77,7 @@
         <div class="box_center">
             <h1 class="pink">热门专辑</h1>
             <div class="photo_list">
-                <?php foreach($hotalbums as $v){?>
-                    <a href="javascript:;" title="<?php echo $v['album_name'];?>"><img src="/static/images/photo03.jpg" /></a>
-
-                <?php }?>
+                <?php echo spall_album::albums($hotalbums);?>
             </div>
         </div>
         <div class="bor_lightf"></div>

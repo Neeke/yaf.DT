@@ -15,21 +15,17 @@ class ItemsController extends Controller
 
     public function replayAction()
     {
-        if ($_POST) {
-            $post = $_POST;
-            if (empty($post['email']) || empty($post['content'])) {
-                helper_common::msg('请认真填写');
-            }
+        $this->rest->method('POST');
+        $params                    = $this->getRequest()->getPost();
+        $this->rest->paramsMustMap = array('items_id', 'content');
+        $this->rest->paramsMustValid($params);
 
-            $data['email']    = $post['email'];
-            $data['blog_id']  = $post['blog_id'];
-            $data['content']  = $post['content'];
-            $data['dateline'] = time();
-            $back             = $this->db->insert('yaf_posts', $data);
-            $this->db->query('update yaf_blog set posts = posts + 1 where blog_id = ?', array($post['blog_id']));
-            if ($back > 1) {
-                helper_common::msg('提交成功');
-            }
+        $params['user_id'] = $this->userinfo['user_id'];
+        $data = $this->model_reply->mkdata($params);
+        $back             = $this->model_reply->insert($data);
+//        $this->db->query('update yaf_blog set posts = posts + 1 where blog_id = ?', array($post['blog_id']));
+        if ($back > 1) {
+            $this->rest->success('', rest_Code::STATUS_SUCCESS, '评论成功');
         }
     }
 
