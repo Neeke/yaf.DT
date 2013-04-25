@@ -46,5 +46,13 @@ class ItemsController extends Controller {
         $this->set('replyinfo',$replyinfo);
 	}
 
+    public function publicAction()
+    {
+        $this->model_album = models_album::getInstance();
+        $my_albums = $this->model_album->myAlbum();
+
+        $this->set('myalbums', $my_albums);
+    }
+
 
 }

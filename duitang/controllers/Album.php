@@ -38,7 +38,7 @@ class AlbumController extends Controller
         $this->db->cache_on();
         $album_id   = (int)$this->getRequest()->getParam('a', 0);
         $album_info = $this->model_album->getRow('*', $album_id);
-        $items      = $this->model_Items->getAll('*', array('class_id' => (int)$album_id));
+        $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id));
         foreach ($items as $v) {
             $replys[$v['items_id']] = $this->model_reply->getAllByItemId($v['items_id']);
         }
