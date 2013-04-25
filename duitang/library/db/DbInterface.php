@@ -27,9 +27,10 @@ interface db_DbInterface {
     /**
      * @param string $query
      * @param array $values
+     * @param $a
      * @return mixed
      */
-    function getRow($query,$values); //从结果集中取得一行作为关联数组
+    function getRow($query,$values,$a); //从结果集中取得一行作为关联数组
 
     function getCol($query); //从结果集中取得一列作为关联数组
 

@@ -12,7 +12,8 @@ class db_contect{
 		//$class_name = '\Db\\' . ucfirst(strtolower( $db_config->type ) );
 
 		$db = db_Mysql::getInstance($db_config, $cache_config);
-		return ($db instanceof db_DbInterface) ? $db : false;
+        return $db;
+//		return ($db instanceof db_DbInterface) ? $db : false;
 	
 		}
 

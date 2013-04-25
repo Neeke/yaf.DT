@@ -34,7 +34,7 @@ class db_Cache {
 				if ($cacheSys == 'sae') {
 					$this->cache = memcache_init();
 				}else{
-					$this->cache = new Memcache;
+					$this->cache = new Memcache();
 					$a = $this->cache->connect($cachehost, $cacheport);
 					if ($a == false) {
 						echo '<pre><b>memcached Connection failed.  please check the *.ini cache</b></pre>';

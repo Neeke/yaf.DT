@@ -5,7 +5,8 @@
  * @author ciogao@gmail.com
  *
  */
-class db_Mysql implements db_DbInterface {
+//class db_Mysql implements db_DbInterface {
+class db_Mysql{
 
     private static $_instances;
     private $_debug = false;
@@ -27,7 +28,7 @@ class db_Mysql implements db_DbInterface {
         	}else{
         		$dbhost_port = $dbhost;
         	}
-            $this->_dbh = new \PDO('mysql:dbname=' . $dbname . ';host=' . $dbhost_port, $username, $password, array(\PDO::ATTR_PERSISTENT => true));
+            $this->_dbh = new PDO('mysql:dbname=' . $dbname . ';host=' . $dbhost_port, $username, $password, array(PDO::ATTR_PERSISTENT => true));
             $this->_dbh->query('SET NAMES ' . $dbcharset);
         } catch (PDOException $e) {
             echo '<pre><b>Connection failed:</b> ' . $e->getMessage();
@@ -35,6 +36,9 @@ class db_Mysql implements db_DbInterface {
         }
         
         $this->_cache = db_Cache::instance($cachehost, $cacheport, $cachetype, $cachesys);
+        if (!$this->_cache){
+
+        }
     }
 
     /**
@@ -168,7 +172,7 @@ class db_Mysql implements db_DbInterface {
      * 执行查询
      * @see db_DbInterface::getAll()
      */
-    function getAll($sql, $values = array(), $fetch_style = \PDO::FETCH_ASSOC) {
+    function getAll($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC) {
         $cache = $this->query($sql, $values);
         if ($this->_cache_if_have) {
         	return $cache;
@@ -188,7 +192,7 @@ class db_Mysql implements db_DbInterface {
         $columns = array();
         $results = array();
         $this->query($sql, $values);
-        $results = $this->_sth->fetchAll(\PDO::FETCH_NUM);
+        $results = $this->_sth->fetchAll(PDO::FETCH_NUM);
         foreach ($results as $result) {
             $columns[] = $result[$column_number];
         }
@@ -199,7 +203,7 @@ class db_Mysql implements db_DbInterface {
      * 询取得多行的第一行
      * @see db_DbInterface::getRow()
      */
-    function getRow($sql, $values = array(), $fetch_style = \PDO::FETCH_ASSOC) {
+    function getRow($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC) {
         $cache = $this->query($sql, $values);
         if ($this->_cache_if_have) {
         	return $cache;

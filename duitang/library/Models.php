@@ -37,14 +37,14 @@ class Models
         if (is_array($back) && count($back) > 0) {
             return $back;
         }
-        return false;
+        return FALSE;
     }
 
     /**
      * 依条件获取所有数据
      * @param              $colume
      * @param string|array $where
-     * @param string       $orderby
+     * @param string $orderby
      * @param              $start
      * @param              $limit
      *
@@ -61,7 +61,7 @@ class Models
         if (is_array($back) && count($back) > 0) {
             return $back;
         }
-        return false;
+        return FALSE;
     }
 
     /**
@@ -82,7 +82,7 @@ class Models
         if (is_array($back) && count($back) > 0) {
             return $back;
         }
-        return false;
+        return FALSE;
     }
 
     /**
@@ -147,17 +147,16 @@ class Models
         if (!is_array($where)) {
             $_where_key .= 'and ' . $this->_primary . ' = ?';
             $_where_value[] = $where;
-        }
-        else {
+        } else {
             foreach ($where as $k => $v) {
                 if (is_array($v) && count($v) > 1) {
-                    $_where_key .= "and ".$k." in (?)";
-                    $_where_value[] = implode(',',$v);
-                }else{
+                    $_where_key .= "and " . $k . " in (?)";
+                    $_where_value[] = implode(',', $v);
+                } else {
                     $_where_key .= 'and ' . $k . ' = ? ';
-                    if (is_array($v)){
+                    if (is_array($v)) {
                         $_where_value[] = $v[0];
-                    }else{
+                    } else {
                         $_where_value[] = $v;
                     }
                 }
@@ -181,8 +180,7 @@ class Models
         $_order_by = ' order by ';
         if (!is_array($orderby)) {
             $_order_by .= $this->_primary . ' desc';
-        }
-        else {
+        } else {
             foreach ($orderby as $k => $v) {
                 $_order_by .= "{$k} {$v},";
             }
