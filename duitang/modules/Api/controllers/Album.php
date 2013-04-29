@@ -17,14 +17,15 @@ class AlbumController extends Controller
     private $model_user = NULL;
 
     /**
-     * @var model_collect
+     * @var models_collect
      */
     private $model_collect = NULL;
+
     public function init()
     {
         parent::init();
         $this->model_album = models_album::getInstance();
-        $this->model_user = models_user::getInstance();
+        $this->model_user  = models_user::getInstance();
     }
 
     public function createAction()
@@ -35,7 +36,7 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('album_name', 'is_open');
         $this->rest->paramsMustValid($params);
 
-        if ($this->model_album->exits(array('album_name' => $params['album_name'],'user_id' => $this->userinfo['user_id']))) {
+        if ($this->model_album->exits(array('album_name' => $params['album_name'], 'user_id' => $this->userinfo['user_id']))) {
             $this->rest->error('', rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '相册已存在');
         }
 
@@ -59,8 +60,7 @@ class AlbumController extends Controller
         $this->rest->paramsMustValid($params);
 
         $this->model_collect = models_collect::getInstance();
-        if ($this->model_collect->exits(array('album_id' => $params['album_id'],'user_id' => $this->userinfo['user_id'],'items_id' => $params['items_id'])))
-        {
+        if ($this->model_collect->exits(array('album_id' => $params['album_id'], 'user_id' => $this->userinfo['user_id'], 'items_id' => $params['items_id']))) {
             $this->rest->error('', rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '重复操作');
         }
 
@@ -105,7 +105,7 @@ class AlbumController extends Controller
 
             $blog_id = (int)$this->getRequest()->getPost("blog_id", 0);
             $a       = $this->db->delete('yaf_blog', array('blog_id' => $blog_id));
-            $this->rest->go_200($a, '删除成功');
+            $this->rest->success($a, '删除成功');
         }
     }
 }

@@ -8,7 +8,7 @@
 //class db_Mysql implements db_DbInterface {
 class db_Mysql{
 
-    private static $_instances;
+    public  static $_instances;
     private $_debug = false;
     private $_update_cache = false;
     private $_dbh;
@@ -314,7 +314,6 @@ class db_Mysql{
     }
 
     function close() {
-        unset($this->_instances);
         unset($this->_dbh);
     }
 

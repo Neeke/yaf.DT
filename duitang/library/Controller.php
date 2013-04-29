@@ -9,7 +9,10 @@ class Controller extends Yaf_Controller_Abstract {
      * @var Models
      */
     public $model;
-	public $db ;
+    /**
+     * @var db_Mysql
+     */
+    public $db ;
 	public $meta;
 	const ACTIVE = 'class="current"';
 	
@@ -65,7 +68,7 @@ class Controller extends Yaf_Controller_Abstract {
      */
     private function check_login(){
         $this->set('userinfo',$this->userinfo);
-        if ($this->userinfo == false
+        if ($this->userinfo == FALSE
             && !($this->_request->module == 'Index' && $this->_request->controller == 'Index' && $this->_request->action == 'index')
             && !in_array($this->_request->module, $this->modules)
         ) {
@@ -108,13 +111,13 @@ class Controller extends Yaf_Controller_Abstract {
 		$this->set('proname', $this->meta['proname']);
 		$this->set('webroot', $this->meta['webroot']);
 	}
-	
-	/**
-	 * 设置变量到模板
-	 * @param str|array $key
-	 * @param mixed $val
-	 */
-	public function set($key, $val=''){
+
+    /**
+     * 设置变量到模板
+     * @param $key
+     * @param string $val
+     */
+    public function set($key, $val=''){
 		$this->getView()->assign($key, $val);
 	}
 	

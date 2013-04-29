@@ -55,7 +55,7 @@ class helper_common{
      * @internal param string $pMsg
      * @internal param bool $pUrl
      */
-	public static function msg($msg, $url = false) {
+	public static function msg($msg, $url = FALSE) {
 		header('Content-Type:text/html; charset=utf-8');
 		is_array($msg) && $msg = join('\n', $msg);
 		echo '<script type="text/javascript">';
@@ -119,16 +119,16 @@ class helper_common{
      * @return bool
      */
 	public static function ifInTags($id = 0,$ids = array()){
-		if (in_array($id, $ids)) return true;
-		return false;
+		if (in_array($id, $ids)) return TRUE;
+		return FALSE;
 	}
-	
-	/**
-	 * double类型数据转换为string
-	 * @param double $num
-	 * @return string
-	 */
-	public static function number_format($num){
+
+    /**
+     * double类型数据转换为string
+     * @param $num
+     * @return string
+     */
+    public static function number_format($num){
         return number_format($num,0,'','');
 	}
 
@@ -140,7 +140,7 @@ class helper_common{
      * @return array
      */
     public static function get_column($data,$column){
-        if (!is_array($data) || count($data) < 1) return false;
+        if (!is_array($data) || count($data) < 1) return FALSE;
 
         $result = array();
         foreach($data as $v){

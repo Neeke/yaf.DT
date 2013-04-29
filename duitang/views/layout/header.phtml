@@ -25,16 +25,16 @@
 <div class="header">
     <div class="mwidth"><a href="javascript:;" class="logo" target="_blank" title="小萌AVI">小萌AVI</a>
         <ul class="nav">
-            <li <?php echo $a_index ? $a_index : '';?>>
+            <li <?php echo isset($a_index) ? ($a_index ? $a_index : '') : '';?>>
                 <a href="<?php echo helper_common::site_url('index') ?>" title="首页" class="nav1">首页</a>
             </li>
-            <li <?php echo $a_group ? $a_group : '';?>>
+            <li <?php echo isset($a_group) ? ($a_group ? $a_group : '') : '';?>>
                 <a href="<?php echo helper_common::site_url('group') ?>" title="分类" class="nav2">分类</a>
             </li>
-            <li <?php echo $a_top ? $a_top : '';?>>
+            <li <?php echo isset($a_top) ? ($a_top ? $a_top : '') : '';?>>
                 <a href="<?php echo helper_common::site_url('top') ?>" title="热门" class="nav3">热门</a>
             </li>
-            <li <?php echo $a_periphery ? $a_periphery : '';?>>
+            <li <?php echo isset($a_periphery) ? ($a_periphery ? $a_periphery : '') : '';?>>
                 <a href="<?php echo helper_common::site_url('periphery') ?>" title="周边" class="nav4">周边</a>
             </li>
         </ul>

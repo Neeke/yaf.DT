@@ -10,6 +10,10 @@ class ItemsController extends Controller
      * @var models_items
      */
     private $model_items = NULL;
+    /**
+     * @var models_reply
+     */
+    private $model_reply = NULL;
 
     public function init()
     {
@@ -44,7 +48,7 @@ class ItemsController extends Controller
 
             $blog_id = (int)$this->getRequest()->getPost("blog_id", 0);
             $a       = $this->db->delete('yaf_blog', array('blog_id' => $blog_id));
-            $this->rest->go_200($a, '删除成功');
+            $this->rest->success($a, '删除成功');
         }
     }
 

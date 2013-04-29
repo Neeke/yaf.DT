@@ -1,5 +1,5 @@
 <?php
-error_reporting(1);
+error_reporting(-1);
 /* INI配置文件支持常量替换 */
 define ("APPLICATION_PATH", dirname(__FILE__) . "/duitang");
 define ("VIEW_PATH", dirname(__FILE__) . "/duitang/views");

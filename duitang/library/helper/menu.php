@@ -16,7 +16,7 @@ class helper_menu {
 			'Api' => 'api',
 			);
 	
-	public function get_menu(){
+	static public function get_menu(){
 		return self::$_menu;
 	}
 }

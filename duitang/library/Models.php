@@ -16,9 +16,10 @@ class Models
 
     /**
      * 格式化数据
+     * @param $data
      * @return array
      */
-    public function mkdata()
+    public function mkdata($data)
     {
         return array();
     }

@@ -38,6 +38,7 @@ class rest_Server
 
     private $method_ = 'GET';
     private $data = array();
+    private $xml_data = '';
     private $status = 0;
     private $msg = null;
 
@@ -100,7 +101,7 @@ class rest_Server
 
     /**
      * 成功执行
-     * @param array  $data
+     * @param array||bollen  $data
      * @param int    $status
      * @param string $msg
      */
@@ -222,17 +223,17 @@ class rest_Server
 
     private function byXml()
     {
-        $xml = "<?xml version='1.0' encoding='utf-8'?>";
-        $xml = '<xml>';
-        $xml .= "<code>{$this->status}</code>";
-        $xml .= "<msg>{$this->msg}</msg>";
-        $xml .= '<data>';
+        $this->xml_data = "<?xml version='1.0' encoding='utf-8'?>";
+        $this->xml_data = '<xml>';
+        $this->xml_data .= "<code>{$this->status}</code>";
+        $this->xml_data .= "<msg>{$this->msg}</msg>";
+        $this->xml_data .= '<data>';
 
-        $xml .= self::toXml($this->data);
+        $this->xml_data .= self::toXml($this->data);
 
-        $xml .= '</data>';
-        $xml .= '</xml>';
-        echo $xml;
+        $this->xml_data .= '</data>';
+        $this->xml_data .= '</xml>';
+        echo $this->xml_data;
         die;
     }
 

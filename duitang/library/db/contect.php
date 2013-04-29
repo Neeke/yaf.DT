@@ -5,7 +5,11 @@
  *
  */
 class db_contect{
-	static public function db($which = 'master'){
+    /**
+     * @param string $which
+     * @return db_Mysql
+     */
+    static public function db($which = 'master'){
 		
 		$db_config = Yaf_Registry::get('config')->get('yaf')->get('db')->$which;
 		$cache_config = Yaf_Registry::get('config')->get('yaf')->get('cache');

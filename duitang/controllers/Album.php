@@ -35,13 +35,19 @@ class AlbumController extends Controller
 
     public function vAction()
     {
+        $replys = array();
+
         $this->db->cache_on();
         $album_id   = (int)$this->getRequest()->getParam('a', 0);
         $album_info = $this->model_album->getRow('*', $album_id);
         $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id));
-        foreach ($items as $v) {
-            $replys[$v['items_id']] = $this->model_reply->getAllByItemId($v['items_id']);
+
+        if (is_array($items) && count($items) > 1){
+            foreach ($items as $v) {
+                $replys[$v['items_id']] = $this->model_reply->getAllByItemId($v['items_id']);
+            }
         }
+
         $this->db->cache_off();
 
         $this->set('album_info', $album_info);
