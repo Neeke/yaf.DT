@@ -59,6 +59,10 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('items_id', 'album_id');
         $this->rest->paramsMustValid($params);
 
+        if ((int)$this->getRequest()->getPost('album_id') < 1){
+            $this->rest->error('',rest_Code::STATUS_ERROR_PARAMS);
+        }
+
         $this->model_collect = models_collect::getInstance();
         if ($this->model_collect->exits(array('album_id' => $params['album_id'], 'user_id' => $this->userinfo['user_id'], 'items_id' => $params['items_id']))) {
             $this->rest->error('', rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '重复操作');
