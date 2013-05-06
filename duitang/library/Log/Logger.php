@@ -1,4 +1,9 @@
 <?php
+/**
+ * 日志类
+ * @auther ciogao@gmail.com
+ * Class Log_Logger
+ */
 class Log_Logger extends Log_Base{
 	
 	const TYPE_INFO = 'INFO';
@@ -10,9 +15,9 @@ class Log_Logger extends Log_Base{
 	 */
 	private static $self = NULL;
 	
-	public static function instance($path = '') {
-		if (self::$self == null){
-			self::$self = new Log_Logger($path = '');
+	public static function instance($path_ = '') {
+		if (self::$self == NULL){
+			self::$self = new Log_Logger($path = $path_);
 		}
 		return self::$self;
 	}

@@ -14,7 +14,8 @@ class helper_string
      */
     static public function leftStr($str, $len)
     {
-        $str = strip_tags2($str);
+        $new_str = array();
+        $str = self::strip_tags2($str);
         for ($i = 0; $i < $len; $i++) {
             $temp_str = substr($str, 0, 1);
             if (ord($temp_str) > 127) {
@@ -40,8 +41,9 @@ class helper_string
      */
     function leftStr2($str, $len)
     {
+        $new_str = array();
         $len1 = strlen($str);
-        $str  = strip_tags2($str);
+        $str  = self::strip_tags2($str);
         for ($i = 0; $i < $len; $i++) {
             $temp_str = substr($str, 0, 1);
             if (ord($temp_str) > 127) {

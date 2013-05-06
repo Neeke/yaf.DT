@@ -144,6 +144,10 @@ class  helper_pics
 	{	
 		if(($maxwidth && self::$im_w > $maxwidth) || ($maxheight && self::$im_h > $maxheight))
 		{
+            $resizewidth_tag = $resizeheight_tag = false;
+            $widthratio = $heightratio = 0;
+            $ratio = 1;
+
 			if($maxwidth && self::$im_w>$maxwidth)
 			{
 				$widthratio = $maxwidth/self::$im_w;
