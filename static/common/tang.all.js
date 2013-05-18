@@ -7,6 +7,8 @@ var api_logout = '/api/user/logout';
 var api_album_create = '/api/album/create';
 var api_album_collection = '/api/album/collection';
 var api_items_replay = '/api/items/replay';
+var api_album_listen = '/api/album/listen';
+
 
 function reg(){
     var email = $('input[name=email]').val();
@@ -240,4 +242,35 @@ function createAlbum() {
 		}],
 		listeners: {}
 	});
+}
+
+/**
+* 订阅专辑
+*/
+function album_listen()
+{
+    $(".album_listen").click(function(){
+        var album_id = $(this).attr("data-album-id");
+        var message = W.message("处理中", "loading", 1000);
+        $.ajax({
+            type: "POST",
+            url: api_album_listen,
+            data: "album_id=" + album_id,
+            success: function(msg) {
+                message.close();
+                if(msg.code != '1000') {
+                    W.alert(msg.msg);
+                } else {
+                    W.alert(msg.msg, "success");
+                    self.close();
+                }
+            },
+            error:function ()
+            {
+                $("#popup_layer,#Favorites").show();
+                W.alert("服务器有误，请联系管理员！");
+                return false;
+            }
+        })
+    });
 }

@@ -21,6 +21,11 @@ class AlbumController extends Controller
      */
     private $model_collect = NULL;
 
+    /**
+     * @var models_albumListen
+     */
+    private $models_albumListen = NULL;
+
     public function init()
     {
         parent::init();
@@ -28,6 +33,9 @@ class AlbumController extends Controller
         $this->model_user  = models_user::getInstance();
     }
 
+    /**
+     * 创建相册
+     */
     public function createAction()
     {
         $this->rest->method('POST');
@@ -52,6 +60,9 @@ class AlbumController extends Controller
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '创建成功');
     }
 
+    /**
+     * 收藏图片到相册
+     */
     public function collectionAction()
     {
         $this->rest->method('POST');
@@ -77,6 +88,35 @@ class AlbumController extends Controller
         if ($result == FALSE) $this->rest->error('', rest_Code::STATUS_SUCCESS_DO_ERROR);
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '收藏成功');
+    }
+
+    /**
+     * 订阅
+     */
+    public function listenAction()
+    {
+        $this->rest->method('POST');
+        $params                    = $this->getRequest()->getPost();
+        $this->rest->paramsMustMap = array('album_id');
+        $this->rest->paramsMustValid($params);
+
+        if ((int)$this->getRequest()->getPost('album_id') < 1){
+            $this->rest->error('',rest_Code::STATUS_ERROR_PARAMS);
+        }
+
+        $this->models_albumListen = models_albumListen::getInstance();
+        if ($this->models_albumListen->exits(array('album_id' => $params['album_id'], 'user_id' => $this->userinfo['user_id']))) {
+            $this->rest->error('', rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '请误重复订阅');
+        }
+
+        $params['user_id'] = $this->userinfo['user_id'];
+
+        $data   = $this->models_albumListen->mkdata($params);
+        $result = $this->models_albumListen->insert($data);
+
+        if ($result == FALSE) $this->rest->error('', rest_Code::STATUS_SUCCESS_DO_ERROR);
+
+        $this->rest->success('', rest_Code::STATUS_SUCCESS, '订阅成功');
     }
 
     public function replayAction()

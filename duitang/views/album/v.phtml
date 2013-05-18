@@ -6,6 +6,7 @@
         <div class="bor_lightt2"></div>
         <div class="album_tit">
             <h1 class="blue"><?php echo $album_info['album_name'];?></h1>
+            <a href="javascript:;" class="btn_block btn_modify album_listen" data-album-id="<?php echo $album_info['album_id'];?>">订阅</a>
             <dl>
                 <dt>专辑简介</dt>
                 <dd><?php echo $album_info['album_remark'];?></dd>
@@ -53,5 +54,6 @@
 </div>
 </div>
 
+<script>album_listen();</script>
 
 <?php include_once(VIEW_PATH.'/layout/footer.phtml')?>
