@@ -274,3 +274,37 @@ function album_listen()
         })
     });
 }
+
+/**
+* 发布图片时打tag
+*/
+function album_public_usetags()
+{
+        $(".do_use_tag").click(function () {
+            var tag_id = $(this).attr("data-tag-id");
+            var tag_value = $(this).attr("data-tag-name");
+
+            var tags_area = $('textarea[name=tags]').val();
+            var tags_area_array = tags_area.split(' ');
+            if ($.inArray(tag_value, tags_area_array) == -1) {
+                if (tags_area == '') {
+                    tags_area = tag_value;
+                } else {
+                    tags_area = tags_area + ' ' + tag_value;
+                }
+            }
+            $('textarea[name=tags]').val(tags_area);
+
+            var tags_ids = $('textarea[name=tags_ids]').val();
+            var tags_ids_array = tags_ids.split(',');
+            if ($.inArray(tag_id, tags_ids_array) == -1) {
+                if (tags_ids == '') {
+                    tags_ids = tag_id;
+                } else {
+                    tags_ids = tags_ids + ',' + tag_id;
+                }
+            }
+            $('textarea[name=tags_ids]').val(tags_ids);
+
+        });
+}

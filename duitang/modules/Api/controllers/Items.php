@@ -52,6 +52,9 @@ class ItemsController extends Controller
         }
     }
 
+    /**
+     * 上传图片 发布
+     */
     public function uploadAction()
     {
         $this->rest->method('POST');
@@ -64,23 +67,24 @@ class ItemsController extends Controller
         $config['max_size']      = '1024';
         $config['max_width']     = '3000';
         $config['max_height']    = '2000';
-        $config['file_name'] = $this->userinfo['user_id'].'_'.$this->getRequest()->getPost("album_id",0).'_'.time();
+        $config['file_name']     = $this->userinfo['user_id'] . '_' . $this->getRequest()->getPost("album_id", 0) . '_' . time();
 
         $upload = new helper_upload($config);
 
         if (!$upload->do_upload()) {
             $this->rest->error('', rest_Code::STATUS_ERROR, $upload->display_errors());
         } else {
-            $data_ = $upload->data();
-            $data = array(
-                'album_id' => $this->getRequest()->getPost("album_id",0),
-                'items_pic' => '/uploads/'.$data_['file_name'],
-                'items_name' => 1,
-                'user_id' => $this->userinfo['user_id'],
+            $data_  = $upload->data();
+            $data   = array(
+                'album_id'     => $this->getRequest()->getPost("album_id", 0),
+                'items_pic'    => '/uploads/' . $data_['file_name'],
+                'items_name'   => 1,
+                'user_id'      => $this->userinfo['user_id'],
                 'created_time' => time(),
-                'update_time' => time(),
-                'flag' => contast_items::ITEMS_FLAG_YES,
-                'remark' => $this->getRequest()->getPost("remark",0),
+                'update_time'  => time(),
+                'flag'         => contast_items::ITEMS_FLAG_YES,
+                'remark'       => $this->getRequest()->getPost("remark", 0),
+                'tag_ids'      => (string)$this->getRequest()->getPost("tags_ids"),
             );
             $result = $this->model_items->insert($data);
 

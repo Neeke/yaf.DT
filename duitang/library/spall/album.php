@@ -1,6 +1,6 @@
 <?php
 /**
- * @author ciogao
+ * @author ciogao@gmail.com
  */
 class spall_album
 {

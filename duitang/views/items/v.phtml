@@ -5,9 +5,8 @@
             <div class="bor_light2">
                 <div class="bor_lightt2"></div>
                 <div class="picture">
-                    <a href="javascript:;" class="btn_block">摄影</a>
-                    <a href="javascript:;" class="btn_block">人物</a>
-                    <a href="javascript:;" class="btn_block btn_modify">修改</a>
+                    <?php echo spall_tag::itmes_view_tags($tagsInfo);?>
+                    <a href="javascript:;" class="btn_block btn_modify" style="display: none">修改</a>
                     <h6 class="blue"><?php echo $iteminfo['items_name'];?></h6>
 
                     <div class="img_tu">
