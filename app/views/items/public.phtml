@@ -1,0 +1,47 @@
+<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
+    <hr>
+
+    <form id="uploadForm" method="post" enctype="multipart/form-data">
+        文件：　<input type="file" name="userfile" size="20"/>
+        <br/>
+        描述：　<textarea name="remark"></textarea>
+        <br/>
+        相册：　
+        <?php foreach ($myalbums as $v) { ?>
+            <input type="radio" name="album_id" value="<?php echo $v['album_id']; ?>"><?php echo $v['album_name']; ?>
+        <?php }?>
+        <br/>
+        标签：
+            <textarea name="tags" cols="50"></textarea>
+            <textarea name="tags_ids" cols="50" style="display: none"></textarea>
+        <br/>
+        常用标签：
+        <?php echo spall_tag::do_use_tags($systags);?>
+        <br/>
+
+        <input type="submit" value="上传" class="btn"/>
+
+        <div id="Tip"></div>
+    </form>
+    <script>
+        $("#uploadForm").submit(function ()//提交表单
+        {
+            var options = {
+                target: '#Tip', //后台将把传递过来的值赋给该元素
+                url: '/api/items/upload', //提交给哪个执行
+                type: 'POST',
+                dataType: 'json',
+                success: function (msg) {
+                    alert(msg.msg);
+                }
+            };
+            $('#uploadForm').ajaxSubmit(options);
+
+            return false;
+
+        });
+
+        album_public_usetags();
+    </script>
+    <hr>
+<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>

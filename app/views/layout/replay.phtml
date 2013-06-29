@@ -1,0 +1,20 @@
+    <form class="form-horizontal" action="<?php echo helper_common::site_url('blog/replay');?>" method="POST">
+    <div class="control-group">
+    <label class="control-label" for="inputEmail">Email</label>
+    <div class="controls">
+    <input type="text" name="email" id="inputEmail" placeholder="Email">
+    <input type="hidden" name="blog_id" value="<?php echo $info['blog_id'];?>">
+    </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="inputPassword">内容</label>
+    <div class="controls">
+    <textarea name="content" rows="3" style="width:500px" placeholder="评论内容"></textarea>
+    </div>
+    </div>
+    <div class="control-group">
+    <div class="controls">
+	<button type="submit" class="btn btn-primary">提交评论</button>
+    </div>
+    </div>
+    </form>

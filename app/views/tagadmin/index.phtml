@@ -1,0 +1,70 @@
+   <?php include_once(VIEW_PATH.'/layout/header.phtml')?>
+   <div class="container">
+   <div class="row">
+   <?php include_once(VIEW_PATH.'/layout/admin_menu.phtml')?>
+<div class="span9">
+      <div class="page-header">
+            <h2>管理tag</h2>
+             <span class="label label-success" href="#myModal" data-toggle="modal">new tag</span>
+       </div>
+   
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="myModal" style="display: none;">
+            <div class="modal-header">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+              <h3 id="myModalLabel">编辑</h3>
+            </div>
+            <div class="modal-body">
+                  <div class="control-group">
+			    	<label class="control-label" for="inputEmail">名称</label>
+			    	<div class="controls">
+				    <input type="text" value="" name="tag" id="tag" class="input-large" placeholder="分类名称">
+				    <input type="hidden" name="id" id="id" value="">
+			    	</div>
+   				 </div>
+   				 
+         </div>
+            <div class="modal-footer">
+              <button data-dismiss="modal" class="btn">Close</button>
+              <button class="btn btn-primary" onclick="edit()">Save changes</button>
+            </div>
+          </div>
+          <script type="text/javascript">
+function info(v){
+	$.post('/api/tagadmin/info','id='+v,function(data){
+		$("#id").attr("value", data.data.id);
+		$("#tag").attr("placeholder", data.data.tag);
+		});
+}
+
+function edit(){
+	var postdata = {
+							id:$("#id").attr('value'),
+							tag:$("#tag").attr('value')
+							};
+	$.post('/api/tagadmin/add',postdata,function(data){
+		alert(data.msg);location.href=data.data.url;
+		});
+}
+
+function del(v){
+	$.post('/api/tagadmin/del','id='+v,function(data){
+		alert(data.msg);location.href=data.data.url;
+		});
+}
+          </script>
+         <ul class="nav nav-tabs nav-stacked">
+        <?php foreach ($list as $k => $v) {?>
+        <li>
+        	<a href="<?php echo helper_common::site_url('blog/view/id/'.$v['id']);?>"><?php echo $v['tag']?></a>
+        </li>
+        <a href="#myModal" data-toggle="modal" onclick="info(<?php echo $v['id'];?>);"><span class="label label-info">Edite</span></a>
+        <a href="#" onclick="del(<?php echo $v['id']?>);"><span class="label label-important">Delete</span></a>
+        <?php }?>
+        </ul>
+        
+		<div class="pagination pagination-centered">
+		<?php echo $page_str;?>
+		</div>
+    </div>
+</div>
+      <?php include_once(VIEW_PATH.'/layout/footer.phtml')?>

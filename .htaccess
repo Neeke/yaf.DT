@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteCond $1 !^(index\.php|tools|static|uploads)
+RewriteCond $1 !^(index\.php|tools|static|uploads|public)
 RewriteRule ^(.*)$ index.php/$1 [L]
 
 

@@ -1,0 +1,97 @@
+﻿<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
+
+    <div class="mwidth box">
+        <div class="album_left">
+            <div class="bor_light2">
+                <div class="bor_lightt2"></div>
+                <div class="picture">
+                    <?php echo spall_tag::itmes_view_tags($tagsInfo);?>
+                    <a href="javascript:;" class="btn_block btn_modify" style="display: none">修改</a>
+                    <h6 class="blue"><?php echo $iteminfo['items_name'];?></h6>
+
+                    <div class="img_tu">
+                        <img src="<?php echo $iteminfo['items_pic']; ?>" width="600" />
+                        <br/>
+                        <br/>
+                        <?php echo $iteminfo['remark'];?>
+                    </div>
+
+                    <div class="currcett">
+                        <span class="blue">收集  <?php echo $iteminfo['collect_hits'];?></span>
+                        <span class="pink">喜欢  <?php echo $iteminfo['like_hits'];?></span>
+                    </div>
+                    <!--<div class="currcetc"><a class="fr btn_d" href="javascript:;">查看来源</a>来源：www.bitauto.com  </div>-->
+                    <div class="currcetd">
+                        <input name="replay_items_id" value="<?php echo $iteminfo['items_id'];?>" type="hidden">
+                        <textarea name="items_reply" cols="" class="ipt_textarea" rows="" onfocus="if(this.value=='添加你的评论...'){this.value='';}" onblur="if(this.value==''){this.value='添加你的评论...';}">添加你的评论...</textarea></div>
+                    <div class="currcete"><a href="javascript:;" class="fr blue btn_e">查看全部评论</a>
+                        <span class="fr">共<?php echo $iteminfo['reply_hits'];?>条评论</span>
+                        <a href="javascript:;" class="btn btn1 reply_submit"><b>发布</b></a></div>
+                    <ul class="comments_list">
+                        <?php foreach ($replyinfo as $k => $v) { ?>
+                            <li>
+                                <a href="javascript:;" class="fl"><img src="images/photo02.gif" width="64" height="64"/></a>
+
+                                <h2><span class="blue">喜布家</span><?php echo helper_timer::how_long($v['dateline']);?>
+                                </h2>
+
+                                <p><?php echo $v['content'];?> <a href="#" class="blue">回复</a></p>
+                            </li>
+                        <?php }?>
+                    </ul>
+                </div>
+                <div class="bor_lightf2"></div>
+            </div>
+            <div class="bor_light2">
+                <div class="bor_lightt2"></div>
+                <div class="album_tit">
+                    <h1 class="pink">还被5人收集在以下专辑 </h1>
+                    <!--<div class="xingx"><span class="fr blue"><img src="images/photo01.png" width="30" height="30" /><tt class="blue">阿魄的赤子傻劲</tt></span><b class="blue">短赤</b><span class="pink">74个收藏　|　0人喜欢</span></div>-->
+                    <div class="photo_list1">
+                        <ul class="pho_list">
+                            <li><a href="#"><img src="images/photo06.jpg" width="176"
+                                                 height="165"/><span>短发~~</span></a></li>
+                            <li><a href="#"><img src="images/photo06.jpg" width="176"
+                                                 height="165"/><span>短发~~</span></a></li>
+                            <li><a href="#"><img src="images/photo06.jpg" width="176"
+                                                 height="165"/><span>短发~~</span></a></li>
+                            <li><a href="#"><img src="images/photo06.jpg" width="176"
+                                                 height="165"/><span>短发~~</span></a></li>
+                            <li><a href="#"><img src="images/photo06.jpg" width="176"
+                                                 height="165"/><span>短发~~</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bor_lightf2"></div>
+            </div>
+        </div>
+        <div class="box_right">
+            <div class="bor_light hourshot">
+                <div class="bor_lightt"></div>
+                <div class="box_center">
+                    <div class="user_list">
+                        <ul>
+                            <li><a href="#"><img src="images/photo02.gif" class="user_img"/></a>
+
+                                <h2><a href="javascript:;" class="attention">关注</a>女王奈</h2>
+                                发布到 <span class="blue">短发~</span>专辑中
+                            </li>
+                        </ul>
+                    </div>
+                    <div><h6 class="pink">专辑中的其它图片</h6></div>
+                    <div class="photo_list bor01"><a href="javascript:;"><img src="images/photo03.jpg"/></a> <a
+                            href="javascript:;"><img src="images/photo04.jpg"/></a> <a href="javascript:;"><img
+                                src="images/photo03.jpg"/></a> <a href="javascript:;"><img
+                                src="images/photo04.jpg"/></a> <a href="javascript:;"><img
+                                src="images/photo03.jpg"/></a> <a href="javascript:;"><img
+                                src="images/photo04.jpg"/></a> <a href="javascript:;"><img
+                                src="images/photo03.jpg"/></a> <a href="javascript:;"><img
+                                src="images/photo04.jpg"/></a></div>
+                    <div class="currcett"><span class="blue">46313</span><span class="pink">46313</span></div>
+                </div>
+                <div class="bor_lightf"></div>
+            </div>
+        </div>
+    </div>
+
+<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
