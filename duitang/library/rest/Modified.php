@@ -34,19 +34,20 @@ class rest_Modified {
 	/**
 	 * @var db_Cache
 	 */
-	private $cache = null;
+	private $cache = NULL;
 	
 	/**
 	 * @var rest_Modified
 	 */
-	private static $self=null;
-	
-	/**
-	 * @static
-	 * @return rest_Modified
-	 */
+	private static $self=NULL;
+
+    /**
+     * @static
+     * @param string $time
+     * @return rest_Modified
+     */
 	public static function instance($time = ''){
-		if (self::$self == null){
+		if (self::$self == NULL){
 			self::$self = new self;
 		}
 		
@@ -61,7 +62,7 @@ class rest_Modified {
 	 * modified时间配置
 	 */
 	public function config($time = self::DEFAULT_MODIFIED_TIME){
-		$this->ifConfig = true;
+		$this->ifConfig = TRUE;
 		$this->modified_time = (int)$time;
 	}
 	
@@ -69,7 +70,8 @@ class rest_Modified {
 	 * 根据uri与$_GET\$_POST参数计算cache_key
 	 * @param string $uri
 	 * @param array $params
-	 */
+     * @return string
+     */
 	private static function setModifiedKey($uri,$params){
 		return md5(json_encode(array($uri,$params)));
 	}

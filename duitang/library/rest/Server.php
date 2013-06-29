@@ -32,22 +32,22 @@ class rest_Server
     public $paramsCanMap = array();
     private $paramsCanToValid = array();
 
-    private $haveCheckedMethod = false;
-    private $haveValidedMustParams = false;
-    private $haveValidedCanParams = false;
+    private $haveCheckedMethod = FALSE;
+    private $haveValidedMustParams = FALSE;
+    private $haveValidedCanParams = FALSE;
 
     private $method_ = 'GET';
     private $data = array();
     private $xml_data = '';
     private $status = 0;
-    private $msg = null;
+    private $msg = NULL;
 
-    private $status_msgs = null;
+    private $status_msgs = NULL;
 
     /**
      * @var rest_Server
      */
-    private static $self = null;
+    private static $self = NULL;
 
     /**
      * @static
@@ -55,7 +55,7 @@ class rest_Server
      */
     public static function instance()
     {
-        if (self::$self == null) {
+        if (self::$self == NULL) {
             self::$self = new self;
         }
         return self::$self;
@@ -105,18 +105,19 @@ class rest_Server
      * @param int    $status
      * @param string $msg
      */
-    public function success($data, $status = rest_Code::STATUS_SUCCESS, $msg = null)
+    public function success($data = NULL, $status = rest_Code::STATUS_SUCCESS, $msg = NULL)
     {
+        if ($status == '') $status = rest_Code::STATUS_SUCCESS;
         self::baseResponse($data, $status, $msg);
     }
 
     /**
      * 出现错误
-     * @param array  $data
-     * @param int    $status
-     * @param string $msg
+     * @param int $status
+     * @param null $msg
+     * @param array $data
      */
-    public function error($data, $status = rest_Code::STATUS_ERROR, $msg = null)
+    public function error($status = rest_Code::STATUS_ERROR,$msg = NULL, $data = array())
     {
         self::baseResponse($data, $status, $msg);
     }
@@ -127,9 +128,9 @@ class rest_Server
     private function checkMethod()
     {
         $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
-        if ($this->haveCheckedMethod == false && $method != $this->method_) {
-            $this->haveCheckedMethod = true;
-            self::error('', rest_Code::STATUS_ERROR_METHOD);
+        if ($this->haveCheckedMethod == FALSE && $method != $this->method_) {
+            $this->haveCheckedMethod = TRUE;
+            self::error(rest_Code::STATUS_ERROR_METHOD);
         }
     }
 
@@ -140,9 +141,9 @@ class rest_Server
     private function validMustParams()
     {
         foreach ($this->paramsMustMap as $v) {
-            if ($this->haveValidedMustParams == false && !isset($this->paramsMustToValid[$v])) {
-                $this->haveValidedMustParams = true;
-                self::error('api needs param ' . $v, rest_Code::STATUS_ERROR_PARAMS);
+            if ($this->haveValidedMustParams == FALSE && !isset($this->paramsMustToValid[$v])) {
+                $this->haveValidedMustParams = TRUE;
+                self::error(rest_Code::STATUS_ERROR_PARAMS,'api needs param ' . $v);
             }
         }
     }
@@ -153,9 +154,9 @@ class rest_Server
     private function validCanParams()
     {
         foreach ($this->paramsCanToValid as $k => $v) {
-            if ($this->haveValidedCanParams == false && !in_array($v, $this->paramsCanMap)) {
-                $this->haveValidedCanParams == true;
-                self::error('the param ' . $v . ' can not in', rest_Code::STATUS_ERROR_PARAMS);
+            if ($this->haveValidedCanParams == FALSE && !in_array($v, $this->paramsCanMap)) {
+                $this->haveValidedCanParams == TRUE;
+                self::error(rest_Code::STATUS_ERROR_PARAMS,'the param ' . $v . ' can not in');
             }
         }
     }
@@ -166,7 +167,7 @@ class rest_Server
         $this->data   = (array)$data;
         $this->status = (int)$status;
         $this->msg    = (string)(
-        ($msg == null && isset($this->status_msgs[$status]))
+        ($msg == NULL && isset($this->status_msgs[$status]))
             ? $this->status_msgs[$status]
             : $msg
         );

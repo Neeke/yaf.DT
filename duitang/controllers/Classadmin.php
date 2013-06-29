@@ -54,7 +54,7 @@ class ClassadminController extends Controller {
 		if ($_POST) {
 			$post = $_POST;
 			if (empty($post['title']) || empty($post['keys'])) {
-				$this->rest->error(array('url' => '?'),rest_Code::STATUS_ERROR_PARAMS,'请认真填写');
+				$this->rest->error(rest_Code::STATUS_ERROR_PARAMS,'请认真填写',array('url' => '?'));
 			}
 
 			$data['classname'] = $post['title'];

@@ -72,7 +72,7 @@ class ItemsController extends Controller
         $upload = new helper_upload($config);
 
         if (!$upload->do_upload()) {
-            $this->rest->error('', rest_Code::STATUS_ERROR, $upload->display_errors());
+            $this->rest->error(rest_Code::STATUS_ERROR, $upload->display_errors());
         } else {
             $data_  = $upload->data();
             $data   = array(

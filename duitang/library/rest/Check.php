@@ -88,7 +88,7 @@ class rest_Check
         $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
         if ($this->haveCheckedMethod == FALSE && $method != $this->method_) {
             $this->haveCheckedMethod = TRUE;
-            $this->rest->error('', rest_Code::STATUS_ERROR_METHOD);
+            $this->rest->error(rest_Code::STATUS_ERROR_METHOD);
         }
     }
 
@@ -101,7 +101,7 @@ class rest_Check
         foreach ($this->paramsMustMap as $v) {
             if ($this->haveValidedMustParams == FALSE && !isset($this->paramsMustToValid[$v])) {
                 $this->haveValidedMustParams = TRUE;
-                $this->rest->error('api needs param ' . $v, rest_Code::STATUS_ERROR_PARAMS_MUST);
+                $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_MUST,'api needs param ' . $v);
             }
         }
     }
@@ -114,7 +114,7 @@ class rest_Check
         foreach ($this->paramsCanToValid as $v) {
             if ($this->haveValidedCanParams == FALSE && !in_array($v, $this->paramsCanMap)) {
                 $this->haveValidedCanParams = TRUE;
-                $this->rest->error('the param ' . $v . ' can not in', rest_Code::STATUS_ERROR_PARAMS_CAN);
+                $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_CAN,'the param ' . $v . ' can not in');
             }
         }
     }
@@ -130,7 +130,7 @@ class rest_Check
         if ($client_id == 1 && $security == 'aa') {
             return TRUE;
         }
-        $this->rest->error('', rest_Code::STATUS_ERROR_API_VALIDE_AUTH);
+        $this->rest->error(rest_Code::STATUS_ERROR_API_VALIDE_AUTH);
     }
 
     function token()
