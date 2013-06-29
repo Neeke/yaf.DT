@@ -3,14 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>不要集</title>
-    <link href="/style/app/reset.css" rel="stylesheet" type="text/css">
-    <link href="/style/app/index.css" rel="stylesheet" type="text/css">
-    <link href="/style/app/responsiveslides.css" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="js/html5.js"></script>
-    <![endif]-->
+    <script type="text/javascript" src="/resources/js/lib/jquery/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="/resources/js/lib/seajs/sea.js"></script>
+    <script type="text/javascript" src="/resources/js/lib/seajs/config.js"></script>
+    <link href="/resources/style/app/reset.css" rel="stylesheet" type="text/css">
+    <link href="/resources/style/app/index.css" rel="stylesheet" type="text/css">
+    <link href="/resources/style/lib/responsiveslides/responsiveslides.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
 <div class="wrap">
     <div class="box">
@@ -18,18 +17,20 @@
             <div class="index">
                 <div class="index-carousel">
                     <ul class="rslides">
-                        <li><img src="images/index/01.jpg"></li>
-                        <li><img src="images/index/02.jpg"></li>
-                        <li><img src="images/index/03.jpg"></li>
-                        <li><img src="images/index/04.jpg"></li>
+                        <li><img src="/resources/images/login_0.jpg"></li>
+                        <li><img src="/resources/images/login_1.jpg"></li>
+                        <li><img src="/resources/images/login_2.jpg"></li>
+                        <li><img src="/resources/images/login_3.jpg"></li>
                     </ul>
                 </div>
                 <h1 class="index-logo">不要集</h1>
                 <div class="index_login_box">
                     <div class="login">
-                        <div class="text-box float_l email"><input type="email" value="登录邮箱" onFocus="if (value =='登录邮箱'){value =''}" onBlur="if (value ==''){value='登录邮箱'}"></div>
-                        <div class="text-box float_l password"><input type="text" value="密码" onFocus="if (value =='密码'){type ='password';value=''}" onBlur="if (value ==''){type='text';value='密码'}"></div>
-                        <input type="submit" class="submit" value="登录">
+                        <div class="text-box float_l email">
+                            <input type="email" id="username" placeholder="邮箱登录" value=""/></div>
+                        <div class="text-box float_l password">
+                            <input type="text" id="pwd" placeholder="密码"></div>
+                        <input type="submit" class="submit" id="submit" value="登录">
                     </div>
                     <div class="aid">
                         <span class="reg"><a href="#">申请账号</a></span>
@@ -52,8 +53,8 @@
         </div>
     </div>
 </div>
-<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
-<script language="javascript" type="text/javascript" src="js/responsiveslides.js"></script>
-<script language="javascript" type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    seajs.use('app/login/login');
+</script>
 </body>
 </html>
