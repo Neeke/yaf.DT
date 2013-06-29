@@ -1,0 +1,121 @@
+注册接口：
+var api_reg = '/api/user/reg'; 
+method: post
+params: email user_name pwd remark
+
+登录接口：
+var api_login = '/api/user/login'; 
+method: post
+params: user_name pwd
+
+登出接口：
+var api_logout = '/api/user/logout'; 
+method: get
+params: [nothing]
+
+创建相册
+var api_album_create = '/api/album/create'; 
+method: post
+params: is_open album_name
+
+我的相册:
+var api_album_mine = '/api/album/mine';
+method: get
+params: page
+
+收藏图片到相册:
+var api_album_collection = '/api/album/collection'; 
+method: post
+params: items_id album_id
+
+评论图片：
+var api_items_replay = '/api/items/replay'; 
+method: post
+params: items_id content
+
+关注相册：
+var api_album_listen = '/api/album/listen'; 
+method: post
+params: album_id  [user_id]
+
+上传发布图片：
+var api_items_upload = '/api/items/upload';
+method: post
+params: album_id remark tags_ids userfile [user_id]
+
+----------------------
+找回在密码：
+var api_forget_pwd = '/api/forget/pwd';
+method: post
+params: email
+
+首页图片轮播:
+var api_homepage = '/api/homepage/index';
+method: get
+params: [nothing]
+
+创建tag:
+var api_tag_create = '/api/tag/create';
+method: post
+params: tag_name [user_id]
+
+关注tag:
+var api_tag_listen = '/api/tag/listen';
+method: post
+params: tag_id [user_id]
+
+已经关注的tag:
+var api_tag_listened = '/api/tag/listened';
+method: get
+params: page [user_id]
+
+搜索tag:
+var api_tag_search = '/api/tag/search';
+method: get
+params: tag_name 
+
+访问某个相册：
+var api_album_show = '/api/album/show';
+method: get
+params: album_id  [user_id]
+
+访问某张图片：
+var api_items_show = '/api/items/show';
+method: get
+params: items_id  [user_id]
+
+喜欢某张图片：
+var api_items_likeit = '/api/items/likeit';
+method: post
+params: items_id [user_id]
+
+
+关注某用户：
+var api_friends_listen = '/api/friends/listen';
+method: post
+params: user_id [from_user_id]
+
+已经关注的用户列表：
+var api_friends_listened = '/api/friends/listened';
+method: get
+params: page [user_id]
+
+取消关注某用户：
+var api_friends_cancel = '/api/friends/cancel';
+method: post
+params: user_id [from_user_id]
+
+发送短消息(回复)：
+var api_sms_send = '/api/sms/send';
+method: post
+params: sms to_user_id [from_user_id]
+
+短消息列表：
+var api_sms_show = '/api/sms/show';
+method: get
+params: page user_id
+
+删除短消息：
+var api_sms_del = '/api/sms/del';
+method: post
+params: sms_id
