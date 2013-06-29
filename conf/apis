@@ -28,15 +28,15 @@ var api_album_collection = '/api/album/collection';
 method: post
 params: items_id album_id
 
+关注相册：
+var api_album_listen = '/api/album/listen';
+method: post
+params: album_id  [user_id]
+
 评论图片：
 var api_items_replay = '/api/items/replay'; 
 method: post
 params: items_id content
-
-关注相册：
-var api_album_listen = '/api/album/listen'; 
-method: post
-params: album_id  [user_id]
 
 上传发布图片：
 var api_items_upload = '/api/items/upload';
