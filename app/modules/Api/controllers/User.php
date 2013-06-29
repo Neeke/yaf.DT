@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function logoutAction()
     {
-        $this->rest->method('POST');
+        $this->rest->method('GET');
         $this->session->del('userinfo');
         $this->rest->success();
     }

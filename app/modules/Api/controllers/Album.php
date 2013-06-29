@@ -61,6 +61,18 @@ class AlbumController extends Controller
     }
 
     /**
+     * 我的相册
+     */
+    public function mineAction()
+    {
+        $this->rest->method('GET');
+
+        $data = $this->model_album->myAlbum();
+
+        $this->rest->success($data);
+    }
+
+    /**
      * 收藏图片到相册
      */
     public function collectionAction()
