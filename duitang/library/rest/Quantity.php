@@ -90,7 +90,7 @@ class rest_Quantity {
 		
 		$ready_ = $ready;
 		if (self::checkCountAndTime($ready_)) {
-			$this->rest->error('',rest_Code::STATUS_ERROR_API_QUENCY_M);
+			$this->rest->error(rest_Code::STATUS_ERROR_API_QUENCY_M);
 		}
 		unset($ready_);
 		

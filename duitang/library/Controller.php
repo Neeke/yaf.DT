@@ -123,6 +123,8 @@ class Controller extends Yaf_Controller_Abstract {
 	
 	
 	function __destruct(){
-		$this->db->close();
+        if ($this->db){
+            $this->db->close();
+        }
 	}
 }

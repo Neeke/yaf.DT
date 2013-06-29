@@ -3,36 +3,41 @@
 /**
  * 当有未捕获的异常, 则控制流会流到这里
  */
-class ErrorController extends Yaf_Controller_Abstract {
-	public $actions = array(
-		"action" => "actions/index.php"
-	);
+class ErrorController extends Yaf_Controller_Abstract
+{
+    public $actions = array(
+        "action" => "actions/index.php"
+    );
 
-	public function init() {
-		Yaf_Dispatcher::getInstance()->disableView();
-	}
-	public function errorAction($exception) {
-		/* error occurs */
-		switch ($exception->getCode()) {
-		case YAF_ERR_NOTFOUND_MODULE:
-		case YAF_ERR_NOTFOUND_CONTROLLER:
-		case YAF_ERR_NOTFOUND_ACTION:
-		case YAF_ERR_NOTFOUND_VIEW:
-			self::halt('404',$exception->getMessage());
-			break;
-		default :
-			self::halt('0',$exception->getMessage());
-			break;
-		}
-	}
+    public function init()
+    {
+        Yaf_Dispatcher::getInstance()->disableView();
+    }
+
+    public function errorAction($exception)
+    {
+        /* error occurs */
+        switch ($exception->getCode()) {
+            case YAF_ERR_NOTFOUND_MODULE:
+            case YAF_ERR_NOTFOUND_CONTROLLER:
+            case YAF_ERR_NOTFOUND_ACTION:
+            case YAF_ERR_NOTFOUND_VIEW:
+                self::halt('404', $exception->getMessage());
+                break;
+            default :
+                self::halt('0', $exception->getMessage());
+                break;
+        }
+    }
 
     /**
      * 返回错误
      * @param int|string $stats
      * @param string $msg
      */
-    function halt($stats = 200,$msg = '') {
-    	$s = '<html>
+    function halt($stats = 200, $msg = '')
+    {
+        $s = '<html>
 					<head>
 					<title>ERROR</title>
 					<style type="text/css">
@@ -44,7 +49,7 @@ class ErrorController extends Yaf_Controller_Abstract {
 					<body>
 						<div id="content">
 							<h1>' . $stats . '</h1>
-							'.$msg.'
+							' . $msg . '
 						</div>
 					</body>
 				</html>';

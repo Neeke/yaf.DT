@@ -48,7 +48,7 @@ class TagadminController extends Controller {
 		if ($_POST) {
 			$post = $_POST;
 			if (empty($post['tag'])) {
-				$this->rest->error(array('url' => '?'),rest_Code::STATUS_ERROR_PARAMS,'请认真填写');
+				$this->rest->error(rest_Code::STATUS_ERROR_PARAMS,'请认真填写',array('url' => '?'));
 			}
 
 			$data['tag'] = $post['tag'];

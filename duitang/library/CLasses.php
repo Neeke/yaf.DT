@@ -202,6 +202,9 @@ final class Yaf_Dispatcher
     {
     }
 
+    /**
+     *@return Yaf_Dispatcher
+     */
     public static function getInstance()
     {
     }
