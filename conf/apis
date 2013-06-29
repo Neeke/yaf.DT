@@ -13,7 +13,7 @@ var api_logout = '/api/user/logout';
 method: get
 params: [nothing]
 
-创建相册
+创建图集
 var api_album_create = '/api/album/create'; 
 method: post
 params: is_open album_name
