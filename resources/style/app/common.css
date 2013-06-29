@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+/****************************
+ * version:1.0
+ * By:Vick
+ * Date:2013-01-08
+ *
+ */
+/*大体架构
+ ----------*/
+body, html { background:#141517;color: #595757; font-family: simSun; position: relative; width:100%; height:100%;}
+.wrap { position: relative; margin: 0 auto; width: 100%; min-width: 1000px;  _width: expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":""); height:auto;overflow:hidden; }
+.box { position: relative; width: 100%; min-width: 1000px;  _width: expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":"");height:auto; margin: 0 auto; }
+.main { width: 100%;min-width: 1000px;  _width: expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":""); margin: 0 auto;overflow:hidden; position: relative; background:#141517; height:auto;}
+.main1 { width: 100%;min-width: 1000px;  _width: expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":""); margin: 0 auto;overflow:hidden; position: relative; background:#141517; height:auto;}
+.content { width: 100%;min-width: 1000px;  _width: expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":"");overflow: hidden;  height:auto;margin: 0 auto; position: relative;}
+/*颜色值
+ --------------*/
+.orange { color: #ffe400; }
+.blue { color: #699BCC; }
+/*清除浮动
+ --------------*/
+.clear { padding: 0; margin: 0; width: 0; height: 0; font-size: 0; overflow: 0; clear: both; line-height: 0; }
+/*清楚文字内容
+ --------------*/
+.txtIndent { text-indent: -9999em; }
+/*用于seo不显示的内容
+ --------------*/
+.seo { width: 0; height: 0; overflow: hidden; position: absolute; visibility: hidden; top: 0; left: 0; }
+.seo, .hideImg {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+}
+.hideImg{
+	overflow: hidden;
+}
+.hideImg img{
+	width: 0;
+	height: 0;
+	overflow:hidden;
+}
+/*左浮动和右浮动
+ --------------*/
+.float_l { float: left; }
+.float_r { float: right; }
+.float_r, .float_l { _display: inline; }
+
+
+/**底部版权**/
+.footer{ width:1060px; opacity: 1;visibility: visible; margin:15px auto 0 auto; border-top:1px solid #4a4a4a; line-height:27px; color:#6D6D6D; overflow:hidden;}
+.footer .copyright{ padding:0 0 0 45px;}
+.footer .links{ float:right; padding:0 15px 0 0;}
+.footer .links span{ color:#e4007f;}
+.footer .links a:hover{ text-decoration:underline;}
