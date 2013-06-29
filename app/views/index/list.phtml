@@ -1,0 +1,42 @@
+<?php
+if (isset($items))
+{
+
+    if (is_array($items) && count($items) > 0) {
+        foreach ($items as $itemsinfo) {
+            ?>
+            <div class="bor_light tu_list">
+                <div class="bor_lightt"></div>
+                <div class="box_center">
+                    <div class="tu_img">
+                        <a href="<?php echo helper_common::site_url('items/v/i/' . $itemsinfo['items_id']); ?>">
+                            <img src="<?php echo $itemsinfo['items_pic']; ?>"/>
+                        </a>
+                        <a href="javascript:;" class="icon_like"><b class="icon icon01">喜欢</b></a>
+                        <a href="javascript:;" class="icon_collect" data-items-id="<?php echo $itemsinfo['items_id'];?>"><b class="icon icon02">收藏</b></a>
+                    </div>
+                    <div class="sharenumber">
+                        <b class="icon icon03"><?php echo $itemsinfo['like_hits'];?></b>
+                        <b class="icon icon04"><?php echo $itemsinfo['reply_hits'];?></b>
+                    </div>
+                    <p class="wen"><?php echo $itemsinfo['remark'];?></p>
+                    <?php if (array_key_exists($itemsinfo['items_id'],$replys) && is_array($replys[$itemsinfo['items_id']])){?>
+                        <ul class="ly_list">
+                            <?php foreach($replys[$itemsinfo['items_id']] as $v){?>
+                                <li>
+                                    <?php echo spall_user::avatar($v['from_user_id']);?>
+                                    <a href="#">女王奈:</a><?php echo helper_text::ellipsize($v['content'],20);?>
+                                </li>
+                            <?php }?>
+                        </ul>
+                    <?php }?>
+                </div>
+                <div class="bor_lightf"></div>
+            </div>
+
+        <?php
+        }
+
+    }
+}
+?>

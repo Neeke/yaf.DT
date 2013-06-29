@@ -1,0 +1,64 @@
+﻿<?php include_once(VIEW_PATH .'/layout/header.phtml')?>
+
+<div class="main">
+  <div class="bor_light1">
+    <div class="bor_lightt1"></div>
+    <div class="myadmin">
+      <div class="avatar_user"><a href="#"><img src="/static/images/photo02.gif"/></a>
+          <a href="#" class="blue"><?php echo $userinfo_all['user_name'];?></a></div>
+      <ul>
+        <li> <a href="#"><?php echo $userinfo_all['album_count'];?><br />
+          专辑</a></li>
+        <li><a href="#"><?php echo $userinfo_all['items_count'];?><br />
+          发布</a></li>
+        <li><a href="#"><?php echo $userinfo_all['collect_count'];?><br />
+          收藏</a></li>
+		<li><a href="#"><?php echo $userinfo_all['interest_count'];?><br />
+          关注</a></li>
+        <li><a href="#"><?php echo $userinfo_all['follower_count'];?><br />
+          粉丝</a></li>
+      </ul>
+    </div>
+    <div class="bor_lightf1"></div>
+  </div>
+  
+  <div class="bor_light2">
+    <div class="bor_lightt2"></div>
+    <div class="myadmin_left">
+    <div class="myadmin_left_a"><a href="javascript:;" id="createAlbum"><img src="/static/images/zhuanj.jpg" alt="创建专辑" /></a></div>
+    <h1 class="pink">我的专辑</h1>
+    <ul class="pho_list">
+        <?php if (is_array($albums) && count($albums) > 0){
+            foreach($albums as $v){
+                ?>
+                <li><a href="<?php echo helper_common::site_url_album($v['album_id']);?>">
+                        <img src="<?php echo $v['face_url'];?>" width="176" height="165" />
+                        <span><?php echo $v['album_name']?></span>
+                    </a>
+                </li>
+            <?php
+            }
+        }?>
+    </ul>
+    </div>
+    <div class="bor_lightf2"></div>
+  </div>
+  
+  <div class="bor_light box_right">
+    <div class="bor_lightt"></div>
+    <div class="myinformation">
+    <a href="#"><img src="/static/images/photo07.jpg" width="195" height="195" /></a>
+    <p><b class="fr pink">1</b><?php echo $userinfo_all['user_name'];?></p>
+        <?php echo $userinfo_all['remark'];?><br>
+     <a href="#" class="fl blue">[修改描述]</a>
+    </div>
+    <div class="bor_lightf"></div>
+  </div>
+</div>
+
+<script>
+    createAlbum();
+</script>
+
+
+<?php include_once(VIEW_PATH.'/layout/footer.phtml')?>

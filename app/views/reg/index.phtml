@@ -1,0 +1,37 @@
+﻿<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
+
+    <div class="main">
+        <div class="bor_light1">
+            <div class="bor_lightt1"></div>
+            <div class="registered">
+                <h1 class="pink">申请帐号</h1>
+
+                <div class="form_list">
+                    <ul>
+                        <li><label>邮　　箱：</label><input name="email" class="ipt_text email" type="text"/></li>
+                        <li><label>网　　名：</label><input name="user_name" class="ipt_text user_name" type="text"/></li>
+                        <li><label>密　　码：</label><input name="pwd" class="ipt_text pwd" type="password"/></li>
+                        <li><label>重复密码：</label><input name="pwdre" class="ipt_text pwdre" type="password"/></li>
+                        <li><label>爱　　好：</label><textarea name="remark" class="ipt_text ipt_textarea remark"></textarea>
+                        </li>
+                        <li>
+                            <label class="submit">提交</label>
+                        </li>
+                    </ul>
+                    <div class="registered_right">
+
+                    </div>
+                </div>
+            </div>
+            <div class="bor_lightf1"></div>
+        </div>
+    </div>
+<script>
+
+
+        $('.submit').click(function() {
+            reg();
+        });
+</script>
+
+<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>

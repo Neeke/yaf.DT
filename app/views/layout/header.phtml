@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><?php echo $title;?></title>
+    <link href="/static/common/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/lib/base.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/lib/cmp_all.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/lib/common.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="/static/lib/base.all.js"></script>
+    <script type="text/javascript" src="/static/lib/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="/static/lib/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/static/lib/jquery.form.js"></script>
+    <script type="text/javascript" src="/static/lib/yaf.all.js"></script>
+    <script type="text/javascript" src="/static/common/tang.all.js"></script>
+    <script src="/static/common/cascade.js" type="text/javascript"></script>
+    <script src="/static/common/search.js" type="text/javascript"></script>
+</head>
+<body>
+<script>
+    var $CONFIG = {"if_login":"<?php echo ($userinfo == false) ? 0 : 1;?>","userinfo":<?php echo json_encode($userinfo);?>};
+</script>
+<div class="header">
+    <div class="mwidth"><a href="javascript:;" class="logo" target="_blank" title="小萌AVI">小萌AVI</a>
+        <ul class="nav">
+            <li <?php echo isset($a_index) ? ($a_index ? $a_index : '') : '';?>>
+                <a href="<?php echo helper_common::site_url('index') ?>" title="首页" class="nav1">首页</a>
+            </li>
+            <li <?php echo isset($a_group) ? ($a_group ? $a_group : '') : '';?>>
+                <a href="<?php echo helper_common::site_url('group') ?>" title="分类" class="nav2">分类</a>
+            </li>
+            <li <?php echo isset($a_top) ? ($a_top ? $a_top : '') : '';?>>
+                <a href="<?php echo helper_common::site_url('top') ?>" title="热门" class="nav3">热门</a>
+            </li>
+            <li <?php echo isset($a_periphery) ? ($a_periphery ? $a_periphery : '') : '';?>>
+                <a href="<?php echo helper_common::site_url('periphery') ?>" title="周边" class="nav4">周边</a>
+            </li>
+        </ul>
+        <div class="search">
+            <input type="text" class="ipt_text" id="ipt_search" value="输入文字..."/>
+            <a href="javascript:;" class="search_ok" title="搜索"></a></div>
+
+        <?php if ($userinfo == false) {?>
+        <div class="Login_area" id="Login_area">
+            <a href="javascript:;" id="login_btn" class="btn"><b>登录</b></a>
+            <a href="<?php echo helper_common::site_url('reg') ?>" class="btn"><b>注册</b></a>
+            <a href="javascript:;" class="btn btn1"><b>发布</b></a>
+            <a href="javascript:;" class="btn btn2"><b>审核</b></a>
+        </div>
+        <?php }else{?>
+        <div class="Login_area" id="Login_area_two" style="display: block;">
+            <a href="javascript:;" class="secelt_btn">
+                <img src="/static/images/photo01.gif"/><span><?php echo $userinfo['user_name'];?></span>
+            </a>
+                <div class="secelt_up">
+                    <p title="个人主页"><a href="<?php echo helper_common::site_url_user($userinfo['user_id']); ?>">个人主页</a></p>
+
+                    <p title="消息"><a href="<?php echo helper_common::site_url('msg/box'); ?>">消息</a></p>
+
+                    <p title="设置"><a href="<?php echo helper_common::site_url('user/setting'); ?>">设置</a></p>
+
+                    <p id="quit" title="退出"><a href="<?php echo helper_common::site_url('user/loginout'); ?>">退出</a></p>
+                </div>
+            <a href="/items/public" class="btn btn1"><b>发布</b></a>
+            <a href="javascript:;" class="btn btn2"><b>审核</b></a>
+        </div>
+        <?php }?>
+
+    </div>
+</div>
+
+<?php  include_once(VIEW_PATH . '/layout/popup_layer.phtml');?>
