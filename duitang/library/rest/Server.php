@@ -10,7 +10,7 @@
  *        $this->rest->paramsMustValid($_POST);
  *        $this->data = do_some_data_model();
  *            if ($this->data == FALSE) {
- *                $this->rest->error('',rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
+ *                $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
  *            }
  *        $this->rest->success($this->data);
  */
@@ -102,7 +102,7 @@ class rest_Server
     /**
      * 成功执行
      * @param array||bollen  $data
-     * @param int    $status
+     * @param int $status
      * @param string $msg
      */
     public function success($data = NULL, $status = rest_Code::STATUS_SUCCESS, $msg = NULL)
@@ -117,7 +117,7 @@ class rest_Server
      * @param null $msg
      * @param array $data
      */
-    public function error($status = rest_Code::STATUS_ERROR,$msg = NULL, $data = array())
+    public function error($status = rest_Code::STATUS_ERROR, $msg = NULL, $data = array())
     {
         self::baseResponse($data, $status, $msg);
     }
@@ -143,7 +143,7 @@ class rest_Server
         foreach ($this->paramsMustMap as $v) {
             if ($this->haveValidedMustParams == FALSE && !isset($this->paramsMustToValid[$v])) {
                 $this->haveValidedMustParams = TRUE;
-                self::error(rest_Code::STATUS_ERROR_PARAMS,'api needs param ' . $v);
+                self::error(rest_Code::STATUS_ERROR_PARAMS, 'api needs param ' . $v);
             }
         }
     }
@@ -156,7 +156,7 @@ class rest_Server
         foreach ($this->paramsCanToValid as $k => $v) {
             if ($this->haveValidedCanParams == FALSE && !in_array($v, $this->paramsCanMap)) {
                 $this->haveValidedCanParams == TRUE;
-                self::error(rest_Code::STATUS_ERROR_PARAMS,'the param ' . $v . ' can not in');
+                self::error(rest_Code::STATUS_ERROR_PARAMS, 'the param ' . $v . ' can not in');
             }
         }
     }
@@ -243,14 +243,12 @@ class rest_Server
         $xml = '';
         if (!is_array($data)) {
             return $data;
-        }
-        else {
+        } else {
             foreach ($data as $key => $value) {
                 $xml .= "<$key>";
                 if (is_array($value)) {
                     self::toXml($value);
-                }
-                else {
+                } else {
                     $xml .= "$value";
                 }
                 $xml .= "</$key>";
