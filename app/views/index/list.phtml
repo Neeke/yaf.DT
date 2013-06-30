@@ -1,42 +1,165 @@
-<?php
-if (isset($items))
-{
-
-    if (is_array($items) && count($items) > 0) {
-        foreach ($items as $itemsinfo) {
-            ?>
-            <div class="bor_light tu_list">
-                <div class="bor_lightt"></div>
-                <div class="box_center">
-                    <div class="tu_img">
-                        <a href="<?php echo helper_common::site_url('items/v/i/' . $itemsinfo['items_id']); ?>">
-                            <img src="<?php echo $itemsinfo['items_pic']; ?>"/>
-                        </a>
-                        <a href="javascript:;" class="icon_like"><b class="icon icon01">喜欢</b></a>
-                        <a href="javascript:;" class="icon_collect" data-items-id="<?php echo $itemsinfo['items_id'];?>"><b class="icon icon02">收藏</b></a>
+<div class="g_end">
+    <div class="g_left"></div>
+    <div class="g_center">
+        <div class="g_div3">
+            <ul>
+                <li>
+                    <div class="g_tu">
+                        <div class="tucon">
+                            <h2>我的图集1</h2>
+                            <p>2013/05/03<span>[30张]</span></p>
+                        </div>
+                        <div class="tu01"><img src="images/tu03.png" width="243" height="157" /></div>
                     </div>
-                    <div class="sharenumber">
-                        <b class="icon icon03"><?php echo $itemsinfo['like_hits'];?></b>
-                        <b class="icon icon04"><?php echo $itemsinfo['reply_hits'];?></b>
+                    <div class="g_con">
+                        <div class="g_con01">
+                            用户名
+                        </div>
+                        <div class="g_con02">
+                            <ul>
+                                <li><span class="s_01">3356</span></li>
+                                <li><span class="s_02">2187</span></li>
+                                <li><span class="s_03">1234</span></li>
+                            </ul>
+                        </div>
                     </div>
-                    <p class="wen"><?php echo $itemsinfo['remark'];?></p>
-                    <?php if (array_key_exists($itemsinfo['items_id'],$replys) && is_array($replys[$itemsinfo['items_id']])){?>
-                        <ul class="ly_list">
-                            <?php foreach($replys[$itemsinfo['items_id']] as $v){?>
-                                <li>
-                                    <?php echo spall_user::avatar($v['from_user_id']);?>
-                                    <a href="#">女王奈:</a><?php echo helper_text::ellipsize($v['content'],20);?>
-                                </li>
-                            <?php }?>
-                        </ul>
-                    <?php }?>
-                </div>
-                <div class="bor_lightf"></div>
-            </div>
-
-        <?php
-        }
-
-    }
-}
-?>
+                </li>
+                <li>
+                    <div class="g_tu">
+                        <div class="tucon">
+                            <h2>我的图集1</h2>
+                            <p>2013/05/03<span>[30张]</span></p>
+                        </div>
+                        <div class="tu01"><img src="images/tu03.png" width="243" height="157" /></div>
+                    </div>
+                    <div class="g_con">
+                        <div class="g_con01">
+                            用户名
+                        </div>
+                        <div class="g_con02">
+                            <ul>
+                                <li><span class="s_01">3356</span></li>
+                                <li><span class="s_02">2187</span></li>
+                                <li><span class="s_03">1234</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="g_tu">
+                        <div class="tucon">
+                            <h2>我的图集1</h2>
+                            <p>2013/05/03<span>[30张]</span></p>
+                        </div>
+                        <div class="tu01"><img src="images/tu03.png" width="243" height="157" /></div>
+                    </div>
+                    <div class="g_con">
+                        <div class="g_con01">
+                            用户名
+                        </div>
+                        <div class="g_con02">
+                            <ul>
+                                <li><span class="s_01">3356</span></li>
+                                <li><span class="s_02">2187</span></li>
+                                <li><span class="s_03">1234</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="g_tu">
+                        <div class="tucon">
+                            <h2>我的图集1</h2>
+                            <p>2013/05/03<span>[30张]</span></p>
+                        </div>
+                        <div class="tu01"><img src="images/tu03.png" width="243" height="157" /></div>
+                    </div>
+                    <div class="g_con">
+                        <div class="g_con01">
+                            用户名
+                        </div>
+                        <div class="g_con02">
+                            <ul>
+                                <li><span class="s_01">3356</span></li>
+                                <li><span class="s_02">2187</span></li>
+                                <li><span class="s_03">1234</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="g_tu">
+                        <div class="tucon">
+                            <h2>我的图集1</h2>
+                            <p>2013/05/03<span>[30张]</span></p>
+                        </div>
+                        <div class="tu01"><img src="images/tu03.png" width="243" height="157" /></div>
+                    </div>
+                    <div class="g_con">
+                        <div class="g_con01">
+                            用户名
+                        </div>
+                        <div class="g_con02">
+                            <ul>
+                                <li><span class="s_01">3356</span></li>
+                                <li><span class="s_02">2187</span></li>
+                                <li><span class="s_03">1234</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="g_tu">
+                        <div class="tucon">
+                            <h2>我的图集2</h2>
+                            <p>2013/05/03<span>[30张]</span></p>
+                        </div>
+                        <div class="tu01"><img src="images/tu03.png" width="243" height="157" /></div>
+                    </div>
+                    <div class="g_con">
+                        <div class="g_con01">
+                            用户名
+                        </div>
+                        <div class="g_con02">
+                            <ul>
+                                <li><span class="s_01">3356</span></li>
+                                <li><span class="s_02">2187</span></li>
+                                <li><span class="s_03">1234</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="look1">
+            <a href="#"><img src="images/look1.jpg" width="121" height="34" border="0" /></a>
+        </div>
+    </div>
+    <div class="g_right">
+        <div class="r_01">
+            <ul>
+                <li><a href="#">随便看看</a></li>
+                <li><a href="#">热门</a></li>
+                <li><a href="#">最新</a></li>
+            </ul>
+        </div>
+        <div class="r_02">
+            <div class="r_ti">我的<span>&nbsp;</span></div>
+            <ul>
+                <li class="cur2"><a href="#">我的图集</a></li>
+                <li><a href="#">我的订阅</a></li>
+                <li><a href="#">我的标签</a></li>
+            </ul>
+        </div>
+        <div class="r_02">
+            <div class="r_ti r_ti1">品牌推荐<span>&nbsp;</span></div>
+            <ul>
+                <li><a href="#">品牌推荐1</a></li>
+                <li><a href="#">品牌推荐2</a></li>
+                <li><a href="#">品牌推荐3</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
