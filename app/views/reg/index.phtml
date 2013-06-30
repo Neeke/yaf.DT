@@ -1,37 +1,67 @@
-﻿<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
-
-    <div class="main">
-        <div class="bor_light1">
-            <div class="bor_lightt1"></div>
-            <div class="registered">
-                <h1 class="pink">申请帐号</h1>
-
-                <div class="form_list">
-                    <ul>
-                        <li><label>邮　　箱：</label><input name="email" class="ipt_text email" type="text"/></li>
-                        <li><label>网　　名：</label><input name="user_name" class="ipt_text user_name" type="text"/></li>
-                        <li><label>密　　码：</label><input name="pwd" class="ipt_text pwd" type="password"/></li>
-                        <li><label>重复密码：</label><input name="pwdre" class="ipt_text pwdre" type="password"/></li>
-                        <li><label>爱　　好：</label><textarea name="remark" class="ipt_text ipt_textarea remark"></textarea>
-                        </li>
-                        <li>
-                            <label class="submit">提交</label>
-                        </li>
-                    </ul>
-                    <div class="registered_right">
-
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title><?php echo $title;?></title>
+    <link rel="stylesheet" href="/resources/style/lib/all.css"/>
+    <link rel="stylesheet" href="/resources/style/app/all.css"/>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box">
+            <div class="main">
+                <div class="register">
+                    <a href="#" class="logo">不要集</a>
+                    <a href="/" class="back">&lt;&lt;返回首页</a>
+                    <div class="clear"></div>
+                    <div class="reg_begin">
+                        <div class="reg_left">
+                            <div class="reg_tu">
+                                <p><img src="/resources/images/avatar_default.jpg" width="75" height="75" /></p>
+                                <p><a href="#" target="_blank">上传头像</a></p>
+                            </div>
+                            <div class="reg_con">
+                                <div class="reg_1">
+                                    <input type="text" value="" id="username" class="int" placeholder="用户名"/>
+                                </div>
+                                <div class="reg_1">
+                                    <input type="text" value="" id="email" class="int" placeholder="邮箱"/>
+                                </div>
+                                <div class="reg_1">
+                                    <input type="text" value="" id="pwd" class="int" placeholder="密码"/>
+                                    <span><a href="#">显示密码</a></span></div>
+                                <div class="reg_1">
+                                    <input type="image" width="143" height="44" name="button" id="submit" value="注册" class="z_btn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reg_right">
+                            <div class="reg_2">
+                                <a href="#"><img src="/resources/images/reg_with_sina_account.png" alt="用新浪微博帐号注册" width="223" height="44" /></a>
+                            </div>
+                            <div class="reg_2">
+                                <a href="#"><img src="/resources/images/reg_with_qq_account.png" alt="用QQ帐号注册" width="223" height="44" /></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <footer class="footer">
+                    <div class="links">
+                        <a href="#">提问与建议</a>
+                        <span>|</span>
+                        <a href="#">合作联系</a>
+                        <span>|</span>
+                        <a href="#">关于我们</a>
+                    </div>
+                    <div class="copyright">2013 buyaoji.com  京ICP备 13010651号</div>
+                </footer>
             </div>
-            <div class="bor_lightf1"></div>
         </div>
     </div>
-<script>
-
-
-        $('.submit').click(function() {
-            reg();
-        });
-</script>
-
-<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
+    <script type="text/javascript" src="/resources/js/lib/seajs/sea.js" ></script>
+    <script type="text/javascript" src="/resources/js/lib/seajs/config.js"></script>
+    <script type="text/javascript">
+        seajs.use('app/reg/reg');
+    </script>
+</body>
+</html>
