@@ -66,8 +66,16 @@ class AlbumController extends Controller
     public function mineAction()
     {
         $this->rest->method('GET');
+        $data = $this->model_album->myAlbum(1);
 
-        $data = $this->model_album->myAlbum();
+        if (!is_array($data) || count($data) < 1) {
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL);
+        }
+
+        $this->mkData = rest_Mkdata::instance();
+        $this->mkData->setOffset(0, 5);
+        $this->mkData->config(count($data), 'album_id');
+        $data = $this->mkData->make($data);
 
         $this->rest->success($data);
     }
@@ -82,7 +90,7 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('items_id', 'album_id');
         $this->rest->paramsMustValid($params);
 
-        if ((int)$this->getRequest()->getPost('album_id') < 1){
+        if ((int)$this->getRequest()->getPost('album_id') < 1) {
             $this->rest->error(rest_Code::STATUS_ERROR_PARAMS);
         }
 
@@ -112,7 +120,7 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('album_id');
         $this->rest->paramsMustValid($params);
 
-        if ((int)$this->getRequest()->getPost('album_id') < 1){
+        if ((int)$this->getRequest()->getPost('album_id') < 1) {
             $this->rest->error(rest_Code::STATUS_ERROR_PARAMS);
         }
 
@@ -131,37 +139,19 @@ class AlbumController extends Controller
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '订阅成功');
     }
 
-    public function replayAction()
+    /**
+     * 查看我的订阅
+     */
+    public function listenedAction()
     {
-        if ($_POST) {
-            $post = $_POST;
-            if (empty($post['email']) || empty($post['content'])) {
-                helper_common::msg('请认真填写');
-            }
 
-            $data['email']    = $post['email'];
-            $data['blog_id']  = $post['blog_id'];
-            $data['content']  = $post['content'];
-            $data['dateline'] = time();
-            $back             = $this->db->insert('yaf_posts', $data);
-            $this->db->query('update yaf_blog set posts = posts + 1 where blog_id = ?', array($post['blog_id']));
-            if ($back > 1) {
-                helper_common::msg('提交成功');
-            }
-        }
     }
 
-    public function delAction()
+    /**
+     * 查看某个相册
+     */
+    public function showAction()
     {
-        if ($_POST) {
-            $post = $_POST;
-            if (empty($post['blog_id'])) {
-                helper_common::msg('请认真填写');
-            }
 
-            $blog_id = (int)$this->getRequest()->getPost("blog_id", 0);
-            $a       = $this->db->delete('yaf_blog', array('blog_id' => $blog_id));
-            $this->rest->success($a, '删除成功');
-        }
     }
 }
