@@ -66,7 +66,7 @@ class AlbumController extends Controller
     public function mineAction()
     {
         $this->rest->method('GET');
-        $data = $this->model_album->myAlbum();
+        $data = $this->model_album->myAlbum(1);
 
         if (!is_array($data) || count($data) < 1) {
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL);
@@ -137,5 +137,21 @@ class AlbumController extends Controller
         if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '订阅成功');
+    }
+
+    /**
+     * 查看我的订阅
+     */
+    public function listenedAction()
+    {
+
+    }
+
+    /**
+     * 查看某个相册
+     */
+    public function showAction()
+    {
+
     }
 }

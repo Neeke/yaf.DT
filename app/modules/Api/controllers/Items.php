@@ -91,4 +91,20 @@ class ItemsController extends Controller
             $this->rest->success($result);
         }
     }
+
+    /**
+     * 查看某张图片
+     */
+    public function showAction()
+    {
+
+    }
+
+    /**
+     * 喜欢某张图片
+     */
+    public function likeitAction()
+    {
+
+    }
 }
