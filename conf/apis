@@ -44,13 +44,13 @@ method: post
 params: album_id remark tags_ids userfile [user_id]
 
 ----------------------
-找回在密码：
+找回密码：
 var api_forget_pwd = '/api/forget/pwd';
 method: post
 params: email
 
 首页图片轮播:
-var api_homepage = '/api/homepage/index';
+var api_homepage = '/api/homepage/pics';
 method: get
 params: [nothing]
 
@@ -58,6 +58,11 @@ params: [nothing]
 var api_tag_create = '/api/tag/create';
 method: post
 params: tag_name [user_id]
+
+我的tag:
+var api_tag_mine = '/api/tag/mine';
+method: get
+params: page [user_id]
 
 关注tag:
 var api_tag_listen = '/api/tag/listen';
@@ -119,3 +124,13 @@ params: page user_id
 var api_sms_del = '/api/sms/del';
 method: post
 params: sms_id
+
+随便看看（相册）
+var api_justlook_album = '/api/justlook/album';
+method: get
+params: [nothing]
+
+随便看看(tags)
+var api_justlook_tags = '/api/justlook/tags';
+method: get
+params: [nothing]
