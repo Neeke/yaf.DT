@@ -33,6 +33,11 @@ var api_album_listen = '/api/album/listen';
 method: post
 params: album_id  [user_id]
 
+查看已经关注的相册：
+var api_album_listened = '/api/album/listened';
+method: get
+params: [user_id]
+
 评论图片：
 var api_items_replay = '/api/items/replay'; 
 method: post

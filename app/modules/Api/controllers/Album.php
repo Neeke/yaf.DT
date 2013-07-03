@@ -111,7 +111,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * 订阅
+     * 订阅图集
      */
     public function listenAction()
     {
@@ -144,7 +144,14 @@ class AlbumController extends Controller
      */
     public function listenedAction()
     {
+        $this->models_albumListen = models_albumListen::getInstance();
+        $albums = $this->models_albumListen->myListenedAlbum();
 
+        if (!is_array($albums) || count($albums) < 1){
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL);
+        }
+
+        $this->rest->success($albums);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 /**
  * Controller base
- * @author ciogao
+ * @author ciogao@gmail.com
  *
  */
 class Controller extends Yaf_Controller_Abstract {
@@ -14,8 +14,7 @@ class Controller extends Yaf_Controller_Abstract {
      */
     public $db ;
 	public $meta;
-	const ACTIVE = 'class="current"';
-	
+
 	protected $appconfig = array();
 	protected $userinfo = array();
     protected $modules = array();
@@ -75,20 +74,13 @@ class Controller extends Yaf_Controller_Abstract {
             $this->redirect('/index');
         }
     }
-	
-	/**
-	 * 设置目录
-	 */
-	private function setmenu(){
-		$this->set('menu',helper_menu::get_menu());
-	}
 
 	/**
 	 * 设置menu的active状态
 	 * @param string $action
 	 */
-	function setaction($action = 'index'){
-		$this->set('a_'.$action, self::ACTIVE);
+	function setMenu($action = '/'){
+		$this->set('this_menu',$action);
 	}
 	
 	/**
