@@ -1,1 +1,83 @@
-@charset "utf-8";/* CSS Document *//**************************** * version:1.0 * By:Vick * Date:2013-01-08 * *//*大体架构 ----------*/body, html { color: #595757; font-family: simSun; position: relative; width:100%;}.wrap { position: relative; margin: 0 auto; width: 100%; min-width: 1000px;  _width: expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":"");overflow:hidden; }.box { position: relative; margin: 0 auto; }.main {overflow:hidden; position: relative; background:#141517; height:600px;}.main1 { width: 1100px; margin: 0 -50px;overflow:hidden; position: relative; background:#141517; height:700px;}.content { width: 1100px;overflow: hidden;  height:915px;margin: 0 auto; position: relative;}/*颜色值 --------------*/.orange { color: #ffe400; }.blue { color: #699BCC; }/*清除浮动 --------------*/.clear { padding: 0; margin: 0; width: 0; height: 0; font-size: 0; overflow: 0; clear: both; line-height: 0; }/*清楚文字内容 --------------*/.txtIndent { text-indent: -9999em; }/*用于seo不显示的内容 --------------*/.seo { width: 0; height: 0; overflow: hidden; position: absolute; visibility: hidden; top: 0; left: 0; }.seo, .hideImg {	width: 0;	height: 0;	overflow: hidden;	position: absolute;	visibility: hidden;	top: 0;	left: 0;}.hideImg{	overflow: hidden;}.hideImg img{	width: 0;	height: 0;	overflow:hidden;}/*左浮动和右浮动 --------------*/.float_l { float: left; }.float_r { float: right; }.float_r, .float_l { _display: inline; }/**底部版权**/.footer{ width:1060px; bottom:0px; position:absolute; z-index:999; left:50%; margin:0 0 0 -530px; border-top:1px solid #4a4a4a; line-height:27px; color:#6D6D6D; overflow:hidden;}.footer .copyright{ padding:0 0 0 45px;}.footer .links{ float:right; padding:0 15px 0 0;}.footer .links span{ color:#e4007f;}.footer .links a:hover{ text-decoration:underline;}/**首页**/.index{ width:100%; height:600px; position:absolute; overflow:hidden;}.index .index-carousel{ width:100%; height:600px;}.index .index-logo{ background:url(images/index_logo.png) no-repeat; width:310px; height:70px; position:absolute; left:50%; top:143px; z-index:999; text-indent:-99990em; margin:0 0 0 -155px;}.index .index_login_box{ background:url(images/index_login_box.png) no-repeat; width:680px; height:138px; position:absolute; left:50%; top:255px; z-index:999; margin:0 0 0 -340px;}.index .index_login_box .login{ overflow:hidden; padding:25px 0 0 15px;}.index .index_login_box .login .text-box{ background:url(images/text-box.png) no-repeat; width:234px; height:44px; margin:0 17px 0 0;}.index .index_login_box .login .submit{ background:url(images/login_btn.png) no-repeat; width:143px; height:44px; border:none; text-indent:-9999em; cursor:pointer;}.index .index_login_box .login .text-box input{border:none; margin:8px 0 0 18px; height:25px; width:175px; color:#686868; line-height:30px; padding:0 0 0 25px;}.index .index_login_box .login .email input{ background:url(images/ico01.png) no-repeat left center;}.index .index_login_box .login .password input{ background:url(images/ico02.png) no-repeat left center;}.index .index_login_box .aid{ padding:10px 0 0 15px;}.index .index_login_box .aid a{ color:#ff; font-weight:bold; color:#fff;}.index .index_login_box .aid a:hover{ text-decoration:underline;}.index .index_login_box .aid input{ vertical-align:middle; margin:-1px 5px 0 0;}.index .index_login_box .aid span.reg{ padding:0 192px 0 0;}.index .index_login_box .aid span.autologin{ padding:0 50px 0 0;}.index .index_login_box .aid span.findpass a{ text-decoration:underline;}.alogo{ float:left; display:inline;}.top{ border-bottom:#e4007f 2px solid; width:1058px; margin:75px 0 0 ; padding:0 22px 12px 22px;}.top1{padding-bottom:27px;}.cen{ float:right; display:inline;}.cen li{ float:left; display:inline; background:url(images/ico_02.png) no-repeat left center; padding-left:7px; margin-right:4px; color:#858183; font-size:14px; font-weight:bold;font-family:Microsoft YaHei;}.cen li font{ color:#e4007f;}/*浏览图集**/.rslides a{ width:114px; height:114px; display:block; position:absolute; top:165px; left:742px; cursor:pointer; background:url(images/black.gif) no-repeat;}.l_zi{color:#fff; position:absolute; z-index:1002;width: 100%;}.l_zi .l_close{ float:right; display:inline; padding:13px 12px 0 0; width:100%; text-align:right;}.l_zi .l_ico{ float:right; display:inline; width:26px; height:116px; background:#444; margin:27px 10px 0 0;}.l_ico li{ margin:11px 0 20px 0; text-align:center;}.l_zi .l_nei{ width:100%; margin:525px 0 0 0;text-align:center; position:absolute; left:1%;}.l_nei .l_p{ float:left; display:inline; background:url(images/l_ico07.png) repeat-x; width:366px; height:52px; padding:6px; text-align:left;}.l_nei .l_fen{ margin:50px 0 0 280px; float:left; display:inline; }.l_fen a{  color:#fff;}
+@charset "utf-8";
+body, html { color: #595757; font-family: simSun; position: relative; width:100%; overflow:hidden; height:100%;}
+.wrap { position: relative; margin: 0 auto; width: 100%; min-width: 1000px;  _width: expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":"");
+ }
+.box { position: relative; margin: 0 auto; }
+.main { position: relative; background:#141517;}
+.main1 { width: 1100px; margin: 0 -50px;overflow:hidden; position: relative; background:#141517; height:700px;}
+.content { width: 1100px;overflow: hidden;  height:915px;margin: 0 auto; position: relative;}
+/*颜色值
+ --------------*/
+.orange { color: #ffe400; }
+.blue { color: #699BCC; }
+/*清除浮动
+ --------------*/
+.clear { padding: 0; margin: 0; width: 0; height: 0; font-size: 0; overflow: 0; clear: both; line-height: 0; }
+/*清楚文字内容
+ --------------*/
+.txtIndent { text-indent: -9999em; }
+/*用于seo不显示的内容
+ --------------*/
+.seo { width: 0; height: 0; overflow: hidden; position: absolute; visibility: hidden; top: 0; left: 0; }
+.seo, .hideImg {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+}
+.hideImg{
+	overflow: hidden;
+}
+.hideImg img{
+	width: 0;
+	height: 0;
+	overflow:hidden;
+}
+/*左浮动和右浮动
+ --------------*/
+.float_l { float: left; }
+.float_r { float: right; }
+.float_r, .float_l { _display: inline; }/**底部版权**/
+.footer{ width:1060px; bottom:10px; position:absolute; z-index:999; left:50%; margin:0 0 0 -530px; border-top:1px solid #4a4a4a; line-height:27px; color:#6D6D6D; overflow:hidden;}
+.footer .copyright{ padding:0 0 0 45px;}
+.footer .links{ float:right; padding:0 15px 0 0;}
+.footer .links span{ color:#e4007f;}
+.footer .links a:hover{ text-decoration:underline;}
+
+/**首页**/
+.index{ width:100%; position:absolute; overflow:hidden;}
+.index .index-carousel{ width:100%;}
+.index .index-logo{ background:url(images/index_logo.png) no-repeat; width:310px; height:70px; position:absolute; left:50%; top:143px; z-index:999; text-indent:-99990em; margin:0 0 0 -155px;}
+.index .index_login_box{ background:url(images/index_login_box.png) no-repeat; width:680px; height:138px; position:absolute; left:50%; top:255px; z-index:999; margin:0 0 0 -340px;}
+.index .index_login_box .login{ overflow:hidden; padding:25px 0 0 15px;}
+.index .index_login_box .login .text-box{ background:url(images/text-box.png) no-repeat; width:234px; height:44px; margin:0 17px 0 0;}
+.index .index_login_box .login .submit{ background:url(images/login_btn.png) no-repeat; width:143px; height:44px; border:none; text-indent:-9999em; cursor:pointer;}
+.index .index_login_box .login .text-box input{border:none; margin:8px 0 0 18px; height:25px; width:175px; color:#686868; line-height:30px; padding:0 0 0 25px;}
+.index .index_login_box .login .email input{ background:url(images/ico01.png) no-repeat left center;}
+.index .index_login_box .login .password input{ background:url(images/ico02.png) no-repeat left center;}
+.index .index_login_box .aid{ padding:10px 0 0 15px;}
+.index .index_login_box .aid a{ color:#ff; font-weight:bold; color:#fff;}
+.index .index_login_box .aid a:hover{ text-decoration:underline;}
+.index .index_login_box .aid input{ vertical-align:middle; margin:-1px 5px 0 0;}
+.index .index_login_box .aid span.reg{ padding:0 192px 0 0;}
+.index .index_login_box .aid span.autologin{ padding:0 50px 0 0;}
+.index .index_login_box .aid span.findpass a{ text-decoration:underline;}
+.alogo{ float:left; display:inline;}
+.top{ border-bottom:#e4007f 2px solid; width:1058px; margin:75px 0 0 ; padding:0 22px 12px 22px;}
+.top1{padding-bottom:27px;}
+.cen{ float:right; display:inline;}
+.cen li{ float:left; display:inline; background:url(images/ico_02.png) no-repeat left center; padding-left:7px; margin-right:4px; color:#858183; font-size:14px; font-weight:bold;font-family:Microsoft YaHei;}
+.cen li font{ color:#e4007f;}
+/*浏览图集**/
+.rslides a{ width:114px; height:114px; display:block; position:absolute; top:165px; left:742px; cursor:pointer; background:url(images/black.gif) no-repeat;}
+.l_zi{color:#fff; position:absolute; z-index:1002;width: 100%;}
+.l_zi .l_close{ float:right; display:inline; padding:13px 12px 0 0; width:100%; text-align:right;}
+.l_zi .l_ico{ float:right; display:inline; width:26px; height:116px; background:#444; margin:27px 10px 0 0;}
+.l_ico li{ margin:11px 0 20px 0; text-align:center;}
+.l_zi .l_nei{ width:100%; margin:525px 0 0 0;text-align:center; position:absolute; left:1%;}
+.l_nei .l_p{ float:left; display:inline; background:url(images/l_ico07.png) repeat-x; width:366px; height:52px; padding:6px; text-align:left;}
+.l_nei .l_fen{ margin:50px 0 0 280px; float:left; display:inline; }
+.l_fen a{  color:#fff;}

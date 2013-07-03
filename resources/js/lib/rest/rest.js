@@ -1,9 +1,5 @@
 (function(global, $) {
 
-    function restGet(url, data, callback) {
-        return rest.apply(this, ['GET'].concat(Array.prototype.slice.call(arguments, 0)));
-    }
-
     function rest(type, url, data, callback) {
         if (typeof data === "function") {
             callback = data;
