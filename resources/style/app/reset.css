@@ -1,51 +1,102 @@
-@charset "utf-8";
-/* CSS Document */
-/****************************
- * version:1.0
- * By:Vick
- * Date:2013-1-7
- * 
- */
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, abbr, address, cite, code, del, dfn, em, img, sub, sup, var, i, dl, dd, dt, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	outline: 0;
-	background: transparent;
-}
-article, aside, figure, footer, header, hgroup, nav, menu, section {
-	display: block;
-}
-ol, ul, li {
-	list-style: none;
-}
-a {
-	text-decoration: none;
-	padding: 0;
-	margin: 0;
-	color: #6d6d6d;
-}
-a:active, a:visited {
-	/*color: #0066ab;*/
-}
-input, select {
-	vertical-align: middle;
-}
-table {
-	border-collapse:collapse;
-	border-spacing:0;
-}
-body {
-	line-height:1.5em;
-	font-size: 12px;
-}
-a {
-	outline: none;/* for Forefox */
-	cursor: pointer;
-}
-a {
-	star: expression(this.onFocus=this.blur());/* for Ie*/
-}
-
-
-
+@charset "utf-8";
+
+/* CSS Document */
+
+/****************************
+
+ * version:1.0
+
+ * By:Vick
+
+ * Date:2013-1-7
+
+ * 
+
+ */
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, abbr, address, cite, code, del, dfn, em, img, sub, sup, var, i, dl, dd, dt, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+
+	padding: 0;
+
+	margin: 0;
+
+	border: 0;
+
+	outline: 0;
+
+	background: transparent;
+
+}
+
+article, aside, figure, footer, header, hgroup, nav, menu, section {
+
+	display: block;
+
+}
+
+ol, ul, li {
+
+	list-style: none;
+
+}
+
+a {
+
+	text-decoration: none;
+
+	padding: 0;
+
+	margin: 0;
+
+	color: #444444;
+
+}
+
+a:active, a:visited {
+
+	/*color: #0066ab;*/
+
+}
+
+input, select {
+
+	vertical-align: middle;
+
+}
+
+table {
+
+	border-collapse:collapse;
+
+	border-spacing:0;
+
+}
+
+body {
+
+	line-height:1.5em;
+
+	font-size: 12px;
+
+}
+
+a {
+
+	outline: none;/* for Forefox */
+
+	cursor: pointer;
+
+}
+
+a {
+
+	star: expression(this.onFocus=this.blur());/* for Ie*/
+
+}
+
+
+
+
+
+
+
