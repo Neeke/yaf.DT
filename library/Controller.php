@@ -44,6 +44,11 @@ class Controller extends Yaf_Controller_Abstract {
      */
     protected $session;
 
+    /**
+     * @var rest_Mkdata
+     */
+    protected $mkData;
+
 	function init(){
 		$this->userinfo = models_user::getInstance()->getUserInfo();
         $this->modules = explode(',',Yaf_Registry::get("config")->get('yaf')->get('modules'));
@@ -52,13 +57,13 @@ class Controller extends Yaf_Controller_Abstract {
 
 		$this->db = db_contect::db();
 		$this->setmeta();
-//		$this->setmenu();
  		$this->check = rest_Check::instance();
  		$this->quantity = rest_Quantity::instance();
 		$this->rest = rest_Server::instance();
  		$this->modified = rest_Modified::instance();
         $this->session = Yaf_Session::getInstance();
-		
+        $this->mkData = rest_Mkdata::instance();
+
 		$this->appconfig = Yaf_Registry::get("config")->get('taobaoapp')->toArray();
 	}
 

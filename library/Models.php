@@ -42,6 +42,22 @@ class Models
     }
 
     /**
+     * 获得符合条件的数据数量
+     * @param $where
+     * @return array
+     */
+    public function count($where)
+    {
+        $this->db->cache_on(10);
+        $_where = self::where($where);
+        $back   = $this->db->getRow('select count(1) as count from ' . $this->_table . $_where['where_key'], $_where['where_value']);
+        $this->db->cache_off();
+        if (is_array($back) && count($back) > 0) {
+            return $back['count'];
+        }
+    }
+
+    /**
      * 依条件获取所有数据
      * @param              $colume
      * @param string|array $where

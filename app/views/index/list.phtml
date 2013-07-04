@@ -19,7 +19,11 @@
 
                 <?php foreach($myalbums as $album_info){?>
                 <li data-albumid="<?php echo $album_info['album_id'];?>">
-                    <div class="pic"><a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>"><img src="/resources/images/devtmp_01.jpg"></a></div>
+                    <div class="pic">
+                        <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
+                            <img src="<?php echo $album_info['face_url'];?>">
+                        </a>
+                    </div>
                     <div class="pic-info">
                         <dl>
                             <dt><?php echo $album_info['album_name'];?></dt>
@@ -39,18 +43,9 @@
                 </li>
                 <?php }?>
             </ul>
+
             <?php echo $sPage;?>
-            <div class="page">
-                <a href="#">上一页</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                ...
-                <a href="#">6</a>
-                <a href="#">下一页</a>
-            </div>
+
             <div class="editbox">
                 <a href="javascript:;" class="close"></a>
 

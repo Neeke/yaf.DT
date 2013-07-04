@@ -37,17 +37,18 @@ class models_album extends Models
     /**
      * 当前用户名下的专辑
      * @param int $user_id
+     * @param int $start
      * @param int $limit
      *
      * @return array
      */
-    function myAlbum($user_id = 0,$limit = 20){
+    function myAlbum($user_id = 0,$start = 0,$limit = contast_album::PAGE_SIZE_DEFAULT){
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
             $userinfo = models_user::getInstance()->getUserInfo();
             $user_id = (int)$userinfo['user_id'];
         }
-        return $this->getAll('*',array('user_id' => $user_id),'',0,$limit);
+        return $this->getAll('*',array('user_id' => $user_id),'',$start,$limit);
     }
 
     /**

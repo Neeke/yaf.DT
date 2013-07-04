@@ -16,6 +16,11 @@ class AlbumController extends Controller
      */
     private $model_album;
 
+    /**
+     * @var models_reply
+     */
+    private $model_reply;
+
     public function init()
     {
         parent::init();
@@ -39,9 +44,11 @@ class AlbumController extends Controller
     {
         $this->setMenu('album/mine');
 
-        $my_albums = $this->model_album->myAlbum(1);
+        $my_albums = $this->model_album->myAlbum(1,($this->page - 1) *contast_album::PAGE_SIZE_DEFAULT);
 
-        $sPage = helper_pages::page1('/',30,6,$this->_request->getParam('page',1));
+        $count = $this->model_album->count(array('user_id' => 1));
+
+        $sPage = helper_pages::page2(helper_common::site_url('album/mine'),$count,contast_album::PAGE_SIZE_DEFAULT,$this->page);
         $this->set('sPage', $sPage);
         $this->set('myalbums', $my_albums);
     }
