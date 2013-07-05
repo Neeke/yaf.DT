@@ -23,7 +23,7 @@ class IndexController extends Controller {
 
 	public function init() {
 		parent::init();
-		$this->setaction('index');
+		$this->setMenu('album/mine');
 
         $this->model_tag = models_tag::getInstance();
         $this->model_items = models_items::getInstance();
@@ -43,13 +43,12 @@ class IndexController extends Controller {
             $replys[$v['items_id']] = $this->model_reply->getAllByItemId($v['items_id']);
         }
 
-        $my_albums = $this->model_album->myAlbum();
-        $hot_albums = $this->model_album->hotAlbum();
+        $my_albums = $this->model_album->myAlbum(1);
 
+        $sPage = helper_pages::page1('/',30,6,$this->_request->getParam('page',1));
         $this->set('items', $items);
-        $this->set('replys', $replys);
+        $this->set('sPage', $sPage);
         $this->set('myalbums', $my_albums);
-        $this->set('hotalbums', $hot_albums);
 	}
 
 }

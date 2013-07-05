@@ -32,7 +32,7 @@ class models_albumListen extends Models
      *
      * @return array
      */
-    function myAlbum($user_id = 0,$limit = 20){
+    function myListenedAlbum($user_id = 0,$limit = 20){
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
             $userinfo = models_user::getInstance()->getUserInfo();

@@ -72,8 +72,10 @@ class AlbumController extends Controller
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL);
         }
 
-        $this->mkData = rest_Mkdata::instance();
-        $this->mkData->setOffset(0, 5);
+        $start = $this->getRequest()->getParam('start',0);
+        $limit = $this->getRequest()->getParam('limit',contast_album::PAGE_SIZE_DEFAULT);
+
+        $this->mkData->setOffset($start, $limit);
         $this->mkData->config(count($data), 'album_id');
         $data = $this->mkData->make($data);
 
@@ -85,10 +87,10 @@ class AlbumController extends Controller
      */
     public function collectionAction()
     {
-        $this->rest->method('POST');
+        $this->check->method('POST');
         $params                    = $this->getRequest()->getPost();
-        $this->rest->paramsMustMap = array('items_id', 'album_id');
-        $this->rest->paramsMustValid($params);
+        $this->check->paramsMustMap = array('items_id', 'album_id');
+        $this->check->paramsMustValid($params);
 
         if ((int)$this->getRequest()->getPost('album_id') < 1) {
             $this->rest->error(rest_Code::STATUS_ERROR_PARAMS);
@@ -111,7 +113,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * 订阅
+     * 订阅图集
      */
     public function listenAction()
     {
@@ -144,7 +146,14 @@ class AlbumController extends Controller
      */
     public function listenedAction()
     {
+        $this->models_albumListen = models_albumListen::getInstance();
+        $albums = $this->models_albumListen->myListenedAlbum();
 
+        if (!is_array($albums) || count($albums) < 1){
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL);
+        }
+
+        $this->rest->success($albums);
     }
 
     /**

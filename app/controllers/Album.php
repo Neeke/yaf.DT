@@ -16,21 +16,49 @@ class AlbumController extends Controller
      */
     private $model_album;
 
+    /**
+     * @var models_reply
+     */
+    private $model_reply;
+
     public function init()
     {
         parent::init();
-        $this->setaction('index');
         $this->model_Items = models_items::getInstance();
         $this->model_album = models_album::getInstance();
         $this->model_reply = models_reply::getInstance();
         $this->model       = models_user::getInstance();
+
+        $this->page    = (int)$this->getRequest()->getParam('p', 1);
     }
 
     public function indexAction()
     {
         $this->db->cache_on();
-        $page    = (int)$this->getRequest()->getParam('p', 1);
-        $classid = (int)$this->getRequest()->getParam('c', 0);
+    }
+
+    /**
+     * 我的相册
+     */
+    public function mineAction()
+    {
+        $this->setMenu('album/mine');
+
+        $my_albums = $this->model_album->myAlbum(1,($this->page - 1) *contast_album::PAGE_SIZE_DEFAULT);
+
+        $count = $this->model_album->count(array('user_id' => 1));
+
+        $sPage = helper_pages::page2(helper_common::site_url('album/mine'),$count,contast_album::PAGE_SIZE_DEFAULT,$this->page);
+        $this->set('sPage', $sPage);
+        $this->set('myalbums', $my_albums);
+    }
+
+    /**
+     * 我的订阅
+     */
+    public function listenedAction()
+    {
+        $this->setMenu('album/listened');
     }
 
     public function vAction()

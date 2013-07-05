@@ -16,115 +16,36 @@
         </div>
         <div class="list">
             <ul>
-                <li>
-                    <div class="pic"><a href="javascript:;"><img src="/resources/images/devtmp_01.jpg"></a></div>
+
+                <?php foreach($myalbums as $album_info){?>
+                <li data-albumid="<?php echo $album_info['album_id'];?>">
+                    <div class="pic">
+                        <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
+                            <img src="<?php echo $album_info['face_url'];?>">
+                        </a>
+                    </div>
                     <div class="pic-info">
                         <dl>
-                            <dt>我的图集1</dt>
-                            <dd>12013/3/15<span>[30图]</span></dd>
+                            <dt><?php echo $album_info['album_name'];?></dt>
+                            <dd>
+                                <?php echo date('Y/m/d',$album_info['created_time']);?>
+                                <span>[<?php echo (int)$album_info['items'];?>图]</span>
+                            </dd>
                         </dl>
                     </div>
                     <div class="tip">
-                        <a href="javascript:;" class="ico01">3356</a>
-                        <a href="javascript:;" class="ico02">2189</a>
-                        <a href="javascript:;" class="ico03">998</a>
+                        <a href="javascript:;" class="ico01"><?php echo (int)$album_info['hits'];?></a>
+                        <a href="javascript:;" class="ico02"><?php echo (int)$album_info['likeit'];?></a>
+                        <a href="javascript:;" class="ico03"><?php echo (int)$album_info['posts'];?></a>
                         <input value="编辑" type="button" class="edit">
                         <input value="删除" type="button" class="delete">
                     </div>
                 </li>
-                <li>
-                    <div class="pic"><a href="javascript:;"><img src="/resources/images/devtmp_01.jpg"></a></div>
-                    <div class="pic-info">
-                        <dl>
-                            <dt>我的图集1</dt>
-                            <dd>12013/3/15<span>[30图]</span></dd>
-                        </dl>
-                    </div>
-                    <div class="tip">
-                        <a href="javascript:;" class="ico01">3356</a>
-                        <a href="javascript:;" class="ico02">2189</a>
-                        <a href="javascript:;" class="ico03">998</a>
-                        <input value="编辑" type="button" class="edit">
-                        <input value="删除" type="button" class="delete">
-                    </div>
-                </li>
-                <li>
-                    <div class="pic"><a href="javascript:;"><img src="/resources/images/devtmp_01.jpg"></a></div>
-                    <div class="pic-info">
-                        <dl>
-                            <dt>我的图集1</dt>
-                            <dd>12013/3/15<span>[30图]</span></dd>
-                        </dl>
-                    </div>
-                    <div class="tip">
-                        <a href="javascript:;" class="ico01">3356</a>
-                        <a href="javascript:;" class="ico02">2189</a>
-                        <a href="javascript:;" class="ico03">998</a>
-                        <input value="编辑" type="button" class="edit">
-                        <input value="删除" type="button" class="delete">
-                    </div>
-                </li>
-                <li>
-                    <div class="pic"><a href="javascript:;"><img src="/resources/images/devtmp_01.jpg"></a></div>
-                    <div class="pic-info">
-                        <dl>
-                            <dt>我的图集1</dt>
-                            <dd>12013/3/15<span>[30图]</span></dd>
-                        </dl>
-                    </div>
-                    <div class="tip">
-                        <a href="javascript:;" class="ico01">3356</a>
-                        <a href="javascript:;" class="ico02">2189</a>
-                        <a href="javascript:;" class="ico03">998</a>
-                        <input value="编辑" type="button" class="edit">
-                        <input value="删除" type="button" class="delete">
-                    </div>
-                </li>
-                <li>
-                    <div class="pic"><a href="javascript:;"><img src="/resources/images/devtmp_01.jpg"></a></div>
-                    <div class="pic-info">
-                        <dl>
-                            <dt>我的图集1</dt>
-                            <dd>12013/3/15<span>[30图]</span></dd>
-                        </dl>
-                    </div>
-                    <div class="tip">
-                        <a href="javascript:;" class="ico01">3356</a>
-                        <a href="javascript:;" class="ico02">2189</a>
-                        <a href="javascript:;" class="ico03">998</a>
-                        <input value="编辑" type="button" class="edit">
-                        <input value="删除" type="button" class="delete">
-                    </div>
-                </li>
-                <li>
-                    <div class="pic"><a href="javascript:;"><img src="/resources/images/devtmp_01.jpg"></a></div>
-                    <div class="pic-info">
-                        <dl>
-                            <dt>我的图集1</dt>
-                            <dd>12013/3/15<span>[30图]</span></dd>
-                        </dl>
-                    </div>
-                    <div class="tip">
-                        <a href="javascript:;" class="ico01">3356</a>
-                        <a href="javascript:;" class="ico02">2189</a>
-                        <a href="javascript:;" class="ico03">998</a>
-                        <input value="编辑" type="button" class="edit">
-                        <input value="删除" type="button" class="delete">
-                    </div>
-                </li>
+                <?php }?>
             </ul>
 
-            <div class="page">
-                <a href="#">上一页</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                ...
-                <a href="#">6</a>
-                <a href="#">下一页</a>
-            </div>
+            <?php echo $sPage;?>
+
             <div class="editbox">
                 <a href="javascript:;" class="close"></a>
 

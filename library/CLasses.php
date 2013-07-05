@@ -518,8 +518,14 @@ class Yaf_Request_Http extends Yaf_Request_Abstract
     {
     }
 
+    /**
+     * @param $name
+     * @param null $default
+     * @return int|void
+     */
     public function getParam($name, $default = NULL)
     {
+        return 1;
     }
 
     public function getParams()

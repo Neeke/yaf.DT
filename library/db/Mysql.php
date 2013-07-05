@@ -6,37 +6,39 @@
  *
  */
 //class db_Mysql implements db_DbInterface {
-class db_Mysql{
+class db_Mysql
+{
 
-    public  static $_instances;
-    private $_debug = false;
-    private $_update_cache = false;
+    public static $_instances;
+    private $_debug = FALSE;
+    private $_update_cache = FALSE;
     private $_dbh;
     private $_sth;
     private $_sql;
     private $_cache;
-    private $_cache_on = false;
-    private $_cache_off = false;
+    private $_cache_on = FALSE;
+    private $_cache_off = FALSE;
     private $_cache_time = 60;
-    private $_cache_if_have = false;
-    
-    private function __construct($dbhost, $dbport, $username, $password, $dbname, $dbcharset, $cachesys, $cachetype, $cachehost, $cacheport) {
-    	
+    private $_cache_if_have = FALSE;
+
+    private function __construct($dbhost, $dbport, $username, $password, $dbname, $dbcharset, $cachesys, $cachetype, $cachehost, $cacheport)
+    {
+
         try {
-        	if ($cachesys == 'sae') {
-        		$dbhost_port = $dbhost.':'.$dbport;
-        	}else{
-        		$dbhost_port = $dbhost;
-        	}
-            $this->_dbh = new PDO('mysql:dbname=' . $dbname . ';host=' . $dbhost_port, $username, $password, array(PDO::ATTR_PERSISTENT => true));
+            if ($cachesys == 'sae') {
+                $dbhost_port = $dbhost . ':' . $dbport;
+            } else {
+                $dbhost_port = $dbhost;
+            }
+            $this->_dbh = new PDO('mysql:dbname=' . $dbname . ';host=' . $dbhost_port, $username, $password, array(PDO::ATTR_PERSISTENT => TRUE));
             $this->_dbh->query('SET NAMES ' . $dbcharset);
         } catch (PDOException $e) {
             echo '<pre><b>Connection failed:</b> ' . $e->getMessage();
             die();
         }
-        
+
         $this->_cache = db_Cache::instance($cachehost, $cacheport, $cachetype, $cachesys);
-        if (!$this->_cache){
+        if (!$this->_cache) {
 
         }
     }
@@ -47,20 +49,21 @@ class db_Mysql{
      * @param \OB|string $cache_config
      * @return db_Mysql
      */
-    static public function getInstance($db_config = '', $cache_config = '') {
+    static public function getInstance($db_config = '', $cache_config = '')
+    {
 
-        $_db_host = $db_config->host;
-        $_db_port = $db_config->port;
-        $_db_name = $db_config->dbname;
+        $_db_host    = $db_config->host;
+        $_db_port    = $db_config->port;
+        $_db_name    = $db_config->dbname;
         $_db_charset = $db_config->charset;
-        $_db_usr = $db_config->usr;
-        $_db_pwd = $db_config->pwd;
+        $_db_usr     = $db_config->usr;
+        $_db_pwd     = $db_config->pwd;
 
         $_cache_system = $cache_config->system;
-        $_cache_type = $cache_config->type;
-        $_cache_host = $cache_config->host;
-        $_cache_port = $cache_config->port;
-        
+        $_cache_type   = $cache_config->type;
+        $_cache_host   = $cache_config->host;
+        $_cache_port   = $cache_config->port;
+
         $idx = md5($_db_host . $_db_name . $_cache_host . $_cache_port);
 
         if (!isset(self::$_instances[$idx])) {
@@ -74,9 +77,10 @@ class db_Mysql{
      * @param string $msg
      * @param string $sql
      */
-    function halt($msg = '', $sql = '') {
-    	$error_info = $this->_sth->errorInfo();
-    	$s = '<html>
+    function halt($msg = '', $sql = '')
+    {
+        $error_info = $this->_sth->errorInfo();
+        $s          = '<html>
 					<head>
 					<title>ERROR</title>
 					<style type="text/css">
@@ -89,7 +93,7 @@ class db_Mysql{
 						<div id="content">
 							<h1>' . $error_info[2] . '</h1>
 							' . $error_info[1] . '<br>
-							'.$this->_sql.'
+							' . $this->_sql . '
 						</div>
 					</body>
 				</html>';
@@ -99,70 +103,78 @@ class db_Mysql{
     /**
      * 起用debug
      */
-    function debug(){
-        $this->_debug = true;
+    function debug()
+    {
+        $this->_debug = TRUE;
     }
 
     /**
      * 起用强制更新cache
      */
-    function update_cache(){
-        $this->_update_cache = true;
+    function update_cache()
+    {
+        $this->_update_cache = TRUE;
     }
 
     /**
      * 是否使用缓存
      * @access 只对selete操作有效 对insert\delete\update无效
      */
-    function cache_on($time = ''){
-    	$this->_cache_on = true;
-    	$this->_cache_time = !empty($time)?(int)$time:$this->_cache_time;
+    function cache_on($time = '')
+    {
+        $this->_cache_on   = TRUE;
+        $this->_cache_time = !empty($time) ? (int)$time : $this->_cache_time;
     }
-    
-    function cache_off(){
-    	$this->_cache_on = false;
-    	$this->_cache_if_have = false;
+
+    function cache_off()
+    {
+        $this->_cache_on      = FALSE;
+        $this->_cache_if_have = FALSE;
 //     	$this->_cache->close();
     }
-    
+
     /**
      * 生成cache key
      * @param unknown_type $a
      * @param unknown_type $b
      * @return string
      */
-    function cache_made_key($a , $b){
-    	return md5(json_encode(array($a, $b)));
+    function cache_made_key($a, $b)
+    {
+        return md5(json_encode(array($a, $b)));
     }
-    
-   	/**
-   	 * 执行语句  先查询memcache，memcache中未过期，取cache || 取值写cache
-   	 * @see db_DbInterface::query()
-   	 */
-    function query($sql, $values = array()) {
-    	if ($this->_cache_on && $this->_update_cache == false) {
-    	    	$cache_key = $this->cache_made_key($sql, $values);
-		    	$if_have_cache = $this->_cache->get($cache_key);
-		    	if ($if_have_cache) {
-		    		$this->_cache_if_have = true;
-		    		return $if_have_cache;
-		    	}else{
-		    		$this->_cache_if_have = false;
-		    	}
-    	}
 
-    	
+    /**
+     * 执行语句  先查询memcache，memcache中未过期，取cache || 取值写cache
+     * @see db_DbInterface::query()
+     */
+    function query($sql, $values = array())
+    {
+        if ($this->_cache_on && $this->_update_cache == FALSE) {
+            $cache_key     = $this->cache_made_key($sql, $values);
+            $if_have_cache = $this->_cache->get($cache_key);
+            if ($if_have_cache) {
+                $this->_cache_if_have = TRUE;
+                return $if_have_cache;
+            } else {
+                $this->_cache_if_have = FALSE;
+            }
+        }
+
+
         $this->_sql = $sql;
         $this->_sth = $this->_dbh->prepare($sql);
-        $bool = $this->_sth->execute($values);
+        $bool       = $this->_sth->execute($values);
         if ('00000' !== $this->_sth->errorCode()) {
             $this->halt();
         }
 
-        if ($this->_debug == true){
+        if ($this->_debug == TRUE) {
             echo '<pre>';
-            var_dump($sql);echo '<br>';
-            var_dump($values);echo '<br><br>';
+            var_dump($sql);
+            echo '<br>';
+            var_dump($values);
+            echo '<br><br>';
         }
 
         return $bool;
@@ -172,23 +184,25 @@ class db_Mysql{
      * 执行查询
      * @see db_DbInterface::getAll()
      */
-    function getAll($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC) {
+    function getAll($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC)
+    {
         $cache = $this->query($sql, $values);
         if ($this->_cache_if_have) {
-        	return $cache;
+            return $cache;
         }
 
         $result = $this->_sth->fetchAll($fetch_style);
-        
+
         if ($this->_cache_on || $this->_update_cache) {
-    	    $cache_key = $this->cache_made_key($sql, $values);
-        	$this->_cache->set($cache_key.'_all', $result, $this->_cache_time);
+            $cache_key = $this->cache_made_key($sql, $values);
+            $this->_cache->set($cache_key . '_all', $result, $this->_cache_time);
         }
-                
+
         return $result;
     }
 
-    function getCol($sql, $values = array(), $column_number = 0) {
+    function getCol($sql, $values = array(), $column_number = 0)
+    {
         $columns = array();
         $results = array();
         $this->query($sql, $values);
@@ -203,19 +217,20 @@ class db_Mysql{
      * 询取得多行的第一行
      * @see db_DbInterface::getRow()
      */
-    function getRow($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC) {
+    function getRow($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC)
+    {
         $cache = $this->query($sql, $values);
         if ($this->_cache_if_have) {
-        	return $cache;
+            return $cache;
         }
-        
+
         $result = $this->_sth->fetch($fetch_style);
-        
+
         if ($this->_cache_on || $this->_update_cache) {
-        	$cache_key = $this->cache_made_key($sql, $values);
-        	$a = $this->_cache->set($cache_key.'_row', $result, $this->_cache_time);
+            $cache_key = $this->cache_made_key($sql, $values);
+            $a         = $this->_cache->set($cache_key . '_row', $result, $this->_cache_time);
         }
-        
+
         return $result;
     }
 
@@ -223,7 +238,8 @@ class db_Mysql{
      * 只查看一行
      * @see db_DbInterface::getOne()
      */
-    function getOne($sql, $values = array(), $column_number = 0) {
+    function getOne($sql, $values = array(), $column_number = 0)
+    {
         $this->query($sql, $values);
         return $this->_sth->fetchColumn($column_number);
     }
@@ -235,15 +251,16 @@ class db_Mysql{
      * @param bool $returnStr
      * @return boolean
      */
-    function insert($table = null, $data = null, $returnStr = false) {
+    function insert($table = NULL, $data = NULL, $returnStr = FALSE)
+    {
 
         $fields = array_keys($data);
-        $marks = array_fill(0, count($fields), '?');
+        $marks  = array_fill(0, count($fields), '?');
 
         $sql = "INSERT INTO $table (`" . implode('`,`', $fields) . "`) VALUES (" . implode(", ", $marks) . " )";
         if ($returnStr) {
             $fields = array_keys($data);
-            $marks = array_values($data);
+            $marks  = array_values($data);
 
             foreach ($marks as $k => $v) {
                 if (!is_numeric($v))
@@ -257,13 +274,14 @@ class db_Mysql{
         if ($last_insert_id)
             return $last_insert_id;
         else
-            return true;
+            return TRUE;
     }
 
     /**
      * 处理事务
      */
-    function transaction($sql) {
+    function transaction($sql)
+    {
         try {
             $this->_dbh->beginTransaction();
             $this->_dbh->exec($sql);
@@ -280,10 +298,11 @@ class db_Mysql{
      * @param array $where
      * @return boolean
      */
-    function update($table, $data, $where) {
+    function update($table, $data, $where)
+    {
         $values = $bits = $wheres = array();
         foreach ($data as $k => $v) {
-            $bits[] = "`$k` = ?";
+            $bits[]   = "`$k` = ?";
             $values[] = $v;
         }
 
@@ -302,7 +321,8 @@ class db_Mysql{
      * @param array $where
      * @return boolean
      */
-    function delete($table, $where) {
+    function delete($table, $where)
+    {
         $values = $wheres = array();
         foreach ($where as $key => $val) {
             $wheres[] = "$key = ?";
@@ -313,7 +333,8 @@ class db_Mysql{
         return $this->query($sql, $values);
     }
 
-    function close() {
+    function close()
+    {
         unset($this->_dbh);
     }
 

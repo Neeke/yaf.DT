@@ -1,7 +1,7 @@
 <?php
 /**
  * Controller base
- * @author ciogao
+ * @author ciogao@gmail.com
  *
  */
 class Controller extends Yaf_Controller_Abstract {
@@ -14,8 +14,7 @@ class Controller extends Yaf_Controller_Abstract {
      */
     public $db ;
 	public $meta;
-	const ACTIVE = 'class="current"';
-	
+
 	protected $appconfig = array();
 	protected $userinfo = array();
     protected $modules = array();
@@ -45,6 +44,11 @@ class Controller extends Yaf_Controller_Abstract {
      */
     protected $session;
 
+    /**
+     * @var rest_Mkdata
+     */
+    protected $mkData;
+
 	function init(){
 		$this->userinfo = models_user::getInstance()->getUserInfo();
         $this->modules = explode(',',Yaf_Registry::get("config")->get('yaf')->get('modules'));
@@ -53,13 +57,13 @@ class Controller extends Yaf_Controller_Abstract {
 
 		$this->db = db_contect::db();
 		$this->setmeta();
-//		$this->setmenu();
  		$this->check = rest_Check::instance();
  		$this->quantity = rest_Quantity::instance();
 		$this->rest = rest_Server::instance();
  		$this->modified = rest_Modified::instance();
         $this->session = Yaf_Session::getInstance();
-		
+        $this->mkData = rest_Mkdata::instance();
+
 		$this->appconfig = Yaf_Registry::get("config")->get('taobaoapp')->toArray();
 	}
 
@@ -75,20 +79,13 @@ class Controller extends Yaf_Controller_Abstract {
             $this->redirect('/index');
         }
     }
-	
-	/**
-	 * 设置目录
-	 */
-	private function setmenu(){
-		$this->set('menu',helper_menu::get_menu());
-	}
 
 	/**
 	 * 设置menu的active状态
 	 * @param string $action
 	 */
-	function setaction($action = 'index'){
-		$this->set('a_'.$action, self::ACTIVE);
+	function setMenu($action = '/'){
+		$this->set('this_menu',$action);
 	}
 	
 	/**
