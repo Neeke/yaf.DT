@@ -1,18 +1,23 @@
 define(function(require) {
     require('placeholder');
     require('rest');
+    var util = require('util');
 
     $('#username,#email,#pwd').placeholder();
 
-/*    var api_reg = '/api/user/reg';
-    method: post
-    params: email user_name pwd remark*/
-
     $('#submit').click(function() {
+        var email = $('#email').val(),
+            username = $('#username').val(),
+            pwd = $('#pwd').val();
+
+        if (!util.isEmail(email)) {
+            alert('邮箱地址格式不正确');
+        }
+
         var rest = $.restPost('/api/user/reg', {
-            email: $('#email').val(),
-            user_name: $('#username').val(),
-            pwd: $('#pwd').val()
+            email: email,
+            user_name: username,
+            pwd: pwd
         });
 
         rest.done(function(msg, data) {

@@ -1,97 +1,79 @@
-<div class="load-main">
-    <div class="my-list">
-        <div class="c_top">
-            <div class="t_tu"><img src="/resources/images/devtmp_avatar_90x90.jpg" width="90" height="90" border="0"/>
+<div class="list">
+    <ul>
+
+        <?php foreach($myalbums as $album_info){?>
+        <li data-albumid="<?php echo $album_info['album_id'];?>">
+            <div class="pic">
+                <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
+                    <img src="<?php echo $album_info['face_url'];?>">
+                </a>
             </div>
-            <div class="t_con">
-                <h2>bcsmc</h2>
-                <span>共0部图集</span>
-
-                <div class="clear"></div>
-            <span class="con_a">
-                <a href="#" class="cur3">我制作的图集</a>
-                <a href="#" class="cur1">我订阅的图集</a>
-            </span>
+            <div class="pic-info">
+                <dl>
+                    <dt><?php echo $album_info['album_name'];?></dt>
+                    <dd>
+                        <?php echo date('Y/m/d',$album_info['created_time']);?>
+                        <span>[<?php echo (int)$album_info['items'];?>图]</span>
+                    </dd>
+                </dl>
             </div>
-        </div>
-        <div class="list">
-            <ul>
+            <div class="tip">
+                <a href="javascript:;" class="ico01"><?php echo (int)$album_info['hits'];?></a>
+                <a href="javascript:;" class="ico02"><?php echo (int)$album_info['likeit'];?></a>
+                <a href="javascript:;" class="ico03"><?php echo (int)$album_info['posts'];?></a>
+                <input value="编辑" type="button" class="edit">
+                <input value="删除" type="button" class="delete">
+            </div>
+        </li>
+        <?php }?>
+    </ul>
 
-                <?php foreach($myalbums as $album_info){?>
-                <li data-albumid="<?php echo $album_info['album_id'];?>">
-                    <div class="pic">
-                        <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
-                            <img src="<?php echo $album_info['face_url'];?>">
-                        </a>
-                    </div>
-                    <div class="pic-info">
-                        <dl>
-                            <dt><?php echo $album_info['album_name'];?></dt>
-                            <dd>
-                                <?php echo date('Y/m/d',$album_info['created_time']);?>
-                                <span>[<?php echo (int)$album_info['items'];?>图]</span>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="tip">
-                        <a href="javascript:;" class="ico01"><?php echo (int)$album_info['hits'];?></a>
-                        <a href="javascript:;" class="ico02"><?php echo (int)$album_info['likeit'];?></a>
-                        <a href="javascript:;" class="ico03"><?php echo (int)$album_info['posts'];?></a>
-                        <input value="编辑" type="button" class="edit">
-                        <input value="删除" type="button" class="delete">
-                    </div>
-                </li>
-                <?php }?>
-            </ul>
+    <?php echo $sPage;?>
 
-            <?php echo $sPage;?>
+    <div class="editbox">
+        <a href="javascript:;" class="close"></a>
 
-            <div class="editbox">
-                <a href="javascript:;" class="close"></a>
+        <h3>编辑图集</h3>
 
-                <h3>编辑图集</h3>
-
-                <div class="pic-title">标题：<input type="text"></div>
-                <ul class="editlist" id="sortable">
-                    <li>
-                        <div class="libox">
-                            <span class="up"></span>
-                            <span class="down"></span>
-                            <img src="/resources/images/devtmp_01.jpg">
-                            <textarea>可以在这里写下图片描述...</textarea>
-                            <span class="deledtpic"></span>
-                            <span class="bi"></span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="libox">
-                            <span class="up"></span>
-                            <span class="down"></span>
-                            <img src="/resources/images/devtmp_01.jpg">
-                            <textarea>可以在这里写下图片描述...</textarea>
-                            <span class="deledtpic"></span>
-                            <span class="bi"></span>
-                        </div>
-                    </li>
-                </ul>
-                <input type="button" value="+批量添加图片" class="addpic"/>
-
-                <div class="tagsbox">
-                    <span class="name">标签：</span>
-
-                    <div class="tags">
-                        <span>标签1</span>
-                        <span>标签2</span>
-                        <span>标签3</span>
-                        <span>标签4</span>
-                        <span>标签5</span>
-                        <span>标签6</span>
-                    </div>
+        <div class="pic-title">标题：<input type="text"></div>
+        <ul class="editlist" id="sortable">
+            <li>
+                <div class="libox">
+                    <span class="up"></span>
+                    <span class="down"></span>
+                    <img src="/resources/images/devtmp_01.jpg">
+                    <textarea>可以在这里写下图片描述...</textarea>
+                    <span class="deledtpic"></span>
+                    <span class="bi"></span>
                 </div>
-                <input type="button" value="订阅设置" class="ressset"/>
-                <input type="button" value="保存" class="save"/>
+            </li>
+            <li>
+                <div class="libox">
+                    <span class="up"></span>
+                    <span class="down"></span>
+                    <img src="/resources/images/devtmp_01.jpg">
+                    <textarea>可以在这里写下图片描述...</textarea>
+                    <span class="deledtpic"></span>
+                    <span class="bi"></span>
+                </div>
+            </li>
+        </ul>
+        <input type="button" value="+批量添加图片" class="addpic"/>
+
+        <div class="tagsbox">
+            <span class="name">标签：</span>
+
+            <div class="tags">
+                <span>标签1</span>
+                <span>标签2</span>
+                <span>标签3</span>
+                <span>标签4</span>
+                <span>标签5</span>
+                <span>标签6</span>
             </div>
         </div>
-        <div class="tipgo">你还没有图集，现在去<a href="make.html">做一个</a>？</div>
+        <input type="button" value="订阅设置" class="ressset"/>
+        <input type="button" value="保存" class="save"/>
     </div>
 </div>
+<div class="tipgo">你还没有图集，现在去<a href="make.html">做一个</a>？</div>
