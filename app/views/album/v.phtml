@@ -10,22 +10,30 @@
 <div class="browsebox">
     <div id="divSlideShowCover" class="slideritem">
         <div class="pic-wap">
-            <img src="http://img3A.hualvtu.com/120023/20130409/0355302151e4945837ca.jpg" class="showing">
+            <img src="<?php echo $album_info['face_url'];?>" class="showing">
 
             <div id="cover">
                 <div class="cover-main">
-                    <h3 class="pic-title">阳光,街道,美女</h3>
+                    <h3 class="pic-title"><?php echo $album_info['album_name'];?></h3>
 
                     <div class="pics-info">
                         <dl>
                             <dt>
-                                <time>2013/04/30</time>
-                            <div class="user-name">by:王小振</div>
+                                <time><?php echo date('Y/m/d',$album_info['created_time']);?></time>
+                            <div class="user-name" data-userid="<?php echo helper_common::site_url_user($userinfo['user_id']);?>">
+                                by: <?php echo $userinfo['user_name'];?>
+                            </div>
                             </dt>
                             <dd>
-                                <a href="javascript:;"><img src="images/icos/ico07.png" class="ico">3356</a>
-                                <a href="javascript:;"><img src="images/icos/ico04.png" class="ico">2178</a>
-                                <a href="javascript:;"><img src="images/icos/ico05.png" class="ico">998</a>
+                                <a href="javascript:;"><img src="images/icos/ico07.png" class="ico">
+                                    <?php echo (int)$album_info['hits'];?>
+                                </a>
+                                <a href="javascript:;"><img src="images/icos/ico04.png" class="ico">
+                                    <?php echo (int)$album_info['likeit'];?>
+                                </a>
+                                <a href="javascript:;"><img src="images/icos/ico05.png" class="ico">
+                                    <?php echo (int)$album_info['posts'];?>
+                                </a>
                             </dd>
                         </dl>
                         <div class="links">
@@ -39,50 +47,19 @@
             </div>
         </div>
     </div>
+    <?php foreach($items as $items_info){?>
     <div class="itemshow slideritem">
         <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
         <div class="center">
-            <img src="http://img3A.hualvtu.com/120023/20130409/04345c265a7974f81226.jpg" class="showing"/>
+            <img src="<?php echo $items_info['items_pic'];?>" class="showing"/>
         </div>
         <div class="describe">
-            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
+            <?php echo $items_info['remark'];?>
         </div>
         <a href="javascript:;" class="arrow_l arrow-prev"></a>
         <a href="javascript:;" class="arrow_r arrow-next"></a>
     </div>
-    <div class="itemshow slideritem">
-        <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
-        <div class="center">
-            <img src="http://img3A.hualvtu.com/120023/20130409/035548e932dde433beba.jpg" class="showing"/>
-        </div>
-        <div class="describe">
-            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
-        </div>
-        <a href="javascript:;" class="arrow_l arrow-prev"></a>
-        <a href="javascript:;" class="arrow_r arrow-next"></a>
-    </div>
-    <div class="itemshow slideritem">
-        <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
-        <div class="center">
-            <img src="http://img3A.hualvtu.com/120023/20130409/0355c98ac61d6cd4d631.jpg" class="showing"/>
-        </div>
-        <div class="describe">
-            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
-        </div>
-        <a href="javascript:;" class="arrow_l arrow-prev"></a>
-        <a href="javascript:;" class="arrow_r arrow-next"></a>
-    </div>
-    <div class="itemshow slideritem">
-        <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
-        <div class="center">
-            <img src="http://img3A.hualvtu.com/120023/20130409/0356f17d5e9e3675d8d3.jpg" class="showing"/>
-        </div>
-        <div class="describe">
-            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
-        </div>
-        <a href="javascript:;" class="arrow_l arrow-prev"></a>
-        <a href="javascript:;" class="arrow_r arrow-next"></a>
-    </div>
+    <?php }?>
     <div class="quark-button">
         <a href="javascript:;" class="collection-button"></a>
         <!--收藏按钮被选中后添加class="on"-->
