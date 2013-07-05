@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title><?php echo $title;?></title>
+    <link rel="stylesheet" href="/resources/style/lib/all.css"/>
+    <link rel="stylesheet" href="/resources/style/app/all.css"/>
+</head>
+<body>
+<div class="browsebox">
+    <div id="divSlideShowCover" class="slideritem">
+        <div class="pic-wap">
+            <img src="http://img3A.hualvtu.com/120023/20130409/0355302151e4945837ca.jpg" class="showing">
+
+            <div id="cover">
+                <div class="cover-main">
+                    <h3 class="pic-title">阳光,街道,美女</h3>
+
+                    <div class="pics-info">
+                        <dl>
+                            <dt>
+                                <time>2013/04/30</time>
+                            <div class="user-name">by:王小振</div>
+                            </dt>
+                            <dd>
+                                <a href="javascript:;"><img src="images/icos/ico07.png" class="ico">3356</a>
+                                <a href="javascript:;"><img src="images/icos/ico04.png" class="ico">2178</a>
+                                <a href="javascript:;"><img src="images/icos/ico05.png" class="ico">998</a>
+                            </dd>
+                        </dl>
+                        <div class="links">
+                            <a href="javascript:;"><span>&middot;</span>分享给好友</a>
+                            <a href="javascript:;"><span>&middot;</span>预览</a>
+                        </div>
+                        <a href="javascript:;" class="go arrow-next"><img src="images/ico_but.png"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="itemshow slideritem">
+        <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
+        <div class="center">
+            <img src="http://img3A.hualvtu.com/120023/20130409/04345c265a7974f81226.jpg" class="showing"/>
+        </div>
+        <div class="describe">
+            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
+        </div>
+        <a href="javascript:;" class="arrow_l arrow-prev"></a>
+        <a href="javascript:;" class="arrow_r arrow-next"></a>
+    </div>
+    <div class="itemshow slideritem">
+        <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
+        <div class="center">
+            <img src="http://img3A.hualvtu.com/120023/20130409/035548e932dde433beba.jpg" class="showing"/>
+        </div>
+        <div class="describe">
+            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
+        </div>
+        <a href="javascript:;" class="arrow_l arrow-prev"></a>
+        <a href="javascript:;" class="arrow_r arrow-next"></a>
+    </div>
+    <div class="itemshow slideritem">
+        <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
+        <div class="center">
+            <img src="http://img3A.hualvtu.com/120023/20130409/0355c98ac61d6cd4d631.jpg" class="showing"/>
+        </div>
+        <div class="describe">
+            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
+        </div>
+        <a href="javascript:;" class="arrow_l arrow-prev"></a>
+        <a href="javascript:;" class="arrow_r arrow-next"></a>
+    </div>
+    <div class="itemshow slideritem">
+        <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
+        <div class="center">
+            <img src="http://img3A.hualvtu.com/120023/20130409/0356f17d5e9e3675d8d3.jpg" class="showing"/>
+        </div>
+        <div class="describe">
+            图片描述图片描述，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地方引入的。枯水期，潭里的水不是泉水，而是从其他地
+        </div>
+        <a href="javascript:;" class="arrow_l arrow-prev"></a>
+        <a href="javascript:;" class="arrow_r arrow-next"></a>
+    </div>
+    <div class="quark-button">
+        <a href="javascript:;" class="collection-button"></a>
+        <!--收藏按钮被选中后添加class="on"-->
+        <a href="javascript:;" class="comments-button"></a>
+        <a href="javascript:;" class="share-button callShare"></a>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(function ($) {
+        var arrowNext = $('.arrow-next'), arrowPrev = $('.arrow-prev');
+        arrowNext.live('click', function () {
+            var _this = $(this);
+            fadeobj = _this.closest('.slideritem');
+            if (fadeobj.next('.slideritem').index() > 0) {
+                fadeobj.fadeOut();
+                fadeobj.next('.slideritem').fadeIn();
+            }
+            else {
+                $('.slideritem').eq(0).fadeIn().siblings('.slideritem').fadeOut()
+            }
+        });
+        arrowPrev.live('click', function () {
+            var _this = $(this);
+            fadeobj = _this.closest('.slideritem');
+            if (fadeobj.prev('.slideritem').index() > 0) {
+                fadeobj.fadeOut();
+                fadeobj.prev('.slideritem').fadeIn();
+            }
+            else {
+                $('.slideritem').eq(0).fadeIn().siblings('.slideritem').fadeOut()
+            }
+        });
+        $('.collection-button').bind('click', function () {
+            $(this).addClass('on');
+        });
+        $('.itemshow').each(function () {
+            var _this = $(this), _index = _this.index(), size = $('.itemshow').size();
+            //(_index+1)+'/'+size
+            _this.append('<div class="curnum"><a href="javascript:;" class="arrow-prev">&lt;&lt;</a>' + _index + '/' + size + '<a href="javascript:;" class="arrow-next">&gt;&gt;</a></div>');
+        });
+    });
+</script>
+</body>
+</html>
