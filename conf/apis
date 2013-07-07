@@ -48,6 +48,22 @@ var api_items_upload = '/api/items/upload';
 method: post
 params: album_id remark tags_ids userfile [user_id]
 
+
+
+关注tag:
+var api_tag_listen = '/api/tag/listen';
+method: post
+params: tag_id [user_id]
+
+推荐tag:
+var api_tag_system = '/api/tag/system';
+method: get
+params: [nothing]
+
+已经关注的tag:
+var api_tag_listened = '/api/tag/listened';
+method: get
+params: [user_id]
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';
@@ -66,16 +82,6 @@ params: tag_name [user_id]
 
 我的tag:
 var api_tag_mine = '/api/tag/mine';
-method: get
-params: page [user_id]
-
-关注tag:
-var api_tag_listen = '/api/tag/listen';
-method: post
-params: tag_id [user_id]
-
-已经关注的tag:
-var api_tag_listened = '/api/tag/listened';
 method: get
 params: page [user_id]
 

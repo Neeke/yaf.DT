@@ -5,20 +5,67 @@
  */
 class TagController extends Controller
 {
+
+    /**
+     * @var models_tag
+     */
+    private $model_tag;
+
+    /**
+     * @var models_taglisten
+     */
+    private $models_taglisten;
+
+    public function init()
+    {
+        parent::init();
+        $this->model_tag        = models_tag::getInstance();
+        $this->models_taglisten = models_taglisten::getInstance();
+    }
+
     /**
      * 创建tag
      */
     public function createAction()
     {
-
+        $this->rest->error();
     }
 
     /**
-     * 关注tag
+     * 系统推荐tag
+     */
+    public function systemAction()
+    {
+        $this->check->method('GET');
+        $data = $this->model_tag->getSystemTags();
+        $this->rest->success($data);
+    }
+
+    /**
+     * 关注某tag
      */
     public function listenAction()
     {
+        $this->rest->method('POST');
+        $params                     = $this->getRequest()->getPost();
+        $this->rest->paramsMustMap = array('tag_id');
+        $this->rest->paramsMustValid($params);
 
+        $where = array('tag_id' => $params['tag_id'], 'user_id' => $this->user_id);
+        if ($this->models_taglisten->exits($where)) {
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '已经关注过该标签');
+        }
+
+        $params['user_id'] = $this->user_id;
+
+        $data   = $this->models_taglisten->mkdata($params);
+
+        $result = $this->models_taglisten->insert($data);
+        if ($result) {
+            $this->rest->success($result,'','关注成功');
+        }
+
+        $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
     }
 
     /**
@@ -34,7 +81,17 @@ class TagController extends Controller
      */
     public function listenedAction()
     {
+        $this->rest->method('GET');
+        $params                     = $this->getRequest()->getPost();
+        $this->rest->paramsCanMap = array('user_id');
+        $this->rest->paramsCanValid($params);
 
+        $tags = $this->models_taglisten->getTagsListenedByUser($this->user_id);
+        if (is_array($tags) && count($tags) > 0){
+            $this->rest->success($tags);
+        }
+
+        $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
     }
 
     /**
