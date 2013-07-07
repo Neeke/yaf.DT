@@ -1,0 +1,105 @@
+﻿<?php include_once(VIEW_PATH .'/layout/header.phtml')?>
+
+    <div class="page_title">
+        <a href="main.html">&lt;&lt;返回首页</a>
+    </div>
+    <div class="page-title"><img src="images/icos/ico02.gif">编辑资料
+    </div>
+    <div class="user-set">
+        <div class="s_left">
+            <div class="sz_01">
+                <span>用户名：冯绍峰</span>
+                <a href="#">[修改]</a>
+            </div>
+            <div class="sz_01">
+                <span>邮箱：1234@163.com</span>
+                <a href="#">[修改]</a>
+            </div>
+            <div class="sz_01">
+                <span>性别：男</span>
+                <a href="#">[修改]</a>
+            </div>
+            <div class="sz_01 sz_02">
+										<span> 头像：
+											<br />
+											<img src="images/tu02.jpg" width="90" height="90" /> </span>
+                <a href="#">[修改]</a>
+            </div>
+            <div class="sx">
+                <div class="sx_left">
+                    <ul>
+                        <li>
+                            <a href="javascript:;" id="changepassword">修改密码</a>
+                        </li>
+                        <li>
+                            <a href="#">邮箱设置</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sx_right">
+                    <div class="sx_t01">
+                        <span>当前密码：</span>
+												<span>
+													<input type="text" name="textfield" id="textfield" class="int001" />
+												</span>
+                    </div>
+                    <div class="sx_t01">
+                        <span>新的密码：</span>
+												<span>
+													<input type="text" name="textfield" id="textfield" class="int001" />
+												</span>
+                    </div>
+                    <div class="sx_t01">
+                        <span>重复密码：</span>
+												<span>
+													<input type="text" name="textfield" id="textfield" class="int001" />
+												</span>
+                    </div>
+                    <div class="sx_t01 sx_t02">
+												<span>
+													<input type="image" src="images/baocun.png" width="80" height="23" name="button" id="button" value="" />
+												</span>
+												<span class="sx_span">
+													<input type="image" src="images/quxiao.png" width="50" height="23" name="button" id="button" value="" />
+												</span>
+                    </div>
+                </div>
+            </div>
+            <div class="s_but">
+										<span class="sx_span">
+											<input type="button" name="button" id="button" value="保存" class="sbut01" />
+										</span>
+										<span>
+											<input type="button" name="button" id="button" value="取消" class="sbut01" />
+										</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="qqBox">
+            <a href="javascript:;" class="close"></a>
+            <div class="cen_k1">
+                <div class="cen_z1">
+                    <div class="cen_ti1">
+                        <span>提问与建议</span>
+                    </div>
+                    <div class="qq">
+                        <a href="#"><img src="images/qq.jpg" width="110" height="39" border="0" /></a>
+                        <span>小萌qq交流群：123456789</span>
+                    </div>
+                    <div class="qq_con">
+                        <textarea name="textarea" value="欢迎提出各种问题和建议！" onFocus="if (value =='欢迎提出各种问题和建议！'){value =''}" onBlur="if (value ==''){value='欢迎提出各种问题和建议！'}"id="textarea" class="int041"></textarea>
+                    </div>											<div class="reg_t021">
+												<span>
+													<input type="text" value="输入邮箱以便我们及时回复" onFocus="if (value =='输入邮箱以便我们及时回复'){value =''}" onBlur="if (value ==''){value='输入邮箱以便我们及时回复'}" name="textfield" id="textfield" class="int031" />
+												</span>
+												<span>
+													<input type="image" src="images/tijiao.jpg" width="80" height="23" name="button" id="button" value="" />
+												</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<?php include_once(VIEW_PATH.'/layout/footer.phtml')?>
