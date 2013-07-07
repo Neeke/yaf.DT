@@ -1,7 +1,7 @@
 <?php
 class helper_plupload
 {
-    static private $dir = '/uploads/items';
+    static private $dir = './uploads/items';
     static private $cleanup = TRUE;
     static private $timeLimit = 300;
 
@@ -134,6 +134,9 @@ class helper_plupload
             rename("{$filePath}.part", $filePath);
         }
 
-        die('{"jsonrpc" : "2.0", "result" : "'. $filePath .'", "id" : "id"}');
+        $file_ = explode('./',$filePath);
+        $filePath_ = '/'.$file_[1];
+
+        die('{"jsonrpc" : "2.0", "result" : "'. $filePath_ .'", "id" : "id"}');
     }
 }
