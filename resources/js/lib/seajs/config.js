@@ -4,7 +4,8 @@ seajs.config({
         jquery: 'lib/jquery/jquery-1.10.1.js',
         placeholder: 'lib/placeholder/jquery.placeholder.js',
         util: 'app/util/util.js',
-        rest: 'lib/rest/rest.js'
+        rest: 'lib/rest/rest.js',
+        lackhurt: 'lib/dk/dk.customer.js'
     },
     preload: ["jquery"],
     base: '/resources/js/',
