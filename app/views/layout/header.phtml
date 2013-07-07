@@ -13,7 +13,7 @@
             <header class="header">
                 <a href="/" class="header_logo"><?php echo $title;?></a>
                 <div class="header-user">
-                    <a href="#" class="picture"><img src="/resources/images/devtmp_avatar_40x40.png" width="25" height="25" /></a>
+                    <?php echo spall_user::avatar($user_id,25,'','class="picture"');?>
                     <div class="header-tips">
                         <span class="user-name">bcsmc</span>
                         <a class="tip01" href="javascript:;">10</a>

@@ -1,79 +1,90 @@
-<div class="list">
-    <ul>
+<?php if (is_array($myalbums) && count($myalbums) > 0){?>
+    <div class="list">
+        <ul>
 
-        <?php foreach($myalbums as $album_info){?>
-        <li data-albumid="<?php echo $album_info['album_id'];?>">
-            <div class="pic">
-                <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
-                    <img src="<?php echo $album_info['face_url'];?>">
-                </a>
-            </div>
-            <div class="pic-info">
-                <dl>
-                    <dt><?php echo $album_info['album_name'];?></dt>
-                    <dd>
-                        <?php echo date('Y/m/d',$album_info['created_time']);?>
-                        <span>[<?php echo (int)$album_info['items'];?>图]</span>
-                    </dd>
-                </dl>
-            </div>
-            <div class="tip">
-                <a href="javascript:;" class="ico01"><?php echo (int)$album_info['hits'];?></a>
-                <a href="javascript:;" class="ico02"><?php echo (int)$album_info['likeit'];?></a>
-                <a href="javascript:;" class="ico03"><?php echo (int)$album_info['posts'];?></a>
-                <input value="编辑" type="button" class="edit">
-                <input value="删除" type="button" class="delete">
-            </div>
-        </li>
-        <?php }?>
-    </ul>
+            <?php foreach($myalbums as $album_info){?>
+                <li data-albumid="<?php echo $album_info['album_id'];?>">
+                    <div class="pic">
+                        <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
+                            <img src="<?php echo $album_info['face_url'];?>">
+                        </a>
+                    </div>
+                    <div class="pic-info">
+                        <dl>
+                            <dt><?php echo $album_info['album_name'];?></dt>
+                            <dd>
+                                <?php echo date('Y/m/d',$album_info['created_time']);?>
+                                <span>[<?php echo (int)$album_info['items'];?>图]</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="tip">
+                        <a href="javascript:;" class="ico01"><?php echo (int)$album_info['hits'];?></a>
+                        <a href="javascript:;" class="ico02"><?php echo (int)$album_info['likeit'];?></a>
+                        <a href="javascript:;" class="ico03"><?php echo (int)$album_info['posts'];?></a>
+                        <?php if ($user_id == $album_info['user_id']){
+                            ?>
+                            <input value="编辑" type="button" class="edit">
+                            <input value="删除" type="button" class="delete">
+                        <?php }else{?>
+                            <div class="user-name"><?php echo spall_user::username($album_info['user_id']);?></div>
+                        <?php }?>
 
-    <?php echo $sPage;?>
-
-    <div class="editbox">
-        <a href="javascript:;" class="close"></a>
-
-        <h3>编辑图集</h3>
-
-        <div class="pic-title">标题：<input type="text"></div>
-        <ul class="editlist" id="sortable">
-            <li>
-                <div class="libox">
-                    <span class="up"></span>
-                    <span class="down"></span>
-                    <img src="/resources/images/devtmp_01.jpg">
-                    <textarea>可以在这里写下图片描述...</textarea>
-                    <span class="deledtpic"></span>
-                    <span class="bi"></span>
-                </div>
-            </li>
-            <li>
-                <div class="libox">
-                    <span class="up"></span>
-                    <span class="down"></span>
-                    <img src="/resources/images/devtmp_01.jpg">
-                    <textarea>可以在这里写下图片描述...</textarea>
-                    <span class="deledtpic"></span>
-                    <span class="bi"></span>
-                </div>
-            </li>
+                    </div>
+                </li>
+            <?php }?>
         </ul>
-        <input type="button" value="+批量添加图片" class="addpic"/>
 
-        <div class="tagsbox">
-            <span class="name">标签：</span>
+        <?php echo $sPage;?>
 
-            <div class="tags">
-                <span>标签1</span>
-                <span>标签2</span>
-                <span>标签3</span>
-                <span>标签4</span>
-                <span>标签5</span>
-                <span>标签6</span>
+        <div class="editbox">
+            <a href="javascript:;" class="close"></a>
+
+            <h3>编辑图集</h3>
+
+            <div class="pic-title">标题：<input type="text"></div>
+            <ul class="editlist" id="sortable">
+                <li>
+                    <div class="libox">
+                        <span class="up"></span>
+                        <span class="down"></span>
+                        <img src="/resources/images/devtmp_01.jpg">
+                        <textarea>可以在这里写下图片描述...</textarea>
+                        <span class="deledtpic"></span>
+                        <span class="bi"></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="libox">
+                        <span class="up"></span>
+                        <span class="down"></span>
+                        <img src="/resources/images/devtmp_01.jpg">
+                        <textarea>可以在这里写下图片描述...</textarea>
+                        <span class="deledtpic"></span>
+                        <span class="bi"></span>
+                    </div>
+                </li>
+            </ul>
+            <input type="button" value="+批量添加图片" class="addpic"/>
+
+            <div class="tagsbox">
+                <span class="name">标签：</span>
+
+                <div class="tags">
+                    <span>标签1</span>
+                    <span>标签2</span>
+                    <span>标签3</span>
+                    <span>标签4</span>
+                    <span>标签5</span>
+                    <span>标签6</span>
+                </div>
             </div>
+            <input type="button" value="订阅设置" class="ressset"/>
+            <input type="button" value="保存" class="save"/>
         </div>
-        <input type="button" value="订阅设置" class="ressset"/>
-        <input type="button" value="保存" class="save"/>
     </div>
-</div>
+<?php }else{?>
+
 <div class="tipgo">你还没有图集，现在去<a href="make.html">做一个</a>？</div>
+
+<?php }?>

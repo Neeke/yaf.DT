@@ -452,6 +452,7 @@ class Yaf_Request_Http extends Yaf_Request_Abstract
 
     public function getRequest()
     {
+        return array();
     }
 
     public function getPost()

@@ -119,7 +119,9 @@
 .c_top .t_con a{ color:#fff;}
 .t_con h2{ font-size:30px; font-weight:normal; padding:8px 0 6px 0;}
 .t_con .con_a a.cur1{ background:url(/resources/style/app/images/ico_01.png) no-repeat left center; padding-left:8px; margin-left:6px;}
+.t_con .con_a a.cur2{ background:url(/resources/style/app/images/ico_01.png) no-repeat left center; padding-left:8px; margin-left:6px;color:#e4007f;}
 .t_con .con_a a.cur3{ color:#e4007f;}
+
 .reg_t{ margin-top:17px;}
 .int01{ width:200px; background:#fff; height:26px; color:#757575; padding-left:11px; border:#d1cfd0 1px solid; line-height:26px; margin-right:6px;}
 .reg_ul{ margin-top:32px; overflow:hidden;}

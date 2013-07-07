@@ -7,13 +7,14 @@ class spall_user
     /**
      * 返回用户头像
      *
-     * @param int    $uid
+     * @param int $uid
      * @param string $h
      * @param string $type
      *
+     * @param string $type_a
      * @return string 头像地址
      */
-    static public function avatar($uid,$h = '30',$type = ''){
+    static public function avatar($uid,$h = '30',$type = '',$type_a = ''){
         $url = '/uploadfiles/userfile/'.base64_encode($uid).'.jpg';
         $executeTime = ini_get('max_execution_time');
         ini_set('max_execution_time', 0);
@@ -29,6 +30,22 @@ class spall_user
         }else{
             $url = '/static/images/photo01.gif';
         }
-        return '<a href="'.helper_common::site_url_user($uid).'"><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
+        return '<a href="'.helper_common::site_url_user($uid).'" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
+    }
+
+    /**
+     * 获取username碎片
+     * @param $uid
+     * @return string
+     */
+    static public function username($uid){
+        $user_model = models_user::getInstance();
+        $user_model->getDB()->cache_on(3600);
+        $user_info = $user_model->getRow('user_name',array('user_id' => (int)$uid));
+        $user_model->getDB()->cache_off();
+        if (is_array($user_info) && count($user_info) > 0){
+            return $user_info['user_name'];
+        }
+        return 'Error';
     }
 }
