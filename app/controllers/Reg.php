@@ -9,8 +9,12 @@ class RegController extends Controller
 	public function init() {
 		parent::init();
 	}
-	
-	public function indexAction() {
 
-	}
+    public function indexAction() {
+
+    }
+
+    public function listentagAction() {
+
+    }
 }

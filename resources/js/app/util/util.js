@@ -69,7 +69,7 @@ define(function(require) {
         },
         formatDate: function() {
 
-            var args = W.util.asArray(arguments), format, date, i;
+            var args = this.asArray(arguments), format, date, i;
 
             for (i = 0; i < 2 && i < args.length; i++) {
                 if (typeof args[i] === "string") {
@@ -138,7 +138,7 @@ define(function(require) {
             return null;
         },
         formatStr: function(format) {
-            var args = W.util.asArray(arguments, 1);
+            var args = this.asArray(arguments, 1);
             return format.replace(/\{(\d+)\}/g, function(m, i) {
                 return args[i];
             });
