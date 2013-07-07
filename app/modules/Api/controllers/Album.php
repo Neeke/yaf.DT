@@ -26,6 +26,11 @@ class AlbumController extends Controller
      */
     private $models_albumListen = NULL;
 
+    /**
+     * @var models_items
+     */
+    private $models_items = NULL;
+
     public function init()
     {
         parent::init();
@@ -41,21 +46,37 @@ class AlbumController extends Controller
         $this->rest->method('POST');
 
         $params                    = $this->getRequest()->getPost();
-        $this->rest->paramsMustMap = array('album_name', 'is_open');
+        $this->rest->paramsMustMap = array('album_name', 'is_open','items','tags_ids');
         $this->rest->paramsMustValid($params);
 
-        if ($this->model_album->exits(array('album_name' => $params['album_name'], 'user_id' => $this->userinfo['user_id']))) {
+        if (!is_array($params['items']) || count($params['items']) < 1){
+            $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_MUST);
+        }
+
+        $this->rest->paramsMustMap = array('pic_url','remark','txt_area','pic_area','is_cover');
+        $this->rest->paramsMustValid($params['items'][0]);
+
+
+        if ($this->model_album->exits(array('album_name' => $params['album_name'], 'user_id' => $this->user_id))) {
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '相册已存在');
         }
 
-        $params['user_id'] = $this->userinfo['user_id'];
+        $params['user_id'] = $this->user_id;
 
         $data   = $this->model_album->mkdata($params);
-        $result = $this->model_album->insert($data);
+        $album_id = $this->model_album->insert($data);
+        if ($album_id == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
+
 
         $this->model_user->addalbum();
 
-        if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
+        $this->models_items = models_items::getInstance();
+        foreach ($params['items'] as $items){
+            $items['album_id'] = $album_id;
+            $_data = $this->models_items->mkdata($items);
+            $this->models_items->insert($_data);
+            unset($_data);
+        }
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '创建成功');
     }

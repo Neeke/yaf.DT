@@ -134,6 +134,6 @@ class helper_plupload
             rename("{$filePath}.part", $filePath);
         }
 
-        die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+        die('{"jsonrpc" : "2.0", "result" : '. $filePath .', "id" : "id"}');
     }
 }
