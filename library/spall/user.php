@@ -7,13 +7,14 @@ class spall_user
     /**
      * 返回用户头像
      *
-     * @param int    $uid
+     * @param int $uid
      * @param string $h
      * @param string $type
      *
+     * @param string $type_a
      * @return string 头像地址
      */
-    static public function avatar($uid,$h = '30',$type = ''){
+    static public function avatar($uid,$h = '30',$type = '',$type_a = ''){
         $url = '/uploadfiles/userfile/'.base64_encode($uid).'.jpg';
         $executeTime = ini_get('max_execution_time');
         ini_set('max_execution_time', 0);
@@ -29,6 +30,6 @@ class spall_user
         }else{
             $url = '/static/images/photo01.gif';
         }
-        return '<a href="'.helper_common::site_url_user($uid).'"><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
+        return '<a href="'.helper_common::site_url_user($uid).'" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
     }
 }

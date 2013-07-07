@@ -47,9 +47,10 @@ class models_user extends Models
     {
         $s = Yaf_Session::getInstance();
         if ($s->has('userinfo')) {
-            $userinfo           = $s->get('userinfo');
-            $array['user_id']   = $userinfo['user_id'];
-            $array['user_name'] = $userinfo['user_name'];
+            $userinfo             = $s->get('userinfo');
+            $array['user_id']     = $userinfo['user_id'];
+            $array['user_name']   = $userinfo['user_name'];
+            $array['album_count'] = $userinfo['album_count'];
             return $array;
         }
         return FALSE;
@@ -82,7 +83,7 @@ class models_user extends Models
     public function addalbum()
     {
         $userinfo = $this->getUserInfo();
-        $this->db->query('update '.$this->_table.' set album_count = album_count + 1 where user_id = ?', array($userinfo['user_id']));
+        $this->db->query('update ' . $this->_table . ' set album_count = album_count + 1 where user_id = ?', array($userinfo['user_id']));
         return TRUE;
     }
 
@@ -93,23 +94,23 @@ class models_user extends Models
     public function addcollect()
     {
         $userinfo = $this->getUserInfo();
-        $this->db->query('update '.$this->_table.' set collect_count = collect_count + 1 where user_id = ?', array($userinfo['user_id']));
+        $this->db->query('update ' . $this->_table . ' set collect_count = collect_count + 1 where user_id = ?', array($userinfo['user_id']));
         return TRUE;
     }
 
     public function mkdata($v)
     {
         return array(
-            'user_email'    => $v['email'],
-            'user_name'     => $v['user_name'],
-            'user_pwd'      => md5($v['pwd']),
-            'remark'        => $v['remark'],
-            'follower_count'  => $v['follower_count'],
-            'items_count'   => $v['items_count'],
-            'collect_count' => $v['collect_count'],
-            'album_count'   => $v['album_count'],
-            'interest_count'   => $v['interest_count'],
-            'created_time'  => time(),
+            'user_email'     => $v['email'],
+            'user_name'      => $v['user_name'],
+            'user_pwd'       => md5($v['pwd']),
+            'remark'         => $v['remark'],
+            'follower_count' => $v['follower_count'],
+            'items_count'    => $v['items_count'],
+            'collect_count'  => $v['collect_count'],
+            'album_count'    => $v['album_count'],
+            'interest_count' => $v['interest_count'],
+            'created_time'   => time(),
         );
     }
 
