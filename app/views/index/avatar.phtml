@@ -1,14 +1,14 @@
 <div class="c_top">
-    <div class="t_tu"><img src="/resources/images/devtmp_avatar_90x90.jpg" width="90" height="90" border="0"/>
+    <div class="t_tu"><?php echo spall_user::avatar($user_id,90);?>
     </div>
     <div class="t_con">
-        <h2>bcsmc</h2>
+        <h2><?php echo $userinfo['username'];?></h2>
         <span>共0部图集</span>
 
         <div class="clear"></div>
             <span class="con_a">
-                <a href="#" class="cur3">我制作的图集</a>
-                <a href="#" class="cur1">我订阅的图集</a>
+                <a href="<?php echo helper_common::site_url('album/mine');?>" class="cur3">我制作的图集</a>
+                <a href="<?php echo helper_common::site_url('album/listened');?>" class="cur1">我订阅的图集</a>
             </span>
     </div>
 </div>
