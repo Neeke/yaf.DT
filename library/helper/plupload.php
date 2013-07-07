@@ -1,7 +1,7 @@
 <?php
 class helper_plupload
 {
-    static private $dir = './uploads/items/';
+    static private $dir = '/uploads/items';
     static private $cleanup = TRUE;
     static private $timeLimit = 300;
 
