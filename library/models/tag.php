@@ -38,6 +38,19 @@ class models_tag extends Models
     }
 
     /**
+     * 搜索标签
+     * @param $tag
+     * @return array|bool|string
+     */
+    function getTagsSearch($tag)
+    {
+        $this->db->cache_on();
+        $tags = $this->db->getAll("select tid,tag from {$this->_table} where tag like '%{$tag}%' order by {$this->_primary} desc");
+        $this->db->cache_off();
+        return $tags;
+    }
+
+    /**
      * 获取所有tag
      * @return array|bool|string
      */

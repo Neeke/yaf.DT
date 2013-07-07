@@ -447,6 +447,7 @@ class Yaf_Request_Http extends Yaf_Request_Abstract
     /* methods */
     public function getQuery()
     {
+        return array();
     }
 
     public function getRequest()
@@ -528,8 +529,12 @@ class Yaf_Request_Http extends Yaf_Request_Abstract
         return 1;
     }
 
+    /**
+     * @return array|void
+     */
     public function getParams()
     {
+        return array();
     }
 
     public function getException()
