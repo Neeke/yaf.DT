@@ -271,10 +271,11 @@ class db_Mysql
         }
         $this->query($sql, array_values($data));
         $last_insert_id = $this->_dbh->lastInsertId();
-        if ($last_insert_id)
+        if ($last_insert_id){
             return $last_insert_id;
-        else
+        }else{
             return TRUE;
+        }
     }
 
     /**

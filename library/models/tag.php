@@ -1,7 +1,7 @@
 <?php
 /**
- * tag
- * @author ciogao
+ * tag model
+ * @author ciogao@gmail.com
  */
 class models_tag extends Models
 {
@@ -23,6 +23,18 @@ class models_tag extends Models
         parent::__construct();
         $this->_table = 'avi_tag';
         $this->_primary = 'tid';
+    }
+
+    /**
+     * 获取系统推荐tag
+     * @return array|bool|string
+     */
+    function getSystemTags()
+    {
+        $this->db->cache_on();
+        $tags = $this->db->getAll('select tid,tag from '.$this->_table.' order by '.$this->_primary.' desc');
+        $this->db->cache_off();
+        return $tags;
     }
 
     /**

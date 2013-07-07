@@ -66,6 +66,7 @@ class AlbumController extends Controller
     public function mineAction()
     {
         $this->rest->method('GET');
+
         $data = $this->model_album->myAlbum(1);
 
         if (!is_array($data) || count($data) < 1) {
