@@ -78,6 +78,7 @@ class Controller extends Yaf_Controller_Abstract
     private function check_login()
     {
         $this->set('userinfo', $this->userinfo);
+        $this->set('user_id',$this->user_id);
         if ($this->userinfo == FALSE
             && !($this->_request->module == 'Index' && $this->_request->controller == 'Index' && $this->_request->action == 'index')
             && !in_array($this->_request->module, $this->modules)

@@ -111,6 +111,6 @@ class TagController extends Controller
             $this->rest->success($tags);
         }
 
-        $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'没有找到您想要的标签');
+        $this->rest->success('','','没有找到您想要的标签');
     }
 }
