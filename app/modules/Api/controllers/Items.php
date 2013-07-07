@@ -93,6 +93,22 @@ class ItemsController extends Controller
     }
 
     /**
+     * 取得plupload实例
+     */
+    public function pluploadAction()
+    {
+        helper_plupload::upload();
+    }
+
+    /**
+     * 新建
+     */
+    public function createAction()
+    {
+
+    }
+
+    /**
      * 查看某张图片
      */
     public function showAction()

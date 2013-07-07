@@ -13,10 +13,10 @@ var api_logout = '/api/user/logout';
 method: get
 params: [nothing]
 
-创建图集
+! 创建图集
 var api_album_create = '/api/album/create'; 
 method: post
-params: is_open album_name
+params: is_open album_name items[pic_url,remark,txt_area,pic_area,is_cover] tags_ids
 
 我的相册:
 var api_album_mine = '/api/album/mine';
@@ -43,12 +43,20 @@ var api_items_replay = '/api/items/replay';
 method: post
 params: items_id content
 
-上传发布图片：
+[old]上传发布图片：
 var api_items_upload = '/api/items/upload';
 method: post
 params: album_id remark tags_ids userfile [user_id]
 
+? 发布图片：
+var api_items_upload = '/api/items/create';
+method: post
+params: album_id remark tags_ids userfile [user_id]
 
+上传图片接口：
+var api_items_upload = '/api/items/plupload';
+method: [plupload]
+params: [plupload]
 
 关注tag:
 var api_tag_listen = '/api/tag/listen';
