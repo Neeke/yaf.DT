@@ -21,6 +21,8 @@ class AlbumController extends Controller
      */
     private $model_reply;
 
+    private $page;
+
     public function init()
     {
         parent::init();
@@ -28,8 +30,6 @@ class AlbumController extends Controller
         $this->model_album = models_album::getInstance();
         $this->model_reply = models_reply::getInstance();
         $this->model       = models_user::getInstance();
-
-        $this->page = (int)$this->getRequest()->getParam('p', 1);
     }
 
     public function indexAction()
@@ -44,6 +44,7 @@ class AlbumController extends Controller
     {
         $this->setMenu('album/mine');
 
+        $this->page = (int)$this->getRequest()->getParam('p', 1);
         $my_albums = $this->model_album->myAlbum(1, ($this->page - 1) * contast_album::PAGE_SIZE_DEFAULT);
 
         $count = $this->model_album->count(array('user_id' => 1));
@@ -61,6 +62,9 @@ class AlbumController extends Controller
         $this->setMenu('album/listened');
     }
 
+    /**
+     * 浏览相册
+     */
     public function vAction()
     {
         $replys = array();
