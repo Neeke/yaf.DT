@@ -99,6 +99,18 @@ class TagController extends Controller
      */
     public function searchAction()
     {
+        $this->rest->method('GET');
 
+        $params = $this->getRequest()->getQuery();
+
+        $this->rest->paramsMustMap = array('tag_name');
+        $this->rest->paramsMustValid($params);
+
+        $tags = $this->model_tag->getTagsSearch($params['tag_name']);
+        if (is_array($tags) && count($tags) > 0){
+            $this->rest->success($tags);
+        }
+
+        $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'没有找到您想要的标签');
     }
 }

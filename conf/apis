@@ -64,6 +64,12 @@ params: [nothing]
 var api_tag_listened = '/api/tag/listened';
 method: get
 params: [user_id]
+
+
+搜索tag:
+var api_tag_search = '/api/tag/search';
+method: get
+params: tag_name
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';
@@ -84,11 +90,6 @@ params: tag_name [user_id]
 var api_tag_mine = '/api/tag/mine';
 method: get
 params: page [user_id]
-
-搜索tag:
-var api_tag_search = '/api/tag/search';
-method: get
-params: tag_name 
 
 访问某个相册：
 var api_album_show = '/api/album/show';
