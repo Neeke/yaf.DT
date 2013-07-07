@@ -14,6 +14,11 @@ class Models
         $this->db = db_contect::db();
     }
 
+    function getDB()
+    {
+        return $this->db;
+    }
+
     /**
      * 格式化数据
      * @param $data

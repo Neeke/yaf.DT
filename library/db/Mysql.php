@@ -135,13 +135,23 @@ class db_Mysql
 
     /**
      * 生成cache key
-     * @param unknown_type $a
-     * @param unknown_type $b
+     * @param string $a
+     * @param array|string $b
      * @return string
      */
     function cache_made_key($a, $b)
     {
         return md5(json_encode(array($a, $b)));
+    }
+
+    /**
+     * @todo join库
+     * @param $sql
+     * @param array $values
+     */
+    function joinQuery($sql,$values = array())
+    {
+
     }
 
     /**
@@ -171,7 +181,7 @@ class db_Mysql
 
         if ($this->_debug == TRUE) {
             echo '<pre>';
-            var_dump($sql);
+            print_r($sql);
             echo '<br>';
             var_dump($values);
             echo '<br><br>';

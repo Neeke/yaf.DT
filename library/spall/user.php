@@ -32,4 +32,20 @@ class spall_user
         }
         return '<a href="'.helper_common::site_url_user($uid).'" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
     }
+
+    /**
+     * 获取username碎片
+     * @param $uid
+     * @return string
+     */
+    static public function username($uid){
+        $user_model = models_user::getInstance();
+        $user_model->getDB()->cache_on(3600);
+        $user_info = $user_model->getRow('user_name',array('user_id' => (int)$uid));
+        $user_model->getDB()->cache_off();
+        if (is_array($user_info) && count($user_info) > 0){
+            return $user_info['user_name'];
+        }
+        return 'Error';
+    }
 }

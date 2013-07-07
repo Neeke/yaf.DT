@@ -21,15 +21,21 @@ class AlbumController extends Controller
      */
     private $model_reply;
 
+    /**
+     * @var models_albumListen
+     */
+    private $model_album_listen;
+
     private $page;
 
     public function init()
     {
         parent::init();
-        $this->model_Items = models_items::getInstance();
-        $this->model_album = models_album::getInstance();
-        $this->model_reply = models_reply::getInstance();
-        $this->model       = models_user::getInstance();
+        $this->model_Items        = models_items::getInstance();
+        $this->model_album        = models_album::getInstance();
+        $this->model_album_listen = models_albumListen::getInstance();
+        $this->model_reply        = models_reply::getInstance();
+        $this->model              = models_user::getInstance();
     }
 
     public function indexAction()
@@ -45,9 +51,9 @@ class AlbumController extends Controller
         $this->setMenu('album/mine');
 
         $this->page = (int)$this->getRequest()->getParam('p', 1);
-        $my_albums = $this->model_album->myAlbum(1, ($this->page - 1) * contast_album::PAGE_SIZE_DEFAULT);
+        $my_albums  = $this->model_album->myAlbum($this->user_id, ($this->page - 1) * contast_album::PAGE_SIZE_DEFAULT);
 
-        $count = $this->model_album->count(array('user_id' => 1));
+        $count = $this->model_album->count(array('user_id' => $this->user_id));
 
         $sPage = helper_pages::page2(helper_common::site_url('album/mine'), $count, contast_album::PAGE_SIZE_DEFAULT, $this->page);
         $this->set('sPage', $sPage);
@@ -60,6 +66,14 @@ class AlbumController extends Controller
     public function listenedAction()
     {
         $this->setMenu('album/listened');
+
+        $this->page = (int)$this->getRequest()->getParam('p', 1);
+        $my_albums  = $this->model_album_listen->myListenedAlbum($this->user_id, ($this->page - 1) * contast_album::PAGE_SIZE_DEFAULT);
+
+        $count = $this->model_album_listen->count(array('user_id' => $this->user_id));
+        $sPage = helper_pages::page2(helper_common::site_url('album/listened'), $count, contast_album::PAGE_SIZE_DEFAULT, $this->page);
+        $this->set('sPage', $sPage);
+        $this->set('myalbums', $my_albums);
     }
 
     /**

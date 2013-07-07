@@ -21,8 +21,13 @@
                 <a href="javascript:;" class="ico01"><?php echo (int)$album_info['hits'];?></a>
                 <a href="javascript:;" class="ico02"><?php echo (int)$album_info['likeit'];?></a>
                 <a href="javascript:;" class="ico03"><?php echo (int)$album_info['posts'];?></a>
-                <input value="编辑" type="button" class="edit">
-                <input value="删除" type="button" class="delete">
+                <?php if ($user_id == $album_info['user_id']){
+                    ?>
+                    <input value="编辑" type="button" class="edit">
+                    <input value="删除" type="button" class="delete">
+                <?php }else{?>
+                    <div class="user-name"><?php echo spall_user::username($album_info['user_id']);?></div>
+                <?php }?>
             </div>
         </li>
         <?php }?>

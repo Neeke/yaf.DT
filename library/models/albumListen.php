@@ -26,19 +26,27 @@ class models_albumListen extends Models
     }
 
     /**
-     * 当前用户名下的专辑
+     * 当前用户订阅的专辑
      * @param int $user_id
+     * @param int $start
      * @param int $limit
      *
      * @return array
      */
-    function myListenedAlbum($user_id = 0,$limit = 20){
+    function myListenedAlbum($user_id = 0,$start = 0,$limit = contast_album::PAGE_SIZE_DEFAULT){
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
             $userinfo = models_user::getInstance()->getUserInfo();
             $user_id = (int)$userinfo['user_id'];
         }
-        return $this->getAll('*',array('user_id' => $user_id),'',0,$limit);
+
+        $sql = 'select album.* from '.models_album::getInstance()->_table.' album
+                left join '. $this->_table .' listened
+                on listened.album_id = album.album_id
+                where listened.user_id = ? limit '. (int)$start .','. (int)$limit .'
+                ';
+
+        return $this->db->getAll($sql,array($user_id));
     }
 
     function mkdata($v)
