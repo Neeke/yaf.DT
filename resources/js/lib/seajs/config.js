@@ -1,11 +1,20 @@
 seajs.config({
-//    plugins: ['shim'],
+    plugins: ['shim'],
     alias: {
         jquery: 'lib/jquery/jquery-1.10.1.js',
         placeholder: 'lib/placeholder/jquery.placeholder.js',
         util: 'app/util/util.js',
         rest: 'lib/rest/rest.js',
-        lackhurt: 'lib/dk/dk.customer.js'
+        dk: 'lib/dk/dk.customer.js',
+        plupload: 'lib/plupload/plupload.full.js',
+        'imagescale': 'lib/imagescale/jquery.imagescale.js'
+    },
+    shim: {
+        plupload: {
+            deps: [''],
+
+            exports: 'plupload'
+        }
     },
     preload: ["jquery"],
     base: '/resources/js/',

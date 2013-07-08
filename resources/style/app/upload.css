@@ -1,0 +1,12 @@
+.upload-item {
+    position: relative;
+}
+
+.upload-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 1px;
+    background-color: #09f;
+}
