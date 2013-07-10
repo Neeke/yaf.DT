@@ -54,9 +54,6 @@ class Controller extends Yaf_Controller_Abstract
     function init()
     {
         $this->userinfo = models_user::getInstance()->getUserInfo();
-        /**
-         * @todo 清除注释
-         */
         $this->user_id  = (is_array($this->userinfo) && array_key_exists('user_id',$this->userinfo)) ? $this->userinfo['user_id'] : 0;
         $this->modules  = explode(',', Yaf_Registry::get("config")->get('yaf')->get('modules'));
 
