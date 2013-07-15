@@ -60,7 +60,8 @@ class AlbumController extends Controller
             $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_MUST);
         }
 
-        $this->rest->paramsMustMap = array('pic_url','remark','txt_area','pic_area','is_cover');
+//        $this->rest->paramsMustMap = array('pic_url','remark','txt_area','pic_area','is_cover');
+        $this->rest->paramsMustMap = array('pic_url');
         $this->rest->paramsMustValid($params['items'][0]);
 
 
@@ -96,10 +97,16 @@ class AlbumController extends Controller
             $this->models_items->insert($_data);
 
             if (array_key_exists('is_cover',$items) && (int)$items['is_cover'] > 0){
-                $this->model_album->updateCover($items['pic_url'],$album_id);
+                $face_url = $items['pic_url'];
             }
 
             unset($_data);
+        }
+
+        if (!$face_url) $face_url = $items[0]['pic_url'];
+
+        if ($face_url){
+            $this->model_album->updateCover($face_url,$album_id);
         }
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '创建成功');
