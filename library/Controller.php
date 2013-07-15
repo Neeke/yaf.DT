@@ -76,10 +76,12 @@ class Controller extends Yaf_Controller_Abstract
     {
         $this->set('userinfo', $this->userinfo);
         $this->set('user_id',$this->user_id);
-
         if ($this->userinfo == FALSE
             && !(($this->_request->module == 'Index') && $this->_request->controller == 'Login' && $this->_request->action == 'index')
+            && !(($this->_request->module == 'Index') && $this->_request->controller == 'Reg' && $this->_request->action == 'index')
             && !(($this->_request->module == 'Api') && $this->_request->controller == 'User' && $this->_request->action == 'login')
+            && !(($this->_request->module == 'Api') && $this->_request->controller == 'User' && $this->_request->action == 'reg')
+
         ) {
             $this->redirect('/login');
         }

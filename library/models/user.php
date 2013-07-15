@@ -68,7 +68,8 @@ class models_user extends Models
     public function login($user_name, $pwd)
     {
         $this->db->cache_off();
-        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
+//        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
+        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_email = ? and user_pwd = ?', array($user_name, md5($pwd)));
         if ($aResult == FALSE) return FALSE;
 
         $session           = Yaf_Session::getInstance();

@@ -5,6 +5,11 @@
 class UserController extends Controller
 {
 
+    /**
+     * @var models_user
+     */
+    public $model;
+
     public function init()
     {
         parent::init();
@@ -33,7 +38,7 @@ class UserController extends Controller
         $data   = $this->model->mkdata($params);
         $result = $this->model->insert($data);
 
-        if ($result == false) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
+        if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '注册成功，请登录');
     }
@@ -50,7 +55,7 @@ class UserController extends Controller
         $this->rest->paramsMustValid($params);
 
         $result = $this->model->login($params['user_name'],$params['pwd']);
-        if ($result == false) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'登录失败');
+        if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'登录失败');
 
         $this->rest->success();
     }
