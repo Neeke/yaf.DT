@@ -115,6 +115,26 @@ class models_tag extends Models
         return $info['tag'];
     }
 
+    /**
+     * 批量添加tag
+     * tags: tag1,tag2,tag3,……
+     * @param $tags
+     * @return array
+     */
+    public function insertBatch($tags)
+    {
+        $tag_ids = array();
+        $tags = explode(',',$tags);
+        $userinfo = models_user::getInstance()->getUserInfo();
+        if (count($tags) < 1){
+            foreach($tags as $tag){
+                $tag_ids[] = $this->insert(array('tag' => $tags,'user_id' => $userinfo['user_id']));
+            }
+        }
+
+        return $tag_ids;
+    }
+
     function mkdata($value)
     {
         return $data = array(
