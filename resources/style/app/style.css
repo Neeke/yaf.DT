@@ -448,7 +448,7 @@
     cursor: pointer;
 }
 
-.my-list .editbox {
+.my-list .
     width: 530px;
     height: 450px;
     position: absolute;
@@ -1122,17 +1122,7 @@
     padding: 0 25px 0 0;
 }
 
-.makebox .editbox {
-    width: 405px;
-    height: 435px;
-    background: #757575;
-    position: absolute;
-    left: 678px;
-    top: 59px;
-    display: none;
-}
-
-.makebox .editbox a.close {
+.editbox a.close {
     display: block;
     width: 22px;
     height: 22px;
@@ -1142,34 +1132,34 @@
     background: url(/resources/style/app/images/icos/close.gif) no-repeat;
 }
 
-.makebox .editbox h3 {
+.editbox h3 {
     padding: 10px 20px;
     color: #fff;
     font-size: 14px;
 }
 
-.makebox .editbox li {
+.editbox li {
     overflow: hidden;
     margin: 20px 20px 0 20px;
 }
 
-.makebox .editbox li img {
+.editbox li img {
     display: block;
     cursor: pointer;
 }
 
-.makebox .editbox li input {
+.editbox li input {
     margin: 0;
     vertical-align: middle;
 }
 
-.makebox .editbox li .name {
+.editbox li .name {
     float: left;
     color: #fff;
     padding: 0 20px 0 0;
 }
 
-.makebox .editbox li .pic-at-left {
+.editbox li .pic-at-left {
     float: left;
     margin: 0 25px 0 0;
     width: 61px;
@@ -1177,7 +1167,7 @@
     border: 1px solid #1e1f21;
 }
 
-.makebox .editbox li .pic-at-middle {
+.editbox li .pic-at-middle {
     float: left;
     margin: 0 25px 0 0;
     width: 61px;
@@ -1185,7 +1175,7 @@
     border: 1px solid #1e1f21;
 }
 
-.makebox .editbox li .pic-at-right {
+.editbox li .pic-at-right {
     float: left;
     margin: 0 25px 0 0;
     width: 61px;
@@ -1193,7 +1183,7 @@
     border: 1px solid #1e1f21;
 }
 
-.makebox .editbox li .ms-at-left {
+.editbox li .ms-at-left {
     float: left;
     margin: 0 25px 0 0;
     width: 61px;
@@ -1201,7 +1191,7 @@
     border: 1px solid #1e1f21;
 }
 
-.makebox .editbox li .ms-at-middle {
+.editbox li .ms-at-middle {
     float: left;
     margin: 0 25px 0 0;
     width: 61px;
@@ -1209,7 +1199,7 @@
     border: 1px solid #1e1f21;
 }
 
-.makebox .editbox li .ms-at-right {
+.editbox li .ms-at-right {
     float: left;
     margin: 0 25px 0 0;
     width: 61px;
@@ -1217,20 +1207,20 @@
     border: 1px solid #1e1f21;
 }
 
-.makebox .editbox li .choose {
+.editbox li .choose {
     border: 1px solid #d90c7e;
 }
 
-.makebox .editbox li.cutbox {
+.editbox li.cutbox {
     border-top: 1px solid #1e1f21;
     padding: 25px 0 0 0;
 }
 
-.makebox .editbox li.cutbox img {
+.editbox li.cutbox img {
     width: 180px;
 }
 
-.makebox .editbox li.cutbox .cut {
+.editbox li.cutbox .cut {
     width: 150px;
     height: 90px;
     margin: 0 auto;
@@ -1238,7 +1228,7 @@
     position: relative;
 }
 
-.makebox .editbox li.cutbox .cut .mask {
+.editbox li.cutbox .cut .mask {
     background: url(/resources/style/app/images/mask01.png) no-repeat;
     width: 150px;
     height: 90px;
@@ -1247,11 +1237,11 @@
     top: 0;
 }
 
-.makebox .editbox li.btn {
+.editbox li.btn {
     text-align: center;
 }
 
-.makebox .editbox li.btn input {
+.editbox li.btn input {
     width: 120px;
     height: 35px;
     color: #fff;
