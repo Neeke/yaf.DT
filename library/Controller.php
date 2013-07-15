@@ -54,10 +54,7 @@ class Controller extends Yaf_Controller_Abstract
     function init()
     {
         $this->userinfo = models_user::getInstance()->getUserInfo();
-        /**
-         * @todo 清除注释
-         */
-        $this->user_id  = 1;//(is_array($this->userinfo) && array_key_exists('user_id',$this->userinfo)) ? $this->userinfo['user_id'] : 0;
+        $this->user_id  = (is_array($this->userinfo) && array_key_exists('user_id',$this->userinfo)) ? $this->userinfo['user_id'] : 0;
         $this->modules  = explode(',', Yaf_Registry::get("config")->get('yaf')->get('modules'));
 
         self::check_login();
@@ -80,10 +77,13 @@ class Controller extends Yaf_Controller_Abstract
         $this->set('userinfo', $this->userinfo);
         $this->set('user_id',$this->user_id);
         if ($this->userinfo == FALSE
-            && !($this->_request->module == 'Index' && $this->_request->controller == 'Index' && $this->_request->action == 'index')
-            && !in_array($this->_request->module, $this->modules)
+            && !(($this->_request->module == 'Index') && $this->_request->controller == 'Login' && $this->_request->action == 'index')
+            && !(($this->_request->module == 'Index') && $this->_request->controller == 'Reg' && $this->_request->action == 'index')
+            && !(($this->_request->module == 'Api') && $this->_request->controller == 'User' && $this->_request->action == 'login')
+            && !(($this->_request->module == 'Api') && $this->_request->controller == 'User' && $this->_request->action == 'reg')
+
         ) {
-            $this->redirect('/index');
+            $this->redirect('/login');
         }
     }
 

@@ -1,20 +1,29 @@
+|              ^ API url              ^ Method             ^ Params                      ^ Remark
+^ 注册接口      | /api/user/reg        | post               |email user_name pwd remark   |         |
+^ 登录接口      | /api/user/login      | post               |user_name pwd                |         |
+^ 登出接口      | /api/user/logout     | get                |[nothing]                    |         |
+^ 创建图集      | /api/album/create    | post               |is_open album_name items[pic_url,remark,txt_area,pic_area,is_cover] tags_ids          |         |
+^ 我的相册      | /api/album/mine      | get                |page                         |         |
+^ | | | | |
+
+
 注册接口：
-var api_reg = '/api/user/reg'; 
+var api_reg = '/api/user/reg';
 method: post
 params: email user_name pwd remark
 
 登录接口：
-var api_login = '/api/user/login'; 
+var api_login = '/api/user/login';
 method: post
 params: user_name pwd
 
 登出接口：
-var api_logout = '/api/user/logout'; 
+var api_logout = '/api/user/logout';
 method: get
 params: [nothing]
 
 ! 创建图集
-var api_album_create = '/api/album/create'; 
+var api_album_create = '/api/album/create';
 method: post
 params: is_open album_name items[pic_url,remark,txt_area,pic_area,is_cover] tags_ids
 
@@ -24,7 +33,7 @@ method: get
 params: page
 
 收藏图片到相册:
-var api_album_collection = '/api/album/collection'; 
+var api_album_collection = '/api/album/collection';
 method: post
 params: items_id album_id
 
@@ -39,7 +48,7 @@ method: get
 params: [user_id]
 
 评论图片：
-var api_items_replay = '/api/items/replay'; 
+var api_items_replay = '/api/items/replay';
 method: post
 params: items_id content
 
