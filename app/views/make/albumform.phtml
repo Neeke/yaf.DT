@@ -1,0 +1,21 @@
+<div class="page_title">
+    <a href="main.html">&lt;&lt;返回首页</a>
+</div>
+<div class="page-title"><img src="/resources/images/icos/ico01.gif">做图集</div>
+<div class="clear"></div>
+<div class="makebox">
+    <div class="pic-title">专辑名称：<input type="text" id="albumName"></div>
+    <ul class="editlist" id="albumContainer">
+    </ul>
+    <input type="button" value="+批量添加图片" id="pickfiles" class="addpic" />
+
+    <?php require_once('tag.phtml'); ?>
+    <p>
+        <label for="open"><input type="radio" value="1" name="is_open" id="open"/>公开</label>
+        <label for="close"><input type="radio" value="0" name="is_open" id="close" checked/>私密</label>
+    </p>
+
+    <input type="button" value="保存" id="submit" class="save" />
+    <input type="button" value="取消"  class="cancle" />
+</div>
+<?php  include_once('editimage.phtml'); ?>

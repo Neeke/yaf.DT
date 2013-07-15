@@ -7,7 +7,8 @@ seajs.config({
         rest: 'lib/rest/rest.js',
         dk: 'lib/dk/dk.customer.js',
         plupload: 'lib/plupload/plupload.full.js',
-        'imagescale': 'lib/imagescale/jquery.imagescale.js'
+        imagescale: 'lib/imagescale/jquery.imagescale.js',
+        jqueryui: 'lib/jqueryui/jquery-ui-1.10.3.custom.js'
     },
     shim: {
         plupload: {
