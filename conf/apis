@@ -25,7 +25,7 @@ params: [nothing]
 ! 创建图集
 var api_album_create = '/api/album/create';
 method: post
-params: is_open album_name items[pic_url,remark,txt_area,pic_area,is_cover] tags_ids
+params: is_open album_name items[pic_url,remark,txt_area,pic_area,is_cover] tag_ids [tags]
 
 我的相册:
 var api_album_mine = '/api/album/mine';

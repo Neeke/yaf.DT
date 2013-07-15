@@ -31,6 +31,11 @@ class AlbumController extends Controller
      */
     private $models_items = NULL;
 
+    /**
+     * @var models_tag
+     */
+    private $model_tag = NULL;
+
     public function init()
     {
         parent::init();
@@ -43,10 +48,12 @@ class AlbumController extends Controller
      */
     public function createAction()
     {
+        $this->model_tag = models_tag::getInstance();
+
         $this->rest->method('POST');
 
         $params                    = $this->getRequest()->getPost();
-        $this->rest->paramsMustMap = array('album_name', 'is_open','items','tags_ids');
+        $this->rest->paramsMustMap = array('album_name', 'is_open','items','tag_ids');
         $this->rest->paramsMustValid($params);
 
         if (!is_array($params['items']) || count($params['items']) < 1){
@@ -57,16 +64,28 @@ class AlbumController extends Controller
         $this->rest->paramsMustValid($params['items'][0]);
 
 
+        /**
+         * 探测相册是否重名
+         */
         if ($this->model_album->exits(array('album_name' => $params['album_name'], 'user_id' => $this->user_id))) {
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '相册已存在');
         }
 
         $params['user_id'] = $this->user_id;
 
+        /**
+         * 创建自定标签
+         */
+        if (array_key_exists('tags',$params) && strlen($params['tags'] > 0)){
+            $tag_ids = $this->model_tag->insertBatch($params['tags']);
+            $_tags = explode(',',$params['tags']);
+            $_tag_ids = $tag_ids + $_tags;
+            $params['tag_ids'] = implode(',',$_tag_ids);
+        }
+
         $data   = $this->model_album->mkdata($params);
         $album_id = $this->model_album->insert($data);
         if ($album_id == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
-
 
         $this->model_user->addalbum();
 
@@ -75,6 +94,11 @@ class AlbumController extends Controller
             $items['album_id'] = $album_id;
             $_data = $this->models_items->mkdata($items);
             $this->models_items->insert($_data);
+
+            if (array_key_exists('is_cover',$items) && (int)$items['is_cover'] > 0){
+                $this->model_album->updateCover($items['pic_url'],$album_id);
+            }
+
             unset($_data);
         }
 

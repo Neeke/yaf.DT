@@ -52,6 +52,18 @@ class models_album extends Models
     }
 
     /**
+     * 更新封面
+     * @param $url
+     * @param $album_id
+     * @return bool
+     */
+    function updateCover($url,$album_id)
+    {
+        $data = array('face_url' => $url);
+        return $this->update($data,array($this->_primary => (int)$album_id));
+    }
+
+    /**
      * 热门专辑
      * @return array
      * @todo 封皮图片
