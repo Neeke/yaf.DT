@@ -2,19 +2,22 @@ define(function(require) {
     var DK = require('dk');
     require('plupload');
     require('imagescale');
+    require('jqueryui');
     var util = require('util');
+    var editimage = require('app/make/editimage');
+    require('rest');
 
     var $albumContainer;
 
     function addItem(id) {
-        var tmpl = '<li>\
+        var tmpl = '<li class="js-album-item">\
             <div class="libox">\
                 <span class="up"></span>\
                 <span class="down"></span>\
                 <div class="thumb upload-item">\
                     <div class="upload-progress" id="progress{0}"></div>\
                 </div>\
-                <textarea placeholder="可以在这里写下图片描述..."></textarea>\
+                <textarea class="js-remark" placeholder="可以在这里写下图片描述..."></textarea>\
                 <span class="deledtpic js_removeitem"></span>\
                 <span class="bi js_edititem"></span>\
             </div>\
@@ -30,9 +33,6 @@ define(function(require) {
             container: 'albumContainer',
             max_file_size : '10mb',
             url : '/api/items/plupload',
-//            resize : {width : 118, height : 86, quality : 90},
-//            flash_swf_url : '/resources/js/lib/plupload/plupload.flash.swf',
-//            silverlight_xap_url : '../js/plupload.silverlight.xap',
             filters : [
                 {title : "Image files", extensions : "jpg,gif,png"},
                 {title : "Zip files", extensions : "zip"}
@@ -64,7 +64,7 @@ define(function(require) {
                 var r = $.parseJSON(res.response);
 
                 if (r && r.result) {
-                    var img = $(util.formatStr('<img src="{0}">', r.result));
+                    var img = $(util.formatStr('<img class="js-uploadimg" data-src="{0}" src="{0}">', r.result));
                     $thumb.append(img);
                     img.imageScale({
                         width: 118,
@@ -75,21 +75,67 @@ define(function(require) {
         });
     }
 
-    $(function() {
+    function initSortable() {
+        $('#albumContainer').sortable();
+    }
+
+    function initEditImage() {
+        $albumContainer.on('click', '.js_edititem', function() {
+            editimage.show({
+                src: $(this).closest('li').find('.js-uploadimg').attr('data-src')
+            });
+        });
+    }
+
+    function serialize() {
+        var tags = [], tag_ids = [];
+        $('#tagCtnr a').each(function(i, $e) {
+            $e = $($e);
+            var tid = $e.attr('data-tid');
+            if (tid) {
+                tag_ids.push(tid);
+            } else {
+                tags.push($e.text());
+            }
+        });
+
+        return {
+            tags: tags,
+            tag_ids: tag_ids,
+            items: editimage.serialize(),
+            album_name: $('#albumName').val(),
+            is_open: $('input[name="is_open"]:checked').val()
+        }
+    }
+
+    function init(data) {
         $albumContainer = $('#albumContainer');
 
         initPlupload();
+
+        initSortable();
 
         $albumContainer.on('click', '.js_removeitem', function() {
             $(this).closest('li').remove();
         });
 
-        $albumContainer.on('click', '.js_edititem', function() {
-            var win = new DK.Window({
-                title: '编辑图片'
+        initEditImage();
+
+        $('#submit').click(function() {
+            var rest = $.restPost('/api/album/create', serialize());
+
+            rest.done(function(msg) {
+                alert(msg);
+                location.href = '/album/mine';
             });
 
-            win.show();
+            rest.fail(function(msg) {
+                alert(msg || '创建失败！');
+            });
         });
-    });
+    }
+
+    return {
+        init: init
+    }
 });

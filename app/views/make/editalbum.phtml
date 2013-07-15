@@ -1,0 +1,15 @@
+<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
+
+<?php include_once('albumform.phtml') ?>
+
+    <script type="text/javascript">
+        seajs.use('app/make/album', function(album) {
+            $(function() {
+                album.init({
+
+                });
+            });
+        });
+    </script>
+
+<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
