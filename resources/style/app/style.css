@@ -441,16 +441,6 @@
     cursor: pointer;
 }
 
-.my-list {
-    width: 530px;
-    height: 450px;
-    position: absolute;
-    left: 310px;
-    top: 130px;
-    background: #757575;
-    display: none;
-}
-
 .my-list .editbox a.close {
     display: block;
     width: 22px;
