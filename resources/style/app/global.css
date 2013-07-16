@@ -1,3 +1,10 @@
 .win-content {
     display: none;
 }
+
+.form-item {
+    margin: 1px 0 0 90px;
+    padding: 10px 15px;
+    line-height: 20px;
+    color: #fff;
+}

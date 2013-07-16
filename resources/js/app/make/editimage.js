@@ -27,6 +27,10 @@ define(function(require) {
             $(this).addClass('choose');
         });
 
+        $el.on('click', '.js-save', function() {
+            wins[src].close();
+        });
+
         $el.find('.js-editimage-thumb').attr('src', src);
     }
 
@@ -47,6 +51,7 @@ define(function(require) {
                 var $content = wins[src].getContent();
                 var picAlign = $content.find('.js-pic-pos .choose').attr('data-align');
                 var txtAlign = $content.find('.js-txt-pos .choose').attr('data-align');
+
                 $.extend(itemData, {
                     txt_area: txtAlign,
                     pic_area: picAlign,
