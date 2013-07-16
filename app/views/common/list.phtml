@@ -37,9 +37,14 @@
         <?php echo $sPage;?>
 <?php }else{?>
 
-<div class="tipgo">你还没有图集，现在去<a href="make.html">做一个</a>？</div>
+<div class="tipgo">你还没有图集，现在去<a href="<?php echo helper_common::site_url('make/album')?>">做一个</a>？</div>
 
 <?php }?>
+
+        <?php if (spall_album::ifJustlook($this_menu)){?>
+            <input type="button" class="btn" value="看看别的">
+        <?php }?>
+
 <script type="text/javascript">
     seajs.use('app/common/list');
 </script>

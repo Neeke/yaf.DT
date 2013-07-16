@@ -33,4 +33,9 @@ class spall_menu
     {
         return self::$_menu;
     }
+
+    static public function getJustlook()
+    {
+        return self::$_menu['nav01'];
+    }
 }
