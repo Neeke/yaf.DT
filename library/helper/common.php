@@ -49,6 +49,15 @@ class helper_common{
 	}
 
     /**
+     * 编辑专辑
+     * @param $id
+     * @return string
+     */
+    public static function site_url_album_edit($id){
+        return self::site_url('make/editalbum/a/'.(int)$id);
+    }
+
+    /**
      * 提示信息
      * @param $msg
      * @param bool $url
