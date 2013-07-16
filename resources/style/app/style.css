@@ -135,18 +135,14 @@
     height: auto !important;
     height: 465px;
     min-height: 465px;
-    max-width: 1400px;
     margin: 0 auto;
     padding: 40px 0 0 0;
     position: relative;
 }
 
 .menu {
-    width: 260px;
-    position: absolute;
-    top: 40px;
-    right: 10px;
     background: #2f333a;
+    float: right;
 }
 
 .menu li {
@@ -184,9 +180,7 @@
 }
 
 .load-main {
-    margin: 0 0 0 10px;
-    width: 75%;
-    max-width: 1100px;
+    float: left;
 }
 
 .all-list {
@@ -285,7 +279,7 @@
     padding: 0 0 0 28px;
 }
 
-.all-list .btn {
+.btn {
     margin: 30px auto;
     background: url(/resources/style/app/images/btns/btn01.gif) no-repeat;
     width: 199px;
@@ -336,289 +330,6 @@
 
 .t_con .con_a a.cur3 {
     color: #e4007f;
-}
-
-.my-list ul {
-    overflow: hidden;
-    width: 100%;
-    margin: 20px 0 0 -40px;
-    width: 110%;
-    position: relative;
-}
-
-.my-list li {
-    float: left;
-    position: relative;
-    width: 340px;
-    height: 250px;
-    background: #fff;
-    margin: 0 0 40px 40px;
-}
-
-.my-list li img {
-    width: 100%;
-    display: block;
-}
-
-.my-list li .pic-info {
-    width: 240px;
-    height: 75px;
-    position: absolute;
-    background: url(/resources/style/app/images/black_bg.png) repeat;
-    top: 50%;
-    left: 0;
-    margin: -52px 0 0 0;
-    line-height: 25px;
-    color: #fff;
-    font-size: 14px;
-    font-family: simHei;
-    padding: 35px 0 0 20px;
-}
-
-.my-list li .pic-info dd span {
-    padding: 0 0 0 50px;
-}
-
-.my-list li .tip {
-    height: 35px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background: #fff;
-    position: absolute;
-    line-height: 35px;
-    overflow: hidden;
-}
-
-.my-list li .tip .user-name {
-    text-indent: 20px;
-}
-
-.my-list li .tip a {
-    float: right;
-    margin: 0 15px 0 0;
-    height: 35px;
-}
-
-.my-list li .tip a.ico01 {
-    background: url(/resources/style/app/images/icos/pl_ico01_on.gif) no-repeat left center;
-    padding: 0 0 0 23px;
-}
-
-.my-list li .tip a.ico01:hover {
-    background: url(/resources/style/app/images/icos/pl_ico01.gif) no-repeat left center;
-    padding: 0 0 0 23px;
-}
-
-.my-list li .tip a.ico02 {
-    background: url(/resources/style/app/images/icos/sc_ico01_on.gif) no-repeat left center;
-    padding: 0 0 0 24px;
-}
-
-.my-list li .tip a.ico02:hover {
-    background: url(/resources/style/app/images/icos/sc_ico01.gif) no-repeat left center;
-    padding: 0 0 0 24px;
-}
-
-.my-list li .tip a.ico03 {
-    background: url(/resources/style/app/images/icos/see_ico01_on.gif) no-repeat left center;
-    padding: 0 0 0 28px;
-}
-
-.my-list li .tip a.ico03:hover {
-    background: url(/resources/style/app/images/icos/see_ico01.gif) no-repeat left center;
-    padding: 0 0 0 28px;
-}
-
-.my-list li .tip input {
-    margin: 6px 0 0 15px;
-    float: left;
-    background: #444444;
-    border: none;
-    color: #fff;
-    padding: 2px;
-    cursor: pointer;
-}
-
-.my-list .editbox a.close {
-    display: block;
-    width: 22px;
-    height: 22px;
-    position: absolute;
-    right: 7px;
-    top: 7px;
-    background: url(/resources/style/app/images/icos/close.gif) no-repeat;
-}
-
-.my-list .editbox h3 {
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    padding: 13px 0 0 37px;
-}
-
-.my-list .editbox .pic-title {
-    color: #fff;
-    padding: 20px 0 0 30px;
-}
-
-.my-list .editbox .pic-title input {
-    width: 435px;
-    height: 25px;
-    line-height: 25px;
-    background: #fff;
-    border: none;
-}
-
-.my-list .editbox .editlist {
-    margin: 20px 0 0 26px;
-}
-
-.my-list .editbox .editlist li {
-    width: 419px;
-    height: 86px;
-    background: none;
-    margin-bottom: 10px;
-}
-
-.my-list .editbox .editlist li .libox {
-    position: relative;
-    width: 419px;
-    height: 86px;
-    position: relative;
-    padding: 0 0 0 15px;
-    overflow: hidden;
-}
-
-.my-list .editbox .editlist li .libox .up {
-    background: url(/resources/style/app/images/icos/up.gif) no-repeat;
-    display: block;
-    width: 9px;
-    height: 9px;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.my-list .editbox .editlist li .libox .down {
-    background: url(/resources/style/app/images/icos/down.gif) no-repeat;
-    display: block;
-    width: 9px;
-    height: 9px;
-    position: absolute;
-    left: 0;
-    top: 9px;
-}
-
-.my-list .editbox .editlist li .libox img {
-    width: 118px;
-    height: 86px;
-    float: left;
-}
-
-.my-list .editbox .editlist li .libox textarea {
-    float: left;
-    border: none;
-    margin: 0;
-    width: 280px;
-    height: 86px;
-    resize: none;
-    font-size: 12px;
-    color: #7c7c7c;
-}
-
-.my-list .editbox .editlist li .libox .deledtpic {
-    display: block;
-    background: url(/resources/style/app/images/icos/close02.gif) no-repeat;
-    width: 21px;
-    height: 23px;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.my-list .editbox .editlist li .libox .bi {
-    display: block;
-    background: url(/resources/style/app/images/icos/bi.gif) no-repeat;
-    width: 21px;
-    height: 23px;
-    position: absolute;
-    right: 0;
-    top: 23px;
-}
-
-.my-list .editbox .addpic {
-    width: 120px;
-    height: 35px;
-    background: #444;
-    border: none;
-    color: #fff;
-    margin: 0 0 0 81px;
-    border-radius: 4px;
-}
-
-.my-list .editbox .tagsbox {
-    overflow: hidden;
-    color: #fff;
-    padding: 20px 0 0 30px;
-}
-
-.my-list .editbox .tagsbox .name {
-    float: left;
-    line-height: 25px;
-}
-
-.my-list .editbox .tagsbox .tags {
-    float: left;
-    width: 435px;
-    height: 25px;
-    background: #fff;
-}
-
-.my-list .editbox .tagsbox .tags span {
-    color: #e4007f;
-    line-height: 25px;
-    padding: 0 0 0 25px;
-}
-
-.my-list .editbox .ressset {
-    width: 120px;
-    height: 35px;
-    background: #444;
-    border: none;
-    color: #fff;
-    margin: 0 0 0 81px;
-    border-radius: 4px;
-    margin: 20px 0 0 85px;
-}
-
-.my-list .editbox .save {
-    width: 120px;
-    height: 35px;
-    background: #444;
-    border: none;
-    color: #fff;
-    margin: 0 0 0 81px;
-    border-radius: 4px;
-    margin: 20px 0 0 170px;
-}
-
-.my-list .tipgo {
-    font-size: 24px;
-    font-family: SimHei;
-    color: #fff;
-    text-align: center;
-    padding: 100px 0 0 0;
-    display: none;
-}
-
-.my-list .tipgo a {
-    color: #e4007f;
-}
-
-.my-list .tipgo a:hover {
-    text-decoration: underline;
 }
 
 /*关注的标签**/
