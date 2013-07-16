@@ -25,7 +25,7 @@ define(function(require) {
 
         tags.push(name);
         var tpl = '<a data-tid="{1}" href="javascript:;"><span>{0}</span></a>';
-        $tagCtnr.append(util.formatStr(tpl, name, id));
+        $tagCtnr.append(util.formatStr(tpl, name, id || ''));
     }
 
     function removeLastTag() {

@@ -147,7 +147,6 @@
     top: 40px;
     right: 10px;
     background: #2f333a;
-    padding: 0 0 60px 0;
 }
 
 .menu li {
@@ -165,10 +164,6 @@
     width: 100%;
     text-align: center;
     color: #fff;
-}
-
-.menu .nav01 li {
-    background: url(/resources/style/app/images/menu_ul01.gif) no-repeat left #757575;
 }
 
 .menu .nav02 dt {
@@ -215,8 +210,7 @@
 }
 
 .all-list li img {
-    width: 340px;
-    height: 250px;
+    width: 100%;
     display: block;
 }
 
@@ -244,7 +238,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 340px;
+    width: 100%;
     background: #fff;
     position: absolute;
     line-height: 35px;
@@ -362,8 +356,7 @@
 }
 
 .my-list li img {
-    width: 340px;
-    height: 250px;
+    width: 100%;
     display: block;
 }
 
@@ -391,7 +384,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 340px;
+    width: 100%;
     background: #fff;
     position: absolute;
     line-height: 35px;
@@ -448,7 +441,7 @@
     cursor: pointer;
 }
 
-.my-list .
+.my-list {
     width: 530px;
     height: 450px;
     position: absolute;
@@ -897,6 +890,7 @@
     padding: 0 10px 6px 10px;
     color: #fff;
     overflow: hidden;
+    text-align: right;
 }
 
 .page_title a {
@@ -910,7 +904,6 @@
 
 .page-title {
     margin: 0 65px;
-    text-align: right;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
