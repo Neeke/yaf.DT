@@ -50,7 +50,18 @@ body, html { color: #595757; font-family: simSun; position: relative; width:100%
 /**首页**/
 .index{ width:100%; position:absolute; overflow:hidden;}
 .index .index-carousel{ width:100%;}
-.index .index-logo{ background:url(/resources/style/app/images/index_logo.png) no-repeat; width:310px; height:70px; position:absolute; left:50%; top:143px; z-index:999; text-indent:-99990em; margin:0 0 0 -155px;}
+.index .index-logo{
+    background: url(/resources/style/app/images/index_logo.png) no-repeat;
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    top: 41px;
+    z-index: 999;
+    text-indent: -99990em;
+    margin: 0 0 0 -155px;
+}
+
 .index .index_login_box{ background:url(/resources/style/app/images/index_login_box.png) no-repeat; width:680px; height:138px; position:absolute; left:50%; top:255px; z-index:999; margin:0 0 0 -340px;}
 .index .index_login_box .login{ overflow:hidden; padding:25px 0 0 15px;}
 .index .index_login_box .login .text-box{ background:url(/resources/style/app/images/text-box.png) no-repeat; width:234px; height:44px; margin:0 17px 0 0;}
