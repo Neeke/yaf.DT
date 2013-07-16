@@ -10,14 +10,60 @@
     .albumitem {
         width: 33%;
     }
-}
 
-@media (max-width: 768px){
-    .albumitem {
-        width: 50%;
+    .menu {
+        width: 20%;
+    }
+
+    .load-main {
+        width: 80%;
     }
 }
 
+@media (max-width: 1024px){
+    .albumitem {
+        width: 50%;
+    }
+
+    .menu {
+        width: 28%;
+    }
+
+    .load-main {
+        width: 72%;
+    }
+}
+
+
+@media (max-width: 760px){
+    .albumitem {
+        width: 100%;
+    }
+
+    .load-main {
+        width: 60%;
+    }
+
+    .menu {
+        width: 40%;
+    }
+}
+
+
+
+@media (max-width: 640px){
+    .albumitem {
+        width: 100%;
+    }
+
+    .load-main {
+        width: 100%;
+    }
+
+    .menu {
+        width: 100%;
+    }
+}
 
 .albumitem {
     float: left;

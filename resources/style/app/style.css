@@ -135,18 +135,14 @@
     height: auto !important;
     height: 465px;
     min-height: 465px;
-    max-width: 1400px;
     margin: 0 auto;
     padding: 40px 0 0 0;
     position: relative;
 }
 
 .menu {
-    width: 260px;
-    position: absolute;
-    top: 40px;
-    right: 10px;
     background: #2f333a;
+    float: right;
 }
 
 .menu li {
@@ -184,9 +180,7 @@
 }
 
 .load-main {
-    margin: 0 0 0 10px;
-    width: 75%;
-    max-width: 1100px;
+    float: left;
 }
 
 .all-list {
