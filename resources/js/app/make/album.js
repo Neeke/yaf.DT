@@ -76,7 +76,9 @@ define(function(require) {
     }
 
     function initSortable() {
-        $('#albumContainer').sortable();
+        $('#albumContainer').sortable({
+            distance: 10
+        });
     }
 
     function initEditImage() {
