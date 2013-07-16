@@ -79,7 +79,7 @@ class models_album extends Models
             'album_name' => $v['album_name'],
             'user_id' => $v['user_id'],
             'class_id' => '',
-            'tag_ids' => $v['tag_ids'],
+            'tag_ids' => is_array($v['tag_ids']) ? implode(',',$v['tag_ids']) : $v['tag_ids'],
             'hits' => 1,
             'album_remark' => $v['album_remark'],
             'created_time' => time(),

@@ -54,11 +54,11 @@ class models_items extends Models
     {
         return $data = array(
             'items_name'       => $v['items_name'],
-            'items_pic'        => $v['items_pic'],
+            'items_pic'        => $v['pic_url'],
             'items_pic_thumbs' => $v['items_pic_thumbs'],
             'user_id'          => (int)$v['user_id'],
             'album_id'         => (int)$v['album_id'],
-            'tag_ids'          => $v['tag_ids'],
+            'tag_ids'          => is_array($v['tag_ids']) ? implode(',',$v['tag_ids']) : $v['tag_ids'],
             'reply_hits'       => (int)$v['reply_hits'],
             'collect_hits'     => (int)$v['collect_hits'],
             'like_hits'        => (int)$v['like_hits'],

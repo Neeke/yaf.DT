@@ -93,6 +93,8 @@ class AlbumController extends Controller
         $this->models_items = models_items::getInstance();
         foreach ($params['items'] as $items){
             $items['album_id'] = $album_id;
+            $items['user_id'] = $this->user_id;
+            $items['tag_ids'] = $params['tag_ids'];
             $_data = $this->models_items->mkdata($items);
             $this->models_items->insert($_data);
 
@@ -103,7 +105,7 @@ class AlbumController extends Controller
             unset($_data);
         }
 
-        if (!$face_url) $face_url = $items[0]['pic_url'];
+        if (!$face_url) $face_url = $params['items'][0]['pic_url'];
 
         if ($face_url){
             $this->model_album->updateCover($face_url,$album_id);
