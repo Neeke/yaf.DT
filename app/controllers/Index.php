@@ -32,23 +32,26 @@ class IndexController extends Controller {
 	}
 
 	public function indexAction() {
-        $tags = $this->model_tag->getTags();
-        $this->set('tags',$tags);
+        $this->redirect('justlook');
 
-        $items = $this->model_items->getIndexItems();
+//
+//        $tags = $this->model_tag->getTags();
+//        $this->set('tags',$tags);
+//
+//        $items = $this->model_items->getIndexItems();
 //        $items_ids = helper_common::get_column($items,'items_id');
 //        $replys = $this->model_reply->getAllByItemIds($items_ids);
-
-        foreach($items as $v){
-            $replys[$v['items_id']] = $this->model_reply->getAllByItemId($v['items_id']);
-        }
-
-        $my_albums = $this->model_album->myAlbum(1);
-
-        $sPage = helper_pages::page1('/',30,6,$this->_request->getParam('page',1));
-        $this->set('items', $items);
-        $this->set('sPage', $sPage);
-        $this->set('myalbums', $my_albums);
+//
+//        foreach($items as $v){
+//            $replys[$v['items_id']] = $this->model_reply->getAllByItemId($v['items_id']);
+//        }
+//
+//        $my_albums = $this->model_album->myAlbum(1);
+//
+//        $sPage = helper_pages::page1('/',30,6,$this->_request->getParam('page',1));
+//        $this->set('items', $items);
+//        $this->set('sPage', $sPage);
+//        $this->set('myalbums', $my_albums);
 	}
 
 }

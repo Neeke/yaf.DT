@@ -25,4 +25,17 @@ class spall_album
 
         return $str;
     }
+
+    /**
+     * @param $action
+     * @return bool
+     */
+    static public function ifJustlook($action)
+    {
+        if (array_key_exists($action, spall_menu::getJustlook())) {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
 }
