@@ -33,8 +33,8 @@ class JustlookController extends Controller
 
         $my_albums = $this->model_album->myAlbum(1);
 
-        $sPage = helper_pages::page1('/',30,6,$this->page);
-        $this->set('sPage', $sPage);
+//        $sPage = helper_pages::page1('/',30,6,$this->page);
+//        $this->set('sPage', $sPage);
         $this->set('myalbums', $my_albums);
     }
 
