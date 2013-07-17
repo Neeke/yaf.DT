@@ -10,4 +10,9 @@ class contast_items
      * 正常展示
      */
     const ITEMS_FLAG_YES = 1;
+
+    /**
+     * 删除状态
+     */
+    const ITEMS_FLAG_NO = 0;
 }
