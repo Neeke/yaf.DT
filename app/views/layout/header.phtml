@@ -9,6 +9,14 @@
     <script type="text/javascript" src="/resources/js/lib/seajs/config.js"></script>
 </head>
 <body>
+<script>
+    var $CONFIG = <?php if (isset($config) && is_array($config) && count($config) > 0){
+        echo json_encode($config);
+    }else{
+        echo '{}';
+    } ?>
+</script>
+
 <div class="wrap">
     <div class="box">
         <div class="main">

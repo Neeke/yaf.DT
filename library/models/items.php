@@ -46,7 +46,7 @@ class models_items extends Models
     function getItemsByAlbumId($album_id)
     {
         $this->db->cache_on();
-        return $this->getAll(array('items_id','remark','txt_area','pic_area','is_cover'),
+        return $this->getAll(array('items_id','items_pic','remark','txt_area','pic_area','is_cover'),
             array('album_id' => $album_id),
             array('is_cover' => 'desc','items_id' => 'asc')
         );
@@ -68,7 +68,7 @@ class models_items extends Models
     {
         return $data = array(
             'items_name'       => $v['items_name'],
-            'items_pic'        => $v['pic_url'],
+            'items_pic'        => $v['items_pic'],
             'items_pic_thumbs' => $v['items_pic_thumbs'],
             'user_id'          => (int)$v['user_id'],
             'album_id'         => (int)$v['album_id'],
