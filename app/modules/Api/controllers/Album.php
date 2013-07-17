@@ -90,7 +90,6 @@ class AlbumController extends Controller
 
         $this->model_user->addalbum();
 
-        $this->models_items = models_items::getInstance();
         foreach ($params['items'] as $items){
             $items['album_id'] = $album_id;
             $items['user_id'] = $this->user_id;
@@ -99,13 +98,13 @@ class AlbumController extends Controller
             $this->models_items->insert($_data);
 
             if (array_key_exists('is_cover',$items) && (int)$items['is_cover'] > 0){
-                $face_url = $items['pic_url'];
+                $face_url = $items['items_pic'];
             }
 
             unset($_data);
         }
 
-        if (!$face_url) $face_url = $params['items'][0]['pic_url'];
+        if (!$face_url) $face_url = $params['items'][0]['items_pic'];
 
         if ($face_url){
             $this->model_album->updateCover($face_url,$album_id);
@@ -138,6 +137,73 @@ class AlbumController extends Controller
         $album_info['tags'] = $this->model_tag->getTagByIds($album_info['tag_ids']);
 
         $this->rest->success($album_info);
+    }
+
+    /**
+     * 编辑相册内容
+     */
+    public function modifyAction()
+    {
+        $this->rest->method('POST');
+
+        $params                    = $this->getRequest()->getPost();
+        $this->rest->paramsMustMap = array('album_name', 'is_open','items','tag_ids','album_id');
+        $this->rest->paramsMustValid($params);
+
+        if (!is_array($params['items']) || count($params['items']) < 1){
+            $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_MUST);
+        }
+
+//        $this->rest->paramsMustMap = array('pic_url','remark','txt_area','pic_area','is_cover');
+        $this->rest->paramsMustMap = array('items_pic','items_id');
+        $this->rest->paramsMustValid($params['items'][0]);
+
+        $album_id = $params['album_id'];
+
+        /**
+         * 探测相册是否属于当前用户
+         */
+        if (!$this->model_album->exits(array('album_id' => $album_id, 'user_id' => $this->user_id))) {
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '相册不存在或权限错误');
+        }
+
+        $params['user_id'] = $this->user_id;
+
+        /**
+         * 创建自定标签
+         */
+        if (array_key_exists('tags',$params) && strlen($params['tags'] > 0)){
+            $tag_ids = $this->model_tag->insertBatch($params['tags']);
+            $_tags = explode(',',$params['tags']);
+            $_tag_ids = $tag_ids + $_tags;
+            $params['tag_ids'] = implode(',',$_tag_ids);
+        }
+
+        $data   = $this->model_album->mkdata($params);
+        $update_result = $this->model_album->update($data,array('album_id' => $album_id));
+        if ($update_result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
+
+        foreach ($params['items'] as $items){
+            $items['album_id'] = $album_id;
+            $items['user_id'] = $this->user_id;
+            $items['tag_ids'] = $params['tag_ids'];
+            $_data = $this->models_items->mkdata($items);
+            $this->models_items->update($_data,array('items_id' => $items['items_id']));
+
+            if (array_key_exists('is_cover',$items) && (int)$items['is_cover'] > 0){
+                $face_url = $items['items_pic'];
+            }
+
+            unset($_data);
+        }
+
+        if (!$face_url) $face_url = $params['items'][0]['items_pic'];
+
+        if ($face_url){
+            $this->model_album->updateCover($face_url,$album_id);
+        }
+
+        $this->rest->success('', rest_Code::STATUS_SUCCESS, '编辑完成');
     }
 
     /**

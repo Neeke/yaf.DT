@@ -32,6 +32,11 @@ var api_album_editinit = '/api/album/editinit';
 method: get
 params: album_id
 
+编辑图集
+var api_album_modify = '/api/album/modify';
+method: post
+params: album_id is_open album_name items[items_id,items_pic,remark,txt_area,pic_area,is_cover] tag_ids [tags]
+
 我的相册:
 var api_album_mine = '/api/album/mine';
 method: get
