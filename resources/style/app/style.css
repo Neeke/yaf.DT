@@ -279,7 +279,7 @@
     padding: 0 0 0 28px;
 }
 
-.btn {
+.all-list .btn {
     margin: 30px auto;
     background: url(/resources/style/app/images/btns/btn01.gif) no-repeat;
     width: 199px;
@@ -700,6 +700,11 @@
     width: 118px;
     height: 86px;
     float: left;
+}
+
+.makebox .editlist li .libox .thumb img {
+    width: 100%;
+    height: 100%;
 }
 
 .makebox .editlist li .libox textarea {

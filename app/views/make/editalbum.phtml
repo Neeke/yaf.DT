@@ -5,9 +5,7 @@
     <script type="text/javascript">
         seajs.use('app/make/album', function(album) {
             $(function() {
-                album.init({
-
-                });
+                album.init($CONFIG.album_id);
             });
         });
     </script>
