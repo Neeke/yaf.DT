@@ -70,6 +70,18 @@ class Controller extends Yaf_Controller_Abstract
     }
 
     /**
+     * 取得所有参数
+     * @return mixed
+     */
+    public function allParams()
+    {
+        $params = $this->getRequest()->getParams();
+        $params += $_GET;
+        $params += $_POST;
+        return $params;
+    }
+
+    /**
      * 检测状态
      */
     private function check_login()

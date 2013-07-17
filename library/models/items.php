@@ -39,6 +39,20 @@ class models_items extends Models
     }
 
     /**
+     * 依相册ID取得所有图片
+     * @param $album_id
+     * @return array|bool
+     */
+    function getItemsByAlbumId($album_id)
+    {
+        $this->db->cache_on();
+        return $this->getAll(array('items_id','remark','txt_area','pic_area','is_cover'),
+            array('album_id' => $album_id),
+            array('is_cover' => 'desc','items_id' => 'asc')
+        );
+    }
+
+    /**
      * 浏览hist+1
      *
      * @param $items_id
