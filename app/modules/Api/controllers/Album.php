@@ -51,7 +51,6 @@ class AlbumController extends Controller
     public function createAction()
     {
         $this->rest->method('POST');
-        error_reporting(-1);
         $params                    = $this->getRequest()->getPost();
         $this->rest->paramsMustMap = array('album_name', 'is_open','items','tag_ids');
         $this->rest->paramsMustValid($params);
@@ -77,9 +76,9 @@ class AlbumController extends Controller
         /**
          * 创建自定标签
          */
-        if (array_key_exists('tags',$params) && strlen($params['tags'] > 0)){
+        if (array_key_exists('tags',$params) && strlen($params['tags']) > 0){
             $tag_ids = $this->model_tag->insertBatch($params['tags']);
-            $_tags = explode(',',$params['tags']);
+            $_tags = explode(',',$params['tag_ids']);
             $_tag_ids = $tag_ids + $_tags;
             $params['tag_ids'] = implode(',',$_tag_ids);
         }
@@ -169,15 +168,18 @@ class AlbumController extends Controller
 
         $params['user_id'] = $this->user_id;
 
+
         /**
          * 创建自定标签
          */
-        if (array_key_exists('tags',$params) && strlen($params['tags'] > 0)){
+        $tag_ids = array();
+        if (array_key_exists('tags',$params) && strlen($params['tags']) > 0){
             $tag_ids = $this->model_tag->insertBatch($params['tags']);
-            $_tags = explode(',',$params['tags']);
-            $_tag_ids = $tag_ids + $_tags;
-            $params['tag_ids'] = implode(',',$_tag_ids);
         }
+
+        $_tags = explode(',',$params['tag_ids']);
+        $_tag_ids = $tag_ids + $_tags;
+        $params['tag_ids'] = implode(',',$_tag_ids);
 
         $data   = $this->model_album->mkdata($params);
         $update_result = $this->model_album->update($data,array('album_id' => $album_id));
