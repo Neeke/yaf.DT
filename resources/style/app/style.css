@@ -591,12 +591,22 @@
     padding: 0 10px 6px 10px;
     color: #fff;
     overflow: hidden;
-    text-align: right;
+}
+
+.page_title span {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.page_title span img {
+    margin-right: 5px;
 }
 
 .page_title a {
     color: #fff;
     font-weight: bold;
+    float: right;
 }
 
 .page_title a:hover {
