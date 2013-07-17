@@ -47,7 +47,7 @@ class models_items extends Models
     {
         $this->db->cache_on();
         return $this->getAll(array('items_id', 'items_pic', 'remark', 'txt_area', 'pic_area', 'is_cover'),
-            array('album_id' => $album_id),
+            array('album_id' => $album_id, 'flag' => contast_items::ITEMS_FLAG_YES),
             array('is_cover' => 'desc', 'items_id' => 'asc')
         );
     }
@@ -60,10 +60,15 @@ class models_items extends Models
     function getItemsIdsByAlbumId($album_id)
     {
         $this->db->cache_on();
-        return $this->getAll(array('items_id'),
-            array('album_id' => $album_id),
+        $info = $this->getAll(array('items_id'),
+            array('album_id' => $album_id, 'flag' => contast_items::ITEMS_FLAG_YES),
             array('is_cover' => 'desc', 'items_id' => 'asc')
         );
+        $ids  = array();
+        foreach ($info as $val) {
+            $ids[] = $val['items_id'];
+        }
+        return $ids;
     }
 
     /**
@@ -75,15 +80,15 @@ class models_items extends Models
      */
     function updateItemsForDelete($items_ids)
     {
-        if (!is_array($items_ids) || count($items_ids) < 1){
-            return false;
+        if (!is_array($items_ids) || count($items_ids) < 1) {
+            return FALSE;
         }
 
-        foreach($items_ids as $items_id){
-            $this->update(array('flag' => contast_items::ITEMS_FLAG_NO),array('items_id' => $items_id));
+        foreach ($items_ids as $items_id) {
+            $this->update(array('flag' => contast_items::ITEMS_FLAG_NO), array('items_id' => $items_id));
         }
 
-        return true;
+        return TRUE;
     }
 
     /**
@@ -116,7 +121,7 @@ class models_items extends Models
             'txt_area'         => (int)$v['txt_area'],
             'pic_area'         => (int)$v['pic_area'],
             'is_cover'         => (int)$v['is_cover'],
-            'flag'             => (int)$v['flag'] > 0 ? (int)$v['flag'] : 0,
+            'flag'             => (int)$v['flag'] > 0 ? (int)$v['flag'] : contast_items::ITEMS_FLAG_YES,
         );
     }
 }

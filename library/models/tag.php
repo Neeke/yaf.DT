@@ -126,7 +126,7 @@ class models_tag extends Models
         $tag_ids = array();
         $tags = explode(',',$tags);
         $userinfo = models_user::getInstance()->getUserInfo();
-        if (count($tags) < 1){
+        if (count($tags) > 1){
             foreach($tags as $tag){
                 $tag_ids[] = $this->insert(array('tag' => $tag,'user_id' => $userinfo['user_id']));
             }
