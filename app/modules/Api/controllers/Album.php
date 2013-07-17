@@ -61,7 +61,7 @@ class AlbumController extends Controller
         }
 
 //        $this->rest->paramsMustMap = array('pic_url','remark','txt_area','pic_area','is_cover');
-        $this->rest->paramsMustMap = array('pic_url');
+        $this->rest->paramsMustMap = array('items_pic');
         $this->rest->paramsMustValid($params['items'][0]);
 
 
