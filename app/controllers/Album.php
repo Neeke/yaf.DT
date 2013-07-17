@@ -86,7 +86,7 @@ class AlbumController extends Controller
         $this->db->cache_on();
         $album_id   = (int)$this->getRequest()->getParam('a', 0);
         $album_info = $this->model_album->getRow('*', $album_id);
-        $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id));
+        $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id,'flag' => contast_items::ITEMS_FLAG_YES));
         $userinfo   = $this->model->getRow('user_name,user_id', $album_info['user_id']);
 
 //
