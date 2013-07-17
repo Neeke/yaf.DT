@@ -51,7 +51,7 @@ class AlbumController extends Controller
     public function createAction()
     {
         $this->rest->method('POST');
-
+        error_reporting(-1);
         $params                    = $this->getRequest()->getPost();
         $this->rest->paramsMustMap = array('album_name', 'is_open','items','tag_ids');
         $this->rest->paramsMustValid($params);

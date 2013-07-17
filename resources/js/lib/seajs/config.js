@@ -13,11 +13,11 @@ seajs.config({
     shim: {
         plupload: {
             deps: [''],
-
             exports: 'plupload'
         }
     },
     preload: ["jquery"],
+    debug: true,
     base: '/resources/js/',
     charset: 'utf-8'
 });

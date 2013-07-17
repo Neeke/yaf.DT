@@ -7,23 +7,44 @@ define(function(require) {
     var editimage = require('app/make/editimage');
     require('rest');
 
+    var tag = require('app/make/tag');
+
     var $albumContainer;
 
-    function addItem(id) {
-        var tmpl = '<li class="js-album-item">\
-            <div class="libox">\
-                <span class="up"></span>\
-                <span class="down"></span>\
-                <div class="thumb upload-item">\
-                    <div class="upload-progress" id="progress{0}"></div>\
-                </div>\
-                <textarea class="js-remark" placeholder="可以在这里写下图片描述..."></textarea>\
-                <span class="deledtpic js_removeitem"></span>\
-                <span class="bi js_edititem"></span>\
-            </div>\
-        </li>';
+    function addItem(id, src) {
+        var tmpl;
 
-        $albumContainer.append(util.formatStr(tmpl, id));
+        if (id) {
+            tmpl = '<li class="js-album-item">\
+                <div class="libox">\
+                    <span class="up"></span>\
+                    <span class="down"></span>\
+                    <div class="thumb upload-item">\
+                        <div class="upload-progress" id="progress{0}"></div>\
+                    </div>\
+                    <textarea class="js-remark" placeholder="可以在这里写下图片描述..."></textarea>\
+                    <span class="deledtpic js_removeitem"></span>\
+                    <span class="bi js_edititem"></span>\
+                </div>\
+            </li>';
+
+            $albumContainer.append(util.formatStr(tmpl, id));
+        } else if (src) {
+            tmpl = '<li class="js-album-item">\
+                <div class="libox">\
+                    <span class="up"></span>\
+                    <span class="down"></span>\
+                    <div class="thumb upload-item">\
+                        <img class="js-uploadimg" data-src="{0}" src="{0}" alt=""/>\
+                    </div>\
+                    <textarea class="js-remark" placeholder="可以在这里写下图片描述..."></textarea>\
+                    <span class="deledtpic js_removeitem"></span>\
+                    <span class="bi js_edititem"></span>\
+                </div>\
+            </li>';
+
+            $albumContainer.append(util.formatStr(tmpl, src));
+        }
     }
 
     function initPlupload() {
@@ -66,10 +87,6 @@ define(function(require) {
                 if (r && r.result) {
                     var img = $(util.formatStr('<img class="js-uploadimg" data-src="{0}" src="{0}">', r.result));
                     $thumb.append(img);
-                    img.imageScale({
-                        width: 118,
-                        height: 86
-                    });
                 }
             }
         });
@@ -84,7 +101,7 @@ define(function(require) {
     function initEditImage() {
         $albumContainer.on('click', '.js_edititem', function() {
             editimage.show({
-                src: $(this).closest('li').find('.js-uploadimg').attr('data-src')
+                items_pic: $(this).closest('li').find('.js-uploadimg').attr('data-src')
             });
         });
     }
@@ -102,15 +119,17 @@ define(function(require) {
         });
 
         return {
-            tags: tags,
-            tag_ids: tag_ids,
+            tags: tags.join(','),
+            tag_ids: tag_ids.join(','),
             items: editimage.serialize(),
             album_name: $('#albumName').val(),
             is_open: $('input[name="is_open"]:checked').val()
         }
     }
 
-    function init(data) {
+    function init(album_id) {
+        var isUpdate = !!album_id;
+
         $albumContainer = $('#albumContainer');
 
         initPlupload();
@@ -124,7 +143,15 @@ define(function(require) {
         initEditImage();
 
         $('#submit').click(function() {
-            var rest = $.restPost('/api/album/create', serialize());
+            var rest;
+            if (isUpdate) {
+                rest = $.restPost('/api/album/modify', $.extend({
+                    album_id: album_id
+                }, serialize()));
+            } else {
+                rest = $.restPost('/api/album/create', serialize());
+            }
+
 
             rest.done(function(msg) {
                 alert(msg);
@@ -135,6 +162,33 @@ define(function(require) {
                 alert(msg || '创建失败！');
             });
         });
+
+        if (typeof album_id !== 'undefined') {
+            var rest = $.restGet('/api/album/editinit', {
+                album_id: album_id
+            });
+
+            rest.done(function(msg, data) {
+                initForm(data);
+            });
+
+            rest.fail(function(msg) {
+                alert(msg || '初始化数据出错')
+            });
+        }
+    }
+
+    function initForm(data) {
+        $.each(data.items || [], function(index, item) {
+            addItem(null, item.items_pic);
+            $('.js-remark:last').val(item.remark);
+        });
+
+        util.initForm($('#albumForm'), data);
+
+        tag.init(data.tags);
+
+        editimage.initItems(data.items);
     }
 
     return {
