@@ -170,6 +170,56 @@ define(function(require) {
             });
 
             return number;
+        },
+        initForm: function(form, data) {
+            form = $(form);
+            if (form.length) {
+                form.find("input, select, textarea").each(function(i, el) {
+                    var value = data[this.name || this.id];
+
+                    if (typeof value !== "number" && !value) {
+                        return;
+                    }
+
+                    switch ((this.type || "text").toLowerCase()) {
+                        case "text":
+                        case "password":
+                        case "hidden":
+                        case "button":
+                        case "reset":
+                        case "textarea":
+                        case "select-one":
+                        case "submit": {
+                            if(typeof value === "string") {
+                                $(this).val(value.toUpperCase() === "NULL" ? "" : value);
+                            }
+                            else {
+                                $(this).val(value + "");
+                            }
+
+                        } break;
+                        case "checkbox":
+                        case "radio": {
+                            $(this).prop("checked", false);
+                            if(value.constructor == Array) { //checkbox multiple value is Array
+                                for(var elem in value) {
+                                    if(value[elem] == $(this).val()) {
+                                        $(this).prop("checked", true);
+                                    }
+                                }
+                            } else { //radio or checkbox is a string single value
+                                if(value == $(this).val()) {
+                                    $(this).prop("checked", true);
+                                }
+                            }
+                            break;
+                        }
+                            defaults: {
+
+                            }
+                    }
+                });
+            }
         }
     };
 });

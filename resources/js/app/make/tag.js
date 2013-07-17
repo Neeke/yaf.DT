@@ -68,4 +68,14 @@ define(function(require) {
 
         fetchListenedTags();
     });
+
+    function init(tags) {
+        $.each(tags || [], function(index, item) {
+            addTag(item.tag, item.tid);
+        });
+    }
+
+    return {
+        init: init
+    }
 });
