@@ -6,7 +6,34 @@
     position: relative;
 }
 
-@media (max-width: 1980px){
+
+.albumitem {
+    width: 33%;
+}
+
+.menu {
+    width: 20%;
+}
+
+.load-main {
+    width: 80%;
+}
+
+@media (max-width: 2080px){
+    .albumitem {
+        width: 25%;
+    }
+
+    .menu {
+        width: 16%;
+    }
+
+    .load-main {
+        width: 84%;
+    }
+}
+
+@media (max-width: 1366px){
     .albumitem {
         width: 33%;
     }
@@ -35,7 +62,7 @@
 }
 
 
-@media (max-width: 760px){
+@media (max-width: 780px){
     .albumitem {
         width: 100%;
     }
@@ -51,7 +78,7 @@
 
 
 
-@media (max-width: 640px){
+@media (max-width: 480px){
     .albumitem {
         width: 100%;
     }
