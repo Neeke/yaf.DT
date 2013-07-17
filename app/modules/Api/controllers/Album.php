@@ -41,6 +41,8 @@ class AlbumController extends Controller
         parent::init();
         $this->model_album = models_album::getInstance();
         $this->model_user  = models_user::getInstance();
+        $this->model_tag = models_tag::getInstance();
+        $this->models_items = models_items::getInstance();
     }
 
     /**
@@ -48,8 +50,6 @@ class AlbumController extends Controller
      */
     public function createAction()
     {
-        $this->model_tag = models_tag::getInstance();
-
         $this->rest->method('POST');
 
         $params                    = $this->getRequest()->getPost();
@@ -112,6 +112,32 @@ class AlbumController extends Controller
         }
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '创建成功');
+    }
+
+    /**
+     * 编辑相册时初始化接口
+     */
+    public function editinitAction()
+    {
+        $this->rest->method('GET');
+        $params = $this->allParams();
+
+        $this->rest->paramsMustMap = array('album_id');
+        $this->rest->paramsMustValid($params);
+
+        $album_id = $params['album_id'];
+
+        if ((int)$album_id < 1) $this->rest->error('','api needs params album_id');
+
+        $album_info = $this->model_album->getRow(
+            array('album_id','album_name','tag_ids','album_remark','face_url','created_time','is_open'),
+            array('album_id' => $album_id,'user_id' => $this->user_id)
+        );
+
+        $album_info['items'] = $this->models_items->getItemsByAlbumId($album_id);
+        $album_info['tags'] = $this->model_tag->getTagByIds($album_info['tag_ids']);
+
+        $this->rest->success($album_info);
     }
 
     /**

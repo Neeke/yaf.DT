@@ -82,9 +82,9 @@ class models_tag extends Models
         $this->db->cache_on();
 
         if (count(explode(',',$ids)) < 2){
-            $info = $this->db->getRow('select * from '.$this->_table.' where '.$this->_primary.' = ?',array($ids));
+            $info = $this->db->getRow('select tid,tag from '.$this->_table.' where '.$this->_primary.' = ?',array($ids));
         }else{
-            $info = $this->db->getAll('select * from '.$this->_table.' where '.$this->_primary.' in ('.$ids.')');
+            $info = $this->db->getAll('select tid,tag from '.$this->_table.' where '.$this->_primary.' in ('.$ids.')');
         }
 
         $this->db->cache_off();

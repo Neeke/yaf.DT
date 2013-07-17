@@ -27,6 +27,11 @@ var api_album_create = '/api/album/create';
 method: post
 params: is_open album_name items[pic_url,remark,txt_area,pic_area,is_cover] tag_ids [tags]
 
+初始化图集（编辑）
+var api_album_editinit = '/api/album/editinit';
+method: get
+params: album_id
+
 我的相册:
 var api_album_mine = '/api/album/mine';
 method: get
