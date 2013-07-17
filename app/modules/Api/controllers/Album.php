@@ -155,7 +155,7 @@ class AlbumController extends Controller
         }
 
 //        $this->rest->paramsMustMap = array('pic_url','remark','txt_area','pic_area','is_cover');
-        $this->rest->paramsMustMap = array('items_pic','items_id');
+        $this->rest->paramsMustMap = array('items_pic');
         $this->rest->paramsMustValid($params['items'][0]);
 
         $album_id = $params['album_id'];
@@ -183,12 +183,19 @@ class AlbumController extends Controller
         $update_result = $this->model_album->update($data,array('album_id' => $album_id));
         if ($update_result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
+        $items_ids = array();
         foreach ($params['items'] as $items){
             $items['album_id'] = $album_id;
             $items['user_id'] = $this->user_id;
             $items['tag_ids'] = $params['tag_ids'];
             $_data = $this->models_items->mkdata($items);
-            $this->models_items->update($_data,array('items_id' => $items['items_id']));
+
+            if ((int)$items['items_id'] > 0){
+                $items_ids[] = (int)$items['items_id'];
+                $this->models_items->update($_data,array('items_id' => $items['items_id']));
+            }else{
+                $this->models_items->insert($_data);
+            }
 
             if (array_key_exists('is_cover',$items) && (int)$items['is_cover'] > 0){
                 $face_url = $items['items_pic'];
@@ -196,6 +203,9 @@ class AlbumController extends Controller
 
             unset($_data);
         }
+
+        $items_ids_delete = array_diff($items_ids,$this->models_items->getItemsIdsByAlbumId($album_id));
+        $this->models_items->updateItemsForDelete($items_ids_delete);
 
         if (!$face_url) $face_url = $params['items'][0]['items_pic'];
 
