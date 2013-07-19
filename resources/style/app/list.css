@@ -176,6 +176,11 @@
     padding: 0 0 0 24px;
 }
 
+.albumitem .tip a.ico02.checked {
+    background: url(/resources/style/app/images/icos/sc_ico01.gif) no-repeat left center;
+    padding: 0 0 0 24px;
+}
+
 .albumitem .tip a.ico03 {
     background: url(/resources/style/app/images/icos/see_ico01_on.gif) no-repeat left center;
     padding: 0 0 0 28px;
