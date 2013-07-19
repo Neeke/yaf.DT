@@ -54,10 +54,46 @@ class UserController extends Controller
         $this->rest->paramsMustMap = array('pwd', 'user_name');
         $this->rest->paramsMustValid($params);
 
-        $result = $this->model->login($params['user_name'],$params['pwd']);
-        if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'登录失败');
+        $result = $this->model->login($params['user_name'], $params['pwd']);
+        if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL, '登录失败');
 
         $this->rest->success();
+    }
+
+    /**
+     * 个人设置
+     */
+    public function setAction()
+    {
+        $this->rest->method('POST');
+        $params                   = $this->getRequest()->getPost();
+        $this->rest->paramsCanMap = array('email', 'pwd', 'avatar', 'gender', 'email_set');
+        $this->rest->paramsMustValid($params);
+
+        /**
+         * 更新email
+         */
+        if (array_key_exists('email',$params)){
+
+        }
+
+        if (array_key_exists('pwd',$params)){
+
+        }
+
+        if (array_key_exists('avatar',$params)){
+
+        }
+
+        if (array_key_exists('gender',$params)){
+
+        }
+
+        if (array_key_exists('email_set',$params)){
+
+        }
+
+        $this->rest->success('','','修改成功');
     }
 
     /**

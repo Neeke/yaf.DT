@@ -22,6 +22,17 @@ var api_logout = '/api/user/logout';
 method: get
 params: [nothing]
 
+初始化用户设置:
+var api_user_setinit = '/api/user/setinit';
+metod: get
+params: [nothing]
+
+用户设置:
+var api_user_set = '/api/user/set';
+method: post
+params: email pwd avatar gender
+        email_set[have_new_listen_me,have_new_listen_album,have_new_msg,have_new_album_by_tag,have_new_album_by_user]
+
 ! 创建图集
 var api_album_create = '/api/album/create';
 method: post
