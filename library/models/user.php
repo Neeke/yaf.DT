@@ -108,9 +108,8 @@ class models_user extends Models
     public function updateEmail($email)
     {
         $userinfo = $this->getUserInfo();
-        if (empty($email) || strlen($email)) return FALSE;
-
-        return $this->update(array('email' => $email),array('user_id' => $userinfo['user_id']));
+        if (empty($email) || strlen($email) < 1) return FALSE;
+        return $this->update(array('user_email' => $email),array('user_id' => $userinfo['user_id']));
     }
 
     /**
