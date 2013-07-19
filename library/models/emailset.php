@@ -25,6 +25,23 @@ class models_emailset extends Models
         $this->_primary = 'id';
     }
 
+    /**
+     * 更新数据
+     * @param $email_set
+     * @return bool
+     */
+    function updateEmailSet($email_set){
+        if (!is_array($email_set) || count($email_set) < 1) return FALSE;
+
+        $data = $this->mkdata($email_set);
+
+        if ($this->exits(array('user_id' => $email_set['user_id']))) {
+            return $this->update($data,array('user_id' => $email_set['user_id']));
+        }else{
+            return $this->insert($data);
+        }
+    }
+
     function mkdata($v)
     {
         return $data = array(

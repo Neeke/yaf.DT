@@ -99,6 +99,60 @@ class models_user extends Models
         return TRUE;
     }
 
+    /**
+     * 更新用户email
+     * @todo 邮箱变更流程 激活
+     * @param $email
+     * @return bool
+     */
+    public function updateEmail($email)
+    {
+        $userinfo = $this->getUserInfo();
+        if (empty($email) || strlen($email)) return FALSE;
+
+        return $this->update(array('email' => $email),array('user_id' => $userinfo['user_id']));
+    }
+
+    /**
+     * 更新用户密码
+     * @todo 先验证用户旧密码
+     * @param $pwd
+     * @return bool
+     */
+    public function updatePwd($pwd)
+    {
+        $userinfo = $this->getUserInfo();
+        if (empty($pwd) || strlen($pwd)) return FALSE;
+
+        return $this->update(array('pwd' => md5($pwd)),array('user_id' => $userinfo['user_id']));
+    }
+
+    /**
+     * 更新用户头像
+     * @param $avatar
+     * @return bool
+     */
+    public function updateAvatar($avatar)
+    {
+        $userinfo = $this->getUserInfo();
+        if (empty($avatar) || strlen($avatar)) return FALSE;
+
+        return $this->update(array('face_url' => $avatar),array('user_id' => $userinfo['user_id']));
+    }
+
+    /**
+     * 更新用户性别
+     * @param $gender
+     * @return bool
+     */
+    public function updateGender($gender)
+    {
+        $userinfo = $this->getUserInfo();
+        if (empty($gender) || (int)$gender < 1) return FALSE;
+
+        return $this->update(array('gender' => (int)$gender),array('user_id' => $userinfo['user_id']));
+    }
+
     public function mkdata($v)
     {
         return array(

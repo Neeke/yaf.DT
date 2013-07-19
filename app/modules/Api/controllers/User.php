@@ -10,10 +10,16 @@ class UserController extends Controller
      */
     public $model;
 
+    /**
+     * @var models_emailset
+     */
+    private $model_email_set;
+
     public function init()
     {
         parent::init();
-        $this->model = models_user::getInstance();
+        $this->model           = models_user::getInstance();
+        $this->model_email_set = models_emailset::getInstance();
     }
 
     /**
@@ -73,27 +79,38 @@ class UserController extends Controller
         /**
          * 更新email
          */
-        if (array_key_exists('email',$params)){
-
+        if (array_key_exists('email', $params)) {
+            $email = $this->getRequest()->getParam('email',0);
+            $result = $this->model->updateEmail($email);
+            if (!$result) $this->rest->error('','email更新出现错误');
         }
 
-        if (array_key_exists('pwd',$params)){
-
+        if (array_key_exists('pwd', $params)) {
+            $pwd = $this->getRequest()->getParam('pwd',0);
+            $result = $this->model->updatePwd($pwd);
+            if (!$result) $this->rest->error('','密码更新出现错误');
         }
 
-        if (array_key_exists('avatar',$params)){
-
+        if (array_key_exists('avatar', $params)) {
+            $avatar = $this->getRequest()->getParam('avatar',0);
+            $result = $this->model->updateAvatar($avatar);
+            if (!$result) $this->rest->error('','头像更新出现错误');
         }
 
-        if (array_key_exists('gender',$params)){
-
+        if (array_key_exists('gender', $params)) {
+            $gender = $this->getRequest()->getParam('gender',contast_user::GENDER_MAN);
+            $result = $this->model->updateGender($gender);
+            if (!$result) $this->rest->error('','性别更新出现错误');
         }
 
-        if (array_key_exists('email_set',$params)){
-
+        if (array_key_exists('email_set', $params)) {
+            $email_set = $this->getRequest()->getParam('email_set',0);
+            $email_set['user_id'] = $this->user_id;
+            $result = $this->model_email_set->updateEmailSet($email_set);
+            if (!$result) $this->rest->error('','邮件设置更新出现错误');
         }
 
-        $this->rest->success('','','修改成功');
+        $this->rest->success('', '', '修改成功');
     }
 
     /**
