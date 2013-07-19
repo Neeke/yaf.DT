@@ -1030,6 +1030,19 @@
 }
 
 /*个人设置**/
+
+.item-edit {
+    display: none;
+}
+
+.editing .item-edit {
+    display: block;
+}
+
+.editing .item-display {
+    display: none;
+}
+
 .s_left {
     color: #fff;
     float: left;
