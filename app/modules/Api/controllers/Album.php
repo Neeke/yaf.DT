@@ -36,13 +36,19 @@ class AlbumController extends Controller
      */
     private $model_tag = NULL;
 
+    /**
+     * @var models_replyalbum
+     */
+    private $models_album_replay = NULL;
+
     public function init()
     {
         parent::init();
-        $this->model_album = models_album::getInstance();
-        $this->model_user  = models_user::getInstance();
-        $this->model_tag = models_tag::getInstance();
-        $this->models_items = models_items::getInstance();
+        $this->model_album         = models_album::getInstance();
+        $this->model_user          = models_user::getInstance();
+        $this->model_tag           = models_tag::getInstance();
+        $this->models_items        = models_items::getInstance();
+        $this->models_album_replay = models_replyalbum::getInstance();
     }
 
     /**
@@ -52,10 +58,10 @@ class AlbumController extends Controller
     {
         $this->rest->method('POST');
         $params                    = $this->getRequest()->getPost();
-        $this->rest->paramsMustMap = array('album_name', 'is_open','items','tag_ids');
+        $this->rest->paramsMustMap = array('album_name', 'is_open', 'items', 'tag_ids');
         $this->rest->paramsMustValid($params);
 
-        if (!is_array($params['items']) || count($params['items']) < 1){
+        if (!is_array($params['items']) || count($params['items']) < 1) {
             $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_MUST);
         }
 
@@ -76,27 +82,27 @@ class AlbumController extends Controller
         /**
          * 创建自定标签
          */
-        if (array_key_exists('tags',$params) && strlen($params['tags']) > 0){
-            $tag_ids = $this->model_tag->insertBatch($params['tags']);
-            $_tags = explode(',',$params['tag_ids']);
-            $_tag_ids = $tag_ids + $_tags;
-            $params['tag_ids'] = implode(',',$_tag_ids);
+        if (array_key_exists('tags', $params) && strlen($params['tags']) > 0) {
+            $tag_ids           = $this->model_tag->insertBatch($params['tags']);
+            $_tags             = explode(',', $params['tag_ids']);
+            $_tag_ids          = $tag_ids + $_tags;
+            $params['tag_ids'] = implode(',', $_tag_ids);
         }
 
-        $data   = $this->model_album->mkdata($params);
+        $data     = $this->model_album->mkdata($params);
         $album_id = $this->model_album->insert($data);
         if ($album_id == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
         $this->model_user->addalbum();
 
-        foreach ($params['items'] as $items){
+        foreach ($params['items'] as $items) {
             $items['album_id'] = $album_id;
-            $items['user_id'] = $this->user_id;
-            $items['tag_ids'] = $params['tag_ids'];
-            $_data = $this->models_items->mkdata($items);
+            $items['user_id']  = $this->user_id;
+            $items['tag_ids']  = $params['tag_ids'];
+            $_data             = $this->models_items->mkdata($items);
             $this->models_items->insert($_data);
 
-            if (array_key_exists('is_cover',$items) && (int)$items['is_cover'] > 0){
+            if (array_key_exists('is_cover', $items) && (int)$items['is_cover'] > 0) {
                 $face_url = $items['items_pic'];
             }
 
@@ -105,8 +111,8 @@ class AlbumController extends Controller
 
         if (!$face_url) $face_url = $params['items'][0]['items_pic'];
 
-        if ($face_url){
-            $this->model_album->updateCover($face_url,$album_id);
+        if ($face_url) {
+            $this->model_album->updateCover($face_url, $album_id);
         }
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '创建成功');
@@ -125,15 +131,15 @@ class AlbumController extends Controller
 
         $album_id = $params['album_id'];
 
-        if ((int)$album_id < 1) $this->rest->error('','api needs params album_id');
+        if ((int)$album_id < 1) $this->rest->error('', 'api needs params album_id');
 
         $album_info = $this->model_album->getRow(
-            array('album_id','album_name','tag_ids','album_remark','face_url','created_time','is_open'),
-            array('album_id' => $album_id,'user_id' => $this->user_id)
+            array('album_id', 'album_name', 'tag_ids', 'album_remark', 'face_url', 'created_time', 'is_open'),
+            array('album_id' => $album_id, 'user_id' => $this->user_id)
         );
 
         $album_info['items'] = $this->models_items->getItemsByAlbumId($album_id);
-        $album_info['tags'] = $this->model_tag->getTagByIds($album_info['tag_ids']);
+        $album_info['tags']  = $this->model_tag->getTagByIds($album_info['tag_ids']);
 
         $this->rest->success($album_info);
     }
@@ -146,10 +152,10 @@ class AlbumController extends Controller
         $this->rest->method('POST');
 
         $params                    = $this->getRequest()->getPost();
-        $this->rest->paramsMustMap = array('album_name', 'is_open','items','tag_ids','album_id');
+        $this->rest->paramsMustMap = array('album_name', 'is_open', 'items', 'tag_ids', 'album_id');
         $this->rest->paramsMustValid($params);
 
-        if (!is_array($params['items']) || count($params['items']) < 1){
+        if (!is_array($params['items']) || count($params['items']) < 1) {
             $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_MUST);
         }
 
@@ -173,46 +179,46 @@ class AlbumController extends Controller
          * 创建自定标签
          */
         $tag_ids = array();
-        if (array_key_exists('tags',$params) && strlen($params['tags']) > 0){
+        if (array_key_exists('tags', $params) && strlen($params['tags']) > 0) {
             $tag_ids = $this->model_tag->insertBatch($params['tags']);
         }
 
-        $_tags = explode(',',$params['tag_ids']);
-        $_tag_ids = $tag_ids + $_tags;
-        $params['tag_ids'] = implode(',',$_tag_ids);
+        $_tags             = explode(',', $params['tag_ids']);
+        $_tag_ids          = $tag_ids + $_tags;
+        $params['tag_ids'] = implode(',', $_tag_ids);
 
-        $data   = $this->model_album->mkdata($params);
-        $update_result = $this->model_album->update($data,array('album_id' => $album_id));
+        $data          = $this->model_album->mkdata($params);
+        $update_result = $this->model_album->update($data, array('album_id' => $album_id));
         if ($update_result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
         $items_ids = array();
-        foreach ($params['items'] as $items){
+        foreach ($params['items'] as $items) {
             $items['album_id'] = $album_id;
-            $items['user_id'] = $this->user_id;
-            $items['tag_ids'] = $params['tag_ids'];
-            $_data = $this->models_items->mkdata($items);
+            $items['user_id']  = $this->user_id;
+            $items['tag_ids']  = $params['tag_ids'];
+            $_data             = $this->models_items->mkdata($items);
 
-            if ((int)$items['items_id'] > 0){
+            if ((int)$items['items_id'] > 0) {
                 $items_ids[] = (int)$items['items_id'];
-                $this->models_items->update($_data,array('items_id' => $items['items_id']));
-            }else{
+                $this->models_items->update($_data, array('items_id' => $items['items_id']));
+            } else {
                 $this->models_items->insert($_data);
             }
 
-            if (array_key_exists('is_cover',$items) && (int)$items['is_cover'] > 0){
+            if (array_key_exists('is_cover', $items) && (int)$items['is_cover'] > 0) {
                 $face_url = $items['items_pic'];
             }
 
             unset($_data);
         }
 
-        $items_ids_delete = array_diff($items_ids,$this->models_items->getItemsIdsByAlbumId($album_id));
+        $items_ids_delete = array_diff($items_ids, $this->models_items->getItemsIdsByAlbumId($album_id));
         $this->models_items->updateItemsForDelete($items_ids_delete);
 
         if (!$face_url) $face_url = $params['items'][0]['items_pic'];
 
-        if ($face_url){
-            $this->model_album->updateCover($face_url,$album_id);
+        if ($face_url) {
+            $this->model_album->updateCover($face_url, $album_id);
         }
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '编辑完成');
@@ -231,8 +237,8 @@ class AlbumController extends Controller
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL);
         }
 
-        $start = $this->getRequest()->getParam('start',0);
-        $limit = $this->getRequest()->getParam('limit',contast_album::PAGE_SIZE_DEFAULT);
+        $start = $this->getRequest()->getParam('start', 0);
+        $limit = $this->getRequest()->getParam('limit', contast_album::PAGE_SIZE_DEFAULT);
 
         $this->mkData->setOffset($start, $limit);
         $this->mkData->config(count($data), 'album_id');
@@ -247,7 +253,7 @@ class AlbumController extends Controller
     public function collectionAction()
     {
         $this->check->method('POST');
-        $params                    = $this->getRequest()->getPost();
+        $params                     = $this->getRequest()->getPost();
         $this->check->paramsMustMap = array('items_id', 'album_id');
         $this->check->paramsMustValid($params);
 
@@ -306,13 +312,49 @@ class AlbumController extends Controller
     public function listenedAction()
     {
         $this->models_albumListen = models_albumListen::getInstance();
-        $albums = $this->models_albumListen->myListenedAlbum();
+        $albums                   = $this->models_albumListen->myListenedAlbum();
 
-        if (!is_array($albums) || count($albums) < 1){
+        if (!is_array($albums) || count($albums) < 1) {
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL);
         }
 
         $this->rest->success($albums);
+    }
+
+    /**
+     * 评论相册
+     */
+    public function replyAction()
+    {
+        $this->rest->method('POST');
+        $params                    = $this->allParams();
+        $this->rest->paramsMustMap = array('album_id', 'content');
+        $this->rest->paramsMustValid($params);
+
+        $params['user_id_from'] = $this->user_id;
+        $data                   = $this->models_album_replay->mkdata($params);
+        $back                   = $this->models_album_replay->insert($data);
+        if ($back > 1) {
+            $this->rest->success('', rest_Code::STATUS_SUCCESS, '评论成功');
+        }
+    }
+
+    /**
+     * 取得评论列表
+     * @todo start limit
+     */
+    public function replylistAction()
+    {
+        $this->rest->method('GET');
+        $params                    = $this->allParams();
+        $this->rest->paramsMustMap = array('album_id');
+        $this->rest->paramsMustValid($params);
+
+        $info = $this->models_album_replay->getAllByAlbumId($params['album_id']);
+        $this->mkData->setOffset(0, 5);
+        $this->mkData->config(count($info), 'reply_id');
+        $data = $this->mkData->make($info);
+        $this->rest->success($data);
     }
 
     /**
