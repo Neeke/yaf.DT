@@ -27,6 +27,11 @@ var api_user_setinit = '/api/user/setinit';
 metod: get
 params: [nothing]
 
+初始化用户设置:
+var api_user_setinit = '/api/user/setinit';
+method: get
+params: [nothing]
+
 用户设置:
 var api_user_set = '/api/user/set';
 method: post

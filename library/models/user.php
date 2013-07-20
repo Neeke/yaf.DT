@@ -57,6 +57,18 @@ class models_user extends Models
     }
 
     /**
+     * 返回用户的完整信息
+     * @return array|bool
+     */
+    public function getUserInfoAll()
+    {
+        $userinfo = $this->getUserInfo();
+        if ($userinfo == FALSE) return FALSE;
+
+        return $this->getRow('*',$userinfo['user_id']);
+    }
+
+    /**
      * 登录
      * @todo     非法检测 非空检测
      *

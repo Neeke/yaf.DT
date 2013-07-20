@@ -21,7 +21,7 @@ class models_emailset extends Models
     function __construct()
     {
         parent::__construct();
-        $this->_table = 'avi_email_set';
+        $this->_table   = 'avi_email_set';
         $this->_primary = 'id';
     }
 
@@ -30,27 +30,44 @@ class models_emailset extends Models
      * @param $email_set
      * @return bool
      */
-    function updateEmailSet($email_set){
+    function updateEmailSet($email_set)
+    {
         if (!is_array($email_set) || count($email_set) < 1) return FALSE;
 
         $data = $this->mkdata($email_set);
 
         if ($this->exits(array('user_id' => $email_set['user_id']))) {
-            return $this->update($data,array('user_id' => $email_set['user_id']));
-        }else{
+            return $this->update($data, array('user_id' => $email_set['user_id']));
+        } else {
             return $this->insert($data);
         }
     }
 
-    function mkdata($v)
+    /**
+     * 取得邮件设置
+     * @param $user_id
+     * @return array
+     */
+    function getEmailSet($user_id)
+    {
+        if ((int)$user_id < 1) return $this->mkdata();
+
+        $set_info = $this->getRow('*',array('user_id' => $user_id));
+
+        if (!is_array($set_info) || count($set_info) < 1) return $this->mkdata();
+
+        return $set_info;
+    }
+
+    function mkdata($v = array())
     {
         return $data = array(
-            'user_id' => $v['user_id'],
-            'have_new_listen_me' => $v['have_new_listen_me'],
-            'have_new_listen_album' => $v['have_new_listen_album'],
-            'have_new_msg' => $v['have_new_msg'],
-            'have_new_album_by_tag' => $v['have_new_album_by_tag'],
-            'have_new_album_by_user' => $v['have_new_album_by_user']
+            'user_id'                => (int)$v['user_id'],
+            'have_new_listen_me'     => (int)$v['have_new_listen_me'],
+            'have_new_listen_album'  => (int)$v['have_new_listen_album'],
+            'have_new_msg'           => (int)$v['have_new_msg'],
+            'have_new_album_by_tag'  => (int)$v['have_new_album_by_tag'],
+            'have_new_album_by_user' => (int)$v['have_new_album_by_user']
         );
     }
 }

@@ -67,6 +67,27 @@ class UserController extends Controller
     }
 
     /**
+     * 初始化个人设置信息
+     */
+    public function setinitAction()
+    {
+        $this->rest->method('GET');
+
+        $data = array();
+        $info = $this->model->getUserInfoAll();
+        if (!is_array($info) || count($info) < 1) $this->rest->error();
+
+        $data['email'] = $info['user_email'];
+        $data['username'] = $info['user_name'];
+        $data['avatar'] = $info['face_url'];
+        $data['gender'] = $info['gender'];
+
+        $data['email_set'] = $this->model_email_set->getEmailSet($this->user_id);
+
+        $this->rest->success($data);
+    }
+
+    /**
      * 个人设置
      */
     public function setAction()
