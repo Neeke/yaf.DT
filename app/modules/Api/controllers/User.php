@@ -67,6 +67,27 @@ class UserController extends Controller
     }
 
     /**
+     * 初始化个人设置信息
+     */
+    public function setinitAction()
+    {
+        $this->rest->method('GET');
+
+        $data = array();
+        $info = $this->model->getUserInfoAll();
+        if (!is_array($info) || count($info) < 1) $this->rest->error();
+
+        $data['email'] = $info['user_email'];
+        $data['username'] = $info['user_name'];
+        $data['avatar'] = $info['face_url'];
+        $data['gender'] = $info['gender'];
+
+        $data['email_set'] = $this->model_email_set->getEmailSet($this->user_id);
+
+        $this->rest->success($data);
+    }
+
+    /**
      * 个人设置
      */
     public function setAction()
@@ -80,31 +101,31 @@ class UserController extends Controller
          * 更新email
          */
         if (array_key_exists('email', $params)) {
-            $email = $this->getRequest()->getParam('email',0);
+            $email = $this->getRequest()->getPost('email',0);
             $result = $this->model->updateEmail($email);
             if (!$result) $this->rest->error('','email更新出现错误');
         }
 
         if (array_key_exists('pwd', $params)) {
-            $pwd = $this->getRequest()->getParam('pwd',0);
+            $pwd = $this->getRequest()->getPost('pwd',0);
             $result = $this->model->updatePwd($pwd);
             if (!$result) $this->rest->error('','密码更新出现错误');
         }
 
         if (array_key_exists('avatar', $params)) {
-            $avatar = $this->getRequest()->getParam('avatar',0);
+            $avatar = $this->getRequest()->getPost('avatar',0);
             $result = $this->model->updateAvatar($avatar);
             if (!$result) $this->rest->error('','头像更新出现错误');
         }
 
         if (array_key_exists('gender', $params)) {
-            $gender = $this->getRequest()->getParam('gender',contast_user::GENDER_MAN);
+            $gender = $this->getRequest()->getPost('gender',contast_user::GENDER_MAN);
             $result = $this->model->updateGender($gender);
             if (!$result) $this->rest->error('','性别更新出现错误');
         }
 
         if (array_key_exists('email_set', $params)) {
-            $email_set = $this->getRequest()->getParam('email_set',0);
+            $email_set = $this->getRequest()->getPost('email_set',0);
             $email_set['user_id'] = $this->user_id;
             $result = $this->model_email_set->updateEmailSet($email_set);
             if (!$result) $this->rest->error('','邮件设置更新出现错误');
