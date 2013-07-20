@@ -42,51 +42,53 @@
                     <br/>
                     <img src="/resources/images/avatar_default.jpg" width="90" height="90" />
                 </span>
-                <a href="#">[修改]</a>
+                <a href="javascript:;" id="updateAvatarBtn">[修改]</a>
             </div>
             <div class="sx">
                 <div class="sx_left">
                     <ul>
                         <li>
-                            <a href="javascript:;" id="changepassword">修改密码</a>
+                            <a href="javascript:;" id="updatePasswordBtn">修改密码</a>
                         </li>
                         <li>
                             <a href="#">邮箱设置</a>
                         </li>
                     </ul>
                 </div>
-                <div class="sx_right">
-                    <div class="sx_t01">
-                        <span>当前密码：</span>
+                <div class="sx_right" id="updatePassword">
+                    <form action="" id="updatePasswordForm">
+                        <div class="sx_t01">
+                            <span>当前密码：</span>
                         <span>
-                            <input type="text" name="textfield" id="textfield" class="int001" />
+                            <input type="password" name="pwd[old]" id="oldPwd" class="int001" />
                         </span>
-                    </div>
-                    <div class="sx_t01">
-                        <span>新的密码：</span>
+                        </div>
+                        <div class="sx_t01">
+                            <span>新的密码：</span>
                         <span>
-                            <input type="text" name="textfield" id="textfield" class="int001" />
+                            <input type="password" name="pwd[new]" id="newPwd" class="int001" />
                         </span>
-                    </div>
-                    <div class="sx_t01">
-                        <span>重复密码：</span>
+                        </div>
+                        <div class="sx_t01">
+                            <span>重复密码：</span>
                         <span>
-                            <input type="text" name="textfield" id="textfield" class="int001" />
+                            <input type="password" name="pwd[repeat]" id="newPwdRepeat" class="int001" />
                         </span>
-                    </div>
-                    <div class="sx_t01 sx_t02">
+                        </div>
+                        <div class="sx_t01 sx_t02">
                         <span>
-                            <input type="image" src="images/baocun.png" width="80" height="23" name="button" id="button" value="" />
+                            <input type="image" src="/resources/images/userinfo_save_pwd.png" width="80" height="23" name="" id="savePwdBtn" value="" />
                         </span>
                         <span class="sx_span">
-                            <input type="image" src="images/quxiao.png" width="50" height="23" name="button" id="button" value="" />
+                            <input type="image" src="/resources/images/userinfo_cancel.png" width="50" height="23" name="" id="cancelBtn" value="" />
                         </span>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="clear"></div>
         </div>
-        <div class="qqBox">
+        <!--<div class="qqBox">
             <a href="javascript:;" class="close"></a>
             <div class="cen_k1">
                 <div class="cen_z1">
@@ -110,12 +112,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 
 <script type="text/javascript">
     seajs.use('app/user/set');
 </script>
 
+<?php include_once('wincontent_avatar.phtml')?>
 
 <?php include_once(VIEW_PATH.'/layout/footer.phtml')?>
