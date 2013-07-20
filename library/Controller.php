@@ -67,6 +67,8 @@ class Controller extends Yaf_Controller_Abstract
         $this->modified = rest_Modified::instance();
         $this->session  = Yaf_Session::getInstance();
         $this->mkData   = rest_Mkdata::instance();
+
+        $this->setConfig();
     }
 
     /**
@@ -139,6 +141,15 @@ class Controller extends Yaf_Controller_Abstract
     public function set($key, $val = '')
     {
         $this->getView()->assign($key, $val);
+    }
+
+    /**
+     * @param $config
+     */
+    public function setConfig($config = array())
+    {
+        $config_ = array_merge($config,$this->userinfo);
+        $this->set('config',$config_);
     }
 
 

@@ -135,6 +135,12 @@ method: post
 params: feed_id
 
 
+feed已譸:
+var api_sms_detail = '/api/sms/detail';
+method: get
+params: feed_id
+
+
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';

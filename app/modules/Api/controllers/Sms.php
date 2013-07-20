@@ -11,10 +11,16 @@ class SmsController extends Controller
      */
     private $model_sms_feed;
 
+    /**
+     * @var models_msg
+     */
+    private $model_msg;
+
     public function init()
     {
         parent::init();
         $this->model_sms_feed = models_smsfeed::getInstance();
+        $this->model_msg      = models_msg::getInstance();
     }
 
     /**
@@ -27,8 +33,8 @@ class SmsController extends Controller
 
         $info = $this->model_sms_feed->myFeed($this->user_id);
 
-        $this->mkData->setOffset(0,5);
-        $this->mkData->config(count($info),'feed_id');
+        $this->mkData->setOffset(0, 5);
+        $this->mkData->config(count($info), 'feed_id');
         $data = $this->mkData->make($info);
         $this->rest->success($data);
     }
@@ -43,13 +49,33 @@ class SmsController extends Controller
         $params = $this->allParams();
 
         $this->rest->paramsMustMap = array('feed_id');
-        $this->rest->paramsCanValid($params);
+        $this->rest->paramsMustValid($params);
 
         $info = $this->model_sms_feed->readFeed($params['feed_id']);
 
-        if ($info == false) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
+        if ($info == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
 
-        $this->rest->success('','');
+        $this->rest->success();
+    }
+
+    /**
+     * feed詳情
+     * @todo
+     */
+    public function detailAction()
+    {
+        $this->rest->method('GET');
+
+        $params = $this->allParams();
+
+        $this->rest->paramsMustMap = array('feed_id');
+        $this->rest->paramsMustValid($params);
+
+        $info = $this->model_msg->getMsgsByFeedid($this->user_id,$params['feed_id']);
+        $this->mkData->setOffset(0, 5);
+        $this->mkData->config(count($info), 'msg_id');
+        $data = $this->mkData->make($info);
+        $this->rest->success($data);
     }
 
     /**
