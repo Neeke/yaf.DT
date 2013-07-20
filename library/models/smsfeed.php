@@ -50,6 +50,21 @@ class models_smsfeed extends Models
         return $info;
     }
 
+    /**
+     * feed read
+     * @param $feed_id
+     * @return bool
+     *
+     * @todo read const
+     */
+    function readFeed($feed_id)
+    {
+        $userinfo = models_user::getInstance()->getUserInfo();
+        $user_id  = (int)$userinfo['user_id'];
+
+        return $this->update(array('read' => 1),array('feed_id' => $feed_id,'user_id_to' => $user_id));
+    }
+
     function mkdata($v)
     {
         return $data = array(
@@ -58,7 +73,7 @@ class models_smsfeed extends Models
             'update_time'  => time(),
             'msg_count'    => 0,
             'content'      => $v['content'],
-            'readed'       => 0,
+            'read'         => 0,
             'type'         => 0,
         );
     }

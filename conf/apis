@@ -128,6 +128,13 @@ feed列表：
 var api_sms_feed = '/api/sms/feed';
 method: get
 params: start limit
+
+feed已譸:
+var api_sms_feed_read = '/api/sms/readfeed';
+method: post
+params: feed_id
+
+
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';

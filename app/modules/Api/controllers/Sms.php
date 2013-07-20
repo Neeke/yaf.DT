@@ -34,6 +34,25 @@ class SmsController extends Controller
     }
 
     /**
+     *已读feed
+     */
+    public function readfeedAction()
+    {
+        $this->rest->method('POST');
+
+        $params = $this->allParams();
+
+        $this->rest->paramsMustMap = array('feed_id');
+        $this->rest->paramsCanValid($params);
+
+        $info = $this->model_sms_feed->readFeed($params['feed_id']);
+
+        if ($info == false) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
+
+        $this->rest->success('','');
+    }
+
+    /**
      *发送短消息
      */
     public function sendAction()
