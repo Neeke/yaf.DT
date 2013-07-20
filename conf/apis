@@ -140,6 +140,15 @@ var api_sms_detail = '/api/sms/detail';
 method: get
 params: feed_id
 
+评论相册：
+var api_album_replay = '/api/album/reply';
+method: post
+params: album_id content [reply_id]
+
+相册评论列表：
+var api_album_replay_list = '/api/album/replylist';
+method: get
+params: album_id [start] [limit]
 
 ----------------------
 找回密码：
