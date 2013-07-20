@@ -113,6 +113,21 @@ params: [user_id]
 var api_tag_search = '/api/tag/search';
 method: get
 params: tag_name
+
+发送短消息(回复)：
+var api_sms_send = '/api/sms/send';
+method: post
+params: sms to_user_id [from_user_id]
+
+短消息列表：
+var api_sms_show = '/api/sms/show';
+method: get
+params: page user_id
+
+feed列表：
+var api_sms_feed = '/api/sms/feed';
+method: get
+params: start limit
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';
@@ -164,16 +179,6 @@ params: page [user_id]
 var api_friends_cancel = '/api/friends/cancel';
 method: post
 params: user_id [from_user_id]
-
-发送短消息(回复)：
-var api_sms_send = '/api/sms/send';
-method: post
-params: sms to_user_id [from_user_id]
-
-短消息列表：
-var api_sms_show = '/api/sms/show';
-method: get
-params: page user_id
 
 删除短消息：
 var api_sms_del = '/api/sms/del';
