@@ -1,0 +1,53 @@
+<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
+<div class="page_title2">
+    <a href="/">&lt;&lt;返回首页</a>
+    <h2>消息</h2>
+</div>
+
+<div class="messgelist">
+    <ul id="list">
+    </ul>
+    <input type="button" class="towrite" value="写私信">
+    <div class="send-message">
+        <a href="javascript:;" class="close"></a>
+        <h3>发送私信</h3>
+        <form name="" action="">
+            <table width="355" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td align="left" width="40">发给：</td>
+                    <td align="left"><input name="" type="text" class="input_txt" value="搜索用户" onfocus="if (value =='搜索用户'){value =''}" onblur="if (value ==''){value='搜索用户'}"></td>
+                </tr>
+                <tr>
+                    <td align="left">内容：</td>
+                    <td align="left"><textarea name="" cols="" rows=""></textarea></td>
+                </tr>
+                <tr>
+                    <td align="right" colspan="2">
+                        <input name="" type="submit" value="提交" class="button">
+                        <input name="" type="reset" value="取消" class="button">
+                    </td>
+                </tr>
+                </tbody></table>
+        </form>
+    </div>
+    <!--<div class="page">
+        <a href="#">上一页</a>
+        <a href="#" class="on">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        ...
+        <a href="#">6</a>
+        <a href="#">下一页</a>
+    </div>-->
+    <div id="pageinfo" class="page"></div>
+</div>
+<?php include_once('tpl_message.phtml') ?>
+<?php include_once('tpl_detail.phtml') ?>
+
+<script type="text/javascript">
+    seajs.use('app/message/index');
+</script>
+
+<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
