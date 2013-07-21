@@ -1,10 +1,17 @@
 define(function(require) {
+    var talk = require('app/common/talk');
     require('rest');
 
     function initEvts() {
         $('#albumList').on('click', '.js-collect', function(e) {
             var $el = $(this);
             collect($el.closest('.albumitem').attr('data-albumid'), $el);
+        });
+
+        $('#albumList').on('click', '.js-replay', function() {
+            talk.showTalk('/api/album/replylist', '评论', {
+                album_id: $(this).closest('.albumitem').attr('data-albumid')
+            });
         });
     }
 
