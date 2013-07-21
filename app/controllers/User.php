@@ -18,13 +18,13 @@ class UserController extends Controller
         $this->model_album = models_album::getInstance();
     }
 
+    /**
+     * 个人设置
+     */
     public function setAction()
     {
-        $user_id = (int)$this->getRequest()->getParam('u', 0);
-
-        $this->set('userinfo_all', $this->model->getRow('*', $user_id));
+        $this->set('userinfo_all', $this->model->getUserInfoAll());
         $this->set('albums', $this->model_album->myAlbum());
-
     }
 
 
