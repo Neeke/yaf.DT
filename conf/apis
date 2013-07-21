@@ -155,6 +155,15 @@ var api_album_replay_list = '/api/album/replylist';
 method: get
 params: album_id [start] [limit]
 
+头像upload接口：
+var api_avatar_upload = '/api/avatar/upload';
+method: post
+params: userfile [user_id]
+
+头像保存接口：
+var api_avatar_create = '/api/avatar/create';
+method: post
+params: x y w h avatar_url
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';
