@@ -26,7 +26,7 @@ class models_smsfeed extends Models
     }
 
     /**
-     * 当前用户名下的专辑
+     * 当前用户名下的feed列表
      * @param int $user_id
      * @param int $start
      * @param int $limit

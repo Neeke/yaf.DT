@@ -49,6 +49,28 @@ class models_albumListen extends Models
         return $this->db->getAll($sql,array($user_id));
     }
 
+    /**
+     * 当前用户订阅的专辑 ids
+     * @param $user_id
+     * @return array
+     */
+    function myListenedAlbumIds($user_id = 0)
+    {
+        $this->db->cache_on(3600);
+        if ((int)$user_id < 1) {
+            $userinfo = models_user::getInstance()->getUserInfo();
+            $user_id = (int)$userinfo['user_id'];
+        }
+
+        $result = $this->getAll('album_id',array('user_id' => $user_id));
+        if (!is_array($result) || count($result) < 1) return array();
+
+        foreach ($result as $v) {
+            $ids[] = $v['album_id'];
+        }
+        return $ids;
+    }
+
     function mkdata($v)
     {
         return $data = array(

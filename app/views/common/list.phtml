@@ -4,11 +4,11 @@
             <?php foreach($myalbums as $album_info){?>
                 <li class="albumitem" data-albumid="<?php echo $album_info['album_id'];?>">
                     <div class="albumitem-wrap">
-                        <div class="pic">
-                            <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
+                        <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
+                            <div class="pic">
                                 <img src="<?php echo $album_info['face_url'];?>">
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                         <div class="pic-info">
                             <dl>
                                 <dt><?php echo $album_info['album_name'];?></dt>
@@ -20,7 +20,7 @@
                         </div>
                         <div class="tip">
                             <a href="javascript:;" class="ico01 js-detail"><?php echo (int)$album_info['hits'];?></a>
-                            <a href="javascript:;" class="ico02 js-collect"><?php echo (int)$album_info['likeit'];?></a>
+                            <a href="javascript:;" class="ico02 js-collect <?php if (isset($listened_album_ids) && in_array($album_info['album_id'],$listened_album_ids)) echo 'checked';?>"><?php echo (int)$album_info['likeit'];?></a>
                             <a href="javascript:;" class="ico03 js-replay"><?php echo (int)$album_info['posts'];?></a>
                             <?php if ($user_id == $album_info['user_id']){
                                 ?>

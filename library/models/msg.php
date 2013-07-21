@@ -41,7 +41,12 @@ class models_msg extends Models
             $userinfo = models_user::getInstance()->getUserInfo();
             $user_id  = (int)$userinfo['user_id'];
         }
-        $info = $this->getAll('*', array('user_id_to' => $user_id,'feed_id' => $feed_id), '', $start, $limit);
+        $info = $this->getAll('*', array('feed_id' => $feed_id), '', $start, $limit);
+
+        if (!is_array($info) || count($info) < 1) return false;
+
+        if ($info[0]['user_id_from'] != $user_id && $info[0]['user_id_to'] != $user_id) return false;
+
         foreach ($info as $k => $v) {
             $v['avatar']     = '/static/images/photo01.gif';
             $v['source_url'] = helper_common::site_url_user($v['user_id_from']);
