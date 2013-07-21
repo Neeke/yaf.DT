@@ -62,6 +62,20 @@ define(function(require) {
             }
         });
 
+        $(document).on('click', '.js-removetag', function() {
+            var item = $(this).closest('.tags-item');
+            var text = item.text();
+
+            tags = $.grep(tags, function(e, i) {
+                if (e === text) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            item.remove();
+        });
+
         $suggestTags.on('click', 'a', function() {
             addTag($(this).attr('data-name'), $(this).attr('data-tid'));
         });
