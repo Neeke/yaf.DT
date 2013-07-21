@@ -36,7 +36,7 @@ define(function(require) {
     function detail(id, title) {
         var win = new DK.Window({
             title: title,
-            width: 580,
+            width: 600,
             height: 500
         });
 
@@ -47,8 +47,17 @@ define(function(require) {
         });
 
         rest.done(function(msg, data) {
+            preprocess(data.rows);
             var html = doT.template(tplDetail) (data);
             win.setHtml(html);
+        });
+    }
+
+    function preprocess(data) {
+        $.each(data || [], function(i, e) {
+            if (e.cells.user_id_from == $CONFIG.user_id) {
+                e.cells.others = true;
+            }
         });
     }
 
