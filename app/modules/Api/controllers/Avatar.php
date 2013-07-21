@@ -28,7 +28,7 @@ class AvatarController extends Controller
 //        $this->rest->paramsMustMap = array('file');
 //        $this->rest->paramsMustValid($params);
 
-        $config['upload_path']   = './uploads/';
+        $config['upload_path']   = './uploads/tem/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size']      = '1024';
         $config['max_width']     = '3000';
