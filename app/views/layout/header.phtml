@@ -16,24 +16,25 @@
         echo '{}';
     } ?>
 </script>
-
-<div class="wrap">
-    <div class="box">
-        <div class="main">
-            <header class="header">
-                <a href="/" class="header_logo"><?php echo $title;?></a>
-                <div class="header-user">
-                    <?php echo spall_user::avatar($user_id,25,'','class="picture"');?>
-                    <div class="header-tips">
-                        <span class="user-name">bcsmc</span>
-                        <a class="tip01" href="/message">10</a>
-                        <div class="tip02">
-                            <a href="/message" class="ico01">消息<span>10</span></a>
-                            <a href="<?php echo helper_common::site_url('user/set');?>" class="ico02">设置</a>
-                            <a href="javascript:;" class="ico03">退出</a>
-                        </div>
+<header class="header">
+    <div class="center-ctnr">
+        <div class="container">
+            <a href="/" class="header-logo"><?php echo $title;?></a>
+            <div class="header-user">
+                <?php echo spall_user::avatar($user_id,25,'','class="picture"');?>
+                <div class="header-tips">
+                    <span class="user-name">bcsmc</span>
+                    <a class="tip01" href="/message">10</a>
+                    <div class="tip02">
+                        <a href="/message" class="ico01">消息<span>10</span></a>
+                        <a href="<?php echo helper_common::site_url('user/set');?>" class="ico02">设置</a>
+                        <a href="javascript:;" class="ico03">退出</a>
                     </div>
-                    <a href="/make/album" class="to-make-phos">做图集</a>
                 </div>
-            </header>
-            <div class="con">
+                <a href="/make/album" class="to-make-phos">做图集</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="center-ctnr">
+    <div class="container">

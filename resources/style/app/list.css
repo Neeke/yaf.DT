@@ -1,99 +1,35 @@
-
 .albumlist {
     overflow: hidden;
     width: 100%;
-    margin: 20px 0 0 0;
     position: relative;
 }
-
 
 .albumitem {
     width: 33%;
 }
 
-.menu {
-    width: 20%;
-}
-
-.load-main {
-    width: 80%;
-}
-
-@media (max-width: 2080px){
-    .albumitem {
-        width: 25%;
-    }
-
-    .menu {
-        width: 16%;
-    }
-
-    .load-main {
-        width: 84%;
-    }
-}
-
-@media (max-width: 1366px){
+@media (max-width: 1960px){
     .albumitem {
         width: 33%;
     }
-
-    .menu {
-        width: 20%;
-    }
-
-    .load-main {
-        width: 80%;
-    }
 }
 
-@media (max-width: 1024px){
+@media (max-width: 1088px){
     .albumitem {
         width: 50%;
     }
-
-    .menu {
-        width: 28%;
-    }
-
-    .load-main {
-        width: 72%;
-    }
 }
 
 
-@media (max-width: 780px){
+@media (max-width: 790px){
     .albumitem {
-        width: 100%;
-    }
-
-    .load-main {
-        width: 60%;
-    }
-
-    .menu {
-        width: 40%;
-    }
-}
-
-
-
-@media (max-width: 480px){
-    .albumitem {
-        width: 100%;
-    }
-
-    .load-main {
-        width: 100%;
-    }
-
-    .menu {
         width: 100%;
     }
 }
 
 .albumitem {
     float: left;
+
     height: 250px;
     padding-bottom: 40px;
 }
