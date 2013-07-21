@@ -51,6 +51,14 @@ class Controller extends Yaf_Controller_Abstract
      */
     protected $mkData;
 
+    /**
+     * @var
+     */
+    protected $allParams = array();
+
+    protected $start = 0;
+    protected $limit = 0;
+
     function init()
     {
         $this->userinfo = models_user::getInstance()->getUserInfo();
@@ -75,12 +83,26 @@ class Controller extends Yaf_Controller_Abstract
      * 取得所有参数
      * @return mixed
      */
-    public function allParams()
+    protected function allParams()
     {
         $params = $this->getRequest()->getParams();
         $params += $_GET;
         $params += $_POST;
+        $this->allParams = $params;
         return $params;
+    }
+
+    /**
+     * 取得start limit值
+     */
+    protected function getStartLimit()
+    {
+        if (count($this->allParams) < 1){
+            $this->allParams();
+        }
+
+        $this->start = array_key_exists('start',$this->allParams) ? (int)$this->allParams['start'] : 0;
+        $this->limit = array_key_exists('limit',$this->allParams) ? (int)$this->allParams['limit'] : 10;
     }
 
     /**
@@ -105,9 +127,28 @@ class Controller extends Yaf_Controller_Abstract
      * 设置menu的active状态
      * @param string $action
      */
-    function setMenu($action = '/')
+    protected function setMenu($action = '/')
     {
         $this->set('this_menu', $action);
+    }
+
+    /**
+     * 设置变量到模板
+     * @param $key
+     * @param string $val
+     */
+    protected function set($key, $val = '')
+    {
+        $this->getView()->assign($key, $val);
+    }
+
+    /**
+     * @param $config
+     */
+    protected function setConfig($config = array())
+    {
+        $config_ = array_merge($config,$this->userinfo);
+        $this->set('config',$config_);
     }
 
     /**
@@ -132,26 +173,6 @@ class Controller extends Yaf_Controller_Abstract
         $this->set('proname', $this->meta['proname']);
         $this->set('webroot', $this->meta['webroot']);
     }
-
-    /**
-     * 设置变量到模板
-     * @param $key
-     * @param string $val
-     */
-    public function set($key, $val = '')
-    {
-        $this->getView()->assign($key, $val);
-    }
-
-    /**
-     * @param $config
-     */
-    public function setConfig($config = array())
-    {
-        $config_ = array_merge($config,$this->userinfo);
-        $this->set('config',$config_);
-    }
-
 
     function __destruct()
     {

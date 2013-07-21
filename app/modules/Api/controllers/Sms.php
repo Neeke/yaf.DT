@@ -31,9 +31,10 @@ class SmsController extends Controller
     {
         $this->rest->method('GET');
 
-        $info = $this->model_sms_feed->myFeed($this->user_id);
+        $this->getStartLimit();
+        $info = $this->model_sms_feed->myFeed($this->user_id,$this->start,$this->limit);
 
-        $this->mkData->setOffset(0, 5);
+        $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'feed_id');
         $data = $this->mkData->make($info);
         $this->rest->success($data);
@@ -71,10 +72,13 @@ class SmsController extends Controller
         $this->rest->paramsMustMap = array('feed_id');
         $this->rest->paramsMustValid($params);
 
-        $info = $this->model_msg->getMsgsByFeedid($this->user_id,$params['feed_id']);
-        $this->mkData->setOffset(0, 5);
+        $this->getStartLimit();
+        $info = $this->model_msg->getMsgsByFeedid($this->user_id,$params['feed_id'],$this->start,$this->limit);
+
+        $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'msg_id');
         $data = $this->mkData->make($info);
+
         $this->rest->success($data);
     }
 
