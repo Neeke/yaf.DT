@@ -24,6 +24,16 @@ class SmsController extends Controller
     }
 
     /**
+     * feed气泡
+     */
+    public function bubblesAction()
+    {
+        $this->rest->method('POST');
+        $data['bubbles'] = $this->model_sms_feed->bubbles($this->user_id);
+        $this->rest->success($data);
+    }
+
+    /**
      * feed列表
      * @todo start limit 格式
      */

@@ -62,7 +62,21 @@ class models_smsfeed extends Models
         $userinfo = models_user::getInstance()->getUserInfo();
         $user_id  = (int)$userinfo['user_id'];
 
-        return $this->update(array('read' => 1),array('feed_id' => $feed_id,'user_id_to' => $user_id));
+        return $this->update(array('isread' => 1), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
+    }
+
+    /**
+     * 取得feed气泡
+     * @param $user_id
+     * @return int
+     */
+    function bubbles($user_id)
+    {
+        if ((int)$user_id < 1) {
+            $userinfo = models_user::getInstance()->getUserInfo();
+            $user_id  = (int)$userinfo['user_id'];
+        }
+        return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO));
     }
 
     function mkdata($v)
@@ -73,7 +87,7 @@ class models_smsfeed extends Models
             'update_time'  => time(),
             'msg_count'    => 0,
             'content'      => $v['content'],
-            'read'         => 0,
+            'isread'       => contast_msgfeed::FEED_IS_READ_NO,
             'type'         => 0,
         );
     }
