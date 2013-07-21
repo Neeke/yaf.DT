@@ -10,7 +10,8 @@ seajs.config({
         imagescale: 'lib/imagescale/jquery.imagescale.js',
         jqueryui: 'lib/jqueryui/jquery-ui-1.10.3.custom.js',
         validate: 'lib/validate/validate.customer.js',
-        doT: 'lib/doT/doT.js'
+        doT: 'lib/doT/doT.js',
+        jcrop: 'lib/jcrop/jquery.Jcrop.js'
     },
     shim: {
         plupload: {

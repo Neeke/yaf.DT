@@ -1,0 +1,29 @@
+.update-avatar {
+    display: none;
+}
+
+.main-content {
+    border-right: 1px solid #4a4a4a;
+    width: 300px;
+    float: left;
+}
+
+.east-content {
+    float: left;
+    width: 100px;
+}
+
+.avatar-src {
+}
+
+.avatar-normal {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.avatar-small {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
