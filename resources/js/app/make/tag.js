@@ -24,7 +24,7 @@ define(function(require) {
         }
 
         tags.push(name);
-        var tpl = '<a data-tid="{1}" href="javascript:;"><span>{0}</span></a>';
+        var tpl = '<li class="tags-item"><a data-tid="{1}" href="javascript:;"><span>{0}</span><a class="tag-item-remove js-removetag" href="javascript:;"></a></a></li>';
         $tagCtnr.append(util.formatStr(tpl, name, id || ''));
     }
 

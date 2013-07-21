@@ -14,6 +14,7 @@ define(function(require) {
                 renderTo: '#pageinfo',
                 total: data.total,
                 limit: data.limit,
+
                 start: data.start,
                 onpagechanged: function() {
 
@@ -34,7 +35,9 @@ define(function(require) {
 
     function detail(id, title) {
         var win = new DK.Window({
-            title: title
+            title: title,
+            width: 580,
+            height: 500
         });
 
         win.show();
