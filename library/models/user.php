@@ -65,6 +65,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfo();
         if ($userinfo == FALSE) return FALSE;
 
+//        $this->db->cache_on(1800);
         return $this->getRow('*',$userinfo['user_id']);
     }
 
@@ -126,16 +127,18 @@ class models_user extends Models
 
     /**
      * 更新用户密码
-     * @todo 先验证用户旧密码
+     * @todo 不同error的返回
      * @param $pwd
      * @return bool
      */
     public function updatePwd($pwd)
     {
-        $userinfo = $this->getUserInfo();
-        if (empty($pwd) || strlen($pwd)) return FALSE;
+        if (empty($pwd) || ($pwd['new'] != $pwd['repeat'])) return FALSE;
 
-        return $this->update(array('pwd' => md5($pwd)),array('user_id' => $userinfo['user_id']));
+        $userinfo = $this->getUserInfoAll();
+        if (md5($pwd['old']) != $userinfo['user_pwd']) return FALSE;
+
+        return $this->update(array('user_pwd' => md5($pwd['new'])),array('user_id' => $userinfo['user_id']));
     }
 
     /**

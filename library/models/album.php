@@ -54,6 +54,18 @@ class models_album extends Models
     }
 
     /**
+     * 随便看看
+     * ＠todo 更好的随机算法　与tag_listened关联
+     * @return array
+     */
+    function justlook()
+    {
+        $this->db->cache_on(120);
+        $sql = 'SELECT * FROM avi_album ORDER BY RAND() LIMIT 6';
+        return $this->db->getAll($sql);
+    }
+
+    /**
      * 更新封面
      * @param $url
      * @param $album_id

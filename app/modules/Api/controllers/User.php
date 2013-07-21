@@ -93,7 +93,7 @@ class UserController extends Controller
     public function setAction()
     {
         $this->rest->method('POST');
-        $params                   = $this->getRequest()->getPost();
+        $params                   = $this->allParams();
         $this->rest->paramsCanMap = array('email', 'pwd', 'avatar', 'gender', 'email_set');
         $this->rest->paramsMustValid($params);
 
@@ -108,6 +108,10 @@ class UserController extends Controller
 
         if (array_key_exists('pwd', $params)) {
             $pwd = $this->getRequest()->getPost('pwd',0);
+
+            $this->rest->paramsMustMap = array('new','old','repeat');
+            $this->rest->paramsMustValid($pwd);
+
             $result = $this->model->updatePwd($pwd);
             if (!$result) $this->rest->error('','密码更新出现错误');
         }
