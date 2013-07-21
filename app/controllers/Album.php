@@ -44,6 +44,14 @@ class AlbumController extends Controller
     }
 
     /**
+     * 设置已经收听的album
+     */
+    private function setListededAlbumIds()
+    {
+        $this->set('listened_album_ids',$this->model_album_listen->myListenedAlbumIds($this->user_id));
+    }
+
+    /**
      * 我的相册
      */
     public function mineAction()
@@ -58,6 +66,8 @@ class AlbumController extends Controller
         $sPage = helper_pages::page2(helper_common::site_url('album/mine'), $count, contast_album::PAGE_SIZE_DEFAULT, $this->page);
         $this->set('sPage', $sPage);
         $this->set('myalbums', $my_albums);
+
+        $this->setListededAlbumIds();
     }
 
     /**
@@ -74,6 +84,8 @@ class AlbumController extends Controller
         $sPage = helper_pages::page2(helper_common::site_url('album/listened'), $count, contast_album::PAGE_SIZE_DEFAULT, $this->page);
         $this->set('sPage', $sPage);
         $this->set('myalbums', $my_albums);
+
+        $this->setListededAlbumIds();
     }
 
     /**

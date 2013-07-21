@@ -303,6 +303,8 @@ class AlbumController extends Controller
 
         if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
+        $this->model_album->addListened($params['album_id']);
+
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '订阅成功');
     }
 

@@ -21,7 +21,7 @@ class models_album extends Models
     function __construct()
     {
         parent::__construct();
-        $this->_table = 'avi_album';
+        $this->_table   = 'avi_album';
         $this->_primary = 'album_id';
     }
 
@@ -30,8 +30,9 @@ class models_album extends Models
      * @param $album_id
      * @return bool
      */
-    function viewAlbum($album_id){
-        return $this->update(array('hits' => 'hits + 1'),$album_id);
+    function viewAlbum($album_id)
+    {
+        return $this->update(array('hits' => 'hits + 1'), $album_id);
     }
 
     /**
@@ -42,13 +43,14 @@ class models_album extends Models
      *
      * @return array
      */
-    function myAlbum($user_id = 0,$start = 0,$limit = contast_album::PAGE_SIZE_DEFAULT){
+    function myAlbum($user_id = 0, $start = 0, $limit = contast_album::PAGE_SIZE_DEFAULT)
+    {
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
             $userinfo = models_user::getInstance()->getUserInfo();
-            $user_id = (int)$userinfo['user_id'];
+            $user_id  = (int)$userinfo['user_id'];
         }
-        return $this->getAll('*',array('user_id' => $user_id),'',$start,$limit);
+        return $this->getAll('*', array('user_id' => $user_id), '', $start, $limit);
     }
 
     /**
@@ -57,10 +59,10 @@ class models_album extends Models
      * @param $album_id
      * @return bool
      */
-    function updateCover($url,$album_id)
+    function updateCover($url, $album_id)
     {
         $data = array('face_url' => $url);
-        return $this->update($data,array($this->_primary => (int)$album_id));
+        return $this->update($data, array($this->_primary => (int)$album_id));
     }
 
     /**
@@ -68,23 +70,37 @@ class models_album extends Models
      * @return array
      * @todo 封皮图片
      */
-    function hotAlbum(){
+    function hotAlbum()
+    {
         $this->db->cache_on(3600);
-        return $this->getAll(array('album_id','album_name'),array(),array('hits' => 'desc'));
+        return $this->getAll(array('album_id', 'album_name'), array(), array('hits' => 'desc'));
     }
+
+
+    /**
+     * listed总数加１
+     * @param $album_id
+     * @return bool
+     */
+    public function addListened($album_id)
+    {
+        return $this->db->query('update ' . $this->_table . ' set likeit = likeit + 1 where album_id = ?', array($album_id));
+    }
+
 
     function mkdata($v)
     {
         return $data = array(
-            'album_name' => $v['album_name'],
-            'user_id' => $v['user_id'],
-            'class_id' => '',
-            'tag_ids' => is_array($v['tag_ids']) ? implode(',',$v['tag_ids']) : $v['tag_ids'],
-            'hits' => 1,
+            'album_name'   => $v['album_name'],
+            'user_id'      => $v['user_id'],
+            'class_id'     => '',
+            'tag_ids'      => is_array($v['tag_ids']) ? implode(',', $v['tag_ids']) : $v['tag_ids'],
+            'hits'         => 1,
             'album_remark' => $v['album_remark'],
             'created_time' => time(),
-            'face_url' => '',
-            'is_open' => (int)$v['is_open'],
+            'face_url'     => '',
+            'is_open'      => (int)$v['is_open'],
+            'likeit'       => 0,
         );
     }
 }
