@@ -158,7 +158,7 @@ params: album_id [start] [limit]
 头像upload接口：
 var api_avatar_upload = '/api/avatar/upload';
 method: post
-params: userfile [user_id]
+params: file [user_id]
 
 头像保存接口：
 var api_avatar_create = '/api/avatar/create';

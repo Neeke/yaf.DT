@@ -24,7 +24,7 @@ class AvatarController extends Controller
     {
         $this->rest->method('POST');
         $params                    = $this->allParams();
-        $this->rest->paramsMustMap = array('userfile');
+        $this->rest->paramsMustMap = array('file');
         $this->rest->paramsMustValid($params);
 
         $config['upload_path']   = './uploads/';
