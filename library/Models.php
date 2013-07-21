@@ -179,7 +179,7 @@ class Models
                     if (is_array($v)) {
                         $_where_value[] = $v[0];
                     } else {
-                        $_where_value[] = $v;
+                        $_where_value[] = is_numeric($v) ? intval($v) : $v;
                     }
                 }
             }

@@ -124,6 +124,11 @@ var api_sms_show = '/api/sms/show';
 method: get
 params: page user_id
 
+feed气泡：
+var api_sms_bubbles = '/api/sms/bubbles';
+method: get
+params: [user_id]
+
 feed列表：
 var api_sms_feed = '/api/sms/feed';
 method: get
