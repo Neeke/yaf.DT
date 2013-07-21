@@ -142,7 +142,6 @@
 
 .menu {
     background: #2f333a;
-    float: right;
 }
 
 .menu li {
@@ -292,6 +291,7 @@
 
 .c_top {
     overflow: hidden;
+    padding-bottom: 35px;
 }
 
 .c_top .t_tu {

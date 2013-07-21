@@ -1,0 +1,182 @@
+.center-ctnr {
+    max-width: 1386px;
+    margin: 0 auto;
+}
+
+.container {
+    margin: 0 20px;
+}
+
+.main {
+    float: left;
+    width: 100%;
+}
+
+.main-wrap {
+    margin: 0 200px 0 0;
+}
+
+.extra {
+    float: left;
+    width: 200px;
+    margin-left: -200px;
+}
+
+/**头部***/
+.header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #e4007f;
+    position: relative;
+    z-index: 999;
+    margin-bottom: 30px;
+}
+
+.header-logo {
+    display: block;
+    float: left;
+
+    margin-top: 24px;
+    width: 220px;
+    height: 55px;
+
+    text-indent: -9999em;
+    background: url(images/header_logo.gif) no-repeat;
+}
+
+.header-user {
+    float: right;
+    height: 100px;
+}
+
+.header-user .picture {
+    float: left;
+}
+
+.header-user .picture img {
+    border: 1px solid #fff;
+    border-radius: 2px;
+    margin-top: 64px;
+}
+
+.header-tips {
+    float: left;
+    height: 100px;
+    position: relative;
+}
+
+.header-tips span.user-name {
+    font-size: 14px;
+    font-family: arial;
+    font-weight: bold;
+    padding: 70px 15px 10px 15px;
+    display: block;
+    background: url(images/ico_02.png) no-repeat right 65px;
+    display: block;
+}
+
+.header-tips .tip01 {
+    font-family: arial;
+    text-align: center;
+    display: block;
+    color: #141517;
+    background: url(images/ico001.png) no-repeat;
+    width: 26px;
+    height: 22px;
+    position: absolute;
+    top: 50px;
+    left: 45px;
+    line-height: 22px;
+}
+
+.header-tips .tip02 {
+    background: url(images/xl.png) no-repeat top left;
+    width: 97px;
+    padding: 7px 0 0 0;
+    position: absolute;
+    top: 90px;
+    left: -30px;
+    display: none;
+    height: 90px;
+    overflow: hidden;
+}
+
+.header-tips .tip02 a {
+    display: block;
+    line-height: 30px;
+    text-indent: 34px;
+    width: 97px;
+    color: #fff;
+    font-family: simHei;
+    font-weight: bold;
+    border-bottom: 1px solid #757575;
+}
+
+.header-tips .tip02 a:hover {
+    color: #c20e70;
+}
+
+.header-tips .tip02 a.ico01 {
+    background: url(images/ico002.png) no-repeat 10px center #303439;
+}
+
+.header-tips .tip02 a.ico01 span {
+    font-weight: normal;
+    padding: 0 0 0 10px;
+    color: #c20e70;
+}
+
+.header-tips .tip02 a.ico02 {
+    background: url(images/ico003.png) no-repeat 10px center #303439;
+}
+
+.header-tips .tip02 a.ico03 {
+    background: url(images/ico004.png) no-repeat 10px center #303439;
+}
+
+.header-tips:hover .tip02 {
+    display: block;
+}
+
+.header-tips span.line {
+    float: right;
+}
+
+.to-make-phos {
+    float: left;
+    padding: 70px 10px 10px 15px;
+    font-family: Microsoft YaHei;
+}
+
+.to-make-phos:hover {
+    color: #c20e70;
+}
+
+/**底部版权**/
+.footer {
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    margin: 15px auto 0 auto;
+    border-top: 1px solid #4a4a4a;
+    line-height: 27px;
+    color: #6D6D6D;
+    overflow: hidden;
+}
+
+.footer .copyright {
+    padding: 0 0 0 45px;
+}
+
+.footer .links {
+    float: right;
+    padding: 0 45px 0 0;
+}
+
+.footer .links span {
+    color: #e4007f;
+}
+
+.footer .links a:hover {
+    text-decoration: underline;
+}
