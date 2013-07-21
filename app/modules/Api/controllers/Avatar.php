@@ -19,13 +19,14 @@ class AvatarController extends Controller
 
     /**
      * upload
+     * @todo form-data的mustValid
      */
     function uploadAction()
     {
         $this->rest->method('POST');
         $params                    = $this->allParams();
-        $this->rest->paramsMustMap = array('file');
-        $this->rest->paramsMustValid($params);
+//        $this->rest->paramsMustMap = array('file');
+//        $this->rest->paramsMustValid($params);
 
         $config['upload_path']   = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
