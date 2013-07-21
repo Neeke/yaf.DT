@@ -1,11 +1,12 @@
 <?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
-
-<?php include_once(VIEW_PATH . '/layout/sidebar.phtml') ?>
-    <div class="load-main">
-        <div class="my-mytags">
+    <div class="main">
+        <div class="main-wrap">
             <?php include_once(VIEW_PATH . '/index/avatar.phtml') ?>
             <?php include_once(VIEW_PATH . '/tag/mytags.phtml') ?>
         </div>
+    </div>
+    <div class="extra">
+        <?php include_once(VIEW_PATH . '/layout/sidebar.phtml') ?>
     </div>
 
 <?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
