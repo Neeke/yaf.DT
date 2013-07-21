@@ -1080,6 +1080,7 @@
     width: 366px;
     float: left;
     display: inline;
+    position: relative;
 }
 
 .sx .sx_left {
@@ -1105,7 +1106,7 @@
     float: left;
     display: none;
     position: absolute;
-    left: 200px;
+    left: 128px;
     background: url(/resources/style/app/images/dbg.jpg) no-repeat;
     width: 210px;
     height: 170px;
