@@ -21,8 +21,10 @@
 }
 
 /** 工具按钮样式 start-- **/
-.DKTool_close {
-  background-position:-15px 0;
+.DKTool_close.DKTool {
+  width: 22px;
+  height: 22px;
+  background: url(images/window/icon_close.jpg) no-repeat left top;
 }
 .DKTool_close:hover {
   background-position:0 0;
@@ -195,33 +197,12 @@ background-position:0 -300px;
 }
 
 .DKWindow_tc {
-  background: url(images/window/top-bottom.png) repeat-x left top;
+  background: #2f3338;
   padding-top: 7px;
 }
 
-.DKWindow_tl {
-  padding-left: 6px;
-  background: url(images/window/corners-sprite-tl.png) no-repeat left top;
-}
-
-.DKWindow_tr {
-  padding-right: 6px;
-  background: url(images/window/corners-sprite-tr.png) no-repeat right 0px;
-}
-
-.DKWindow_bl {
-  padding-left: 6px;
-  background: url(images/window/corners-sprite-bl.png) no-repeat left bottom;
-}
-
-.DKWindow_br {
-  padding-right: 6px;
-  background: url(images/window/corners-sprite-br.png) no-repeat right bottom;
-  border-bottom-color:#99bbe8;
-}
-
 .DKWindow_bc {
-  background: url(images/window/corners-sprite-bc.png) repeat-x left bottom;
+  background: #2f3338;
   padding-bottom: 6px;
   _margin-top: -5px;
   +zoom: 1;
@@ -239,23 +220,14 @@ background-position:0 -300px;
 }
 
 .DKWindow_mc {
-    background-color: #757575;
-}
-
-.DKWindow_ml {
-  padding-left: 6px;
-  background:url(images/window/left-right-ml.png)  repeat-y left top;
-}
-
-.DKWindow_mr {
-  padding-right: 6px;
-  background:url(images/window/left-right-mr.png) repeat-y right top;
+    background-color: #2f3338;
+    padding: 0 0 0 10px;
 }
 
 .DKWindow_head {
   height: 36px;
   line-height: 36px;
-  padding: 0 12px 0 12px;
+  padding: 0 12px 0 20px;
 }
 
 .DKWindow_head_tools {
@@ -268,7 +240,7 @@ background-position:0 -300px;
 .DKWindow_head_title {
   display: block;
   float: left;
-  color: #333333;
+  color: #fff;
   font-size: 14px;
   font-family: "微软雅黑", "宋体";
 }
