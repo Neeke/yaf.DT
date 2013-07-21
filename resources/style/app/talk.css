@@ -1,13 +1,13 @@
-.msg-detail-list {
+.talk-detail-list {
 
 }
 
-.msg-detail-list-item {
+.talk-detail-list-item {
     height: 95px;
     padding-top: 10px;
 }
 
-.msg-avatar {
+.talk-avatar {
     display: block;
     float: right;
 
@@ -18,12 +18,12 @@
     border-radius: 2px;
 }
 
-.msg-avatar img {
+.talk-avatar img {
     width: 100%;
     height: 100%;
 }
 
-.msg-content {
+.talk-content {
     float: right;
 
     margin-left: 10px;
@@ -33,31 +33,32 @@
     background: url(images/message_mine.png) no-repeat left top;
 }
 
-.msg-item-fromothers .msg-content, .msg-item-fromothers .msg-avatar {
+.talk-item-fromothers .talk-content, .talk-item-fromothers .talk-avatar {
     float: left;
 }
 
-.msg-item-fromothers .msg-content {
+.talk-item-fromothers .talk-content {
     background: url(images/message_others.png) no-repeat left top;
 }
 
-.msg-content-wrap {
+.talk-content-wrap {
     margin: 10px 20px 0 30px;
 }
 
-.msg-content p {
+.talk-content p {
     color: #2f3338;
     height: 38px;
+    overflow: hidden;
 }
 
-.msg-content-date, .msg-content-opts {
+.talk-content-date, .talk-content-opts {
     color: #8e8e8e;
 }
 
-.msg-content-opts {
+.talk-content-opts {
     float: right;
 }
 
-.msg-content-date {
+.talk-content-date {
     float: left;
 }

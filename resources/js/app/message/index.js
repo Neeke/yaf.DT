@@ -2,8 +2,9 @@ define(function(require) {
     require('rest');
     var DK = require('dk');
     require('doT');
-    var tplDetail = require('app/common/message_detail.doT.tpl');
-    var tplMessage = require('app/message/message.doT.tpl');
+    var talk = require('app/common/talk');
+
+    var tplMessage = require('./message.doT.tpl');
     var $list;
 
     function fetchMessages() {
@@ -33,34 +34,6 @@ define(function(require) {
         $list.append(htmlArr.join(''));
     }
 
-    function detail(id, title) {
-        var win = new DK.Window({
-            title: title,
-            width: 600,
-            height: 500
-        });
-
-        win.show();
-
-        var rest = $.restGet('/api/sms/detail', {
-            feed_id: id
-        });
-
-        rest.done(function(msg, data) {
-            preprocess(data.rows);
-            var html = doT.template(tplDetail) (data);
-            win.setHtml(html);
-        });
-    }
-
-    function preprocess(data) {
-        $.each(data || [], function(i, e) {
-            if (e.cells.user_id_from == $CONFIG.user_id) {
-                e.cells.others = true;
-            }
-        });
-    }
-
     $(function() {
         $list = $('#list');
         fetchMessages();
@@ -78,7 +51,9 @@ define(function(require) {
 
         $list.on('click', '.js-detail', function() {
             var id = $(this).closest('.js-messageitem').attr('data-id');
-            detail(id, '对话');
+            talk.showTalk('/api/sms/detail', '对话', {
+                feed_id: id
+            });
         });
     });
 });
