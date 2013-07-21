@@ -1,0 +1,52 @@
+.msg-detail-list {
+
+}
+
+.msg-detail-list-item {
+    height: 95px;
+    padding-top: 10px;
+}
+
+.msg-avatar {
+    display: block;
+    float: left;
+
+    width: 70px;
+    height: 70px;
+}
+
+.msg-avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.msg-content {
+    float: left;
+
+    margin-left: 10px;
+    width: 440px;
+    height: 77px;
+
+    background: url(images/message_mine.png) no-repeat left top;
+}
+
+.msg-content-wrap {
+    margin: 10px 20px 0 30px;
+}
+
+.msg-content p {
+    color: #2f3338;
+    height: 38px;
+}
+
+.msg-content-date, .msg-content-opts {
+    color: #8e8e8e;
+}
+
+.msg-content-opts {
+    float: right;
+}
+
+.msg-content-date {
+    float: left;
+}
