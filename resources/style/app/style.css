@@ -775,8 +775,12 @@
 .makebox .tagsbox .tags {
     float: left;
     width: 435px;
-    height: 25px;
     background: #fff;
+}
+
+.makebox .tagsbox .tags input {
+    outline: none;
+    border: none;
 }
 
 .makebox .tagsbox .tags span {
@@ -816,14 +820,6 @@
     border-radius: 4px;
     margin: 20px 0 0 85px;
     font-size: 14px;
-}
-
-.makebox .gz_tags {
-    background: #fff;
-    width: 405px;
-    margin: 1px 0 0 90px;
-    padding: 10px 15px;
-    line-height: 20px;
 }
 
 .makebox .gz_tags span {
