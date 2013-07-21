@@ -10,7 +10,7 @@
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-    background: url(/resources/style/app/images/register.gif) no-repeat center 140px;
+    /*background: url(/resources/style/app/images/register.gif) no-repeat center 140px;*/
 }
 
 .register .logo {
@@ -39,10 +39,10 @@
 }
 
 .reg_begin .reg_left {
-    float: left;
-    display: inline;
+    /*float: left;*/
+    /*display: inline;*/
     color: #fff;
-    margin: 0 0 0 75px;
+    margin: 0 auto;
     width: 410px;
 }
 
@@ -718,6 +718,7 @@
 }
 
 .makebox .editlist li .libox textarea {
+    padding: 5px;
     float: left;
     border: none;
     margin: 0;
@@ -776,17 +777,51 @@
     float: left;
     width: 435px;
     background: #fff;
+    padding-bottom: 10px;
+}
+
+.makebox .tagsbox .tags dl {
+    clear: left;
+}
+
+.makebox .tagsbox .tags dd {
+    float: left;
+    padding: 5px 0 0 10px;
+}
+
+.makebox .tagsbox .tags dt {
+    color: #757575;
+    border-top: 1px solid #141517;
+    padding: 5px 0 0 10px;
+}
+
+.tags-item {
+    float: left;
+    background-color: #e4007f;
+    margin: 8px;
+    border-radius: 10px;
+    line-height: 24px;
+    padding: 0 11px;
+}
+
+.tags-item span {
+    color: #fff;
+}
+
+.tag-item-remove {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin: 0 0 0 5px;
+    background: url(images/tag_close.png) no-repeat left top;
 }
 
 .makebox .tagsbox .tags input {
     outline: none;
     border: none;
-}
-
-.makebox .tagsbox .tags span {
-    color: #e4007f;
-    line-height: 25px;
-    padding: 0 0 0 15px;
+    margin: 11px 0 0 10px;
+    font-size: 14px;
+    width: 75px;
 }
 
 .makebox .ressset {
