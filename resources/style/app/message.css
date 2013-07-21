@@ -9,7 +9,7 @@
 
 .msg-avatar {
     display: block;
-    float: left;
+    float: right;
 
     width: 68px;
     height: 68px;
@@ -24,13 +24,21 @@
 }
 
 .msg-content {
-    float: left;
+    float: right;
 
     margin-left: 10px;
     width: 440px;
     height: 77px;
 
     background: url(images/message_mine.png) no-repeat left top;
+}
+
+.msg-item-fromothers .msg-content, .msg-item-fromothers .msg-avatar {
+    float: left;
+}
+
+.msg-item-fromothers .msg-content {
+    background: url(images/message_others.png) no-repeat left top;
 }
 
 .msg-content-wrap {
