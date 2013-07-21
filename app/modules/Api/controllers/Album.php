@@ -352,8 +352,10 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('album_id');
         $this->rest->paramsMustValid($params);
 
-        $info = $this->models_album_replay->getAllByAlbumId($params['album_id']);
-        $this->mkData->setOffset(0, 5);
+        $this->getStartLimit();
+        $info = $this->models_album_replay->getAllByAlbumId($params['album_id'],$this->start,$this->limit);
+
+        $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'reply_id');
         $data = $this->mkData->make($info);
         $this->rest->success($data);
