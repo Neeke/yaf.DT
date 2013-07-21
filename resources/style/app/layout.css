@@ -164,6 +164,10 @@
     overflow: hidden;
 }
 
+.footer a {
+    color: #6D6D6D;
+}
+
 .footer .copyright {
     padding: 0 0 0 45px;
 }
