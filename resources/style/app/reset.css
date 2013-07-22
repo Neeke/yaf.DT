@@ -73,11 +73,9 @@ table {
 }
 
 body {
-
 	line-height:1.5em;
-
-	font-size: 12px;
-
+    font-size:12px;
+    font-family:'Microsoft YaHei','SimSun';
 }
 
 a {

@@ -53,9 +53,14 @@
         <div class="center">
             <img src="<?php echo $items_info['items_pic'];?>" class="showing"/>
         </div>
-        <div class="describe">
-            <?php echo $items_info['remark'];?>
-        </div>
+
+        <?php echo $items_info['remark'];?>
+        <?php if (strlen($items_info['remark']) > 0) { ?>
+            <div class="describe">
+                <?php echo $items_info['remark'];?>
+            </div>
+        <?php } ?>
+
         <a href="javascript:;" class="arrow_l arrow-prev"></a>
         <a href="javascript:;" class="arrow_r arrow-next"></a>
     </div>

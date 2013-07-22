@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="/resources/style/app/all.css"/>
     <script type="text/javascript" src="/resources/js/lib/seajs/sea.js" ></script>
     <script type="text/javascript" src="/resources/js/lib/seajs/config.js"></script>
+    <script>
+        var $CONFIG = <?php if (isset($config) && is_array($config) && count($config) > 0){
+        echo json_encode($config);
+        }else{
+            echo '{}';
+        } ?>
+    </script>
+    <script type="text/javascript">
+        seajs.use('app/layout/header');
+    </script>
 </head>
 <body>
-<script>
-    var $CONFIG = <?php if (isset($config) && is_array($config) && count($config) > 0){
-        echo json_encode($config);
-    }else{
-        echo '{}';
-    } ?>
-</script>
 <header class="header">
     <div class="center-ctnr">
         <div class="container">
@@ -24,7 +27,7 @@
                 <?php echo spall_user::avatar($user_id,25,'','class="picture"');?>
                 <div class="header-tips">
                     <span class="user-name">bcsmc</span>
-                    <a class="tip01" href="/message">10</a>
+                    <a class="tip01" href="/message" id="msgCount"></a>
                     <div class="tip02">
                         <a href="/message" class="ico01">消息<span>10</span></a>
                         <a href="<?php echo helper_common::site_url('user/set');?>" class="ico02">设置</a>
