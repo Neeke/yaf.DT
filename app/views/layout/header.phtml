@@ -27,9 +27,9 @@
                 <?php echo spall_user::avatar($user_id,25,'','class="picture"');?>
                 <div class="header-tips">
                     <span class="user-name">bcsmc</span>
-                    <a class="tip01" href="/message" id="msgCount"></a>
+                    <a class="tip01 js-msgcount" href="/message" id="msgCount"></a>
                     <div class="tip02">
-                        <a href="/message" class="ico01">消息<span>10</span></a>
+                        <a href="/message" class="ico01">消息<span class="js-msgcount"></span></a>
                         <a href="<?php echo helper_common::site_url('user/set');?>" class="ico02">设置</a>
                         <a href="<?php echo helper_common::site_url('login/out');?>" class="ico03">退出</a>
                     </div>

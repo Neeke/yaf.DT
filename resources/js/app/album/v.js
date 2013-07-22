@@ -7,9 +7,12 @@ define(function() {
             if (fadeobj.next('.slideritem').index() > 0) {
                 fadeobj.fadeOut();
                 fadeobj.next('.slideritem').fadeIn();
+
+                $('.quark-button').show();
             }
             else {
-                $('.slideritem').eq(0).fadeIn().siblings('.slideritem').fadeOut()
+                $('.slideritem').eq(0).fadeIn().siblings('.slideritem').fadeOut();
+                $('.quark-button').hide();
             }
         });
         $(document).on('click', '.arrow-prev', function () {

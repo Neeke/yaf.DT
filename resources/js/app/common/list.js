@@ -1,5 +1,5 @@
 define(function(require) {
-    var talk = require('app/common/talk');
+    var Talk = require('app/common/talk');
     require('rest');
 
     function initEvts() {
@@ -9,9 +9,15 @@ define(function(require) {
         });
 
         $('#albumList').on('click', '.js-replay', function() {
-            talk.showTalk('/api/album/replylist', '评论', {
-                album_id: $(this).closest('.albumitem').attr('data-albumid')
+            var talk = new Talk({
+                fetchUrl: '/api/album/replylist',
+                title: '评论',
+                params: {
+                    album_id: $(this).closest('.albumitem').attr('data-albumid')
+                },
+                sendUrl: '/api/album/reply'
             });
+            talk.showTalk();
         });
     }
 

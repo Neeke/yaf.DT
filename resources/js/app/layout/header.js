@@ -8,9 +8,9 @@ define(function(require) {
 
         rest.done(function(msg, data) {
             if (data.bubbles * 1 > 0) {
-                $('#msgCount').show().text(data.bubbles);
+                $('#msgCount').show();
+                $('.js-msgcount').text(data.bubbles);
             }
-
         });
     }
 
