@@ -2,6 +2,25 @@
     display: none;
 }
 
+.update-avatar .main-content {
+    height: 350px;
+    overflow: hidden;
+}
+
+.update-avatar .main-content p {
+    color: #6D6D6D;
+    font-size: 14px;
+    line-height: 25px;
+    padding: 10px 10px 10px 0;
+}
+
+.update-avatar .east-content p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 25px;
+    padding: 10px 0 10px 10px;
+}
+
 .main-content {
     border-right: 1px solid #4a4a4a;
     width: 300px;
@@ -10,19 +29,23 @@
 
 .east-content {
     float: left;
-    width: 100px;
+    width: 150px;
 }
 
 .avatar-src {
 }
 
 .avatar-normal {
+    margin: 30px 0 0 20px;
+
     width: 100px;
     height: 100px;
     overflow: hidden;
 }
 
 .avatar-small {
+    margin: 50px 0 0 20px;
+
     width: 40px;
     height: 40px;
     overflow: hidden;
