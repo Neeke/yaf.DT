@@ -30,7 +30,8 @@ class spall_user
         }else{
             $url = '/resources/images/avatar_default.jpg';
         }
-        return '<a href="'.helper_common::site_url_user($uid).'" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
+//        return '<a href="'.helper_common::site_url_user($uid).'" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
+        return '<a href="javascript:;" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
     }
 
     /**

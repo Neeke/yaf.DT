@@ -54,6 +54,17 @@ class models_taglisten extends Models
         return $tags;
     }
 
+    /**
+     * 取消listen
+     * @param $tag_id
+     * @param $user_id
+     * @return bool
+     */
+    function removeTagListen($tag_id,$user_id)
+    {
+        return $this->delete(array('tag_id' => $tag_id,'user_id' => $user_id));
+    }
+
     function mkdata($value)
     {
         return $data = array(

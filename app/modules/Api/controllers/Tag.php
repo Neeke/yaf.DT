@@ -107,10 +107,27 @@ class TagController extends Controller
         $this->rest->paramsMustValid($params);
 
         $tags = $this->model_tag->getTagsSearch($params['tag_name']);
-        if (is_array($tags) && count($tags) > 0){
+        if (is_array($tags) && count($tags) > 0 && strlen($tags[0]) > 0){
             $this->rest->success($tags);
         }
 
         $this->rest->success('','','没有找到您想要的标签');
+    }
+
+    /**
+     * 取消listen tag
+     */
+    public function removeAction()
+    {
+        $this->rest->method('POST');
+
+        $params = $this->allParams();
+        $this->rest->paramsMustMap = array('tag_id');
+        $this->rest->paramsMustValid($params);
+
+        $result = $this->models_taglisten->removeTagListen($params['tag_id'],$this->user_id);
+        if ($result) $this->rest->success('','','删除成功');
+
+        $this->rest->error();
     }
 }

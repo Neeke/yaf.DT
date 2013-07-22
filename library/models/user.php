@@ -174,11 +174,11 @@ class models_user extends Models
             'user_name'      => $v['user_name'],
             'user_pwd'       => md5($v['pwd']),
             'remark'         => $v['remark'],
-            'follower_count' => $v['follower_count'],
-            'items_count'    => $v['items_count'],
-            'collect_count'  => $v['collect_count'],
-            'album_count'    => $v['album_count'],
-            'interest_count' => $v['interest_count'],
+            'follower_count' => (int)$v['follower_count'],
+            'items_count'    => (int)$v['items_count'],
+            'collect_count'  => (int)$v['collect_count'],
+            'album_count'    => (int)$v['album_count'],
+            'interest_count' => (int)$v['interest_count'],
             'created_time'   => time(),
         );
     }
