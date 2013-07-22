@@ -99,6 +99,18 @@ class models_album extends Models
         return $this->db->query('update ' . $this->_table . ' set likeit = likeit + 1 where album_id = ?', array($album_id));
     }
 
+    /**
+     * 删除album
+     * @param $album_id
+     * @param $user_id
+     * @return bool
+     */
+    public function remove($album_id,$user_id)
+    {
+        if (intval($album_id) < 1 || intval($user_id) < 1) return FALSE;
+        return $this->update(array('flag' => contast_album::FLAG_DEL),array('album_id' => $album_id,'user_id' => $user_id));
+    }
+
 
     function mkdata($v)
     {

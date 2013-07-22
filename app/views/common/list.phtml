@@ -39,7 +39,9 @@
     <?php echo $sPage;?>
 <?php }else{?>
 
-<div class="msg-nodata">你还没有图集，现在去<a href="<?php echo helper_common::site_url('make/album')?>">做一个</a>？</div>
+<div class="msg-nodata">
+    <?php echo spall_nullmsg::getNullMsgs($this_menu);?>
+</div>
 
 <?php }?>
 
