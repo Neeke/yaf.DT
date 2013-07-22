@@ -173,7 +173,7 @@ define(function(require) {
             });
 
             rest.fail(function(msg) {
-                alert(msg || '初始化数据出错')
+                alert(msg || '初始化数据出错');
             });
         }
     }

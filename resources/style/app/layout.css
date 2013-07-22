@@ -1,10 +1,10 @@
 .center-ctnr {
-    max-width: 1386px;
+    max-width: 1506px;
     margin: 0 auto;
 }
 
 .container {
-    margin: 0 20px;
+    margin: 0 80px;
 }
 
 .main {
@@ -75,9 +75,9 @@
 }
 
 .header-tips .tip01 {
+    display: none;
     font-family: arial;
     text-align: center;
-    display: block;
     color: #141517;
     background: url(images/ico001.png) no-repeat;
     width: 26px;
@@ -130,7 +130,7 @@
 }
 
 .header-tips .tip02 a.ico03 {
-    background: url(images/ico004.png) no-repeat 10px center #303439;
+    background: url(images/ico004.jpg) no-repeat 10px center #303439;
 }
 
 .header-tips:hover .tip02 {

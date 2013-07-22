@@ -11,7 +11,8 @@ seajs.config({
         jqueryui: 'lib/jqueryui/jquery-ui-1.10.3.custom.js',
         validate: 'lib/validate/validate.customer.js',
         doT: 'lib/doT/doT.js',
-        jcrop: 'lib/jcrop/jquery.Jcrop.js'
+        jcrop: 'lib/jcrop/jquery.Jcrop.js',
+        tipTip: 'lib/tipTip/jquery.tipTip.js'
     },
     shim: {
         plupload: {
