@@ -2,7 +2,7 @@ define(function(require) {
     require('rest');
     var DK = require('dk');
     require('doT');
-    var talk = require('app/common/talk');
+    var Talk = require('app/common/talk');
 
     var tplMessage = require('./message.doT.tpl');
     var $list;
@@ -51,9 +51,16 @@ define(function(require) {
 
         $list.on('click', '.js-detail', function() {
             var id = $(this).closest('.js-messageitem').attr('data-id');
-            talk.showTalk('/api/sms/detail', '对话', {
-                feed_id: id
+
+            var talk = new Talk({
+                fetchUrl: '/api/sms/detail',
+                title: '对话',
+                params: {
+                    feed_id: id
+                },
+                sendUrl: '/api/sms/send'
             });
+            talk.showTalk();
         });
     });
 });
