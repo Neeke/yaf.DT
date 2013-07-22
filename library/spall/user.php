@@ -15,10 +15,11 @@ class spall_user
      * @return string 头像地址
      */
     static public function avatar($uid,$h = '30',$type = '',$type_a = ''){
-        $url = '/uploads/avatar/'.base64_encode($uid).'.jpg';
+        $url = 'http://'.$_SERVER['HTTP_HOST'].'/uploads/avatar/'.base64_encode($uid).'.jpg';
         $executeTime = ini_get('max_execution_time');
         ini_set('max_execution_time', 0);
-        $headers = @get_headers($url);
+        $headers = get_headers($url);
+
         ini_set('max_execution_time', $executeTime);
         if ($headers) {
             $head = explode(' ', $headers[0]);
