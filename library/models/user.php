@@ -51,6 +51,7 @@ class models_user extends Models
             $array['user_id']     = $userinfo['user_id'];
             $array['user_name']   = $userinfo['user_name'];
             $array['album_count'] = $userinfo['album_count'];
+            $array['face_url']    = $userinfo['face_url'];
             return $array;
         }
         return FALSE;
@@ -66,7 +67,7 @@ class models_user extends Models
         if ($userinfo == FALSE) return FALSE;
 
 //        $this->db->cache_on(1800);
-        return $this->getRow('*',$userinfo['user_id']);
+        return $this->getRow('*', $userinfo['user_id']);
     }
 
     /**
@@ -122,7 +123,7 @@ class models_user extends Models
     {
         $userinfo = $this->getUserInfo();
         if (empty($email) || strlen($email) < 1) return FALSE;
-        return $this->update(array('user_email' => $email),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('user_email' => $email), array('user_id' => $userinfo['user_id']));
     }
 
     /**
@@ -138,7 +139,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfoAll();
         if (md5($pwd['old']) != $userinfo['user_pwd']) return FALSE;
 
-        return $this->update(array('user_pwd' => md5($pwd['new'])),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('user_pwd' => md5($pwd['new'])), array('user_id' => $userinfo['user_id']));
     }
 
     /**
@@ -149,9 +150,9 @@ class models_user extends Models
     public function updateAvatar($avatar)
     {
         $userinfo = $this->getUserInfo();
-        if (empty($avatar) || strlen($avatar)) return FALSE;
+        if (empty($avatar) || strlen($avatar) < 1) return FALSE;
 
-        return $this->update(array('face_url' => $avatar),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('face_url' => $avatar), array('user_id' => $userinfo['user_id']));
     }
 
     /**
@@ -164,7 +165,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfo();
         if (empty($gender) || (int)$gender < 1) return FALSE;
 
-        return $this->update(array('gender' => (int)$gender),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('gender' => (int)$gender), array('user_id' => $userinfo['user_id']));
     }
 
     public function mkdata($v)

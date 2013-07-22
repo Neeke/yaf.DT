@@ -15,22 +15,32 @@ class spall_user
      * @return string 头像地址
      */
     static public function avatar($uid,$h = '30',$type = '',$type_a = ''){
-        $url = 'http://'.$_SERVER['HTTP_HOST'].'/uploads/avatar/'.base64_encode($uid).'.jpg';
-        $executeTime = ini_get('max_execution_time');
-        ini_set('max_execution_time', 0);
-        $headers = get_headers($url);
+        $ext = array('jpg','jpeg','png','gif');
 
-        ini_set('max_execution_time', $executeTime);
-        if ($headers) {
-            $head = explode(' ', $headers[0]);
-            if (!empty($head[1]) && intval($head[1]) < 400){
+        $user_model = models_user::getInstance();
 
+        $user_info = $user_model->getUserInfoAll();
+        if (!empty($user_info['face_url'])){
+            $url = 'http://'.$_SERVER['HTTP_HOST'].$user_info['face_url'];
+            $executeTime = ini_get('max_execution_time');
+            ini_set('max_execution_time', 0);
+            $headers = get_headers($url);
+
+            ini_set('max_execution_time', $executeTime);
+            if ($headers) {
+                $head = explode(' ', $headers[0]);
+                if (!empty($head[1]) && intval($head[1]) < 400){
+
+                }else{
+                    $url = '/resources/images/avatar_default.jpg';
+                }
             }else{
                 $url = '/resources/images/avatar_default.jpg';
             }
         }else{
             $url = '/resources/images/avatar_default.jpg';
         }
+
 //        return '<a href="'.helper_common::site_url_user($uid).'" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
         return '<a href="javascript:;" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
     }
