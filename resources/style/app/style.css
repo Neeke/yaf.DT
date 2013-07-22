@@ -1837,9 +1837,9 @@
 }
 
 .quark-button {
+    display: none;
     width: 26px;
     height: 115px;
-    background: #444444;
     position: absolute;
     right: 10px;
     top: 60px;

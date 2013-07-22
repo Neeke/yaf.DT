@@ -1,5 +1,24 @@
 .talk-detail-list {
+    height: 350px;
+    padding-right: 10px;
+    margin-right: -10px;
+    overflow: auto;
+}
 
+.talk-sendbox {
+    margin-bottom: 20px;
+}
+
+.talk-sendbox textarea {
+    float: left;
+
+    width: 400px;
+    height: 60px;
+}
+
+.talk-sendbox .btn_small_important {
+    float: left;
+    margin: 33px 0 0 20px;
 }
 
 .talk-detail-list-item {
