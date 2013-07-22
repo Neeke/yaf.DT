@@ -52,10 +52,13 @@ define(function(require) {
             var win = new DK.Window({
                 title  : '',
                 content: '#updateAvatarContent',
+                width: 500,
+                height: 440,
                 bbar   : [{
                     type: 'normal',
                     text: '保存',
                     handler: function() {
+                        var self = this;
                         var rest = $.restPost('/api/avatar/create', {
                             x: positionInfo.x,
                             y: positionInfo.y,
@@ -66,13 +69,13 @@ define(function(require) {
 
                         rest.done(function(msg) {
                             alert(msg);
+                            self.close();
                         });
 
                         rest.fail(function(msg) {
                             alert(msg);
+                            self.close();
                         });
-
-                        this.close();
                     }
                 }]
             });
@@ -117,7 +120,6 @@ define(function(require) {
                     $('.js-avatar').attr('src', r.data.avatar_url);
 
                     avatarUrl = r.data.avatar_url;
-                    initCutImg();
                 }
             }
         });
@@ -143,26 +145,46 @@ define(function(require) {
         });
     }
 
+    function cropImg($srcAvatar) {
+        imgHeight = $srcAvatar.get(0).height;
+        imgWidth = $srcAvatar.get(0).width;
+
+        $.Jcrop('#srcAvatar').destroy();
+        $('.jcrop-holder').remove();
+
+        $srcAvatar.Jcrop({
+            boxWidth: 200,
+            onChange: showPreview,
+            onSelect: showPreview,
+            aspectRatio: 1
+        });
+    }
+
     function initCutImg() {
         var $srcAvatar = $('#srcAvatar');
+        var timer;
         $srcAvatar.load(function() {
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                cropImg($srcAvatar);
+            }, 100);
+        });
+    }
 
-            imgHeight = $srcAvatar.height();
-            imgWidth = $srcAvatar.width();
+    function initForm() {
+        var rest = $.restGet('/api/user/setinit');
 
-            $.Jcrop('#srcAvatar').destroy();
+        rest.done(function(msg, data) {
+            $('input[name=gender][value=' + data.gender + ']').prop('checked', true);
 
-            $srcAvatar.Jcrop({
-                boxWidth: 200,
-                onChange: showPreview,
-                onSelect: showPreview,
-                aspectRatio: 1
-            });
+            $('.js-avatar').attr('src', data.avatar);
         });
     }
 
     $(function() {
         initCutImg();
+
+        initForm();
 
         $(document).on('click', '.js-edit', function() {
             $(this).closest('.js-userinfo-item').addClass('editing');
