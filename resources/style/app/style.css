@@ -278,7 +278,7 @@
     padding: 0 0 0 28px;
 }
 
-.all-list .btn {
+.btn_large_normal {
     margin: 30px auto;
     background: url(/resources/style/app/images/btns/btn01.gif) no-repeat;
     width: 199px;
@@ -438,11 +438,6 @@
     margin: 0 27px 21px 0;
     float: left;
     display: inline;
-}
-
-.reg_ul li a {
-    background: url(/resources/style/app/images/close.png) no-repeat right center;
-    padding-right: 19px;
 }
 
 .g_right .r_01 {
@@ -1366,7 +1361,7 @@
     width: 450px;
 }
 
-.search-tags .tagslist a {
+.tag-item {
     float: left;
     height: 30px;
     background: url(/resources/style/app/images/add.gif) no-repeat right center #fff;
@@ -1397,14 +1392,23 @@
     padding: 63px 0 0 0;
 }
 
-.had-gz-tags dl dd a {
+.tag-item-listened {
+    background-color: #fff;
     float: left;
     height: 30px;
-    background: url(/resources/style/app/images/add.gif) no-repeat right center #fff;
     line-height: 30px;
     border: 1px solid #f6f6f6;
-    padding: 0 27px 0 10px;
+    padding: 0 5px 0 10px;
     margin: 0 25px 25px 0;
+}
+
+.tag-item-listened a {
+    width: 10px;
+    height: 10px;
+    display: block;
+    float: right;
+    margin: 10px 0 0 12px;
+    background: url(/resources/style/app/images/close.png) no-repeat right center #fff;
 }
 
 .reglater a.complete-reg {

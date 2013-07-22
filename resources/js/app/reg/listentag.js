@@ -28,14 +28,14 @@ define(function(require) {
         rest.done(function(msg, data) {
             $tagsList.empty();
             $.each(data || [], function(i, e) {
-                var tpl = '<a href="javascript:;" data-tid="{0}">{1}</a>';
+                var tpl = '<a href="javascript:;" class="tag-item" data-tid="{0}">{1}</a>';
                 $tagsList.append(util.formatStr(tpl, e.tid, e.tag));
             });
         });
     }
 
     function addListenedTag(id, name) {
-        var tpl = '<a href="javascript:;" data-tid="{0}">{1}</a>';
+        var tpl = '<span class="tag-item-listened">{1}<a href="javascript:;"  data-tid="{0}"></a></span>';
         $listenedTags.append(util.formatStr(tpl, id, name));
     }
 
@@ -46,6 +46,16 @@ define(function(require) {
 
         rest.done(function(msg, data) {
             addListenedTag(tid, name);
+        });
+    }
+
+    function removeTag(tid, $tag) {
+        var rest = $.restPost('/api/tag/remove', {
+            tag_id: tid
+        });
+
+        rest.done(function(msg, data) {
+            $tag.remove();
         });
     }
 
@@ -63,6 +73,11 @@ define(function(require) {
         $tagsList.on('click', 'a', function() {
             var tid = $(this).attr('data-tid');
             listenTag(tid, $(this).text());
+        });
+
+        $listenedTags.on('click', 'a', function() {
+            var tid = $(this).attr('data-tid');
+            removeTag(tid, $(this).parent());
         });
 
         fetchTags();
