@@ -164,6 +164,16 @@ params: file [user_id]
 var api_avatar_create = '/api/avatar/create';
 method: post
 params: x y w h avatar_url
+
+删除album:
+var api_album_remove = '/api/album/remove';
+method: post
+params: album_id
+
+删除tag:
+var api_tag_remove = '/api/tag/remove';
+method: post
+params: tag_id
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';

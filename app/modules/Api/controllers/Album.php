@@ -362,6 +362,23 @@ class AlbumController extends Controller
     }
 
     /**
+     * 删除album
+     */
+    public function removeAction()
+    {
+        $this->rest->method('POST');
+
+        $params = $this->allParams();
+        $this->rest->paramsMustMap = array('album_id');
+        $this->rest->paramsMustValid($params);
+
+        $result = $this->model_album->remove($params['album_id'],$this->user_id);
+        if ($result) $this->rest->success('','','删除成功');
+
+        $this->rest->error();
+    }
+
+    /**
      * 查看某个相册
      */
     public function showAction()
