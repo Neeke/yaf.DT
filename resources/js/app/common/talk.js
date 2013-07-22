@@ -24,11 +24,13 @@ define(function(require) {
         });
 
         win.el.on('click', '.js-send', function() {
+            var $textarea = win.el.find('textarea');
             var rest = $.restPost(cfg.sendUrl, $.extend(cfg.params, {
-                content: win.el.find('textarea').val()
+                content: $textarea.val()
             }));
 
             rest.done(function(msg, data) {
+                $textarea.val("");
                 win.el.find('.js-content').prepend(getMsgHtml(data));
             });
         });
