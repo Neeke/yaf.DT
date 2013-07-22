@@ -21,12 +21,12 @@ class spall_menu
             'tag/mine'       => '我的标签',
         ),
 
-        'nav03' => array(
-            'main' => '品牌推荐',
-            'ad/1' => '品牌推荐1',
-            'ad/2' => '品牌推荐2',
-            'ad/3' => '品牌推荐3',
-        ),
+//        'nav03' => array(
+//            'main' => '品牌推荐',
+//            'ad/1' => '品牌推荐1',
+//            'ad/2' => '品牌推荐2',
+//            'ad/3' => '品牌推荐3',
+//        ),
     );
 
     static public function get_menu()

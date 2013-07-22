@@ -32,7 +32,7 @@ class models_album extends Models
      */
     function viewAlbum($album_id)
     {
-        return $this->update(array('hits' => 'hits + 1'), $album_id);
+        return $this->db->query('update ' . $this->_table . ' set hits = hits + 1 where album_id = ?', array($album_id));
     }
 
     /**

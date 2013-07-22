@@ -4,7 +4,7 @@
             <?php foreach($myalbums as $album_info){?>
                 <li class="albumitem" data-albumid="<?php echo $album_info['album_id'];?>">
                     <div class="albumitem-wrap">
-                        <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>">
+                        <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>" target="_blank">
                             <div class="pic">
                                 <img src="<?php echo $album_info['face_url'];?>">
                             </div>

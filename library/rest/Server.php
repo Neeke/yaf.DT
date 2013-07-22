@@ -164,7 +164,7 @@ class rest_Server
     private function baseResponse($data, $status, $msg)
     {
         self::checkMethod();
-        $this->data   = (array)$data;
+        $this->data   = $data;
         $this->status = (int)$status;
         $this->msg    = (string)(
         ($msg == NULL && isset($this->status_msgs[$status]))
