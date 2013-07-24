@@ -80,7 +80,6 @@ class models_album extends Models
     /**
      * 热门专辑
      * @return array
-     * @todo 封皮图片
      */
     function hotAlbum()
     {
@@ -91,14 +90,12 @@ class models_album extends Models
     /**
      * 热门专辑
      * @return array
-     * @todo 封皮图片
      */
     function newAlbum()
     {
         $this->db->cache_on(3600);
         return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), '', 0, 6);
     }
-
 
     /**
      * listed总数加１

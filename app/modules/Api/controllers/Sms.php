@@ -85,6 +85,8 @@ class SmsController extends Controller
         $this->getStartLimit();
         $info = $this->model_msg->getMsgsByFeedid($this->user_id,$params['feed_id'],$this->start,$this->limit);
 
+        $info = spall_reply::mkDataForSmsList($info);
+
         $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'msg_id');
         $data = $this->mkData->make($info);

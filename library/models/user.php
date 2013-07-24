@@ -59,15 +59,20 @@ class models_user extends Models
 
     /**
      * 返回用户的完整信息
+     * @param int $user_id
      * @return array|bool
      */
-    public function getUserInfoAll()
+    public function getUserInfoAll($user_id = 0)
     {
-        $userinfo = $this->getUserInfo();
-        if ($userinfo == FALSE) return FALSE;
+        if ($user_id < 1){
+            $userinfo = $this->getUserInfo();
+            $user_id = $userinfo['user_id'];
+            if ($userinfo == FALSE) return FALSE;
+        }
 
-//        $this->db->cache_on(1800);
-        return $this->getRow('*', $userinfo['user_id']);
+
+        $this->db->cache_on(1800);
+        return $this->getRow('*', $user_id);
     }
 
     /**
@@ -103,6 +108,28 @@ class models_user extends Models
     }
 
     /**
+     * 取得某用户头像
+     * @param $user_id
+     * @return array
+     */
+    public function getAvatarByUserId($user_id)
+    {
+        $this->db->cache_on(3600);
+        return $this->getRow('face_url',(int)$user_id);
+    }
+
+    /**
+     * 取得某用户姓名
+     * @param $user_id
+     * @return array
+     */
+    public function getUsernameByUserId($user_id)
+    {
+        $this->db->cache_on(3600);
+        return $this->getRow('user_name',(int)$user_id);
+    }
+
+    /*
      * 收藏总数加１
      * @return bool
      */
