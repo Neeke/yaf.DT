@@ -26,7 +26,7 @@
             <div class="header-user">
                 <?php echo spall_user::avatar($user_id,25,'','class="picture"');?>
                 <div class="header-tips">
-                    <span class="user-name">bcsmc</span>
+                    <span class="user-name"><?php echo $config['user_name'];?></span>
                     <a class="tip01 js-msgcount" href="/message" id="msgCount"></a>
                     <div class="tip02">
                         <a href="/message" class="ico01">消息<span class="js-msgcount"></span></a>

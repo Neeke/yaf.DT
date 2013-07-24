@@ -36,18 +36,12 @@ class models_replyalbum extends Models
      */
     function getAllByAlbumId($album_id, $start = 0,$limit = 50)
     {
-        $this->db->cache_on();
+        $this->db->cache_on(120);
         $info = $this->getAll('*',
             array('album_id' => (int)$album_id),
             array('reply_id' => 'desc'),
             $start, $limit
         );
-
-        foreach ($info as $k => $v) {
-            $v['avatar']     = '/static/images/photo01.gif';
-            $v['source_url'] = helper_common::site_url_user($v['user_id_from']);
-            $info[$k]        = $v;
-        }
 
         return $info;
     }

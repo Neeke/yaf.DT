@@ -158,11 +158,13 @@ class db_Mysql
      * 执行语句  先查询memcache，memcache中未过期，取cache || 取值写cache
      * @see db_DbInterface::query()
      */
-    function query($sql, $values = array())
+    function query($sql, $values = array(),$type = '')
     {
         if ($this->_cache_on && $this->_update_cache == FALSE) {
             $cache_key     = $this->cache_made_key($sql, $values);
+            if (!empty($type)) $cache_key .= $type;
             $if_have_cache = $this->_cache->get($cache_key);
+
             if ($if_have_cache) {
                 $this->_cache_if_have = TRUE;
                 return $if_have_cache;
@@ -182,9 +184,11 @@ class db_Mysql
         if ($this->_debug == TRUE) {
             echo '<pre>';
             print_r($sql);
-            echo '<br>';
+            echo '<br />';
             var_dump($values);
-            echo '<br><br>';
+            echo '<br /><br />';
+            print_r($this->_cache_time);
+            echo '<br />';
         }
 
         return $bool;
@@ -196,7 +200,7 @@ class db_Mysql
      */
     function getAll($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC)
     {
-        $cache = $this->query($sql, $values);
+        $cache = $this->query($sql, $values,'_all');
         if ($this->_cache_if_have) {
             return $cache;
         }
@@ -229,7 +233,7 @@ class db_Mysql
      */
     function getRow($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC)
     {
-        $cache = $this->query($sql, $values);
+        $cache = $this->query($sql, $values, '_row');
         if ($this->_cache_if_have) {
             return $cache;
         }

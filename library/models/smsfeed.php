@@ -62,7 +62,7 @@ class models_smsfeed extends Models
         $userinfo = models_user::getInstance()->getUserInfo();
         $user_id  = (int)$userinfo['user_id'];
 
-        return $this->update(array('isread' => 1), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
+        return $this->update(array('isread' => contast_msgfeed::FEED_IS_READ_YES), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
     }
 
     /**

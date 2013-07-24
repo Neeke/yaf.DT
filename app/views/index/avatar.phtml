@@ -3,7 +3,11 @@
     </div>
     <div class="t_con">
         <h2><?php echo $userinfo['username'];?></h2>
-        <span>共<?php echo (int)$userinfo['album_count'];?>部图集</span>
+        <?php if ($this_menu == 'album/listened'){?>
+            <span>共订阅<?php echo (int)count($myalbums);?>部图集</span>
+        <?php }else{?>
+            <span>共<?php echo (int)$userinfo['album_count'];?>部图集</span>
+        <?php }?>
 
         <div class="clear"></div>
             <span class="con_a">

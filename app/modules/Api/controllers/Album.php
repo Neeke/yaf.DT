@@ -355,6 +355,8 @@ class AlbumController extends Controller
         $this->getStartLimit();
         $info = $this->models_album_replay->getAllByAlbumId($params['album_id'],$this->start,$this->limit);
 
+        $info = spall_reply::mkDataForAlbumReply($info);
+
         $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'reply_id');
         $data = $this->mkData->make($info);

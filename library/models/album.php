@@ -50,7 +50,7 @@ class models_album extends Models
             $userinfo = models_user::getInstance()->getUserInfo();
             $user_id  = (int)$userinfo['user_id'];
         }
-        return $this->getAll('*', array('user_id' => $user_id), '', $start, $limit);
+        return $this->getAll('*', array('user_id' => $user_id, 'flag' => contast_album::FLAG_DEFAULT), '', $start, $limit);
     }
 
     /**
@@ -61,7 +61,7 @@ class models_album extends Models
     function justlook()
     {
         $this->db->cache_on(120);
-        $sql = 'SELECT * FROM avi_album ORDER BY RAND() LIMIT 6';
+        $sql = 'SELECT * FROM avi_album WHERE flag = 0 ORDER BY RAND() LIMIT 6';
         return $this->db->getAll($sql);
     }
 
@@ -80,14 +80,22 @@ class models_album extends Models
     /**
      * 热门专辑
      * @return array
-     * @todo 封皮图片
      */
     function hotAlbum()
     {
         $this->db->cache_on(3600);
-        return $this->getAll(array('album_id', 'album_name'), array(), array('hits' => 'desc'));
+        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), array('hits' => 'desc'), 0, 6);
     }
 
+    /**
+     * 热门专辑
+     * @return array
+     */
+    function newAlbum()
+    {
+        $this->db->cache_on(3600);
+        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), '', 0, 6);
+    }
 
     /**
      * listed总数加１
@@ -105,10 +113,10 @@ class models_album extends Models
      * @param $user_id
      * @return bool
      */
-    public function remove($album_id,$user_id)
+    public function remove($album_id, $user_id)
     {
         if (intval($album_id) < 1 || intval($user_id) < 1) return FALSE;
-        return $this->update(array('flag' => contast_album::FLAG_DEL),array('album_id' => $album_id,'user_id' => $user_id));
+        return $this->update(array('flag' => contast_album::FLAG_DEL), array('album_id' => $album_id, 'user_id' => $user_id));
     }
 
 
@@ -125,6 +133,7 @@ class models_album extends Models
             'face_url'     => '',
             'is_open'      => (int)$v['is_open'],
             'likeit'       => 0,
+            'items'        => (int)count($v['items']),
         );
     }
 }
