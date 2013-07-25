@@ -51,6 +51,7 @@ class models_user extends Models
             $array['user_id']     = $userinfo['user_id'];
             $array['user_name']   = $userinfo['user_name'];
             $array['album_count'] = $userinfo['album_count'];
+            $array['face_url']    = $userinfo['face_url'];
             return $array;
         }
         return FALSE;
@@ -58,15 +59,20 @@ class models_user extends Models
 
     /**
      * 返回用户的完整信息
+     * @param int $user_id
      * @return array|bool
      */
-    public function getUserInfoAll()
+    public function getUserInfoAll($user_id = 0)
     {
-        $userinfo = $this->getUserInfo();
-        if ($userinfo == FALSE) return FALSE;
+        if ($user_id < 1){
+            $userinfo = $this->getUserInfo();
+            $user_id = $userinfo['user_id'];
+            if ($userinfo == FALSE) return FALSE;
+        }
 
-//        $this->db->cache_on(1800);
-        return $this->getRow('*',$userinfo['user_id']);
+
+        $this->db->cache_on(1800);
+        return $this->getRow('*', $user_id);
     }
 
     /**
@@ -102,6 +108,28 @@ class models_user extends Models
     }
 
     /**
+     * 取得某用户头像
+     * @param $user_id
+     * @return array
+     */
+    public function getAvatarByUserId($user_id)
+    {
+        $this->db->cache_on(3600);
+        return $this->getRow('face_url',(int)$user_id);
+    }
+
+    /**
+     * 取得某用户姓名
+     * @param $user_id
+     * @return array
+     */
+    public function getUsernameByUserId($user_id)
+    {
+        $this->db->cache_on(3600);
+        return $this->getRow('user_name',(int)$user_id);
+    }
+
+    /*
      * 收藏总数加１
      * @return bool
      */
@@ -122,7 +150,7 @@ class models_user extends Models
     {
         $userinfo = $this->getUserInfo();
         if (empty($email) || strlen($email) < 1) return FALSE;
-        return $this->update(array('user_email' => $email),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('user_email' => $email), array('user_id' => $userinfo['user_id']));
     }
 
     /**
@@ -138,7 +166,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfoAll();
         if (md5($pwd['old']) != $userinfo['user_pwd']) return FALSE;
 
-        return $this->update(array('user_pwd' => md5($pwd['new'])),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('user_pwd' => md5($pwd['new'])), array('user_id' => $userinfo['user_id']));
     }
 
     /**
@@ -149,9 +177,9 @@ class models_user extends Models
     public function updateAvatar($avatar)
     {
         $userinfo = $this->getUserInfo();
-        if (empty($avatar) || strlen($avatar)) return FALSE;
+        if (empty($avatar) || strlen($avatar) < 1) return FALSE;
 
-        return $this->update(array('face_url' => $avatar),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('face_url' => $avatar), array('user_id' => $userinfo['user_id']));
     }
 
     /**
@@ -164,7 +192,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfo();
         if (empty($gender) || (int)$gender < 1) return FALSE;
 
-        return $this->update(array('gender' => (int)$gender),array('user_id' => $userinfo['user_id']));
+        return $this->update(array('gender' => (int)$gender), array('user_id' => $userinfo['user_id']));
     }
 
     public function mkdata($v)

@@ -19,9 +19,9 @@
                             </dl>
                         </div>
                         <div class="tip">
-                            <a href="javascript:;" class="ico01 js-replay"><?php echo (int)$album_info['hits'];?></a>
+                            <a href="javascript:;" class="ico01 js-replay"><?php echo (int)$album_info['posts'];?></a>
                             <a href="javascript:;" class="ico02 js-collect <?php if (isset($listened_album_ids) && in_array($album_info['album_id'],$listened_album_ids)) echo 'checked';?>"><?php echo (int)$album_info['likeit'];?></a>
-                            <a href="javascript:;" class="ico03 js-detail"><?php echo (int)$album_info['posts'];?></a>
+                            <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>" target="_blank" class="ico03 js-detail"><?php echo (int)$album_info['hits'];?></a>
                             <?php if ($user_id == $album_info['user_id']){
                                 ?>
                                 <a href="<?php echo helper_common::site_url_album_edit($album_info['album_id'])?>" class="edita">编辑</a>

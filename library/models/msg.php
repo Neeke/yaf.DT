@@ -56,6 +56,29 @@ class models_msg extends Models
         return $info;
     }
 
+
+    /**
+     * ＠todo 返回格式化 user_id_to
+     *
+     * @param $feed_id
+     * @param $content
+     * @return bool
+     */
+    function send($feed_id,$content)
+    {
+        $userinfo = models_user::getInstance()->getUserInfo();
+        $user_id  = (int)$userinfo['user_id'];
+
+        $data = array(
+            'feed_id' => $feed_id,
+            'user_id_from' => $user_id,
+            'content' => $content,
+            'dateline' => time(),
+        );
+
+        return $this->insert($data);
+    }
+
     function mkdata($v)
     {
         return $data = array(

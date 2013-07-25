@@ -17,11 +17,10 @@
     position: absolute;
     display: block;
     text-indent: -9999em;
-    background: url(/resources/style/app/images/logo2.png) no-repeat;
+    background: url(/resources/style/app/images/index_logo.png) no-repeat;
     width: 218px;
-    height: 56px;
+    height: 200px;
     left: 50%;
-    top: 75px;
     margin: 0 0 0 -104px;
 }
 
@@ -74,7 +73,7 @@
     float: left;
     display: inline;
     width: 298px;
-    margin-left: 37px;
+    margin-left: 50px;
 }
 
 .reg_begin .reg_1 {
@@ -581,7 +580,7 @@
 }
 
 .page_title {
-    margin: 0 65px;
+    margin: 0 0px;
     border-bottom: 1px solid #4a4a4a;
     padding: 0 10px 6px 10px;
     color: #fff;

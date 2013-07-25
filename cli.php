@@ -1,5 +1,5 @@
 <?php
-define ("APPLICATION_PATH", dirname(__FILE__) . "/duitang");
+define ("APPLICATION_PATH", dirname(__FILE__) . "/app");
 $application = new Yaf_Application(APPLICATION_PATH."/../conf/appcrm.ini");
 
 

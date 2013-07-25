@@ -85,6 +85,8 @@ class SmsController extends Controller
         $this->getStartLimit();
         $info = $this->model_msg->getMsgsByFeedid($this->user_id,$params['feed_id'],$this->start,$this->limit);
 
+        $info = spall_reply::mkDataForSmsList($info);
+
         $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'msg_id');
         $data = $this->mkData->make($info);
@@ -94,10 +96,21 @@ class SmsController extends Controller
 
     /**
      *发送短消息
+     * ＠todo 返回格式化 user_id_to
      */
     public function sendAction()
     {
+        $this->rest->method('POST');
 
+        $params = $this->allParams();
+
+        $this->rest->paramsMustMap = array('content','feed_id');
+        $this->rest->paramsMustValid($params);
+
+        $result = $this->model_msg->send($params['feed_id'],$params['content']);
+        if ($result) $this->rest->success('','','发送成功');
+
+        $this->rest->error();
     }
 
     /**
