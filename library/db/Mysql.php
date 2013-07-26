@@ -20,6 +20,7 @@ class db_Mysql
     private $_cache_off = FALSE;
     private $_cache_time = 60;
     private $_cache_if_have = FALSE;
+    private $_cache_key = FALSE;
 
     private function __construct($dbhost, $dbport, $username, $password, $dbname, $dbcharset, $cachesys, $cachetype, $cachehost, $cacheport)
     {
@@ -111,9 +112,10 @@ class db_Mysql
     /**
      * 起用强制更新cache
      */
-    function update_cache()
+    function update_cache($key = FALSE)
     {
         $this->_update_cache = TRUE;
+        if ($key) $this->cache_key($key);
     }
 
     /**
@@ -134,6 +136,15 @@ class db_Mysql
     }
 
     /**
+     * set the cache_key
+     * @param $key
+     */
+    function cache_key($key)
+    {
+        $this->_cache_key = $key;
+    }
+
+    /**
      * 生成cache key
      * @param string $a
      * @param array|string $b
@@ -149,7 +160,7 @@ class db_Mysql
      * @param $sql
      * @param array $values
      */
-    function joinQuery($sql,$values = array())
+    function joinQuery($sql, $values = array())
     {
 
     }
@@ -158,12 +169,15 @@ class db_Mysql
      * 执行语句  先查询memcache，memcache中未过期，取cache || 取值写cache
      * @see db_DbInterface::query()
      */
-    function query($sql, $values = array(),$type = '')
+    function query($sql, $values = array(), $type = '')
     {
         if ($this->_cache_on && $this->_update_cache == FALSE) {
-            $cache_key     = $this->cache_made_key($sql, $values);
-            if (!empty($type)) $cache_key .= $type;
-            $if_have_cache = $this->_cache->get($cache_key);
+            if (!$this->_cache_key) {
+                $this->_cache_key = $this->cache_made_key($sql, $values);
+            }
+            $this->_cache_key .= $type;
+
+            $if_have_cache = $this->_cache->get($this->_cache_key);
 
             if ($if_have_cache) {
                 $this->_cache_if_have = TRUE;
@@ -173,6 +187,9 @@ class db_Mysql
             }
         }
 
+        if ($this->_update_cache && $this->_cache_key) {
+            $this->_cache->set($this->_cache_key, 0, -1);
+        }
 
         $this->_sql = $sql;
         $this->_sth = $this->_dbh->prepare($sql);
@@ -182,12 +199,14 @@ class db_Mysql
         }
 
         if ($this->_debug == TRUE) {
-            echo '<pre>';
+            echo '<pre>sql: ';
             print_r($sql);
-            echo '<br />';
+            echo '<br /><br />$values: ';
             var_dump($values);
-            echo '<br /><br />';
+            echo '<br /><br />$this->_cache_time: ';
             print_r($this->_cache_time);
+            echo '<br /><br />$this->_cache_key: ';
+            print_r($this->_cache_key);
             echo '<br />';
         }
 
@@ -200,18 +219,20 @@ class db_Mysql
      */
     function getAll($sql, $values = array(), $fetch_style = PDO::FETCH_ASSOC)
     {
-        $cache = $this->query($sql, $values,'_all');
+        $cache = $this->query($sql, $values, '_all');
         if ($this->_cache_if_have) {
+            $this->_cache_key = FALSE;
             return $cache;
         }
 
         $result = $this->_sth->fetchAll($fetch_style);
 
         if ($this->_cache_on || $this->_update_cache) {
-            $cache_key = $this->cache_made_key($sql, $values);
-            $this->_cache->set($cache_key . '_all', $result, $this->_cache_time);
+            $this->_cache_key = $this->cache_made_key($sql, $values);
+            $this->_cache->set($this->_cache_key . '_all', $result, $this->_cache_time);
         }
 
+        $this->_cache_key = FALSE;
         return $result;
     }
 
@@ -235,16 +256,21 @@ class db_Mysql
     {
         $cache = $this->query($sql, $values, '_row');
         if ($this->_cache_if_have) {
+            $this->_cache_key = FALSE;
             return $cache;
         }
 
         $result = $this->_sth->fetch($fetch_style);
 
         if ($this->_cache_on || $this->_update_cache) {
-            $cache_key = $this->cache_made_key($sql, $values);
-            $a         = $this->_cache->set($cache_key . '_row', $result, $this->_cache_time);
+            if (!$this->_cache_key){
+                $this->_cache_key = $this->cache_made_key($sql, $values).'_row';
+            }
+
+            $a                = $this->_cache->set($this->_cache_key, $result, $this->_cache_time);
         }
 
+        $this->_cache_key = FALSE;
         return $result;
     }
 
@@ -285,9 +311,9 @@ class db_Mysql
         }
         $this->query($sql, array_values($data));
         $last_insert_id = $this->_dbh->lastInsertId();
-        if ($last_insert_id){
+        if ($last_insert_id) {
             return $last_insert_id;
-        }else{
+        } else {
             return TRUE;
         }
     }

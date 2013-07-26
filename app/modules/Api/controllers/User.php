@@ -33,6 +33,13 @@ class UserController extends Controller
         $this->rest->paramsMustMap = array('email', 'pwd', 'user_name');
         $this->rest->paramsMustValid($params);
 
+        $have_invitation = false;
+        if (array_key_exists('invitation',$params)){
+            $invitation = $params['invitation'];
+
+            $have_invitation = true;
+        }
+
         if ($this->model->exits(array('user_email' => $params['email']))) {
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, 'email已存在');
         }
@@ -46,7 +53,15 @@ class UserController extends Controller
 
         if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
-        $this->rest->success('', rest_Code::STATUS_SUCCESS, '注册成功，请登录');
+        $this->model->login($params['email'], $params['pwd']);
+
+        if ($have_invitation){
+            $data['redirect'] = '/user/confirm';
+        }else{
+            $data['redirect'] = '/reg/listentag';
+        }
+
+        $this->rest->success($data, rest_Code::STATUS_SUCCESS, '注册成功，请登录');
     }
 
     /**

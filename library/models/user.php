@@ -70,8 +70,8 @@ class models_user extends Models
             if ($userinfo == FALSE) return FALSE;
         }
 
-
         $this->db->cache_on(1800);
+        $this->db->cache_key('user_info_'.$user_id);
         return $this->getRow('*', $user_id);
     }
 
@@ -79,16 +79,16 @@ class models_user extends Models
      * 登录
      * @todo     非法检测 非空检测
      *
-     * @param $user_name
+     * @param $user_email
      * @param $pwd
      *
      * @return boolean
      */
-    public function login($user_name, $pwd)
+    public function login($user_email, $pwd)
     {
         $this->db->cache_off();
 //        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
-        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_email = ? and user_pwd = ?', array($user_name, md5($pwd)));
+        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_email = ? and user_pwd = ?', array($user_email, md5($pwd)));
         if ($aResult == FALSE) return FALSE;
 
         $session           = Yaf_Session::getInstance();
@@ -136,6 +136,7 @@ class models_user extends Models
     public function addcollect()
     {
         $userinfo = $this->getUserInfo();
+        $this->db->update_cache('user_info_'.$userinfo['user_id']);
         $this->db->query('update ' . $this->_table . ' set collect_count = collect_count + 1 where user_id = ?', array($userinfo['user_id']));
         return TRUE;
     }
@@ -150,6 +151,8 @@ class models_user extends Models
     {
         $userinfo = $this->getUserInfo();
         if (empty($email) || strlen($email) < 1) return FALSE;
+
+        $this->db->update_cache('user_info_'.$userinfo['user_id']);
         return $this->update(array('user_email' => $email), array('user_id' => $userinfo['user_id']));
     }
 
@@ -166,6 +169,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfoAll();
         if (md5($pwd['old']) != $userinfo['user_pwd']) return FALSE;
 
+        $this->db->update_cache('user_info_'.$userinfo['user_id']);
         return $this->update(array('user_pwd' => md5($pwd['new'])), array('user_id' => $userinfo['user_id']));
     }
 
@@ -179,6 +183,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfo();
         if (empty($avatar) || strlen($avatar) < 1) return FALSE;
 
+        $this->db->update_cache('user_info_'.$userinfo['user_id']);
         return $this->update(array('face_url' => $avatar), array('user_id' => $userinfo['user_id']));
     }
 
@@ -192,6 +197,7 @@ class models_user extends Models
         $userinfo = $this->getUserInfo();
         if (empty($gender) || (int)$gender < 1) return FALSE;
 
+        $this->db->update_cache('user_info_'.$userinfo['user_id']);
         return $this->update(array('gender' => (int)$gender), array('user_id' => $userinfo['user_id']));
     }
 
