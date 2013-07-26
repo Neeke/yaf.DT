@@ -2,7 +2,7 @@
     <div class="list" id="albumList">
         <ul class="albumlist albumlist-3col">
             <?php foreach($myalbums as $album_info){?>
-                <li class="albumitem" data-albumid="<?php echo $album_info['album_id'];?>">
+                <li class="albumitem js-albumitem" data-albumid="<?php echo $album_info['album_id'];?>">
                     <div class="albumitem-wrap">
                         <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>" target="_blank">
                             <div class="pic">
