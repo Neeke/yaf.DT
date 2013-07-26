@@ -45,7 +45,7 @@ define(function(require) {
 
             rest.done(function(msg, data) {
                 alert(msg);
-                location.href = '/reg/listentag';
+                location.href = data.redirect;
             });
 
             rest.fail(function(msg) {

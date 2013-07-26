@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <title><?php echo $title;?></title>
-    <link rel="stylesheet" href="/resources/style/lib/all.css"/>
-    <link rel="stylesheet" href="/resources/style/app/all.css"/>
-    <script type="text/javascript" src="/resources/js/lib/seajs/sea.js" ></script>
-    <script type="text/javascript" src="/resources/js/lib/seajs/config.js"></script>
-    <script>
-        var $CONFIG = <?php if (isset($config) && is_array($config) && count($config) > 0){
-        echo json_encode($config);
-        }else{
-            echo '{}';
-        } ?>
-    </script>
+    <?php include_once(VIEW_PATH . '/layout/header_common.phtml'); ?>
     <script type="text/javascript">
         seajs.use('app/layout/header');
     </script>

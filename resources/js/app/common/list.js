@@ -5,7 +5,7 @@ define(function(require) {
     function initEvts() {
         $('#albumList').on('click', '.js-collect', function(e) {
             var $el = $(this);
-            collect($el.closest('.albumitem').attr('data-albumid'), $el);
+            collect($el.closest('.js-albumitem').attr('data-albumid'), $el);
         });
 
         $('#albumList').on('click', '.js-replay', function() {
@@ -13,7 +13,7 @@ define(function(require) {
                 fetchUrl: '/api/album/replylist',
                 title: '评论',
                 params: {
-                    album_id: $(this).closest('.albumitem').attr('data-albumid')
+                    album_id: $(this).closest('.js-albumitem').attr('data-albumid')
                 },
                 sendUrl: '/api/album/reply'
             });
