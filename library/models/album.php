@@ -60,7 +60,7 @@ class models_album extends Models
      */
     function justlook()
     {
-        $this->db->cache_on(120);
+        $this->db->cache_on(1800);
         $sql = 'SELECT * FROM avi_album WHERE flag = 0 ORDER BY RAND() LIMIT 6';
         return $this->db->getAll($sql);
     }
