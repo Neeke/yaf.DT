@@ -53,6 +53,7 @@
                     img.style.height = settings.height + 'px';
                 }
                 else {
+                    img.style.marginTop = Math.round((settings.height - height) / 2) + 'px';
                     img.style.width = settings.width + 'px';
                 }
             }

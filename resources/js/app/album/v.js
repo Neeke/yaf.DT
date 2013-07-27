@@ -50,7 +50,6 @@ define(function(require) {
                 });
 
                 rest.done(function(msg) {
-                    alert(msg);
                     $('.js-collectBtn').addClass('checked');
 
                     if ($count.length) {
