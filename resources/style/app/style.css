@@ -1379,6 +1379,7 @@
 .had-gz-tags dl dt .num {
     float: right;
     color: #fff;
+    padding-right: 30px;
 }
 
 .had-gz-tags dl dd {
