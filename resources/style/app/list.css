@@ -55,7 +55,7 @@
     width: 240px;
     height: 75px;
     position: absolute;
-    background: url(/resources/style/app/images/black_bg.png) repeat;
+    background: url(images/black_bg.png) repeat;
     top: 50%;
     left: 0;
     margin: -52px 0 0 0;
@@ -93,37 +93,37 @@
 }
 
 .albumitem .tip a.ico01 {
-    background: url(/resources/style/app/images/icos/pl_ico01_on.gif) no-repeat left center;
+    background: url(images/icos/pl_ico01_on.gif) no-repeat left center;
     padding: 0 0 0 23px;
 }
 
 .albumitem .tip a.ico01:hover {
-    background: url(/resources/style/app/images/icos/pl_ico01.gif) no-repeat left center;
+    background: url(images/icos/pl_ico01.gif) no-repeat left center;
     padding: 0 0 0 23px;
 }
 
 .albumitem .tip a.ico02 {
-    background: url(/resources/style/app/images/icos/sc_ico01_on.gif) no-repeat left center;
+    background: url(images/icos/sc_ico01_on.gif) no-repeat left center;
     padding: 0 0 0 24px;
 }
 
 .albumitem .tip a.ico02:hover {
-    background: url(/resources/style/app/images/icos/sc_ico01.gif) no-repeat left center;
+    background: url(images/icos/sc_ico01.gif) no-repeat left center;
     padding: 0 0 0 24px;
 }
 
 .albumitem .tip a.ico02.checked {
-    background: url(/resources/style/app/images/icos/sc_ico01.gif) no-repeat left center;
+    background: url(images/icos/sc_ico01.gif) no-repeat left center;
     padding: 0 0 0 24px;
 }
 
 .albumitem .tip a.ico03 {
-    background: url(/resources/style/app/images/icos/see_ico01_on.gif) no-repeat left center;
+    background: url(images/icos/see_ico01_on.gif) no-repeat left center;
     padding: 0 0 0 28px;
 }
 
 .albumitem .tip a.ico03:hover {
-    background: url(/resources/style/app/images/icos/see_ico01.gif) no-repeat left center;
+    background: url(images/icos/see_ico01.gif) no-repeat left center;
     padding: 0 0 0 28px;
 }
 
@@ -144,7 +144,7 @@
     position: absolute;
     right: 7px;
     top: 7px;
-    background: url(/resources/style/app/images/icos/close.gif) no-repeat;
+    background: url(images/icos/close.gif) no-repeat;
 }
 
 .my-list .editbox h3 {
@@ -188,7 +188,7 @@
 }
 
 .my-list .editbox .editlist li .libox .up {
-    background: url(/resources/style/app/images/icos/up.gif) no-repeat;
+    background: url(images/icos/up.gif) no-repeat;
     display: block;
     width: 9px;
     height: 9px;
@@ -198,7 +198,7 @@
 }
 
 .my-list .editbox .editlist li .libox .down {
-    background: url(/resources/style/app/images/icos/down.gif) no-repeat;
+    background: url(images/icos/down.gif) no-repeat;
     display: block;
     width: 9px;
     height: 9px;
@@ -226,7 +226,7 @@
 
 .my-list .editbox .editlist li .libox .deledtpic {
     display: block;
-    background: url(/resources/style/app/images/icos/close02.gif) no-repeat;
+    background: url(images/icos/close02.gif) no-repeat;
     width: 21px;
     height: 23px;
     position: absolute;
@@ -236,7 +236,7 @@
 
 .my-list .editbox .editlist li .libox .bi {
     display: block;
-    background: url(/resources/style/app/images/icos/bi.gif) no-repeat;
+    background: url(images/icos/bi.gif) no-repeat;
     width: 21px;
     height: 23px;
     position: absolute;

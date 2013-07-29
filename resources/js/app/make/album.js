@@ -55,8 +55,7 @@ define(function(require) {
             max_file_size : '10mb',
             url : '/api/items/plupload',
             filters : [
-                {title : "Image files", extensions : "jpg,gif,png"},
-                {title : "Zip files", extensions : "zip"}
+                {title : "Image files", extensions : "jpg,gif,png"}
             ]
         });
 
@@ -87,6 +86,10 @@ define(function(require) {
                 if (r && r.result) {
                     var img = $(util.formatStr('<img class="js-uploadimg" data-src="{0}" src="{0}">', r.result));
                     $thumb.append(img);
+                    img.imageScale({
+                        width: 118,
+                        height: 86
+                    });
                 }
             }
         });

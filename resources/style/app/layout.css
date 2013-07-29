@@ -142,10 +142,12 @@
 }
 
 .to-make-phos {
-    font-weight: bold;
     float: left;
+
     padding: 70px 10px 10px 15px;
-    font-family: Microsoft YaHei;
+
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .to-make-phos:hover {

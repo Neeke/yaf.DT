@@ -706,11 +706,6 @@
     float: left;
 }
 
-.makebox .editlist li .libox .thumb img {
-    width: 100%;
-    height: 100%;
-}
-
 .makebox .editlist li .libox textarea {
     padding: 5px;
     float: left;

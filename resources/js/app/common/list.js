@@ -27,7 +27,6 @@ define(function(require) {
         });
 
         rest.done(function(msg) {
-            alert(msg);
             var amount = $el.text();
 
             if ($.isNumeric(amount) && amount * 1 < 9999) {

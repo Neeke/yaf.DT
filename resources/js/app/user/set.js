@@ -156,7 +156,8 @@ define(function(require) {
             boxWidth: 200,
             onChange: showPreview,
             onSelect: showPreview,
-            aspectRatio: 1
+            aspectRatio: 1,
+            setSelect: [25, 25, 200, 200]
         });
     }
 
