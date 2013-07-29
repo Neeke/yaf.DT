@@ -173,9 +173,8 @@ class db_Mysql
     {
         if ($this->_cache_on && $this->_update_cache == FALSE) {
             if (!$this->_cache_key) {
-                $this->_cache_key = $this->cache_made_key($sql, $values);
+                $this->_cache_key = $this->cache_made_key($sql, $values).$type;
             }
-            $this->_cache_key .= $type;
 
             $if_have_cache = $this->_cache->get($this->_cache_key);
 
@@ -374,9 +373,13 @@ class db_Mysql
         return $this->query($sql, $values);
     }
 
+    /**
+     * 关闭链接，释放资源
+     */
     function close()
     {
         unset($this->_dbh);
+        $this->_cache->close();
     }
 
 }

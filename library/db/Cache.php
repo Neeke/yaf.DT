@@ -6,12 +6,12 @@
  */
 class db_Cache {
 	
-	private $cache = null;
+	private $cache = NULL;
 	
 	/**
 	 * @var db_Cache
 	 */
-	private static $self = null;
+	private static $self = NULL;
 
     /**
      * @static
@@ -22,7 +22,7 @@ class db_Cache {
      * @return db_Cache
      */
 	public static function instance($cachehost = 0,$cacheport = 0,$cacheType = 'memcached',$cacheSys = ''){
-		if (self::$self == null){
+		if (self::$self == NULL){
 			self::$self = new db_Cache($cacheSys,$cacheType,$cachehost,$cacheport);
 		}
 		return self::$self;
@@ -36,7 +36,7 @@ class db_Cache {
 				}else{
 					$this->cache = new Memcache();
 					$a = $this->cache->connect($cachehost, $cacheport);
-					if ($a == false) {
+					if ($a == FALSE) {
 						echo '<pre><b>memcached Connection failed.  please check the *.ini cache</b></pre>';
 						die;
 					}		
@@ -55,10 +55,11 @@ class db_Cache {
      * @param string $key
      * @param string|array|bool $value
      * @param int|string $lifetime
-     * @return
+     * @return bool
      */
 	public function set($key,$value,$lifetime = '60'){
-		return $this->cache->set($key, $value, false, $lifetime);
+        if ($value === FALSE) return FALSE;
+		return $this->cache->set($key, $value, FALSE, $lifetime);
 	}
 	
 	/**
