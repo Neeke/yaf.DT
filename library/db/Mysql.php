@@ -106,7 +106,8 @@ class db_Mysql
      */
     function debug()
     {
-        $this->_debug = TRUE;
+        $this->_debug        = TRUE;
+        $this->_cache->debug = TRUE;
     }
 
     /**
@@ -173,7 +174,7 @@ class db_Mysql
     {
         if ($this->_cache_on && $this->_update_cache == FALSE) {
             if (!$this->_cache_key) {
-                $this->_cache_key = $this->cache_made_key($sql, $values).$type;
+                $this->_cache_key = $this->cache_made_key($sql, $values) . $type;
             }
 
             $if_have_cache = $this->_cache->get($this->_cache_key);
@@ -227,8 +228,11 @@ class db_Mysql
         $result = $this->_sth->fetchAll($fetch_style);
 
         if ($this->_cache_on || $this->_update_cache) {
-            $this->_cache_key = $this->cache_made_key($sql, $values);
-            $this->_cache->set($this->_cache_key . '_all', $result, $this->_cache_time);
+            if (!$this->_cache_key) {
+                $this->_cache_key = $this->cache_made_key($sql, $values) . '_all';
+            }
+
+            $this->_cache->set($this->_cache_key, $result, $this->_cache_time);
         }
 
         $this->_cache_key = FALSE;
@@ -262,11 +266,11 @@ class db_Mysql
         $result = $this->_sth->fetch($fetch_style);
 
         if ($this->_cache_on || $this->_update_cache) {
-            if (!$this->_cache_key){
-                $this->_cache_key = $this->cache_made_key($sql, $values).'_row';
+            if (!$this->_cache_key) {
+                $this->_cache_key = $this->cache_made_key($sql, $values) . '_row';
             }
 
-            $a                = $this->_cache->set($this->_cache_key, $result, $this->_cache_time);
+            $a = $this->_cache->set($this->_cache_key, $result, $this->_cache_time);
         }
 
         $this->_cache_key = FALSE;
