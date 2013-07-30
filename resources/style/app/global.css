@@ -51,3 +51,38 @@
     color: #902a63;
     text-decoration: underline;
 }
+
+
+.page-title {
+    color: #fff;
+    overflow: hidden;
+}
+
+.page-title p {
+    border-bottom: 1px solid #4a4a4a;
+    padding: 5px 0;
+}
+
+.page-title span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.page-title span img {
+    margin-right: 5px;
+}
+
+.page-title a {
+    color: #fff;
+    font-weight: bold;
+    float: right;
+    font-size: 12px;
+}
+
+.page-title a:hover {
+    color: #e4007f;
+}
+
+.page-container {
+    padding: 0 65px;
+}

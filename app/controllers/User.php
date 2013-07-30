@@ -25,6 +25,7 @@ class UserController extends Controller
     {
         $this->set('userinfo_all', $this->model->getUserInfoAll());
         $this->set('albums', $this->model_album->myAlbum());
+        $this->set('page_title', '个人设置');
     }
 
 
