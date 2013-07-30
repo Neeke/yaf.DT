@@ -3,7 +3,27 @@
 <?php include_once(VIEW_PATH . '/common/page_title.phtml') ?>
 
 <div class="page-container">
-    <button class="btn">生成邀请码</button>
+    <a href="<?php echo helper_common::site_url('invitation/make');?>">
+        生成邀请码
+    </a>
+
+    <br />
+    <br />
+
+    <?php if (!empty($result_msg)){?>
+    <span>
+        <?php echo $result_msg;?>
+    </span>
+    <?php }?>
+
+    <?php if (is_array($result) && count($result)){
+        foreach ($result as $code){
+    ?>
+        <li> <?php echo $code['code_value'];?> </li>
+
+    <?php
+        }
+    }?>
 </div>
 
 <?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>

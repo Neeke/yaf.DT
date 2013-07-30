@@ -39,7 +39,7 @@ class helper_string
      *
      * @return string
      */
-    function leftStr2($str, $len)
+    static public function leftStr2($str, $len)
     {
         $new_str = array();
         $len1 = strlen($str);
@@ -70,7 +70,7 @@ class helper_string
      *
      * @return mixed
      */
-    function strip_tags2($str)
+    static public function strip_tags2($str)
     {
         $str = strip_tags($str);
         $str = str_replace("&ldquo;", "“", $str);
@@ -89,7 +89,7 @@ class helper_string
      *
      * @return string
      */
-    function rand_string($len = 6, $type = '', $addChars = '')
+    static public function rand_string($len = 6, $type = '', $addChars = '')
     {
         $str = '';
         switch ($type) {

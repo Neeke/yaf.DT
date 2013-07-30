@@ -1,9 +1,9 @@
-define(function(require) {
+define(function (require) {
     require('placeholder');
     require('rest');
     var util = require('util');
 
-    $(function() {
+    $(function () {
         var $username = $('#username'),
             $email = $('#email'),
             $pwd = $('#pwd'),
@@ -11,10 +11,11 @@ define(function(require) {
 
         $username.add($email).add($pwd).add($invitationCode).placeholder();
 
-        $('#submit').click(function() {
+        $('#submit').click(function () {
             var email = $email.val(),
                 username = $username.val(),
-                pwd = $pwd.val();
+                pwd = $pwd.val(),
+                invitationCode = $invitationCode.val();
 
             var usernameLength = util.getCharCount($.trim(username));
 
@@ -41,15 +42,16 @@ define(function(require) {
             var rest = $.restPost('/api/user/reg', {
                 email: email,
                 user_name: username,
-                pwd: pwd
+                pwd: pwd,
+                invitationCode: invitationCode,
             });
 
-            rest.done(function(msg, data) {
+            rest.done(function (msg, data) {
                 alert(msg);
                 location.href = data.redirect;
             });
 
-            rest.fail(function(msg) {
+            rest.fail(function (msg) {
                 alert(msg || '注册失败!');
             });
         });
