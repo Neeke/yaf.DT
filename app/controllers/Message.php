@@ -11,6 +11,6 @@ class MessageController extends Controller
 	}
 
     public function indexAction() {
-
+        $this->set('page_title', '消息');
     }
 }

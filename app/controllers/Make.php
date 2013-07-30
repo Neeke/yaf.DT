@@ -18,7 +18,7 @@ class MakeController extends Controller
 
     public function albumAction()
     {
-
+        $this->set('page_title', '做图集');
     }
 
     public function editalbumAction()

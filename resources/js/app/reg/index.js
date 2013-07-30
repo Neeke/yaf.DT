@@ -6,9 +6,10 @@ define(function(require) {
     $(function() {
         var $username = $('#username'),
             $email = $('#email'),
-            $pwd = $('#pwd');
+            $pwd = $('#pwd'),
+            $invitationCode = $('#invitationCode');
 
-        $username.add($email).add($pwd).placeholder();
+        $username.add($email).add($pwd).add($invitationCode).placeholder();
 
         $('#submit').click(function() {
             var email = $email.val(),
