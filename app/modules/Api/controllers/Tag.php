@@ -107,7 +107,7 @@ class TagController extends Controller
         $this->rest->paramsMustValid($params);
 
         $tags = $this->model_tag->getTagsSearch($params['tag_name']);
-        if (is_array($tags) && count($tags) > 0 && strlen($tags[0]) > 0){
+        if (is_array($tags) && count($tags) > 0 && strlen($tags[0]['tag']) > 0){
             $this->rest->success($tags);
         }
 

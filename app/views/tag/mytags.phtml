@@ -1,24 +1,17 @@
 <div class="mytags">
-    <div class="search">
-        <div class="reg_t">
-            <span><input type="text" value="搜索感兴趣的标签..." onFocus="if (value =='搜索感兴趣的标签...'){value =''}" onBlur="if (value ==''){value='搜索感兴趣的标签...'}" name="textfield" id="textfield" class="int01" /></span>
-            <span><input type="image" src="/resources/images/look.png" width="82" height="32" name="button" id="button" value="" class="z_btn"></span>
+    <div class="search-tags">
+        <div class="search-bar">
+            <input type="text" id="searchContent" class="text" placeholder="搜索感兴趣的标签..."/>
+            <input type="image" id="searchBtn" src="/resources/images/look.png">
         </div>
-        <div class="reg_ul">
-            <ul>
-                <li><a href="#">标签1</a></li>
-                <li><a href="#">标签1</a></li>
-                <li><a href="#">标标签签1</a></li>
-                <li><a href="#">标签1</a></li>
-                <li><a href="#">标签标签1</a></li>
-                <li><a href="#">标签标签1</a></li>
-                <li><a href="#">标签1</a></li>
-                <li><a href="#">标标签签1</a></li>
-                <li><a href="#">标签1</a></li>
-                <li><a href="#">标签标签1</a></li>
-                <li><a href="#">标签标签标签1</a></li>
-                <li><a href="#">标签1</a></li>
-            </ul>
+        <div class="tagslist" id="tagsList">
         </div>
+    </div>
+    <div class="had-gz-tags">
+        <dl>
+            <dt><span class="num">已关注：10/10</span><strong>已关注的标签</strong></dt>
+            <dd id="listenedTags">
+            </dd>
+        </dl>
     </div>
 </div>

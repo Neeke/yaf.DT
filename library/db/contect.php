@@ -13,7 +13,6 @@ class db_contect{
 		
 		$db_config = Yaf_Registry::get('config')->get('yaf')->get('db')->$which;
 		$cache_config = Yaf_Registry::get('config')->get('yaf')->get('cache');
-		//$class_name = '\Db\\' . ucfirst(strtolower( $db_config->type ) );
 
 		$db = db_Mysql::getInstance($db_config, $cache_config);
         return $db;
