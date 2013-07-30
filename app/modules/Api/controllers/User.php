@@ -15,6 +15,11 @@ class UserController extends Controller
      */
     private $model_email_set;
 
+    /**
+     * @var models_invitedcodes
+     */
+    private $model_invitedcodes;
+
     public function init()
     {
         parent::init();
@@ -30,14 +35,24 @@ class UserController extends Controller
         $this->rest->method('POST');
 
         $params                    = $this->getRequest()->getPost();
-        $this->rest->paramsMustMap = array('email', 'pwd', 'user_name');
+        $this->rest->paramsMustMap = array('email', 'pwd', 'user_name','invitationCode');
         $this->rest->paramsMustValid($params);
 
-        $have_invitation = false;
-        if (array_key_exists('invitation',$params)){
-            $invitation = $params['invitation'];
+        if (empty($params['invitationCode'])){
+            $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_MUST,'请使用邀请码注册');
+        }
 
-            $have_invitation = true;
+        $have_invitation = FALSE;
+        if (array_key_exists('invitationCode',$params)){
+            $invitation = $params['invitationCode'];
+
+            $have_invitation = TRUE;
+        }
+
+        if ($have_invitation) {
+            $this->model_invitedcodes = models_invitedcodes::getInstance();
+            $check_codes = $this->model_invitedcodes->checkCodes($invitation);
+            if ($check_codes == false) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'您的邀请码不存在或已使用');
         }
 
         if ($this->model->exits(array('user_email' => $params['email']))) {
@@ -55,11 +70,15 @@ class UserController extends Controller
 
         $this->model->login($params['email'], $params['pwd']);
 
-        if ($have_invitation){
-            $data['redirect'] = '/user/confirm';
-        }else{
-            $data['redirect'] = '/reg/listentag';
+        if ($have_invitation) {
+            $this->model_invitedcodes->usedCodes($invitation);
         }
+
+//        if ($have_invitation){
+//            $data['redirect'] = '/user/confirm';
+//        }else{
+            $data['redirect'] = '/reg/listentag';
+//        }
 
         $this->rest->success($data, rest_Code::STATUS_SUCCESS, '注册成功，请登录');
     }
