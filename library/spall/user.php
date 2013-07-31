@@ -43,7 +43,7 @@ class spall_user
         }
 
 //        return '<a href="'.helper_common::site_url_user($uid).'" '.$type_a.'><img src="'.$url.'"  class="avatar" width="'.$h.'" height="'.$h.'" '.$type.'/></a>';
-        return '<a href="/user/set" ' . $type_a . '><img src="' . $url . '"  class="avatar" width="' . $h . '" height="' . $h . '" ' . $type . '/></a>';
+        return '<a href="/settings" ' . $type_a . '><img src="' . $url . '"  class="avatar" width="' . $h . '" height="' . $h . '" ' . $type . '/></a>';
     }
 
     /**
