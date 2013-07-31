@@ -77,7 +77,7 @@ class UserController extends Controller
 //        if ($have_invitation){
 //            $data['redirect'] = '/user/confirm';
 //        }else{
-            $data['redirect'] = '/reg/listentag';
+            $data['redirect'] = '/register/listentag';
 //        }
 
         $this->rest->success($data, rest_Code::STATUS_SUCCESS, '注册成功，请登录');

@@ -32,7 +32,7 @@ class IndexController extends Controller {
 	}
 
 	public function indexAction() {
-        $this->redirect('justlook');
+        $this->redirect('explore');
 
 //
 //        $tags = $this->model_tag->getTags();
