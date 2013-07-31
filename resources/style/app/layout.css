@@ -96,7 +96,6 @@
     top: 90px;
     left: -30px;
     display: none;
-    height: 90px;
     overflow: hidden;
 }
 
@@ -170,13 +169,8 @@
     color: #6D6D6D;
 }
 
-.footer .copyright {
-    padding: 0 0 0 45px;
-}
-
 .footer .links {
     float: right;
-    padding: 0 45px 0 0;
 }
 
 .footer .links span {
