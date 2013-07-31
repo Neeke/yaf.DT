@@ -2,14 +2,14 @@
 /**
  * 热门
  */
-class TagController extends Controller {
+class TagsController extends Controller {
 
 	public function init() {
 		parent::init();
 	}
 
 	public function mineAction() {
-        $this->setMenu('tag/mine');
+        $this->setMenu('tags/mine');
 	}
 
 }

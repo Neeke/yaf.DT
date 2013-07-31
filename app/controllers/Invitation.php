@@ -31,6 +31,7 @@ class InvitationController extends Controller
      */
     public function indexAction()
     {
+        $this->setMenu('invitation');
         $this->set('page_title', '邀请码');
 
         $result = $this->model_invitedcodes->showCodes($this->user_id);

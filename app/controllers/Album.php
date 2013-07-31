@@ -71,24 +71,6 @@ class AlbumController extends Controller
     }
 
     /**
-     * 我的订阅
-     */
-    public function listenedAction()
-    {
-        $this->setMenu('album/listened');
-
-        $this->page = (int)$this->getRequest()->getParam('p', 1);
-        $my_albums  = $this->model_album_listen->myListenedAlbum($this->user_id, ($this->page - 1) * contast_album::PAGE_SIZE_DEFAULT);
-
-        $count = $this->model_album_listen->count(array('user_id' => $this->user_id));
-        $sPage = helper_pages::page2(helper_common::site_url('album/listened'), $count, contast_album::PAGE_SIZE_DEFAULT, $this->page);
-        $this->set('sPage', $sPage);
-        $this->set('myalbums', $my_albums);
-
-        $this->setListededAlbumIds();
-    }
-
-    /**
      * 浏览相册
      */
     public function vAction()

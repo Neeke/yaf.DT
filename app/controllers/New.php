@@ -1,9 +1,9 @@
 <?php
 /**
- * Class WhatsController
+ * Class NewController
  * @author ciogao@gmail.com
  */
-class WhatsController extends Controller
+class NewController extends Controller
 {
     /**
      * @var models_album
@@ -16,17 +16,9 @@ class WhatsController extends Controller
         $this->model_album = models_album::getInstance();
     }
 
-    public function hotAction()
+    public function indexAction()
     {
-        $this->setMenu('whats/hot');
-
-        $my_albums = $this->model_album->hotAlbum();
-        $this->set('myalbums', $my_albums);
-    }
-
-    public function newAction()
-    {
-        $this->setMenu('whats/new');
+        $this->setMenu('new');
 
 
         $my_albums = $this->model_album->hotAlbum();

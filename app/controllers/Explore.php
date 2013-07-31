@@ -1,9 +1,9 @@
 <?php
 /**
  * @author ciogao@gmail.com
- *         Class ItemsController
+ *         Class ExploreController
  */
-class JustlookController extends Controller
+class ExploreController extends Controller
 {
 
     /**
@@ -39,7 +39,7 @@ class JustlookController extends Controller
     {
         $this->db->cache_on();
 
-        $this->setMenu('justlook');
+        $this->setMenu('explore');
         $this->setListededAlbumIds();
 
         $my_albums = $this->model_album->justlook();
