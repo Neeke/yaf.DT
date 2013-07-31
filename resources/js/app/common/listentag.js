@@ -1,9 +1,11 @@
 define(function(require) {
     require('placeholder');
     require('rest');
+    require('jqueryui');
     var util = require('util');
+    var tagAutocomplete = require('app/common/tag_autocomplete');
 
-    var $listenedTags, $tagsList;
+    var $listenedTags, $tagsList, $searchContent;
 
     function fetchListenedTags() {
         var rest = $.restGet('/api/tag/listened');
@@ -60,15 +62,18 @@ define(function(require) {
     }
 
     $(function() {
-        $tagsList = $('#tagsList'),
+        $tagsList = $('#tagsList');
         $listenedTags = $('#listenedTags');
+        $searchContent = $('#searchContent');
 
 
         $('#searchContent').placeholder();
 
         $('#searchBtn').click(function() {
-            fetchTags($('#searchContent').val());
+            fetchTags($searchContent.val());
         });
+
+        tagAutocomplete.process($searchContent);
 
         $tagsList.on('click', 'a', function() {
             var tid = $(this).attr('data-tid');

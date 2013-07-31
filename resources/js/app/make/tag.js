@@ -1,10 +1,12 @@
 define(function(require) {
     var util = require('util');
     require('rest');
+    var tagAutocomplete = require('app/common/tag_autocomplete');
 
     var KEYMAP = {
         'BACKSPACE': 8,
-        'ENTER': 13
+        'ENTER': 13,
+        'SPACE': 32
     };
 
     var settings = {
@@ -29,7 +31,7 @@ define(function(require) {
     }
 
     function removeLastTag() {
-        $tagCtnr.find('a:last').remove();
+        $tagCtnr.find('li:last').remove();
         tags.pop();
     }
 
@@ -52,10 +54,14 @@ define(function(require) {
 
     $(function() {
         $createTag.on('keyup', function(e) {
-            if (e.keyCode === KEYMAP.ENTER) {
+            if (e.keyCode === KEYMAP.ENTER || e.keyCode === KEYMAP.SPACE) {
                 addTag(this.value);
                 this.value = '';
-            } else if (e.keyCode === KEYMAP.BACKSPACE) {
+            }
+        });
+
+        $createTag.on('keydown', function(e) {
+            if (e.keyCode === KEYMAP.BACKSPACE) {
                 if (this.value === '') {
                     removeLastTag();
                 }
@@ -81,6 +87,8 @@ define(function(require) {
         });
 
         fetchListenedTags();
+
+        tagAutocomplete.process($createTag);
     });
 
     function init(tags) {
