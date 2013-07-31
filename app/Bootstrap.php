@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author ciogao@gmail.com
+ * Class Bootstrap
+ */
 class Bootstrap extends Yaf_Bootstrap_Abstract{
 	public function _initSession($dispatcher) {
 		/*
@@ -32,4 +36,17 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
 	public function _initDb(){
           db_contect::db();
 	}
+
+    /**
+     * 路由白名单hook
+     * @param Yaf_Dispatcher $dispatcher
+     */
+    public function _initRouterWright(Yaf_Dispatcher $dispatcher) {
+        $dispatcher->registerPlugin(new RouterWrightPlugin());
+    }
+
+// 	public function _initPluginDemo(Yaf_Dispatcher $dispatcher) {
+// 		$user = new UserPlugin();
+// 		$dispatcher->registerPlugin($user);
+// 	}
 }
