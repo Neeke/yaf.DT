@@ -31,7 +31,7 @@ class InvitationController extends Controller
      */
     public function indexAction()
     {
-        $this->set('page_title', '邀请好友');
+        $this->set('page_title', '邀请码');
 
         $result = $this->model_invitedcodes->showCodes($this->user_id);
         if (is_array($result) && count($result) > 0)

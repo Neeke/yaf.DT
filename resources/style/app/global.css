@@ -69,7 +69,7 @@
 }
 
 .page-title span img {
-    margin-right: 5px;
+    margin-right: 4px;
 }
 
 .page-title a {
@@ -81,6 +81,7 @@
 
 .page-title a:hover {
     color: #e4007f;
+    margin-top: 4px;
 }
 
 .page-container {
