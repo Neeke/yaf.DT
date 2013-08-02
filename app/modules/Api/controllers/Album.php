@@ -337,8 +337,10 @@ class AlbumController extends Controller
         $data                   = $this->models_album_replay->mkdata($params);
         $back                   = $this->models_album_replay->insert($data);
 
-        $response = spall_reply::mkDataForAlbumReply(array($data));
         if ($back > 1) {
+            $this->model_album->postsAlbum($params['album_id']);
+            $response = spall_reply::mkDataForAlbumReply(array($data));
+
             $this->rest->success($response[0], rest_Code::STATUS_SUCCESS, '评论成功');
         }
     }

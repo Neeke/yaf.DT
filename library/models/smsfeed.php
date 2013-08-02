@@ -40,7 +40,9 @@ class models_smsfeed extends Models
             $userinfo = models_user::getInstance()->getUserInfo();
             $user_id  = (int)$userinfo['user_id'];
         }
-        $info = $this->getAll('*', array('user_id_to' => $user_id), '', $start, $limit);
+
+        $info = $this->getAll('*', array('user_id_to' => $user_id), array('isread' => 'ASC','update_time' => 'DESC'), $start, $limit);
+
         foreach ($info as $k => $v) {
             $v['avatar']     = '/static/images/photo01.gif';
             $v['source_url'] = helper_common::site_url_user($v['user_id_from']);
@@ -62,7 +64,7 @@ class models_smsfeed extends Models
         $userinfo = models_user::getInstance()->getUserInfo();
         $user_id  = (int)$userinfo['user_id'];
 
-        return $this->update(array('isread' => contast_msgfeed::FEED_IS_READ_YES), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
+        return $this->update(array('isread' => contast_msgfeed::FEED_IS_READ_YES,'update_time' => time()), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
     }
 
     /**
@@ -77,6 +79,19 @@ class models_smsfeed extends Models
             $user_id  = (int)$userinfo['user_id'];
         }
         return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO));
+    }
+
+    /**
+     * 评论数+1
+     * @param $feed_id
+     * @return array|bool|string
+     */
+    function sendSms($feed_id)
+    {
+        $userinfo = models_user::getInstance()->getUserInfo();
+        $user_id  = (int)$userinfo['user_id'];
+
+        return $this->db->query('update '.$this->_table.' set msg_count = msg_count + 1,isread = ? where user_id_to = ? and feed_id = ?',array(contast_msgfeed::FEED_IS_READ_YES,$user_id,$feed_id));
     }
 
     function mkdata($v)

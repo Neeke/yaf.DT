@@ -108,7 +108,19 @@ class SmsController extends Controller
         $this->rest->paramsMustValid($params);
 
         $result = $this->model_msg->send($params['feed_id'],$params['content']);
-        if ($result) $this->rest->success('','','发送成功');
+        if ($result) {
+            $data[] = array(
+                'feed_id' => $params['feed_id'],
+                'user_id_from' => $this->user_id,
+                'content' => $params['content'],
+                'dateline' => time(),
+            );
+
+            $info = spall_reply::mkDataForSmsList($data);
+            models_smsfeed::getInstance()->sendSms($params['feed_id']);
+
+            $this->rest->success($info[0],'','发送成功');
+        }
 
         $this->rest->error();
     }
