@@ -36,6 +36,16 @@ class models_album extends Models
     }
 
     /**
+     * 评论数+1
+     * @param $album_id
+     * @return array|bool|string
+     */
+    function postsAlbum($album_id)
+    {
+        return $this->db->query('update ' . $this->_table . ' set posts = posts + 1 where album_id = ?', array($album_id));
+    }
+
+    /**
      * 当前用户名下的专辑
      * @param int $user_id
      * @param int $start
