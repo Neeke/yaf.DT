@@ -55,7 +55,7 @@ define(function(require) {
             max_file_size : '10mb',
             url : '/api/items/plupload',
             filters : [
-                {title : "Image files", extensions : "jpg,gif,png"}
+                {title : "Image files", extensions : "jpg,jpeg,gif,png"}
             ]
         });
 
