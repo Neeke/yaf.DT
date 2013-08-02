@@ -1,0 +1,79 @@
+@media (max-width: 640px){
+    html {
+        background: black;
+    }
+
+    body {
+        height: auto;
+    }
+
+    .login-main {
+        background: #000;
+        padding-bottom: 150px
+    }
+
+    .index_login_box {
+        position: relative;
+    }
+
+    .login-main .index_login_box {
+        background: none;
+        width: 250px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .text-box {
+        text-align: left;
+        padding-bottom: 20px;
+    }
+
+    .login-main .index_login_box .login {
+        overflow: visible;
+        padding: 5px 0 0 15px;
+    }
+
+    .login-main .submit {
+        position: absolute;
+        top: 180px;
+        left: 64px;
+    }
+
+    .login-main .index_login_box .aid span.reg {
+        position: absolute;
+        left: 108px;
+        top: 244px;
+        font-size: 16px;
+
+        padding: 0;
+    }
+
+    .login-main .index_login_box .aid span.autologin {
+        position: absolute;
+        left: 16px;
+        top: 142px;
+
+        font-size: 14px;
+        padding: 0;
+    }
+
+    .findpass {
+        position: absolute;
+        left: 165px;
+        top: 142px;
+
+        font-size: 14px;
+        padding: 0;
+    }
+
+    .login-main .index-logo {
+        background: url(/resources/style/app/images/index_logo.png) no-repeat center bottom;
+        background-size: 160px;
+        margin: 0 auto 0 auto;
+        height: 160px;
+    }
+
+    .footer {
+        display: none;
+    }
+}
