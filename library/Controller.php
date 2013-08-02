@@ -62,13 +62,13 @@ class Controller extends Yaf_Controller_Abstract
     function init()
     {
         $this->userinfo = models_user::getInstance()->getUserInfo();
-        $this->user_id  = (is_array($this->userinfo) && array_key_exists('user_id',$this->userinfo)) ? $this->userinfo['user_id'] : 0;
+        $this->user_id  = (is_array($this->userinfo) && array_key_exists('user_id', $this->userinfo)) ? $this->userinfo['user_id'] : 0;
         $this->modules  = explode(',', Yaf_Registry::get("config")->get('yaf')->get('modules'));
 
         self::check_login();
 
         $this->db = db_contect::db();
-        $this->setmeta();
+//        $this->setmeta();
         $this->check    = rest_Check::instance();
         $this->quantity = rest_Quantity::instance();
         $this->rest     = rest_Server::instance();
@@ -97,12 +97,12 @@ class Controller extends Yaf_Controller_Abstract
      */
     protected function getStartLimit()
     {
-        if (count($this->allParams) < 1){
+        if (count($this->allParams) < 1) {
             $this->allParams();
         }
 
-        $this->start = array_key_exists('start',$this->allParams) ? (int)$this->allParams['start'] : 0;
-        $this->limit = array_key_exists('limit',$this->allParams) ? (int)$this->allParams['limit'] : 10;
+        $this->start = array_key_exists('start', $this->allParams) ? (int)$this->allParams['start'] : 0;
+        $this->limit = array_key_exists('limit', $this->allParams) ? (int)$this->allParams['limit'] : 10;
     }
 
     /**
@@ -111,15 +111,9 @@ class Controller extends Yaf_Controller_Abstract
     private function check_login()
     {
         $this->set('userinfo', $this->userinfo);
-        $this->set('user_id',$this->user_id);
-        if ($this->userinfo == FALSE
-            && !(($this->_request->module == 'Index') && $this->_request->controller == 'Login' && $this->_request->action == 'index')
-            && !(($this->_request->module == 'Index') && $this->_request->controller == 'Reg' && $this->_request->action == 'index')
-            && !(($this->_request->module == 'Api') && $this->_request->controller == 'User' && $this->_request->action == 'login')
-            && !(($this->_request->module == 'Api') && $this->_request->controller == 'User' && $this->_request->action == 'reg')
-
-        ) {
-            $this->redirect('/login');
+        $this->set('user_id', $this->user_id);
+        if ($this->userinfo == FALSE && !contast_router::getInstance()->getIfrouterWright()) {
+            $this->redirect(helper_common::site_url('login'));
         }
     }
 
@@ -143,12 +137,13 @@ class Controller extends Yaf_Controller_Abstract
     }
 
     /**
+     * 设置页面config值
      * @param $config
      */
     protected function setConfig($config = array())
     {
-        $config_ = array_merge($config,$this->userinfo);
-        $this->set('config',$config_);
+        $config_ = array_merge($config, $this->userinfo);
+        $this->set('config', $config_);
     }
 
     /**

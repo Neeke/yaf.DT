@@ -84,4 +84,55 @@ class helper_images
         unlink($backimg);
     }
 
+    /**
+     * 相册图片裁剪
+     * @param $filepath
+     * @return bool
+     */
+    static public function cut_thumb_for_items($filepath)
+    {
+        $max_width  = 1920;
+        $max_height = 1000;
+
+        list($c_w, $c_h, $c_exten) = getimagesize($filepath);
+
+        if ($c_h < $max_height && $c_w < $max_width) return FALSE;
+
+        if ($c_w >= $c_h) {
+            $cut_height = ($c_h >= $max_height) ? $max_height : $c_h;
+            $cut_width  = ($c_w >= $max_width) ? $max_width : ($c_w / $c_h * $max_height);
+            $cut_x      = ($c_w >= $max_width) ? (($c_w - $max_width) / 2) : 0;
+            $cut_y      = 0;
+
+        } else {
+            $cut_width  = ($c_w >= $max_width) ? $max_width : $c_w;
+            $cut_height = ($c_h >= $max_height) ? $max_height : ($c_w / $c_h * $max_width);
+            $cut_x      = 0;
+            $cut_y      = ($c_h >= $max_height) ? (($c_h - $max_height) / 2) : 0;
+        }
+
+        rename($filepath, $filepath . '.cut');
+
+        if ($c_exten == 1) {
+            $back = imagecreatefromgif($filepath . '.cut');
+        } elseif ($c_exten == 2) {
+            $back = imagecreatefromjpeg($filepath . '.cut');
+        } elseif ($c_exten == 3) {
+            $back = imagecreatefrompng($filepath . '.cut');
+        }
+        $c_new = imagecreatetruecolor($cut_width, $cut_height);
+
+        imagecopyresampled($c_new, $back, 0, 0, $cut_x, $cut_y, $cut_width, $cut_height, $cut_width, $cut_height);
+        if ($c_exten == 1) {
+            imagegif($c_new, $filepath);
+        } elseif ($c_exten == 2) {
+            imagejpeg($c_new, $filepath);
+        } elseif ($c_exten == 3) {
+            imagepng($c_new, $filepath);
+        }
+        imagedestroy($back);
+        imagedestroy($c_new);
+        unlink($filepath . '.cut');
+    }
+
 }

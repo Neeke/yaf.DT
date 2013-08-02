@@ -1,6 +1,8 @@
 <?php
 /**
- * Ap定义了如下的7个Hook,
+ * @author ciogao@gmail.com
+ * Date: 13-8-1 上午1:14
+ * 7个Hook demo
  * 插件之间的执行顺序是先进先Call
  */
 class UserPlugin extends Yaf_Plugin_Abstract {
@@ -11,8 +13,6 @@ class UserPlugin extends Yaf_Plugin_Abstract {
 	 */
 	public function routerStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
 		//echo "Plugin routerStartup called <br/>\n";
-		//echo "Request with base uir:" . $request->getBaseUri() . "<br/>\n";
-		//echo "Request with request uri:" .$request->getRequestUri() . "<br/>\n";
 	}
 
 	/**
@@ -21,11 +21,6 @@ class UserPlugin extends Yaf_Plugin_Abstract {
 	 */
 	public function routerShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
 		//echo "Plugin routerShutdown called <br/>\n";
-		//echo "Request routed result:" ;
-		//print_r($request);
-		//echo "<br/>\n";
-		//echo "Functional route:" . Yaf_Dispatcher::getInstance()->getRouter()->getCurrentRoute();
-		//echo "<br/>\n";
 	}
 
 	public function dispatchLoopStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
