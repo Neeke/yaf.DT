@@ -48,6 +48,7 @@ define(function(require) {
     }
 
     function initPlupload() {
+
         var uploader = new plupload.Uploader({
             runtimes : 'html5,flash,silverlight,browserplus',
             browse_button : 'pickfiles',
