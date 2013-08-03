@@ -35,14 +35,14 @@ class models_invitedcodes extends Models
     {
         $codes = array();
         for ($i = 0; $i < 5; $i++) {
-            $codes[] = helper_string::rand_string(15);
+            $codes[]['code_value'] = helper_string::rand_string(15);
         }
 
         $time = time();
         foreach ($codes as $v) {
             $data = array(
                 'user_id'     => $user_id,
-                'code_value'  => $v,
+                'code_value'  => $v['code_value'],
                 'create_time' => $time
             );
 
