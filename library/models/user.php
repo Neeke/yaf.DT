@@ -213,7 +213,14 @@ class models_user extends Models
         if ($this->exits(array('user_name' => $username))) return '用户名重复';
 
         $userinfo = $this->getUserInfo();
-        return $this->update(array('user_name' => $username),array('user_id' => $userinfo['user_id']));
+        $result   = $this->update(array('user_name' => $username), array('user_id' => $userinfo['user_id']));
+        if ($result == TRUE) {
+            $userinfo['user_name']               = $username;
+            Yaf_Session::getInstance()->userinfo = $userinfo;
+            return TRUE;
+        }
+
+        return FALSE;
     }
 
     public function mkdata($v)

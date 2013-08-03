@@ -29,6 +29,10 @@ class SettingsController extends Controller
     }
 
     public function confirmationAction() {
+        if (!spall_user::isConfirmMation()){
+            $this->redirect('settings');
+        }
+
         $this->setMenu('settings/confirmation');
         $this->set('page_title', '用户确认');
     }
