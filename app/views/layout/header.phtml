@@ -19,7 +19,11 @@
                     <div class="tip02">
                         <a href="<?php echo helper_common::site_url('messages');?>" class="ico01">消息<span class="js-msgcount"></span></a>
                         <a href="<?php echo helper_common::site_url('settings');?>" class="ico02">设置</a>
+
+                        <?php if (spall_user::haveinvitation()){?>
                         <a href="<?php echo helper_common::site_url('invitation');?>" class="ico01">邀请码</a>
+                        <?php }?>
+
                         <a href="<?php echo helper_common::site_url('login/out');?>" class="ico03">退出</a>
                     </div>
                 </div>

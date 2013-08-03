@@ -52,7 +52,7 @@ class UserController extends Controller
         if ($have_invitation) {
             $this->model_invitedcodes = models_invitedcodes::getInstance();
             $check_codes = $this->model_invitedcodes->checkCodes($invitation);
-            if ($check_codes == false) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'您的邀请码不存在或已使用');
+            if ($check_codes == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL,'您的邀请码不存在或已使用');
         }
 
         if ($this->model->exits(array('user_email' => $params['email']))) {
@@ -97,7 +97,13 @@ class UserController extends Controller
         $result = $this->model->login($params['user_name'], $params['pwd']);
         if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_NULL, '登录失败');
 
-        $this->rest->success();
+        if (spall_user::isConfirmMation()) {
+            $data['redirect'] = helper_common::site_url('settings/confirmation');
+        }else{
+            $data['redirect'] = helper_common::site_url('explore');
+        }
+
+        $this->rest->success($data);
     }
 
     /**
@@ -119,6 +125,25 @@ class UserController extends Controller
         $data['email_set'] = $this->model_email_set->getEmailSet($this->user_id);
 
         $this->rest->success($data);
+    }
+
+    /**
+     * 确认用户名
+     */
+    public function confirmationAction()
+    {
+        $this->rest->method('POST');
+        $params                   = $this->allParams();
+        $this->rest->paramsCanMap = array('user_name');
+        $this->rest->paramsMustValid($params);
+
+        $result = $this->model->updateUsername($params['user_name']);
+
+        if ($result == true) {
+            $this->rest->success(array('redirect' => helper_common::site_url('explore')));
+        }else{
+            $this->rest->error('',$result);
+        }
     }
 
     /**
