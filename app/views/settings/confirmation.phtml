@@ -7,25 +7,28 @@
         <li>
             <span class="name">头像</span>
             <div class="list-con">
-                <a href="javascript:;"><img src="/uploads/avatar/MTI=.jpg" height="90" width="90" alt=""/></a>
-                <a href="javascript:;" class="tocallupload" id="updateAvatarBtn">[修改]</a>
+                <a href="javascript:;" class="js-updateAvatarBtn"><img src="<?php echo spall_user::avatarSource($userinfo_all['user_id'],90);?>" height="90" width="90" alt=""/></a>
+                <a href="javascript:;" class="tocallupload js-updateAvatarBtn">[修改]</a>
             </div>
         </li>
         <li>
             <span class="name">用户名</span>
             <div class="list-con">
-                <input type="text" class="uaer-name" value="" placeholder="用户名">
+                <input type="text" class="uaer-name" id="username" value="" placeholder="用户名">
                 <p class="gray">*用户名确认后无法修改</p>
             </div>
         </li>
         <li>
             <span class="name">&nbsp;&nbsp;&nbsp;</span>
             <div class="list-con">
-                <input value="确定" class="submit" type="submit">
+                <input value="确定" id="submit" class="submit" type="submit">
             </div>
         </li>
     </ul>
 </div>
+
+<?php include_once('updateavatar.phtml') ?>
+
 <script type="text/javascript">
     seajs.use('app/settings/confirmation');
 </script>
