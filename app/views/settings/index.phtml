@@ -36,9 +36,9 @@
             <div class="sz_01 sz_02">
                 <span> 头像：
                     <br/>
-                    <?php echo spall_user::avatar($userinfo_all['user_id'],90);?>
+                    <a href="javascript:;" class="js-updateAvatarBtn"><img src="<?php echo spall_user::avatarSource($userinfo_all['user_id'],90);?>" alt=""/></a>
                 </span>
-                <a href="javascript:;" id="updateAvatarBtn">[修改]</a>
+                <a href="javascript:;" class="js-updateAvatarBtn">[修改]</a>
             </div>
             <div class="sx">
                 <div class="sx_left">
@@ -84,31 +84,6 @@
             </div>
             <div class="clear"></div>
         </div>
-        <!--<div class="qqBox">
-            <a href="javascript:;" class="close"></a>
-            <div class="cen_k1">
-                <div class="cen_z1">
-                    <div class="cen_ti1">
-                        <span>提问与建议</span>
-                    </div>
-                    <div class="qq">
-                        <a href="#"><img src="images/qq.jpg" width="110" height="39" border="0" /></a>
-                        <span>小萌qq交流群：123456789</span>
-                    </div>
-                    <div class="qq_con">
-                        <textarea name="textarea" value="欢迎提出各种问题和建议！" onFocus="if (value =='欢迎提出各种问题和建议！'){value =''}" onBlur="if (value ==''){value='欢迎提出各种问题和建议！'}"id="textarea" class="int041"></textarea>
-                    </div>
-                    <div class="reg_t021">
-                        <span>
-                            <input type="text" value="输入邮箱以便我们及时回复" onFocus="if (value =='输入邮箱以便我们及时回复'){value =''}" onBlur="if (value ==''){value='输入邮箱以便我们及时回复'}" name="textfield" id="textfield" class="int031" />
-                        </span>
-                        <span>
-                            <input type="image" src="images/tijiao.jpg" width="80" height="23" name="button" id="button" value="" />
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </div>
 
 <script type="text/javascript">

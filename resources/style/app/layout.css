@@ -7,6 +7,11 @@
     margin: 0 80px;
 }
 
+.main-ctnr {
+    min-height: 400px;
+    padding-bottom: 50px;
+}
+
 .main {
     float: left;
     width: 100%;
@@ -159,10 +164,13 @@
     opacity: 1;
     visibility: visible;
     margin: 15px auto 0 auto;
-    border-top: 1px solid #4a4a4a;
     line-height: 27px;
     color: #6D6D6D;
     overflow: hidden;
+}
+
+.footer .container {
+    border-top: 1px solid #4a4a4a
 }
 
 .footer a {

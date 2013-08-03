@@ -959,12 +959,12 @@
     margin-bottom: 10px;
 }
 
-.user-setbox li .gray {
+.user-setbox li .red {
     color: #e42626;
     line-height: 20px;
 }
 
-.user-setbox li .red {
+.user-setbox li .gray {
     color: #666666;
     line-height: 20px;
 }
