@@ -28,5 +28,8 @@ class SettingsController extends Controller
         $this->set('page_title', '个人设置');
     }
 
-
+    public function confirmationAction() {
+        $this->setMenu('settings/confirmation');
+        $this->set('page_title', '用户确认');
+    }
 }

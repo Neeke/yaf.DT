@@ -1,0 +1,33 @@
+<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
+
+<?php include_once(VIEW_PATH . '/common/page_title.phtml') ?>
+
+<div class="page-container">
+    <ul class="user-setbox list">
+        <li>
+            <span class="name">头像</span>
+            <div class="list-con">
+                <a href="javascript:;"><img src="/uploads/avatar/MTI=.jpg" height="90" width="90" alt=""/></a>
+                <a href="javascript:;" class="tocallupload" id="updateAvatarBtn">[修改]</a>
+            </div>
+        </li>
+        <li>
+            <span class="name">用户名</span>
+            <div class="list-con">
+                <input type="text" class="uaer-name" value="" placeholder="用户名">
+                <p class="gray">*用户名确认后无法修改</p>
+            </div>
+        </li>
+        <li>
+            <span class="name">&nbsp;&nbsp;&nbsp;</span>
+            <div class="list-con">
+                <input value="确定" class="submit" type="submit">
+            </div>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    seajs.use('app/settings/confirmation');
+</script>
+
+<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
