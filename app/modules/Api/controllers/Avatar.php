@@ -31,8 +31,8 @@ class AvatarController extends Controller
         $config['upload_path']   = './uploads/tem/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size']      = '5024';
-        $config['max_width']     = '3000';
-        $config['max_height']    = '2000';
+        $config['max_width']     = '4000';
+        $config['max_height']    = '4000';
         $config['file_name']     = $this->user_id . '_tem_' . time();
 
         $upload = new helper_upload($config);

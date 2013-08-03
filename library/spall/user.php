@@ -47,6 +47,42 @@ class spall_user
     }
 
     /**
+     * 返回用户头像资源路径
+     *
+     * @param $uid
+     * @param $h
+     * @return string
+     */
+    static public function avatarSource($uid, $h = 0)
+    {
+        $user_model = models_user::getInstance();
+
+        $user_info = $user_model->getUserInfoAll();
+        if (!empty($user_info['face_url'])) {
+            $url         = 'http://' . $_SERVER['HTTP_HOST'] . $user_info['face_url'];
+            $executeTime = ini_get('max_execution_time');
+            ini_set('max_execution_time', 0);
+            $headers = get_headers($url);
+
+            ini_set('max_execution_time', $executeTime);
+            if ($headers) {
+                $head = explode(' ', $headers[0]);
+                if (!empty($head[1]) && intval($head[1]) < 400) {
+
+                } else {
+                    $url = '/resources/images/avatar_default.jpg';
+                }
+            } else {
+                $url = '/resources/images/avatar_default.jpg';
+            }
+        } else {
+            $url = '/resources/images/avatar_default.jpg';
+        }
+
+        return $url;
+    }
+
+    /**
      * 取得头像url
      * @param $user_id
      * @return string
@@ -68,7 +104,7 @@ class spall_user
     {
         $user_model = models_user::getInstance();
 
-        $user_info  = $user_model->getUserInfo();
+        $user_info = $user_model->getUserInfo();
         if ($user_id == $user_info['user_id']) return '我';
 
         $info = $user_model->getUsernameByUserId($user_id);
@@ -114,5 +150,25 @@ class spall_user
         }
 
         return $result;
+    }
+
+    /**
+     * 是否需要确认用户名
+     * @return bool
+     */
+    static public function isConfirmMation()
+    {
+        $user_info = models_user::getInstance()->getUserInfo();
+        return $user_info['is_vip'] == contast_user::IS_VIP_YES && $user_info['user_name'] == '';
+    }
+
+    /**
+     * 是否可使用邀请码
+     * @return bool
+     */
+    static public function haveinvitation()
+    {
+        $user_info = models_user::getInstance()->getUserInfo();
+        return $user_info['is_vip'] == contast_user::IS_VIP_YES || $user_info['is_admin'] == contast_user::IS_ADMIN_YES;
     }
 }

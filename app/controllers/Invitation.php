@@ -1,7 +1,7 @@
 <?php
 /**
  * 邀请注册
- * @author pjn
+ * @author pjn ciogao@gmail.com
  *
  */
 class InvitationController extends Controller
@@ -17,6 +17,11 @@ class InvitationController extends Controller
     public function init()
     {
         parent::init();
+
+        if (!spall_user::haveinvitation()){
+            $this->redirect(helper_common::site_url('settings'));
+        }
+
         $this->model_invitedcodes = models_invitedcodes::getInstance();
 
         $action = $this->_request->getActionName();

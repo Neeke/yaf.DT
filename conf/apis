@@ -174,6 +174,11 @@ params: album_id
 var api_tag_remove = '/api/tag/remove';
 method: post
 params: tag_id
+
+确认用户名：
+var api_user_confirmation = '/api/user/confirmation';
+method: post
+params: user_name
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';
