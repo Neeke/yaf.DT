@@ -1,6 +1,7 @@
 define(function(require) {
     var Talk = require('app/common/talk');
     require('rest');
+    require('lazyload');
 
     $(function () {
         var arrowNext = $('.arrow-next'), arrowPrev = $('.arrow-prev');
@@ -105,6 +106,11 @@ define(function(require) {
                 });
                 talk.showTalk();
             });
+
+            $("img.showing").lazyload({
+                event : "sporty"
+            });
+
         });
     }
 

@@ -12,7 +12,8 @@ seajs.config({
         validate: 'lib/validate/validate.customer.js',
         doT: 'lib/doT/doT.js',
         jcrop: 'lib/jcrop/jquery.Jcrop.js',
-        tipTip: 'lib/tipTip/jquery.tipTip.js'
+        tipTip: 'lib/tipTip/jquery.tipTip.js',
+        lazyload:'lib/lazyload/jquery.lazyload.js'
     },
     shim: {
         plupload: {
