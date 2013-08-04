@@ -11,6 +11,9 @@
     <br />
     <table class="simple">
         <thead>
+        <th><?php echo $result_msg;?></th>
+        </thead>
+        <thead>
             <th>邀请码</th>
             <th>状态</th>
             <th>有效期</th>
@@ -21,8 +24,8 @@
                 ?>
                 <tr>
                     <td><?php echo $code['code_value'];?></td>
-                    <td>未使用</td>
-                    <td>2013-08-31</td>
+                    <td><?php echo spall_invitedcodes::getIfUsed($code['flag']);?></td>
+                    <td><?php echo date('Y-m-d',spall_invitedcodes::getLifeCycle($code['create_time']));?></td>
                 </tr>
 
             <?php
