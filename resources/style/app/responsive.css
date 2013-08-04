@@ -1,0 +1,156 @@
+
+.header-menu, .header-menu-ctnr {
+    display: none;
+}
+
+@media (max-width: 1960px){
+    .albumitem {
+        width: 33%;
+    }
+}
+
+@media (max-width: 1088px){
+    .albumitem {
+        width: 50%;
+    }
+    .albumitem-wrap {
+        margin: 0 20px 0 0 !important;
+    }
+
+    .container {
+        margin: 0 20px 0 20px;
+    }
+}
+
+
+@media (max-width: 690px){
+    .albumitem {
+        width: 100%;
+    }
+
+    .albumitem-wrap {
+        margin: 0 20px 0 0 !important;
+    }
+
+    .container {
+        margin: 0 20px 0 20px;
+    }
+}
+
+@media (max-width: 550px){
+    .albumitem {
+        width: 100%;
+    }
+
+    .albumitem-wrap {
+        margin: 0 20px 0 0 !important;
+    }
+
+    .container {
+        margin: 0 20px 0 20px;
+    }
+}
+
+@media (max-width: 450px){
+    .albumitem {
+        width: 100%;
+    }
+
+    .main-wrap {
+        margin: 0;
+    }
+
+    .extra {
+        display: none;
+    }
+
+    .albumitem-wrap {
+        margin: 0 5px 0 0 !important;
+    }
+
+    .container {
+        margin: 0 5px 0 10px;
+    }
+
+    .to-make-phos {
+        padding: 70px 20px 10px 15px !important;
+    }
+
+    .header {
+        border: none;
+        margin-bottom: 12px;
+    }
+
+    .header-user {
+        display: none;
+    }
+
+    .header-menu-ctnr {
+        display: block;
+
+        position: absolute;
+        top: 0;
+        right: 12px;
+
+        height: 60px;
+        width: 60px;
+    }
+
+    .header-menu-btn {
+        display: block;
+
+        height: 60px;
+        width: 60px;
+
+        text-indent: -10000px;
+        background: url(images/mobile/menu_btn.png) no-repeat left top;
+    }
+
+    .header-menu {
+        display: none;
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 100%;
+    }
+
+    .header-menu-close {
+        display: block;
+
+        position: absolute;
+        right: 11px;
+
+        height: 60px;
+        width: 60px;
+
+        text-indent: -10000px;
+        background: url(images/mobile/close_menu.jpg) no-repeat left top;
+    }
+
+    .header-menu ul {
+        margin-top: 52px;
+        background: #757575;
+
+        box-shadow: 8px 7px 6px -3px;
+    }
+
+    .header-menu li {
+        display: block;
+        height: 56px;
+        border-bottom: 1px solid #4d4d4d;
+        border-top: 1px solid #a9a9a9;
+    }
+    
+    .header-menu li a {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        text-align: left;
+        text-indent: 28px;
+        line-height: 56px;
+        font-size: 18px;
+
+        color: #dad9d9;
+    }
+}

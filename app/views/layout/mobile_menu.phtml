@@ -1,0 +1,31 @@
+<div>
+    <ul class="nav01">
+    <?php foreach(spall_menu::get_menu() as $nav => $nav_array){?>
+
+        <?php if ($nav == 'nav01'){?>
+
+
+                <?php foreach($nav_array as $url => $title){?>
+                    <li <?php if ($this_menu == $url) echo 'class="on"'?>>
+                        <a href="<?php echo helper_common::site_url($url);?>" class="flip-flop">
+                            <?php echo $title;?>
+                        </a>
+                    </li>
+                <?php }?>
+
+
+        <?php }else{?>
+
+                <?php
+                unset($nav_array['main']);
+                foreach($nav_array  as $url => $title){?>
+                    <li <?php if ($this_menu == $url) echo 'class="on"'?>>
+                        <a href="<?php echo helper_common::site_url($url);?>" class="flip-flop"><?php echo $title;?></a>
+                    </li>
+                <?php }?>
+        <?php }?>
+
+    <?php }?>
+    </ul>
+
+</div>

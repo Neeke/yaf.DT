@@ -123,6 +123,10 @@
     background: url(images/ico002.png) no-repeat 10px center #303439;
 }
 
+.header-tips .tip02 a.ico-invitation {
+    background: url(images/icos/invitation.png) no-repeat 10px center #303439;
+}
+
 .header-tips .tip02 a.ico01 span {
     font-weight: normal;
     padding: 0 0 0 10px;

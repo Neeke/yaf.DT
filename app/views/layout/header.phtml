@@ -21,13 +21,20 @@
                         <a href="<?php echo helper_common::site_url('settings');?>" class="ico02">设置</a>
 
                         <?php if (spall_user::haveinvitation()){?>
-                        <a href="<?php echo helper_common::site_url('invitation');?>" class="ico01">邀请码</a>
+                        <a href="<?php echo helper_common::site_url('invitation');?>" class="ico-invitation">邀请码</a>
                         <?php }?>
 
                         <a href="<?php echo helper_common::site_url('login/out');?>" class="ico03">退出</a>
                     </div>
                 </div>
                 <a href="/make/album" class="to-make-phos">做图集</a>
+            </div>
+            <div class="header-menu-ctnr">
+                <a class="header-menu-btn" id="mobileMenusBtn" href="javascript:;">menu</a>
+            </div>
+            <div class="header-menu" id="mobileMenus">
+                <a class="header-menu-close" id="mobileMenusCloseBtn" href="javascript:;">close</a>
+                <?php include_once(VIEW_PATH . '/layout/mobile_menu.phtml'); ?>
             </div>
         </div>
     </div>

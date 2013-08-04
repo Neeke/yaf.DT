@@ -8,58 +8,6 @@
     width: 33%;
 }
 
-@media (max-width: 1960px){
-    .albumitem {
-        width: 33%;
-    }
-}
-
-@media (max-width: 1088px){
-    .albumitem {
-        width: 50%;
-    }
-}
-
-
-@media (max-width: 690px){
-    .albumitem {
-        width: 100%;
-    }
-
-    .albumitem-wrap {
-        margin: 0 20px 0 0 !important;
-    }
-
-    .container {
-        margin: 0 20px 0 20px;
-    }
-}
-
-@media (max-width: 540px){
-    .albumitem {
-        width: 100%;
-    }
-
-    .main-wrap {
-        margin: 0;
-    }
-
-    .extra {
-        display: none;
-    }
-
-    .albumitem-wrap {
-        margin: 0 5px 0 0 !important;
-    }
-
-    .container {
-        margin: 0 0 0 5px;
-    }
-
-    .to-make-phos {
-        padding: 70px 20px 10px 15px !important;
-    }
-}
 
 .albumitem {
     float: left;
@@ -86,7 +34,7 @@
 }
 
 .albumitem .pic-info {
-    width: 240px;
+    width: 75%;
     height: 75px;
     position: absolute;
     background: url(images/black_bg.png) repeat;
