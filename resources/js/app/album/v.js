@@ -9,7 +9,10 @@ define(function(require) {
             fadeobj = _this.closest('.slideritem');
             if (fadeobj.next('.slideritem').index() > 0) {
                 fadeobj.fadeOut();
-                fadeobj.next('.slideritem').fadeIn();
+                var showing = fadeobj.next('.slideritem').fadeIn();
+
+                scaleImages(showing.find('.showing'));
+
                 $('.quark-button').show();
             }
             else {
@@ -37,6 +40,35 @@ define(function(require) {
             var _this = $(this), _index = _this.index(), size = $('.itemshow').size();
             //(_index+1)+'/'+size
             _this.append('<div class="curnum"><a href="javascript:;" class="arrow-prev">&lt;&lt;</a>' + _index + '/' + size + '<a href="javascript:;" class="arrow-next">&gt;&gt;</a></div>');
+        });
+    });
+
+    function scaleImages($img) {
+        var $window = $(window);
+        var height = $window.height(),
+            width = $window.width();
+
+        var w = $img.width(),
+            h = $img.height();
+
+        if (height / width > h / w) {
+            $img.css({
+                width: 'auto',
+                height: height
+            });
+        } else {
+            $img.css({
+                width: width,
+                height: 'auto'
+            });
+        }
+    }
+
+    $(function() {
+        $(window).on('resize', function() {
+            $('.showing').each(function() {
+                scaleImages($(this));
+            });
         });
     });
 

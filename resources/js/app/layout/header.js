@@ -14,9 +14,21 @@ define(function(require) {
         });
     }
 
+    function initMobileMenu() {
+        $('#mobileMenusBtn').click(function() {
+            $('#mobileMenus').fadeIn();
+        });
+
+        $('#mobileMenusCloseBtn').click(function() {
+            $('#mobileMenus').fadeOut();
+        });
+    }
+
     $(function() {
         fetchMsgCount();
 
         setInterval(fetchMsgCount, MSG_REFRESH_INTERVAL);
+
+        initMobileMenu();
     });
 });

@@ -2,13 +2,12 @@
 <html>
 <head>
     <?php include_once(VIEW_PATH . '/layout/header_common.phtml'); ?>
+    <meta name="viewport" content="width=480, initial-scale=0.66">
 </head>
 <body>
 <div class="browsebox">
     <div id="divSlideShowCover" class="slideritem">
-        <div class="pic-wap">
-            <img src="<?php echo $album_info['face_url'];?>" class="showing">
-
+        <div class="pic-wap" style="background: url(<?php echo $album_info['face_url'];?>) no-repeat left top;background-size: auto 100%">
             <div id="cover">
                 <div class="cover-main">
                     <h3 class="pic-title"><?php echo $album_info['album_name'];?></h3>

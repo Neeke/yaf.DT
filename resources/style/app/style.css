@@ -1744,6 +1744,7 @@
 #divSlideShowCover img.showing {
     vertical-align: middle;
     height: 100%;
+    width: auto;
 }
 
 .browsebox .itemshow {
@@ -1768,6 +1769,8 @@
     position: absolute;
     right: 10px;
     top: 60px;
+    background: #444;
+    border-radius: 2px;
 }
 
 .quark-button a {
@@ -1800,10 +1803,10 @@
 }
 
 .browsebox .itemshow a.arrow_l {
-    background: url(/resources/style/app/images/icos/ico09.png) no-repeat;
+    background: url(/resources/style/app/images/icos/ico09.png) no-repeat center center;
     display: block;
-    width: 20px;
-    height: 31px;
+    width: 80px;
+    height: 80px;
     position: absolute;
     left: 10px;
     top: 50%;
@@ -1811,10 +1814,10 @@
 }
 
 .browsebox .itemshow a.arrow_r {
-    background: url(/resources/style/app/images/icos/ico08.png) no-repeat;
+    background: url(/resources/style/app/images/icos/ico08.png) no-repeat center center;
     display: block;
-    width: 20px;
-    height: 31px;
+    width: 80px;
+    height: 80px;
     position: absolute;
     right: 10px;
     top: 50%;
