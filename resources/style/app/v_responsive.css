@@ -1,0 +1,13 @@
+@media (max-width: 500px){
+    #divSlideShowCover #cover {
+        top: 50%;
+        height: 50%;
+    }
+
+    #divSlideShowCover #cover .cover-main {
+        position: absolute;
+        top: 50%;
+        left: 50px;
+        margin: -150px 0 0 60px;
+    }
+}

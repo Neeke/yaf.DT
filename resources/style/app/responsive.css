@@ -130,7 +130,6 @@
     .header-menu ul {
         margin-top: 52px;
         background: #757575;
-        padding-bottom: 20px;
 
         box-shadow: 8px 7px 6px -3px;
     }
@@ -148,7 +147,7 @@
         height: 100%;
 
         text-align: left;
-        text-indent: 56px;
+        text-indent: 28px;
         line-height: 56px;
         font-size: 18px;
 
