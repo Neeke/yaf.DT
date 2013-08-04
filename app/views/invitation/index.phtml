@@ -3,27 +3,41 @@
 <?php include_once(VIEW_PATH . '/common/page_title.phtml') ?>
 
 <div class="page-container">
-    <a href="<?php echo helper_common::site_url('invitation/make');?>">
+    <br />
+    <a class="btn_small_important" href="<?php echo helper_common::site_url('invitation/make');?>">
         生成邀请码
     </a>
-
     <br />
     <br />
+    <table class="simple">
+        <thead>
+            <th>邀请码</th>
+            <th>状态</th>
+            <th>有效期</th>
+        </thead>
+        <tbody>
+        <?php if (is_array($result) && count($result)){
+            foreach ($result as $code){
+                ?>
+                <tr>
+                    <td><?php echo $code['code_value'];?></td>
+                    <td>未使用</td>
+                    <td>2013-08-31</td>
+                </tr>
 
-    <?php if (!empty($result_msg)){?>
-    <span>
-        <?php echo $result_msg;?>
-    </span>
-    <?php }?>
+            <?php
+            }
+        }?>
+        </tbody>
+    </table>
 
-    <?php if (is_array($result) && count($result)){
-        foreach ($result as $code){
-    ?>
-        <li> <?php echo $code['code_value'];?> </li>
-
-    <?php
-        }
-    }?>
+    <div class="desc">
+        <p>注：</p>
+        <ol>
+            <li>1、邀请码每周只能生成7个，使用后失效；</li>
+            <li>2、每周二系统更新可生成新邀请码，原邀请码过期失效。</li>
+        </ol>
+    </div>
 </div>
 
 <?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
