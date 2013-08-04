@@ -77,13 +77,44 @@
     font-weight: bold;
     float: right;
     font-size: 12px;
+    margin-top: 4px;
 }
 
 .page-title a:hover {
     color: #e4007f;
-    margin-top: 4px;
 }
 
 .page-container {
     padding: 0 65px;
+}
+
+
+/** simple table **/
+table.simple {
+    background: #626262;
+    color: #fff;
+}
+
+table.simple th, table.simple td {
+    padding: 10px 40px;
+    text-align: left;
+}
+
+table.simple td {
+    font-size: 12px;
+}
+
+table.simple th {
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+table.simple tr:last-child td {
+    padding-bottom: 30px;
+}
+
+.desc{
+    font-size: 14px;
+    padding: 30px;
 }
