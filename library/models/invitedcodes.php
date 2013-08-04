@@ -34,8 +34,8 @@ class models_invitedcodes extends Models
     public function createCodes($user_id)
     {
         $codes = array();
-        for ($i = 0; $i < 5; $i++) {
-            $codes[]['code_value'] = helper_string::rand_string(15);
+        for ($i = 0; $i < contast_invitedcodes::CODES_EVERY_MAKE_COUNT; $i++) {
+            $codes[]['code_value'] = helper_string::rand_string(contast_invitedcodes::CODES_STR_LEN);
         }
 
         $time = time();
@@ -60,8 +60,8 @@ class models_invitedcodes extends Models
      */
     public function showCodes($user_id)
     {
-        $this->db->cache_on();
-        return $this->getAll(array('code_value','create_time'), array('user_id' => $user_id, 'flag' => contast_invitedcodes::CODES_FLAG_NOT_USED));
+        $this->db->cache_on(1);
+        return $this->getAll(array('code_value','create_time','flag'), array('user_id' => $user_id));
     }
 
     /**
