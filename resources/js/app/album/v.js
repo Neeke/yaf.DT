@@ -1,6 +1,7 @@
 define(function(require) {
     var Talk = require('app/common/talk');
     require('rest');
+    require('lazyload');
 
     $(function () {
         var arrowNext = $('.arrow-next'), arrowPrev = $('.arrow-prev');
@@ -51,7 +52,7 @@ define(function(require) {
         var w = $img.width(),
             h = $img.height();
 
-        if (height / width > h / w) {
+        if (height / width > h / w || h > w) {
             $img.css({
                 width: 'auto',
                 height: height
@@ -105,6 +106,11 @@ define(function(require) {
                 });
                 talk.showTalk();
             });
+
+            $("img.showing").lazyload({
+                event : "sporty"
+            });
+
         });
     }
 
