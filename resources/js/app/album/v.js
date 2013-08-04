@@ -51,7 +51,7 @@ define(function(require) {
         var w = $img.width(),
             h = $img.height();
 
-        if (height / width > h / w) {
+        if (height / width > h / w || h > w) {
             $img.css({
                 width: 'auto',
                 height: height
