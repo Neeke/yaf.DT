@@ -96,16 +96,13 @@ table.simple {
 }
 
 table.simple th, table.simple td {
-    padding: 10px 40px;
+    padding: 5px 40px;
     text-align: left;
-}
-
-table.simple td {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 table.simple th {
-    font-size: 14px;
+
     line-height: 30px;
     font-weight: normal;
 }
