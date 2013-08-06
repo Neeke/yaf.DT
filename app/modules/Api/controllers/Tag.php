@@ -56,10 +56,16 @@ class TagController extends Controller
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '已经关注过该标签');
         }
 
+        $where = array('user_id' => $this->user_id);
+        if ($this->models_taglisten->count($where) > contast_taglisten::MAX_LISTENED_COUNT -1){
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_DFALSE,'您已达到关注最大数');
+        }
+
         $params['user_id'] = $this->user_id;
 
         $data   = $this->models_taglisten->mkdata($params);
 
+        $this->db->update_cache('tag_listened_'.$this->user_id);
         $result = $this->models_taglisten->insert($data);
         if ($result) {
             $this->rest->success($result,'','关注成功');

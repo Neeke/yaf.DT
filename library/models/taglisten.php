@@ -43,7 +43,7 @@ class models_taglisten extends Models
      */
     function getTagsListenedByUser($user_id = 0){
         $this->db->cache_on();
-
+        $this->db->cache_key('tag_listened_'.$user_id);
         $sql = 'select t.tid,t.tag from '.$this->_table.' listened
                 left join '.models_tag::getInstance()->_table.' t on
                 t.tid = listened.tag_id
@@ -62,6 +62,7 @@ class models_taglisten extends Models
      */
     function removeTagListen($tag_id,$user_id)
     {
+        $this->db->update_cache('tag_listened_'.$user_id);
         return $this->delete(array('tag_id' => $tag_id,'user_id' => $user_id));
     }
 

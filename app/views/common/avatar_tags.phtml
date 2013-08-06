@@ -1,0 +1,27 @@
+<div class="c_top">
+    <div class="t_tu">
+        <img src="<?php echo spall_user::avatarSource($user_id);?>" height="90">
+    </div>
+    <div class="t_con">
+        <h2><?php echo $userinfo['username'];?></h2>
+        <?php if ($this_menu == 'tags/mine'){?>
+            <span>共关注<span class="tag_listened_count">10</span>个标签</span>
+        <?php }else{?>
+            <span>共<?php echo (int)$userinfo['album_count'];?>部图集</span>
+        <?php }?>
+
+        <div class="clear"></div>
+            <span class="con_a">
+                <a href="<?php echo helper_common::site_url('album/mine');?>"
+                   <?php if ($this_menu == 'tags/mine') echo 'class="cur3"';?>
+                    >我关注的标签</a>
+                <a href="<?php echo helper_common::site_url('subscribe');?>"
+                   <?php if ($this_menu == 'subscribe'){
+                        echo 'class="cur2"';
+                    }else{
+                        echo 'class="cur1"';
+                    }?>
+                    >我关注的用户</a>
+            </span>
+    </div>
+</div>

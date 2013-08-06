@@ -27,12 +27,13 @@ class models_tag extends Models
 
     /**
      * 获取系统推荐tag
+     * 随机15个
      * @return array|bool|string
      */
     function getSystemTags()
     {
         $this->db->cache_on();
-        $tags = $this->db->getAll('select tid,tag from '.$this->_table.' order by '.$this->_primary.' desc');
+        $tags = $this->db->getAll('select tid,tag from '.$this->_table.' order by rand() desc limit 15');
         $this->db->cache_off();
         return $tags;
     }
