@@ -14,6 +14,8 @@ define(function(require) {
             $.each(data || [], function(i, e) {
                 addListenedTag(e.tid, e.tag);
             });
+
+            $(".tag_listened_count").html(data.length);
         });
     }
 
@@ -48,6 +50,8 @@ define(function(require) {
 
         rest.done(function(msg, data) {
             addListenedTag(tid, name);
+            var listened_count = Number($(".tag_listened_count").html());
+            $(".tag_listened_count").html(listened_count + 1);
         });
     }
 
@@ -58,6 +62,8 @@ define(function(require) {
 
         rest.done(function(msg, data) {
             $tag.remove();
+            var listened_count = Number($(".tag_listened_count").html());
+            $(".tag_listened_count").html(listened_count - 1);
         });
     }
 
