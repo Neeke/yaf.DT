@@ -9,7 +9,7 @@ class spall_title
     private static $_title = '不要集';
 
     private static $_pageTitle = array(
-        'login'              => '不要集',
+        'login'              => '女美图',
         'register'           => '申请账号',
         'resetpsw'           => '忘记密码',
         'register/listentag' => '关注标签',

@@ -22,12 +22,16 @@
                             <a href="javascript:;" class="ico01 js-replay"><?php echo (int)$album_info['posts'];?></a>
                             <a href="javascript:;" class="ico02 <?php if ($album_info['user_id'] != $config['user_id']) echo 'js-collect ';?><?php if (isset($listened_album_ids) && in_array($album_info['album_id'],$listened_album_ids)) echo 'checked';?>"><?php echo (int)$album_info['likeit'];?></a>
                             <a href="<?php echo helper_common::site_url_album($album_info['album_id']);?>" target="_blank" class="ico03 js-detail"><?php echo (int)$album_info['hits'];?></a>
-                            <?php if ($user_id == $album_info['user_id']){
+                            <?php if ($user_id == $album_info['user_id'] && $this_menu == 'album/mine'){
                                 ?>
                                 <a href="<?php echo helper_common::site_url_album_edit($album_info['album_id'])?>" class="edita">编辑</a>
                                 <a href="javascript:;" class="edita">删除</a>
                             <?php }else{?>
+                                <?php if ($this_menu == 'subscribe'){?>
+                                <a href="javascript:;" class="edita">取消订阅</a>
+                                <?php }else{?>
                                 <div class="user-name"><?php echo spall_user::username($album_info['user_id']);?></div>
+                                <?php }?>
                             <?php }?>
 
                         </div>
