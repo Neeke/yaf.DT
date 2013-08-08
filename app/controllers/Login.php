@@ -5,7 +5,7 @@
 class LoginController extends Controller {
 
 	public function indexAction() {
-
+        $this->setMenu('login');
 	}
 
     /**

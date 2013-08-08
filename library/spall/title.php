@@ -9,6 +9,7 @@ class spall_title
     private static $_title = '不要集';
 
     private static $_pageTitle = array(
+        'login'              => '不要集',
         'register'           => '申请账号',
         'resetpsw'           => '忘记密码',
         'register/listentag' => '关注标签',
@@ -53,7 +54,7 @@ class spall_title
 //        if ($this->title) return $this->title;
 
         if (array_key_exists($page_name, self::$_pageTitle)) {
-            return self::$_pageTitle[$page_name] . '-';
+            return self::$_pageTitle[$page_name] . ' - ';
         }
     }
 }
