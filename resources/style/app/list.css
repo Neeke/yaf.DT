@@ -66,6 +66,7 @@
 
 .albumitem .tip .user-name {
     text-indent: 20px;
+    color: #444444;
 }
 
 .albumitem .tip a {

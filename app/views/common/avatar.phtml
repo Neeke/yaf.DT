@@ -2,7 +2,7 @@
     <div class="t_tu"><?php echo spall_user::avatar($user_id,90);?>
     </div>
     <div class="t_con">
-        <h2><?php echo $userinfo['username'];?></h2>
+        <h2><?php echo $userinfo['user_name'];?></h2>
         <?php if ($this_menu == 'album/listened'){?>
             <span>共订阅<?php echo (int)count($myalbums);?>部图集</span>
         <?php }else{?>
