@@ -24,7 +24,8 @@ define(function(require) {
             },
             messages: {
                 oldPwd: '密码不能为空'
-            }
+            },
+            errorClass: 'validateError'
         });
 
         $('#updatePasswordBtn').click(function() {
@@ -33,6 +34,15 @@ define(function(require) {
 
         $('#savePwdBtn').click(function() {
             var rest = $.restPost('/api/user/set',  $form.serialize());
+
+            rest.done(function(msg) {
+                alert(msg || '修改成功');
+                $('#updatePassword').hide();
+            });
+
+            rest.fail(function(msg) {
+                alert(msg || '修改失败');
+            });
             return false;
         });
 
