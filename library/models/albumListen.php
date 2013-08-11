@@ -40,13 +40,14 @@ class models_albumListen extends Models
             $user_id = (int)$userinfo['user_id'];
         }
 
+        $this->db->cache_key('album_listened_'.$user_id);
         $sql = 'select album.* from '.models_album::getInstance()->_table.' album
                 left join '. $this->_table .' listened
                 on listened.album_id = album.album_id
-                where listened.user_id = ? limit '. (int)$start .','. (int)$limit .'
+                where listened.user_id = ? and listened.flag = ? limit '. (int)$start .','. (int)$limit .'
                 ';
 
-        return $this->db->getAll($sql,array($user_id));
+        return $this->db->getAll($sql,array($user_id,contast_albumlistened::FLAG_DEFAULT));
     }
 
     /**
@@ -62,7 +63,8 @@ class models_albumListen extends Models
             $user_id = (int)$userinfo['user_id'];
         }
 
-        $result = $this->getAll('album_id',array('user_id' => $user_id));
+        $this->db->cache_key('album_listened_'.$user_id);
+        $result = $this->getAll('album_id',array('user_id' => $user_id,'flag' => contast_albumlistened::FLAG_DEFAULT));
         if (!is_array($result) || count($result) < 1) return array();
 
         foreach ($result as $v) {
@@ -71,12 +73,25 @@ class models_albumListen extends Models
         return $ids;
     }
 
+    /**
+     * 删除album
+     * @param $album_id
+     * @param $user_id
+     * @return bool
+     */
+    public function remove($album_id, $user_id)
+    {
+        if (intval($album_id) < 1 || intval($user_id) < 1) return FALSE;
+        return $this->update(array('flag' => contast_albumlistened::FLAG_DEL), array('album_id' => $album_id, 'user_id' => $user_id));
+    }
+
     function mkdata($v)
     {
         return $data = array(
             'album_id' => $v['album_id'],
             'user_id' => $v['user_id'],
             'created_time' => time(),
+            'flag' => 0,
         );
     }
 }

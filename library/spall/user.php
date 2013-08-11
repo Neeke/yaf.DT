@@ -142,10 +142,10 @@ class spall_user
                 $result = '泰国的,你懂';
                 break;
             case contast_user::GENDER_MAN:
-                $result = '爷们';
+                $result = '宅男';
                 break;
             case contast_user::GENDER_WOMAN:
-                $result = '美女';
+                $result = '腐女';
                 break;
         }
 
