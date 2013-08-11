@@ -115,3 +115,9 @@ table.simple tr:last-child td {
     font-size: 14px;
     padding: 30px;
 }
+
+label.validateError {
+    display: block;
+    color: red;
+    height: 0;
+}

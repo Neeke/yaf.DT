@@ -1,0 +1,149 @@
+
+.register {
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    /*background: url(/resources/style/app/images/register.gif) no-repeat center 140px;*/
+}
+
+.register .logo {
+    display: block;
+    text-indent: -9999em;
+    background: url(/resources/style/app/images/index_logo.png) no-repeat center center;
+    width: 218px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.back {
+    margin: 131px 0 0 932px;
+    color: #fff;
+    float: left;
+    display: inline;
+    font-weight: bold;
+}
+
+.reg_begin {
+    margin: 16px auto 0 auto;
+}
+
+.reg_begin .reg_left {
+    /*float: left;*/
+    /*display: inline;*/
+    color: #fff;
+    margin: 0 auto;
+    width: 220px;
+}
+
+.reg_begin .reg_right {
+    float: left;
+    display: inline;
+    color: #fff;
+    margin: 0 0 0 63px;
+}
+
+.reg_begin .reg_tu {
+    float: left;
+    display: inline;
+    width: 75px;
+}
+
+.reg_begin .reg_tu p {
+    color: #fff;
+    line-height: 2em;
+    text-align: center;
+    width: 75px;
+}
+
+.reg_begin .reg_tu p a {
+    color: #fff;
+}
+
+.reg_begin .reg_1 {
+    margin-bottom: 24px;
+}
+
+.reg_begin .int {
+    background: #fff;
+    width: 200px;
+    height: 41px;
+    line-height: 41px;
+    border: 0;
+    padding: 0 15px 0 15px;
+    color: #686868;
+}
+
+.reg_begin .reg_1 span a {
+    padding-left: 20px;
+    color: #fff;
+}
+
+.reg_begin .z_btn {
+    border: 0;
+    margin: 11px 0 0 41px;
+}
+
+.reg_begin .reg_2 {
+    background: url(/resources/style/app/images/text_box1.png) no-repeat;
+    width: 223px;
+    height: 44px;
+    margin-bottom: 20px;
+    line-height: 44px;
+}
+
+.reg_begin .reg_2 span {
+    float: left;
+    display: inline;
+}
+
+.reg_begin .reg_2 .reg_ico {
+    margin: 8px 0 0 7px;
+}
+
+.reg_begin .reg_2 .reg_ico1 {
+    margin: 6px 0 0 10px;
+}
+
+.reg_begin .reg_2 .int1 {
+    color: #757575;
+    border: 0;
+    margin-left: 18px;
+    font-family: Microsoft YaHei;
+}
+
+
+@media (max-width: 640px) {
+
+    .choose-tags {
+        background: none;
+        padding: 0 0 85px 0;
+    }
+
+    .search-tags, .had-gz-tags {
+        width: auto;
+        float: none;
+    }
+
+    .had-gz-tags {
+        padding-top: 30px;
+    }
+
+    .search-tags .search-bar input.text {
+        width: 180px;
+    }
+
+    .search-tags .tagslist {
+        padding: 30px 0 0 0;
+    }
+
+    .had-gz-tags dl dd {
+        padding: 43px 0 0 0;
+    }
+
+    .register .logo {
+        background-size: 160px;
+        margin: 0 auto 0 auto;
+        height: 160px;
+    }
+}
