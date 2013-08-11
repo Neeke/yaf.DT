@@ -24,7 +24,8 @@ define(function(require) {
             },
             messages: {
                 oldPwd: '密码不能为空'
-            }
+            },
+            errorClass: 'validateError'
         });
 
         $('#updatePasswordBtn').click(function() {
@@ -35,11 +36,12 @@ define(function(require) {
             var rest = $.restPost('/api/user/set',  $form.serialize());
 
             rest.done(function(msg) {
-                alert(msg);
+                alert(msg || '修改成功');
+                $('#updatePassword').hide();
             });
 
             rest.fail(function(msg) {
-                alert(msg);
+                alert(msg || '修改失败');
             });
             return false;
         });
@@ -77,7 +79,7 @@ define(function(require) {
 
             rest.done(function(msg) {
                 alert(msg);
-                location.reload();
+                location.reload(true);
             });
 
             rest.fail(function(msg) {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php include_once(VIEW_PATH . '/layout/header_common.phtml'); ?>
+    <?php include_once(VIEW_PATH . '/common/header.phtml'); ?>
     <meta name="viewport" content="width=480, initial-scale=0.66">
 </head>
 <body>
@@ -71,12 +71,6 @@
 <script type="text/javascript">
     seajs.use('app/album/v', function(v) {
         v.initOpts('<?php echo $album_info['album_id'];?>');
-    });
-</script>
-<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
-<script>
-    $(window).bind("load", function() {
-        var timeout = setTimeout(function() {$("img.showing").trigger("sporty")}, 5000);
     });
 </script>
 </body>

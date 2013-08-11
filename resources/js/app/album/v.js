@@ -2,38 +2,56 @@ define(function(require) {
     var Talk = require('app/common/talk');
     require('rest');
     require('lazyload');
+    var keymap = require('app/common/keymap');
+
+    function gotoNext() {
+        var _this = $('.arrow-next:visible');
+        fadeobj = _this.closest('.slideritem');
+        if (fadeobj.next('.slideritem').index() > 0) {
+            fadeobj.fadeOut();
+            var showing = fadeobj.next('.slideritem').fadeIn();
+
+            scaleImages(showing.find('.showing'));
+
+            $('.quark-button').show();
+        }
+        else {
+            $('.slideritem').eq(1).fadeIn().siblings('.slideritem').fadeOut();
+            $('.quark-button').hide();
+        }
+    }
+
+    function gotoPrev() {
+        var _this = $('.arrow-prev:visible');
+        fadeobj = _this.closest('.slideritem');
+        if (fadeobj.prev('.slideritem').index() > 0) {
+            fadeobj.fadeOut();
+            fadeobj.prev('.slideritem').fadeIn();
+            $('.quark-button').show();
+        }
+        else {
+            $('.slideritem').last().fadeIn().siblings('.slideritem').fadeOut();
+            $('.quark-button').hide();
+        }
+    }
 
     $(function () {
-        var arrowNext = $('.arrow-next'), arrowPrev = $('.arrow-prev');
+
         $(document).on('click', '.arrow-next', function () {
-            var _this = $(this);
-            fadeobj = _this.closest('.slideritem');
-            if (fadeobj.next('.slideritem').index() > 0) {
-                fadeobj.fadeOut();
-                var showing = fadeobj.next('.slideritem').fadeIn();
-
-                scaleImages(showing.find('.showing'));
-
-                $('.quark-button').show();
-            }
-            else {
-                $('.slideritem').eq(0).fadeIn().siblings('.slideritem').fadeOut();
-                $('.quark-button').hide();
-            }
+            gotoNext();
         });
         $(document).on('click', '.arrow-prev', function () {
-            var _this = $(this);
-            fadeobj = _this.closest('.slideritem');
-            if (fadeobj.prev('.slideritem').index() > 0) {
-                fadeobj.fadeOut();
-                fadeobj.prev('.slideritem').fadeIn();
-                $('.quark-button').show();
-            }
-            else {
-                $('.slideritem').eq(0).fadeIn().siblings('.slideritem').fadeOut()
-                $('.quark-button').hide();
+            gotoPrev();
+        });
+
+        $(document).on('keyup', function(e) {
+            if (e.keyCode === keymap.LEFT) {
+                gotoPrev();
+            } else if (e.keyCode === keymap.RIGHT) {
+                gotoNext();
             }
         });
+
         $('.collection-button').bind('click', function () {
             $(this).addClass('on');
         });

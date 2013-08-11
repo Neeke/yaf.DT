@@ -2,132 +2,6 @@
 
 /* CSS Document */
 
-/*注册**/
-
-.register {
-    width: 1000px;
-    height: auto;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    /*background: url(/resources/style/app/images/register.gif) no-repeat center 140px;*/
-}
-
-.register .logo {
-    position: absolute;
-    display: block;
-    text-indent: -9999em;
-    background: url(/resources/style/app/images/index_logo.png) no-repeat;
-    width: 218px;
-    height: 200px;
-    left: 50%;
-    margin: 0 0 0 -104px;
-}
-
-.back {
-    margin: 131px 0 0 932px;
-    color: #fff;
-    float: left;
-    display: inline;
-    font-weight: bold;
-}
-
-.reg_begin {
-    margin: 65px auto 0 auto;
-    width: 1100px;
-}
-
-.reg_begin .reg_left {
-    /*float: left;*/
-    /*display: inline;*/
-    color: #fff;
-    margin: 0 auto;
-    width: 410px;
-}
-
-.reg_begin .reg_right {
-    float: left;
-    display: inline;
-    color: #fff;
-    margin: 0 0 0 63px;
-}
-
-.reg_begin .reg_tu {
-    float: left;
-    display: inline;
-    width: 75px;
-}
-
-.reg_begin .reg_tu p {
-    color: #fff;
-    line-height: 2em;
-    text-align: center;
-    width: 75px;
-}
-
-.reg_begin .reg_tu p a {
-    color: #fff;
-}
-
-.reg_begin .reg_con {
-    float: left;
-    display: inline;
-    width: 298px;
-    margin-left: 50px;
-}
-
-.reg_begin .reg_1 {
-    margin-bottom: 24px;
-}
-
-.reg_begin .int {
-    background: #fff;
-    width: 200px;
-    height: 41px;
-    line-height: 41px;
-    border: 0;
-    padding: 0 15px 0 15px;
-    color: #686868;
-}
-
-.reg_begin .reg_1 span a {
-    padding-left: 20px;
-    color: #fff;
-}
-
-.reg_begin .z_btn {
-    border: 0;
-    margin: 11px 0 0 41px;
-}
-
-.reg_begin .reg_2 {
-    background: url(/resources/style/app/images/text_box1.png) no-repeat;
-    width: 223px;
-    height: 44px;
-    margin-bottom: 20px;
-    line-height: 44px;
-}
-
-.reg_begin .reg_2 span {
-    float: left;
-    display: inline;
-}
-
-.reg_begin .reg_2 .reg_ico {
-    margin: 8px 0 0 7px;
-}
-
-.reg_begin .reg_2 .reg_ico1 {
-    margin: 6px 0 0 10px;
-}
-
-.reg_begin .reg_2 .int1 {
-    color: #757575;
-    border: 0;
-    margin-left: 18px;
-    font-family: Microsoft YaHei;
-}
-
 /****/
 .con {
     width: 100%;
@@ -1057,14 +931,8 @@
 }
 
 .sx .sx_right {
-    float: left;
+    margin-top: 60px;
     display: none;
-    position: absolute;
-    left: 128px;
-    background: url(/resources/style/app/images/dbg.jpg) no-repeat;
-    width: 210px;
-    height: 170px;
-    padding-left: 20px;
 }
 
 .sx_right .sx_t01 {
@@ -1236,7 +1104,6 @@
 /*注册后选择**/
 
 .reglater {
-    width: 975px;
     margin: 0 auto;
     position: relative;
 }
