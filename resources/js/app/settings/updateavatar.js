@@ -30,6 +30,7 @@ define(function(require) {
                         rest.done(function(msg) {
                             alert(msg);
                             self.close();
+                            location.reload();
                         });
 
                         rest.fail(function(msg) {

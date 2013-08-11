@@ -50,15 +50,15 @@ class InvitationController extends Controller
 
         if (is_array($result) && count($result) > 0)
         {
-            $this->set('result_msg','您现在有以下邀请码，快让好友们来体验吧');
+//            $this->set('result_msg','您现在有以下邀请码，快让好友们来体验吧');
         }
 
         if ($this->if_make){
             if (is_array($result) && $count_not_used > 0){
-                $this->set('result_msg','您尚有以下邀请码没用完，请先用完再生成好不');
+//                $this->set('result_msg','您尚有以下邀请码没用完，请先用完再生成好不');
 
             }else{
-                $this->set('result_msg','您已生成以下邀请码，快让好友们来体验吧');
+//                $this->set('result_msg','您已生成以下邀请码，快让好友们来体验吧');
                 $result = $this->model_invitedcodes->createCodes($this->user_id);
             }
         }

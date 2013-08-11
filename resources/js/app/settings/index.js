@@ -33,6 +33,14 @@ define(function(require) {
 
         $('#savePwdBtn').click(function() {
             var rest = $.restPost('/api/user/set',  $form.serialize());
+
+            rest.done(function(msg) {
+                alert(msg);
+            });
+
+            rest.fail(function(msg) {
+                alert(msg);
+            });
             return false;
         });
 
@@ -69,6 +77,7 @@ define(function(require) {
 
             rest.done(function(msg) {
                 alert(msg);
+                location.reload();
             });
 
             rest.fail(function(msg) {

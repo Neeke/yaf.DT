@@ -83,7 +83,7 @@ define(function(require) {
                 $el.text(amount * 1 + 1);
             }
 
-            $el.addClass('checked');
+            $el.closest('.js-albumitem').remove();
         });
 
         rest.fail(function(msg) {

@@ -61,7 +61,7 @@ class models_invitedcodes extends Models
     public function showCodes($user_id)
     {
         $this->db->cache_on(1);
-        return $this->getAll(array('code_value','create_time','flag'), array('user_id' => $user_id));
+        return $this->getAll(array('code_value','create_time','flag'), array('user_id' => $user_id),array('code_id' => 'DESC'),0,5);
     }
 
     /**
