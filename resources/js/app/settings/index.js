@@ -79,6 +79,7 @@ define(function(require) {
 
             rest.done(function(msg) {
                 alert(msg);
+                location.reload(true);
             });
 
             rest.fail(function(msg) {

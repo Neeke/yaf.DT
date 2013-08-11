@@ -303,6 +303,7 @@ class AlbumController extends Controller
 
         if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
+        $this->db->update_cache('album_listened_'.$this->user_id);
         $this->model_album->addListened($params['album_id']);
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '订阅成功');
@@ -321,6 +322,26 @@ class AlbumController extends Controller
         }
 
         $this->rest->success($albums);
+    }
+
+    /**
+     * 取消订阅
+     */
+    public function listenedremoveAction()
+    {
+        $this->rest->method('POST');
+
+        $params = $this->allParams();
+        $this->rest->paramsMustMap = array('album_id');
+        $this->rest->paramsMustValid($params);
+
+        $this->models_albumListen = models_albumListen::getInstance();
+
+        $this->db->update_cache('album_listened_'.$this->user_id);
+        $result = $this->models_albumListen->remove($params['album_id'],$this->user_id);
+        if ($result) $this->rest->success('','','取消订阅成功');
+
+        $this->rest->error();
     }
 
     /**
@@ -378,6 +399,7 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('album_id');
         $this->rest->paramsMustValid($params);
 
+        $this->db->update_cache('album_mine_'.$this->user_id);
         $result = $this->model_album->remove($params['album_id'],$this->user_id);
         if ($result) $this->rest->success('','','删除成功');
 

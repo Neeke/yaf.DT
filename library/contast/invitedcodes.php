@@ -12,7 +12,7 @@ class contast_invitedcodes
     /**
      * 每次可生成多少个邀请码
      */
-    const CODES_EVERY_MAKE_COUNT = 7;
+    const CODES_EVERY_MAKE_COUNT = 5;
 
     /**
      * 邀请码长度

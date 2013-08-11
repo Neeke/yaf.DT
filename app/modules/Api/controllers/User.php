@@ -162,7 +162,7 @@ class UserController extends Controller
         if (array_key_exists('email', $params)) {
             $email = $this->getRequest()->getPost('email',0);
             $result = $this->model->updateEmail($email);
-            if (!$result) $this->rest->error('','email更新出现错误');
+            if (!$result) $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_VALIDE,'email更新出现错误');
         }
 
         if (array_key_exists('pwd', $params)) {
@@ -172,26 +172,26 @@ class UserController extends Controller
             $this->rest->paramsMustValid($pwd);
 
             $result = $this->model->updatePwd($pwd);
-            if (!$result) $this->rest->error('','密码更新出现错误');
+            if (!$result) $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_VALIDE,'密码更新出现错误');
         }
 
         if (array_key_exists('avatar', $params)) {
             $avatar = $this->getRequest()->getPost('avatar',0);
             $result = $this->model->updateAvatar($avatar);
-            if (!$result) $this->rest->error('','头像更新出现错误');
+            if (!$result) $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_VALIDE,'头像更新出现错误');
         }
 
         if (array_key_exists('gender', $params)) {
             $gender = $this->getRequest()->getPost('gender',contast_user::GENDER_MAN);
             $result = $this->model->updateGender($gender);
-            if (!$result) $this->rest->error('','性别更新出现错误');
+            if (!$result) $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_VALIDE,'性别更新出现错误');
         }
 
         if (array_key_exists('email_set', $params)) {
             $email_set = $this->getRequest()->getPost('email_set',0);
             $email_set['user_id'] = $this->user_id;
             $result = $this->model_email_set->updateEmailSet($email_set);
-            if (!$result) $this->rest->error('','邮件设置更新出现错误');
+            if (!$result) $this->rest->error(rest_Code::STATUS_ERROR_PARAMS_VALIDE,'邮件设置更新出现错误');
         }
 
         $this->rest->success('', '', '修改成功');

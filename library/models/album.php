@@ -60,6 +60,7 @@ class models_album extends Models
             $userinfo = models_user::getInstance()->getUserInfo();
             $user_id  = (int)$userinfo['user_id'];
         }
+        $this->db->cache_key('album_mine_'.$user_id);
         return $this->getAll('*', array('user_id' => $user_id, 'flag' => contast_album::FLAG_DEFAULT), '', $start, $limit);
     }
 
