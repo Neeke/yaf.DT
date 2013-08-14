@@ -984,7 +984,7 @@ define(function () {
                 this.text = this.config.text = this.el.text();
                 if (this.el.length) {
                     var btnCls = this.el.attr("class"), self = this;
-                    $.each(btnCls.split(" "), function (i, e) {
+                    $.each(btnCls.split("-"), function (i, e) {
                         if (/^btn_[a-z]*_[a-z]*$/.test(e)) {
                             self.btnCls = e;
                             return false;
@@ -2085,7 +2085,7 @@ define(function () {
                     },
                     {
                         text   : "取消",
-                        cls    : "btn_small_normal",
+                        cls    : "btn-small-normal",
                         handler: function () {
                             if (typeof callback === "function") {
                                 callback.call(this, false);

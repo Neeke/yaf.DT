@@ -80,17 +80,15 @@ body {
 }
 
 a {
-
+    star: expression(this.onFocus=this.blur());/* for Ie*/
 	outline: none;/* for Forefox */
-
 	cursor: pointer;
-
+    color: #e4007f;
 }
 
-a {
-
-	star: expression(this.onFocus=this.blur());/* for Ie*/
-
+h1,h2 {
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .clearfix:after{
