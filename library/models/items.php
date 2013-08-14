@@ -48,7 +48,8 @@ class models_items extends Models
         $this->db->cache_on();
         return $this->getAll(array('items_id', 'items_pic', 'remark', 'txt_area', 'pic_area', 'is_cover'),
             array('album_id' => $album_id, 'flag' => contast_items::ITEMS_FLAG_YES),
-            array('is_cover' => 'desc', 'items_id' => 'asc')
+            array('is_cover' => 'desc', 'items_id' => 'asc'),
+            0,100
         );
     }
 

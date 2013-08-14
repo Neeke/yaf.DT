@@ -11,21 +11,35 @@ class ErrorController extends Yaf_Controller_Abstract
 
     public function init()
     {
-        Yaf_Dispatcher::getInstance()->disableView();
+//        Yaf_Dispatcher::getInstance()->disableView();
     }
 
     public function errorAction($exception)
     {
         /* error occurs */
+//        switch ($exception->getCode()) {
+//            case YAF_ERR_NOTFOUND_MODULE:
+//            case YAF_ERR_NOTFOUND_CONTROLLER:
+//            case YAF_ERR_NOTFOUND_ACTION:
+//            case YAF_ERR_NOTFOUND_VIEW:
+//                self::halt('404', $exception->getMessage());
+//                break;
+//            default :
+//                self::halt('0', $exception->getMessage());
+//                break;
+//        }
+
         switch ($exception->getCode()) {
             case YAF_ERR_NOTFOUND_MODULE:
             case YAF_ERR_NOTFOUND_CONTROLLER:
             case YAF_ERR_NOTFOUND_ACTION:
             case YAF_ERR_NOTFOUND_VIEW:
-                self::halt('404', $exception->getMessage());
+                $this->getView()->assign('code',$exception->getCode());
+                $this->getView()->assign('msg', $exception->getMessage());
                 break;
             default :
-                self::halt('0', $exception->getMessage());
+                $this->getView()->assign('code',$exception->getCode());
+                $this->getView()->assign('msg', $exception->getMessage());
                 break;
         }
     }
