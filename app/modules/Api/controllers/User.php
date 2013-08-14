@@ -103,6 +103,8 @@ class UserController extends Controller
             $data['redirect'] = helper_common::site_url('explore');
         }
 
+        helper_keepLogin::setKeepLogin((bool)$params['keep_login']);
+
         $this->rest->success($data);
     }
 
