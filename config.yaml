@@ -1,5 +1,0 @@
-name: doyaf
-version: 1
-handle:
-- rewrite:  if ( !is_dir() && !is_file() && path ~ "/test/(.*)" ) goto "/test.php/$1"
-- rewrite:  if ( !is_dir() && !is_file() && path ~ "/api/(.*)" ) goto "/test.php/$1"
