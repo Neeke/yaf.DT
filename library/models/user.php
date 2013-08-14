@@ -50,6 +50,7 @@ class models_user extends Models
             $userinfo             = $s->get('userinfo');
             $array['user_id']     = $userinfo['user_id'];
             $array['user_name']   = $userinfo['user_name'];
+            $array['user_email']  = $userinfo['user_email'];
             $array['album_count'] = $userinfo['album_count'];
             $array['face_url']    = $userinfo['face_url'];
             $array['is_vip']      = (int)$userinfo['is_vip'];
@@ -91,6 +92,23 @@ class models_user extends Models
         $this->db->cache_off();
 //        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_name = ? and user_pwd = ?', array($user_name, md5($pwd)));
         $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_email = ? and user_pwd = ?', array($user_email, md5($pwd)));
+        if ($aResult == FALSE) return FALSE;
+
+        $session           = Yaf_Session::getInstance();
+        $session->userinfo = $aResult;
+        return TRUE;
+    }
+
+    /**
+     * 通过cookie自动登录
+     * @param $user_email
+     * @param $user_id
+     * @return bool
+     */
+    public function loginByCookie($user_email,$user_id)
+    {
+        $this->db->cache_off();
+        $aResult = $this->db->getRow('select * from ' . $this->_table . ' where user_email = ? and user_id = ?', array($user_email, $user_id));
         if ($aResult == FALSE) return FALSE;
 
         $session           = Yaf_Session::getInstance();
