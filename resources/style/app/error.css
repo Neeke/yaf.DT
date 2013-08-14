@@ -1,0 +1,12 @@
+.err404 {
+    height: 190px;
+    padding-left: 284px;
+    background: url(images/404.jpg) no-repeat left top;
+}
+
+.err404 p {
+    color: #fff;
+    font-size: 28px;
+    text-indent: 32px;
+    line-height: 28px;
+}

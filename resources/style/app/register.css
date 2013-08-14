@@ -113,11 +113,123 @@
 }
 
 
+/*注册后选择**/
+
+.reglater {
+    margin: 0 auto;
+    position: relative;
+}
+
+.reglater a.logo {
+    background: url(images/logo_110x110.png) no-repeat;
+    display: block;
+    width: 110px;
+    height: 110px;
+    text-indent: -9999em;
+    margin: 35px 0 0 0;
+}
+
+.choose-tags {
+    background: url(/resources/style/app/images/register.gif) no-repeat center top;
+    min-height: 360px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+
+.search-tags {
+    float: left;
+    width: 45%;
+}
+
+.search-tags .search-bar {
+    overflow: hidden;
+}
+
+.search-tags .search-bar input {
+    float: left;
+}
+
+.search-tags .search-bar input.text {
+    border: none;
+    background: #fff;
+    width: 280px;
+    height: 30px;
+    padding: 0 10px;
+    color: #757575;
+    margin: 0 13px 0 0;
+}
+
+.search-tags .tagslist {
+    overflow: hidden;
+    padding: 50px 0 0 0;
+}
+
+.tag-item {
+    float: left;
+    height: 30px;
+    background: url(/resources/style/app/images/add.gif) no-repeat right center #fff;
+    line-height: 30px;
+    border: 1px solid #f6f6f6;
+    padding: 0 27px 0 10px;
+    margin: 0 25px 25px 0;
+}
+
+.had-gz-tags {
+    float: right;
+    width: 45%;
+}
+
+.had-gz-tags dl dt strong {
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
+}
+
+.had-gz-tags dl dt .num {
+    float: right;
+    color: #fff;
+    padding-right: 30px;
+}
+
+.had-gz-tags dl dd {
+    overflow: hidden;
+    padding: 63px 0 0 0;
+}
+
+.tag-item-listened {
+    background-color: #fff;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #f6f6f6;
+    padding: 0 5px 0 10px;
+    margin: 0 25px 25px 0;
+    color: #444444;
+}
+
+.tag-item-listened a {
+    width: 10px;
+    height: 10px;
+    display: block;
+    float: right;
+    margin: 10px 0 0 12px;
+    background: url(/resources/style/app/images/close.png) no-repeat right center #fff;
+}
+
+.reglater a.complete-reg {
+    text-indent: -9999em;
+    background: url(/resources/style/app/images/end_btn.png) no-repeat;
+    width: 143px;
+    height: 44px;
+    display: block;
+    margin: 0 auto;
+}
+
 @media (max-width: 640px) {
 
     .choose-tags {
         background: none;
-        padding: 0 0 85px 0;
     }
 
     .search-tags, .had-gz-tags {

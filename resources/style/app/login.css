@@ -47,6 +47,12 @@ body, html { color: #595757; font-family: simSun; position: relative; width:100%
 .footer .links span{ color:#e4007f;}
 .footer .links a:hover{ text-decoration:underline;}
 
+
+label {
+    color: #fff;
+    font-weight: bold;
+}
+
 /**首页**/
 .login-main{
     overflow: hidden;
@@ -80,7 +86,7 @@ body, html { color: #595757; font-family: simSun; position: relative; width:100%
 .login-main .index_login_box .login .email input{ background:url(/resources/style/app/images/ico01.png) no-repeat left center;}
 .login-main .index_login_box .login .password input{ background:url(/resources/style/app/images/ico02.png) no-repeat left center;}
 .login-main .index_login_box .aid{ padding:10px 0 0 15px;}
-.login-main .index_login_box .aid a{ color:#ff; font-weight:bold; color:#fff;}
+.login-main .index_login_box .aid a{ font-weight:bold; color:#fff;}
 .login-main .index_login_box .aid a:hover{ text-decoration:underline;}
 .login-main .index_login_box .aid input{ vertical-align:middle; margin:-1px 5px 0 0;}
 .login-main .index_login_box .aid span.reg{ padding:0 192px 0 0;}
