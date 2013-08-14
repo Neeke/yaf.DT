@@ -1,6 +1,11 @@
 .err404 {
+    position: relative;
+    width: 380px;
     height: 190px;
     padding-left: 284px;
+    margin: 100px auto;
+    padding-left: 284px;
+
     background: url(images/404.jpg) no-repeat left top;
 }
 
@@ -9,4 +14,14 @@
     font-size: 28px;
     text-indent: 32px;
     line-height: 28px;
+}
+
+.err404-baseline {
+    position: absolute;
+    bottom: 0;
+}
+
+.err404-baseline a {
+    color: #902a63;
+    text-decoration: underline;
 }
