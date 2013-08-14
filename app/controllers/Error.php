@@ -11,7 +11,7 @@ class ErrorController extends Yaf_Controller_Abstract
 
     public function init()
     {
-        Yaf_Dispatcher::getInstance()->disableView();
+//        Yaf_Dispatcher::getInstance()->disableView();
     }
 
     public function errorAction($exception)
@@ -54,5 +54,9 @@ class ErrorController extends Yaf_Controller_Abstract
 					</body>
 				</html>';
         exit($s);
+    }
+
+    function err404Action() {
+
     }
 }
