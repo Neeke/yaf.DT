@@ -77,21 +77,13 @@ class AlbumController extends Controller
     {
         $replys = array();
 
-        $this->db->cache_on();
+        $this->db->cache_on(300);
         $album_id   = (int)$this->getRequest()->getParam('a', 0);
         $this->model_album->viewAlbum($album_id);
 
         $album_info = $this->model_album->getRow('*', $album_id);
-        $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id,'flag' => contast_items::ITEMS_FLAG_YES));
+        $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id,'flag' => contast_items::ITEMS_FLAG_YES),'items_id',0,100);
         $userinfo   = $this->model->getRow('user_name,user_id', $album_info['user_id']);
-
-//
-//        if (is_array($items) && count($items) > 1){
-//            foreach ($items as $v) {
-//                $replys[$v['items_id']] = $this->model_reply->getAllByItemId($v['items_id']);
-//            }
-//        }
-//        $this->set('replys', $replys);
 
         $this->db->cache_off();
 
