@@ -1,5 +1,6 @@
 define(function(require) {
     var Talk = require('app/common/talk');
+    var util = require('util');
     require('rest');
     require('lazyload');
     var keymap = require('app/common/keymap');
@@ -109,7 +110,7 @@ define(function(require) {
                 });
 
                 rest.fail(function(msg) {
-                    alert(msg || '收藏失败');
+                    util.alert(msg || '收藏失败');
                 });
             });
 

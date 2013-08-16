@@ -56,7 +56,7 @@ class UserController extends Controller
         }
 
         if ($this->model->exits(array('user_email' => $params['email']))) {
-            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, 'email已存在');
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, 'Email已存在');
         }
 
         if ($this->model->exits(array('user_name' => $params['user_name']))) {

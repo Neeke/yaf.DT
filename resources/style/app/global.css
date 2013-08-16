@@ -100,12 +100,12 @@ label.validateError {
     height: 0;
 }
 
-.center {
-    margin: 0 auto;
+.align-center {
+    text-align: center;
 }
 
 .btn {
-    display: block;
+    display: inline-block;
     cursor: pointer;
     text-align: center;
     border: none;

@@ -20,13 +20,13 @@ define(function (require) {
             var usernameLength = util.getCharCount($.trim(username));
 
             if (usernameLength < 6 || usernameLength > 24) {
-                alert('用户名为3-12个汉字/6-24个英文');
+                util.alert('用户名为3-12个汉字/6-24个英文');
                 $username.focus();
                 return;
             }
 
             if (!util.isEmail(email)) {
-                alert('邮箱地址格式不正确');
+                util.alert('邮箱地址格式不正确');
                 $email.focus();
                 return;
             }
@@ -34,7 +34,7 @@ define(function (require) {
             var pwdLength = util.getCharCount($.trim(pwd));
 
             if (pwdLength < 6 || pwdLength > 20) {
-                alert('密码为6-20个字符');
+                util.alert('密码为6-20个字符');
                 $pwd.focus();
                 return;
             }
@@ -47,12 +47,14 @@ define(function (require) {
             });
 
             rest.done(function (msg, data) {
-                alert(msg);
-                location.href = data.redirect;
+                util.alert(msg, function() {
+                    location.href = data.redirect;
+                });
+
             });
 
             rest.fail(function (msg) {
-                alert(msg || '注册失败!');
+                util.alert(msg || '注册失败!');
             });
         });
     });

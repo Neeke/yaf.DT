@@ -21,7 +21,7 @@ define(function(require) {
         var usernameLength = util.getCharCount($.trim(username));
 
         if (usernameLength < 6 || usernameLength > 24) {
-            alert('用户名为3-12个汉字/6-24个英文');
+            util.alert('用户名为3-12个汉字/6-24个英文');
             $username.focus();
             return;
         }
@@ -31,11 +31,11 @@ define(function(require) {
         });
 
         rest.done(function(msg) {
-            alert(msg || '修改成功');
+            util.alert(msg || '修改成功');
         });
 
         rest.fail(function(msg) {
-            alert(msg || '修改失败');
+            util.alert(msg || '修改失败');
         });
     }
 

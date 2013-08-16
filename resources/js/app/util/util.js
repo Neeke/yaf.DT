@@ -1,5 +1,7 @@
 define(function(require) {
 
+    var DK = require('dk');
+
     return {
         //是否为手持设备
         isTouchDevice: 'ontouchstart' in window,
@@ -220,6 +222,9 @@ define(function(require) {
                     }
                 });
             }
-        }
+        },
+        alert: DK.alert,
+        confirm: DK.confirm,
+        message: DK.message
     };
 });

@@ -3,6 +3,7 @@ define(function(require) {
     require('validate');
     require('rest');
     var updateavatar = require('./updateavatar');
+    var util = require('util');
 
 
     function initUpdatePwd() {
@@ -36,12 +37,12 @@ define(function(require) {
             var rest = $.restPost('/api/user/set',  $form.serialize());
 
             rest.done(function(msg) {
-                alert(msg || '修改成功');
+                util.alert(msg || '修改成功');
                 $('#updatePassword').hide();
             });
 
             rest.fail(function(msg) {
-                alert(msg || '修改失败');
+                util.alert(msg || '修改失败');
             });
             return false;
         });
@@ -78,12 +79,13 @@ define(function(require) {
             var rest = $.restPost('/api/user/set', $item.find('form').serialize());
 
             rest.done(function(msg) {
-                alert(msg);
-                location.reload(true);
+                util.alert(msg, function() {
+                    location.reload(true);
+                });
             });
 
             rest.fail(function(msg) {
-                alert(msg);
+                util.alert(msg);
             });
         });
 
