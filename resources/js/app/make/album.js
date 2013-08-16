@@ -1,13 +1,17 @@
 define(function(require) {
     var DK = require('dk');
+    var util = require('util');
+    var editimage = require('app/make/editimage');
     require('plupload');
     require('imagescale');
     require('jqueryui');
-    var util = require('util');
-    var editimage = require('app/make/editimage');
     require('rest');
+    require('validate');
+
 
     var tag = require('app/make/tag');
+
+    var $form;
 
     var $albumContainer;
 
@@ -55,6 +59,7 @@ define(function(require) {
             container: 'albumContainer',
             max_file_size : '10mb',
             url : '/api/items/plupload',
+
             filters : [
                 {title : "Image files", extensions : "jpg,jpeg,gif,png"}
             ]
@@ -131,14 +136,38 @@ define(function(require) {
         }
     }
 
+    function initValidator() {
+        $form.validate({
+            rules: {
+                'album_name': {
+                    required: true,
+                    mincharlength: 4,
+                    maxcharlength: 36,
+                    exspecialchar: true
+                }
+            },
+            messages: {
+                'album_name': {
+                    required: '请输入图集名称',
+                    mincharlength: '图集名称为2-18个汉字/4-36个英文',
+                    maxcharlength: '图集名称为2-18个汉字/4-36个英文',
+                    exspecialchar: '图集名称含有非法字符'
+                }
+            },
+            errorClass: 'validateError'
+        });
+    }
+
     function init(album_id) {
         var isUpdate = !!album_id;
-
+        $form = $('#albumForm');
         $albumContainer = $('#albumContainer');
 
         initPlupload();
 
         initSortable();
+
+        initValidator();
 
         $albumContainer.on('click', '.js_removeitem', function() {
             $(this).closest('li').remove();
@@ -147,25 +176,28 @@ define(function(require) {
         initEditImage();
 
         $('#submit').click(function() {
-            var rest;
-            if (isUpdate) {
-                rest = $.restPost('/api/album/modify', $.extend({
-                    album_id: album_id
-                }, serialize()));
-            } else {
-                rest = $.restPost('/api/album/create', serialize());
-            }
+            if ($form.valid() && editimage.valid()) {
+                var params = serialize();
+                var rest;
+                if (isUpdate) {
+                    rest = $.restPost('/api/album/modify', $.extend({
+                        album_id: album_id
+                    }, params));
+                } else {
+                    rest = $.restPost('/api/album/create', params);
+                }
 
 
-            rest.done(function(msg) {
-                util.alert(msg, function() {
-                    location.href = '/album/mine';
+                rest.done(function(msg) {
+                    util.alert(msg, function() {
+                        location.href = '/album/mine';
+                    });
                 });
-            });
 
-            rest.fail(function(msg) {
-                util.alert(msg || '创建失败！');
-            });
+                rest.fail(function(msg) {
+                    util.alert(msg || '创建失败！');
+                });
+            }
         });
 
         if (typeof album_id !== 'undefined') {

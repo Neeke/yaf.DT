@@ -6,6 +6,12 @@ define(function(require) {
 
     var idSrcMap = {};
 
+    var msg = {
+        'remarkLength': '描述不能超过120字',
+        'empty': '请至少上传一张图片',
+        'max': '图片不能超过100张'
+    }
+
     function createWin(cfg) {
         var $content = $("#editImage").clone();
 
@@ -82,12 +88,47 @@ define(function(require) {
     function initItems(items) {
         $.each(items || [], function(index, item) {
             createWin(item);
-        })
+        });
     }
+
+    function valid() {
+        var length = serialize().length;
+        if (!serialize().length) {
+            util.alert(msg.empty);
+            return false;
+        } else if (length > 100) {
+            util.alert(msg.max);
+            return false;
+        } else {
+            var flag = true;
+            $('#albumContainer').find('.js-remark').each(function(i, e) {
+                if (e.value.length > 120) {
+                    flag = false;
+                    return false;
+                }
+            });
+
+            if (!flag) {
+                util.alert(msg.remarkLength);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    $(function() {
+        $('#albumContainer').on('blur', '.js-remark', function() {
+            if (this.value.length > 120) {
+                util.alert(msg.remarkLength);
+            }
+        });
+    });
 
     return {
         show: show,
         serialize: serialize,
-        initItems: initItems
+        initItems: initItems,
+        valid: valid
     }
 });

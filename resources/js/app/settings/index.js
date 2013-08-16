@@ -1,9 +1,9 @@
 define(function(require) {
 
-    require('validate');
-    require('rest');
     var updateavatar = require('./updateavatar');
     var util = require('util');
+    require('validate');
+    require('rest');
 
 
     function initUpdatePwd() {
