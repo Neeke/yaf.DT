@@ -40,7 +40,7 @@ class AlbumController extends Controller
 
     public function indexAction()
     {
-        $this->db->cache_on();
+
     }
 
     /**
