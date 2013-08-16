@@ -1,16 +1,16 @@
-<div class="tagsbox">
-    <span class="name">添加标签：</span>
-    <div class="tags">
-        <ul id="tagCtnr"></ul>
-        <input type="text" id="createTag" placeholder="添加标签"/>
-        <span class="tags-msg"></span>
-        <dl id="suggestTags">
-            <dt>你关注的标签</dt>
-        </dl>
-    </div>
-
-</div>
-
+<tr>
+    <th>添加标签：</th>
+    <td>
+        <div class="tags">
+            <ul id="tagCtnr"></ul>
+            <input type="text" id="createTag" placeholder="添加标签"/>
+            <span class="tags-msg"></span>
+            <dl id="suggestTags" class="clearfix">
+                <dt>你关注的标签</dt>
+            </dl>
+        </div>
+    </td>
+</tr>
 <script type="text/javascript">
     seajs.use('app/make/tag');
 </script>
