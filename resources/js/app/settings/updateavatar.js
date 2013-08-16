@@ -4,6 +4,7 @@ define(function(require) {
     require('plupload');
     require('imagescale');
     require('jcrop');
+    var util = require('util');
 
     var avatarUrl;
 
@@ -28,14 +29,16 @@ define(function(require) {
                         });
 
                         rest.done(function(msg) {
-                            alert(msg);
-                            self.close();
-                            location.reload();
+                            util.alert(msg, function() {
+                                self.close();
+                                location.reload();
+                            });
                         });
 
                         rest.fail(function(msg) {
-                            alert(msg);
-                            self.close();
+                            util.alert(msg, function() {
+                                self.close();
+                            });
                         });
                     }
                 }]

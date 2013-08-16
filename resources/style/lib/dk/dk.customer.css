@@ -214,8 +214,8 @@ background-position:0 -300px;
   _padding-top: 5px;
 }
 
-.DKWindow_btn {
-  margin: 8px 15px 0 0;
+.DKWindow-btn {
+  margin: 8px 8px 0 8px;
   cursor: pointer;
 }
 
@@ -316,24 +316,22 @@ background-position:0 -300px;
 
 .DKMessage_content {
   display: inline-block;
-  padding: 35px 20px 35px 115px;
+  padding: 0 20px 24px 20px;
   text-align: left;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 18px;
   word-wrap: break-word;
   word-break: break-all;
-  color: #666666;
+  color: #fff;
 }
 
 .DKMessage_success {
   background: url(images/common/message_success.jpg) no-repeat 30px center transparent;
 }
 .DKMessage_question {
-  background: url(images/common/message_question.jpg) no-repeat 30px center transparent;
 }
 .DKMessage_info {
-  background: url(images/common/message_info.jpg) no-repeat 30px center transparent;
 }
 .DKMessage_error {
   background: url(images/common/message_error.jpg) no-repeat 30px center transparent;

@@ -158,12 +158,13 @@ define(function(require) {
 
 
             rest.done(function(msg) {
-                alert(msg);
-                location.href = '/album/mine';
+                util.alert(msg, function() {
+                    location.href = '/album/mine';
+                });
             });
 
             rest.fail(function(msg) {
-                alert(msg || '创建失败！');
+                util.alert(msg || '创建失败！');
             });
         });
 
@@ -177,7 +178,7 @@ define(function(require) {
             });
 
             rest.fail(function(msg) {
-                alert(msg || '初始化数据出错');
+                util.alert(msg || '初始化数据出错');
             });
         }
     }
