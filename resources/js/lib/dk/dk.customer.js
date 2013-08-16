@@ -985,7 +985,7 @@ define(function () {
                 if (this.el.length) {
                     var btnCls = this.el.attr("class"), self = this;
                     $.each(btnCls.split("-"), function (i, e) {
-                        if (/^btn_[a-z]*_[a-z]*$/.test(e)) {
+                        if (/^btn-[a-z]*-[a-z]*$/.test(e)) {
                             self.btnCls = e;
                             return false;
                         }
@@ -1000,21 +1000,21 @@ define(function () {
                     this.type = arr[2] || this.type;
                 }
                 else {
-                    this.btnCls = this.btnCls || "btn_" + this.size + "_" + this.type;
+                    this.btnCls = this.btnCls || "btn-" + this.size + " btn-" + this.type;
                 }
-                this.disabledCls = this.disabledCls || "btn_" + this.size + "_disabled";
+                this.disabledCls = this.disabledCls || "btn-" + this.size + " btn-disabled";
             },
             createDom    : function () {
                 this.doBtnCls();
 
-                this.el = W.util.ie6 ? $('<a href="###"></a>') : $('<a href="javascript:void(0)"></a>');
+                this.el = W.util.ie6 ? $('<a href="###" class="btn"></a>') : $('<a href="javascript:void(0)" class="btn"></a>');
                 this.el.attr({
                     "class": this.btnCls
                 }).addClass(this.cls);
                 if (typeof this.text === "number") {
                     this.text += "";
                 }
-                var span = $("<span class=\"btn_wrap\"></span>").text(this.text || "");
+                var span = $("<span class=\"btn-wrap\"></span>").text(this.text || "");
                 this.el.append(span);
 
             },
@@ -1104,7 +1104,7 @@ define(function () {
             },
             setText      : function (text) {
                 this.text = text;
-                this.el.find(".btn_wrap").text(this.text || "");
+                this.el.find(".btn-wrap").text(this.text || "");
             },
             /**
              * 定时
@@ -1620,7 +1620,7 @@ define(function () {
             minHeight     : 100,
             modal         : true,
             floor         : "middle",
-            defaultBtnType: "strong"
+            defaultBtnType: "important"
         };
 
         var methods = {
@@ -1881,7 +1881,7 @@ define(function () {
                             renderTo: self.footEl,
                             btnCls  : e.cls,
                             id      : e.id,
-                            cls     : self.cmpCls + "_btn",
+                            cls     : self.cmpCls + "-btn btn",
                             type    : e.type || self.defaultBtnType,
                             scope   : self.proxy || self,
                             size    : e.size,
@@ -2040,7 +2040,7 @@ define(function () {
             return new W.Window($.extend({
                 content    : ctnr.append(content),
                 autoShow   : true,
-                width      : 400,
+                width      : 360,
                 height     : "auto",
                 floor      : "high",
                 closeAction: "destroy",
@@ -2060,7 +2060,7 @@ define(function () {
             }
 
             W.baseMessageBox(msg, type, {
-                title: "提示",
+                title: "",
                 id   : "DKConfirmWin",
                 tbar : [
                     {
@@ -2085,7 +2085,7 @@ define(function () {
                     },
                     {
                         text   : "取消",
-                        cls    : "btn-small-normal",
+                        cls    : "btn btn-small btn-normal",
                         handler: function () {
                             if (typeof callback === "function") {
                                 callback.call(this, false);
@@ -2109,7 +2109,7 @@ define(function () {
             }
 
             W.baseMessageBox(msg, type, {
-                title: "提示",
+                title: "",
                 id   : "DKAlertWin",
                 tbar : [
                     {

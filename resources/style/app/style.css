@@ -1287,18 +1287,9 @@
     width: 505px;
 }
 
-.messgelist .towrite {
-    position: absolute;
-    right: 65px;
-    top: 25px;
-    line-height: 24px;
-    height: 24px;
-    background: #444444;
-    color: #fff;
-    border: none;
-    padding: 0px 20px;
-    border-radius: 6px;
-    cursor: pointer;
+.messgelist .writeto {
+    margin-top: 32px;
+    float: right;
 }
 
 .messgelist .send-message {

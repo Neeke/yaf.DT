@@ -1,6 +1,7 @@
 define(function(require) {
     var Talk = require('app/common/talk');
     require('rest');
+    var util = require('util');
 
     function initEvts() {
         $('#albumList').on('click', '.js-collect', function(e) {
@@ -47,7 +48,7 @@ define(function(require) {
         });
 
         rest.fail(function(msg) {
-            alert(msg || '收藏失败');
+            util.alert(msg || '收藏失败');
         });
     }
 
@@ -67,7 +68,7 @@ define(function(require) {
         });
 
         rest.fail(function(msg) {
-            alert(msg || '删除失败');
+            util.alert(msg || '删除失败');
         });
     }
 
@@ -87,7 +88,7 @@ define(function(require) {
         });
 
         rest.fail(function(msg) {
-            alert(msg || '取消订阅失败');
+            util.alert(msg || '取消订阅失败');
         });
     }
 
