@@ -358,6 +358,8 @@ class AlbumController extends Controller
         $data                   = $this->models_album_replay->mkdata($params);
         $back                   = $this->models_album_replay->insert($data);
 
+        spall_msgfeed::mkMsgFeedAlbumReply($this->userinfo['user_name'],$params['album_id']);
+
         if ($back > 1) {
             $this->model_album->postsAlbum($params['album_id']);
             $response = spall_reply::mkDataForAlbumReply(array($data));

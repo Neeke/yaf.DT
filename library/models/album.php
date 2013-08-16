@@ -130,6 +130,17 @@ class models_album extends Models
         return $this->update(array('flag' => contast_album::FLAG_DEL), array('album_id' => $album_id, 'user_id' => $user_id));
     }
 
+    /**
+     * 获得相册信息
+     * @param $album_id
+     * @return mixed
+     */
+    public function getAlbumInfo($album_id)
+    {
+        $result = $this->getRow('*',array('album_id' => $album_id));
+        return $result;
+    }
+
 
     function mkdata($v)
     {

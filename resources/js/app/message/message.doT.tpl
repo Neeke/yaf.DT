@@ -5,7 +5,7 @@
     </a>
     <dl>
         <dt>
-            {{!it.content}}
+            {{=it.content}}
         </dt>
         <dd>
             <p>共{{!it.msg_count}}条消息<span>|</span>
