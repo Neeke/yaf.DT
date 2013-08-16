@@ -30,7 +30,7 @@ class LoginController extends Controller {
     public function outAction(){
         $this->rest->method('GET');
         $this->session->del('userinfo');
-        unset($_COOKIE['userinfo']);
+        setcookie('userinfo', '', time()-1, '/');
         $this->redirect(helper_common::site_url('login'));
     }
 }

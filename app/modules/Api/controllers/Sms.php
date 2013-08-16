@@ -46,6 +46,9 @@ class SmsController extends Controller
 
         $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'feed_id');
+
+        $info = spall_reply::mkDataForSmsList($info);
+
         $data = $this->mkData->make($info);
         $this->rest->success($data);
     }
@@ -95,7 +98,7 @@ class SmsController extends Controller
     }
 
     /**
-     *发送短消息
+     *发送\回复 短消息
      * ＠todo 返回格式化 user_id_to
      */
     public function sendAction()
@@ -104,8 +107,12 @@ class SmsController extends Controller
 
         $params = $this->allParams();
 
-        $this->rest->paramsMustMap = array('content','feed_id');
+        $this->rest->paramsMustMap = array('content');
         $this->rest->paramsMustValid($params);
+
+        if (array_key_exists('feed_id',$params) && (int)$params['feed_id'] < 1){
+            $params['feed_id'] = $this->model_sms_feed->createFeed($params['to_user_id'],$params['content']);
+        }
 
         $result = $this->model_msg->send($params['feed_id'],$params['content']);
         if ($result) {
