@@ -138,3 +138,28 @@ label.validateError {
     color: #e4007f;
     background: #fff;
 }
+
+.simple-form {
+    width: 640px;
+}
+
+.simple-form th {
+    text-align: right;
+    padding: 10px;
+    min-height: 1px;
+    vertical-align: top;
+    line-height: 32px;
+}
+
+.simple-form td {
+    padding: 10px;
+    min-height: 1px;
+}
+
+.inputLarge {
+    width: 420px;
+    height: 25px;
+    line-height: 25px;
+    background: #fff;
+    border: none;
+}

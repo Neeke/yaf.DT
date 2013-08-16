@@ -460,23 +460,6 @@
     padding: 30px 0;
 }
 
-.makebox .pic-title {
-    color: #fff;
-    padding: 20px 0 0 20px;
-}
-
-.makebox .pic-title input {
-    width: 435px;
-    height: 25px;
-    line-height: 25px;
-    background: #fff;
-    border: none;
-}
-
-.makebox .editlist {
-    margin: 20px 0 0 80px;
-}
-
 .makebox .editlist li {
     width: 419px;
     height: 86px;
@@ -560,38 +543,25 @@
     background: #444;
     border: none;
     color: #fff;
-    margin: 0 0 0 93px;
     border-radius: 4px;
 }
 
-.makebox .tagsbox {
-    overflow: hidden;
-    color: #fff;
-    padding: 20px 0 0 30px;
-}
-
-.makebox .tagsbox .name {
-    float: left;
-    line-height: 25px;
-}
-
-.makebox .tagsbox .tags {
-    float: left;
-    width: 435px;
+.makebox .tags {
+    width: 420px;
     background: #fff;
     padding-bottom: 10px;
 }
 
-.makebox .tagsbox .tags dl {
+.makebox .tags dl {
     clear: left;
 }
 
-.makebox .tagsbox .tags dd {
+.makebox .tags dd {
     float: left;
     padding: 5px 0 0 10px;
 }
 
-.makebox .tagsbox .tags dt {
+.makebox .tags dt {
     color: #757575;
     border-top: 1px solid #141517;
     padding: 5px 0 0 10px;
@@ -618,7 +588,7 @@
     background: url(images/tag_close.png) no-repeat left top;
 }
 
-.makebox .tagsbox .tags input {
+.makebox .tags input {
     outline: none;
     border: none;
     margin: 7px 0 5px 10px;
