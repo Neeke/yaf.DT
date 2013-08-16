@@ -8,6 +8,8 @@ class spall_title
     private $title = '';
     private static $_title = '不要集';
 
+    private static $_keywords = '发现并收藏你喜欢的高清美女图片';
+
     private static $_pageTitle = array(
         'login'              => '女美图',
         'register'           => '申请账号',
@@ -51,10 +53,31 @@ class spall_title
      */
     public static function getPageTitle($page_name)
     {
-//        if ($this->title) return $this->title;
-
         if (array_key_exists($page_name, self::$_pageTitle)) {
-            return self::$_pageTitle[$page_name] . ' - ';
+            return self::$_pageTitle[$page_name];
         }
+    }
+
+    /**
+     * @param $page_name
+     * @return string
+     */
+    public static function getWebSiteTitle($page_name)
+    {
+        if ($page_name == 'login') {
+            $title = self::getTitle() .' - ' . self::getPageTitle($page_name);
+        }else{
+            $title = self::getPageTitle($page_name) . ' - ' . self::getTitle();
+        }
+        return $title;
+    }
+
+    /**
+     * 取得keywords
+     * @return string
+     */
+    public static function getKeywords()
+    {
+        return self::$_keywords;
     }
 }
