@@ -98,8 +98,9 @@ class models_album extends Models
         $this->db->cache_on(3600);
 
         $count = $this->count(array('flag' => contast_album::FLAG_DEFAULT));
-        $hot_start = helper_pages::startCookie('hot_start');
+        $hot_start = helper_pages::getStartCookie('hot_start');
         $start = $count <= $hot_start ? 0 : $hot_start;
+        helper_pages::setStartCookie('hot_start',$start);
 
         return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), array('hits' => 'desc'), $start, 6);
     }
@@ -113,8 +114,9 @@ class models_album extends Models
         $this->db->cache_on(3600);
 
         $count = $this->count(array('flag' => contast_album::FLAG_DEFAULT));
-        $hot_start = helper_pages::startCookie('hot_start');
-        $start = $count <= $hot_start ? 0 : $hot_start;
+        $new_start = helper_pages::getStartCookie('new_start');
+        $start = $count <= $new_start ? 0 : $new_start;
+        helper_pages::setStartCookie('new_start',$start);
 
         return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), '', $start, 6);
     }

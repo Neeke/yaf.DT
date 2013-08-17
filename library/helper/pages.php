@@ -11,7 +11,7 @@ class helper_pages
      * @param $key
      * @return int
      */
-    static public function startCookie($key)
+    static public function getStartCookie($key)
     {
         $start = 0;
         if (array_key_exists($key,$_COOKIE) && (int)$_COOKIE[$key] >= 0)
@@ -19,6 +19,11 @@ class helper_pages
             $start = (int)$_COOKIE[$key];
         }
         return $start <= 50 ? $start : 0 ;
+    }
+
+    static public function setStartCookie($key,$value)
+    {
+        setcookie($key,$value);
     }
 
     /*
