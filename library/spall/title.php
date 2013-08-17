@@ -5,8 +5,8 @@
  */
 class spall_title
 {
-    private $title = '';
     private static $_title = '不要集';
+    private static $_thisPageTitle = '';
 
     private static $_keywords = '发现并收藏你喜欢的高清美女图片';
 
@@ -30,11 +30,17 @@ class spall_title
         'account'            => '账户',
         'feedback'           => '提问与建议',
         'contact'            => '联系我们',
+        'feedback/index'     => '提问与建议',
     );
 
-    public function setTitle($title)
+    public static function setTitle($title)
     {
-        $this->title = $title;
+        self::$_title = $title;
+    }
+
+    public static function setPageTitle($pageTitle)
+    {
+        self::$_thisPageTitle = & $pageTitle;
     }
 
     /**
@@ -53,6 +59,8 @@ class spall_title
      */
     public static function getPageTitle($page_name)
     {
+        if (strlen(self::$_thisPageTitle) > 0) return self::$_thisPageTitle;
+
         if (array_key_exists($page_name, self::$_pageTitle)) {
             return self::$_pageTitle[$page_name];
         }
@@ -65,8 +73,8 @@ class spall_title
     public static function getWebSiteTitle($page_name)
     {
         if ($page_name == 'login') {
-            $title = self::getTitle() .' - ' . self::getPageTitle($page_name);
-        }else{
+            $title = self::getTitle() . ' - ' . self::getPageTitle($page_name);
+        } else {
             $title = self::getPageTitle($page_name) . ' - ' . self::getTitle();
         }
         return $title;

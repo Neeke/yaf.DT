@@ -293,7 +293,7 @@ class AlbumController extends Controller
 
         $this->models_albumListen = models_albumListen::getInstance();
         if ($this->models_albumListen->exits(array('album_id' => $params['album_id'], 'user_id' => $this->userinfo['user_id']))) {
-            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '请误重复订阅');
+            $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '请勿重复订阅');
         }
 
         $params['user_id'] = $this->userinfo['user_id'];

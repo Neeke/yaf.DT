@@ -87,6 +87,8 @@ class AlbumController extends Controller
 
         $this->db->cache_off();
 
+        spall_title::setPageTitle($album_info['album_name']);
+
         $this->set('album_info', $album_info);
         $this->set('items', $items);
 
