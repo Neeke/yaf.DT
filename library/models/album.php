@@ -118,7 +118,7 @@ class models_album extends Models
         $start = $count <= $new_start ? 0 : $new_start;
         helper_pages::setStartCookie('new_start',$start);
 
-        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), '', $start, 6);
+        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), array('album_id' => 'desc'), $start, 6);
     }
 
     /**
