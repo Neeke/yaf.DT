@@ -72,7 +72,8 @@ class models_album extends Models
     function justlook()
     {
         $this->db->cache_on(1800);
-        $sql = 'SELECT * FROM avi_album WHERE flag = 0 ORDER BY RAND() LIMIT 6';
+        $rand_start = rand(1,20);
+        $sql = 'SELECT * FROM avi_album WHERE flag = 0 ORDER BY RAND('. $rand_start .') LIMIT 6';
         return $this->db->getAll($sql);
     }
 
@@ -95,7 +96,12 @@ class models_album extends Models
     function hotAlbum()
     {
         $this->db->cache_on(3600);
-        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), array('hits' => 'desc'), 0, 6);
+
+        $count = $this->count(array('flag' => contast_album::FLAG_DEFAULT));
+        $hot_start = helper_pages::startCookie('hot_start');
+        $start = $count <= $hot_start ? 0 : $hot_start;
+
+        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), array('hits' => 'desc'), $start, 6);
     }
 
     /**
@@ -105,7 +111,12 @@ class models_album extends Models
     function newAlbum()
     {
         $this->db->cache_on(3600);
-        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), '', 0, 6);
+
+        $count = $this->count(array('flag' => contast_album::FLAG_DEFAULT));
+        $hot_start = helper_pages::startCookie('hot_start');
+        $start = $count <= $hot_start ? 0 : $hot_start;
+
+        return $this->getAll('*', array('flag' => contast_album::FLAG_DEFAULT), '', $start, 6);
     }
 
     /**

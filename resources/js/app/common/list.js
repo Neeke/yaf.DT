@@ -1,9 +1,17 @@
 define(function(require) {
+    require('jqueryCookie');
     var Talk = require('app/common/talk');
     require('rest');
     var util = require('util');
 
+    var pageSize = 6;
+    var MaxPageSize = 50;
+
     function initEvts() {
+        $('.get-rand').click(function(){
+            setStartCookie($(this).attr('data-action'));
+        });
+
         $('#albumList').on('click', '.js-collect', function(e) {
             var $el = $(this);
             collect($el.closest('.js-albumitem').attr('data-albumid'), $el);
@@ -30,6 +38,30 @@ define(function(require) {
             });
             talk.showTalk();
         });
+    }
+
+    function setStartCookie(data_action) {
+        var start;
+        switch (data_action){
+            case 'hot':
+                start = Number($.cookie('hot_start'));
+                if (isNaN(start) || start >= MaxPageSize){
+                    start = 0;
+                }else{
+                    start += 6;
+                }
+                $.cookie('hot_start',start);
+                break;
+            case 'new':
+                start = Number($.cookie('new_start'));
+                if (isNaN(start) || start >= MaxPageSize){
+                    start = 0;
+                }else{
+                    start += 6;
+                }
+                $.cookie('new_start',start);
+                break;
+        }
     }
 
     function collect(id, $el) {
