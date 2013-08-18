@@ -15,7 +15,7 @@ class db_Mysql
     private $_dbh;
     private $_sth;
     private $_sql;
-    private $_cache;
+    private  $_cache;
     private $_cache_on = FALSE;
     private $_cache_off = FALSE;
     private $_cache_time = 60;
@@ -71,6 +71,14 @@ class db_Mysql
             self::$_instances[$idx] = new self($_db_host, $_db_port, $_db_usr, $_db_pwd, $_db_name, $_db_charset, $_cache_system, $_cache_type, $_cache_host, $_cache_port);
         }
         return self::$_instances[$idx];
+    }
+
+    /**
+     * @return db_Cache
+     */
+    function getCache()
+    {
+        return $this->_cache;
     }
 
     /**

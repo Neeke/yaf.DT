@@ -90,6 +90,7 @@ class AlbumController extends Controller
         }
 
         $data     = $this->model_album->mkdata($params);
+        $this->db->getCache()->delete('album_mine_'.$this->user_id);
         $album_id = $this->model_album->insert($data);
         if ($album_id == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
