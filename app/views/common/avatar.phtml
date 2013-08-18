@@ -4,9 +4,9 @@
     <div class="t_con">
         <h2><?php echo $userinfo['user_name'];?></h2>
         <?php if ($this_menu == 'album/listened'){?>
-            <span>共订阅<?php echo (int)count($myalbums);?>部图集</span>
+            <span>共订阅<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
         <?php }else{?>
-            <span>共<?php echo (int)$userinfo['album_count'];?>部图集</span>
+            <span>共<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
         <?php }?>
 
         <div class="clear"></div>
