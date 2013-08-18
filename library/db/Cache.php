@@ -81,6 +81,16 @@ class db_Cache
     }
 
     /**
+     * 删除cache
+     * @param $key
+     * @return mixed
+     */
+    public function delete($key)
+    {
+        return $this->cache->delete($key);
+    }
+
+    /**
      * 关闭cache连接
      */
     public function close()
