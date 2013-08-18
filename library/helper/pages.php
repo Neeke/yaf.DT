@@ -6,6 +6,26 @@
  */
 class helper_pages
 {
+    /**
+     * 获取Cookie中start值
+     * @param $key
+     * @return int
+     */
+    static public function getStartCookie($key)
+    {
+        $start = 0;
+        if (array_key_exists($key,$_COOKIE) && (int)$_COOKIE[$key] >= 0)
+        {
+            $start = (int)$_COOKIE[$key];
+        }
+        return $start <= 50 ? $start : 0 ;
+    }
+
+    static public function setStartCookie($key,$value)
+    {
+        setcookie($key,$value);
+    }
+
     /*
      * 将整数转换到指定的区间
      * $num:需转换的整数

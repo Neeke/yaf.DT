@@ -2,6 +2,7 @@ seajs.config({
     plugins: ['shim', 'text'],
     alias: {
         jquery: 'lib/jquery/jquery-1.10.1.js',
+        jqueryCookie: 'lib/jquery/jquery.cookie.js',
         placeholder: 'lib/placeholder/jquery.placeholder.js',
         util: 'app/util/util.js',
         rest: 'lib/rest/rest.js',

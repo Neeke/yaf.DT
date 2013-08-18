@@ -1,9 +1,11 @@
 <footer class="footer center-ctnr">
     <div class="container">
         <div class="links">
+            <?php if ((int)$user_id > 0){?>
             <a href="/feedback">提问与建议</a>
             <span>|</span>
             <a href="/contact">联系我们</a>
+            <?php }?>
         </div>
         <div class="copyright">&copy;&nbsp;buyaoji.com&nbsp;&nbsp;京ICP备 13010651号</div>
     </div>

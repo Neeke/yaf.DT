@@ -21,7 +21,7 @@ class NewController extends Controller
         $this->setMenu('new');
 
 
-        $my_albums = $this->model_album->hotAlbum();
+        $my_albums = $this->model_album->newAlbum();
         $this->set('myalbums', $my_albums);
     }
 
