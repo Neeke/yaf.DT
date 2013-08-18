@@ -30,8 +30,9 @@ define(function(require) {
             user_name: $username.val()
         });
 
-        rest.done(function(msg) {
+        rest.done(function(msg,data) {
             util.alert(msg || '修改成功');
+            location.href = data.redirect;
         });
 
         rest.fail(function(msg) {

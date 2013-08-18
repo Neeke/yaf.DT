@@ -143,7 +143,12 @@ class Controller extends Yaf_Controller_Abstract
      */
     protected function setConfig($config = array())
     {
-        $config_ = array_merge($config, $this->userinfo);
+        if (is_array($this->userinfo)){
+            $config_ = array_merge($config, $this->userinfo);
+        }else{
+            $config_ = $config;
+        }
+
         $this->set('config', $config_);
     }
 

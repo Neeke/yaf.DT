@@ -23,6 +23,11 @@ class RouterWrightPlugin extends Yaf_Plugin_Abstract
 
     public function routerShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response)
     {
+        if ($request->isCli()) {
+            contast_router::getInstance()->setIFrouterWright(TRUE);
+            return TRUE;
+        }
+
         $if_in_router_wright = $this->check_router($request);
         if ($if_in_router_wright) {
             contast_router::getInstance()->setIFrouterWright(TRUE);
