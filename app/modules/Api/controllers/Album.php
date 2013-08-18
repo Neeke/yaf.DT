@@ -292,19 +292,22 @@ class AlbumController extends Controller
         }
 
         $this->models_albumListen = models_albumListen::getInstance();
-        if ($this->models_albumListen->exits(array('album_id' => $params['album_id'], 'user_id' => $this->userinfo['user_id']))) {
+        $listened_result = $this->models_albumListen->getRow('flag',array('album_id' => $params['album_id'], 'user_id' => $this->userinfo['user_id']));
+        $listened_flag = $listened_result['flag'];
+        if ($listened_flag == contast_albumlistened::FLAG_DEFAULT) {
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '请勿重复订阅');
         }
 
-        $params['user_id'] = $this->userinfo['user_id'];
-
-        $data   = $this->models_albumListen->mkdata($params);
-        $result = $this->models_albumListen->insert($data);
+        $this->db->update_cache('album_listened_'.$this->user_id);
+        $this->db->update_cache('album_listened_info_'.$this->user_id);
+        if ($listened_flag == contast_albumlistened::FLAG_DEL){
+            $result = $this->models_albumListen->listen($this->user_id,$params['album_id']);
+            $this->model_album->addListened($params['album_id']);
+        }else{
+            $result = $this->models_albumListen->reListen($this->user_id,$params['album_id']);
+        }
 
         if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
-
-        $this->db->update_cache('album_listened_'.$this->user_id);
-        $this->model_album->addListened($params['album_id']);
 
         $this->rest->success('', rest_Code::STATUS_SUCCESS, '订阅成功');
     }
@@ -339,6 +342,9 @@ class AlbumController extends Controller
 
         $this->db->update_cache('album_listened_'.$this->user_id);
         $result = $this->models_albumListen->remove($params['album_id'],$this->user_id);
+
+        $this->db->update_cache('album_listened_info_'.$this->user_id);
+        $this->model_album->removeListened($params['album_id']);
         if ($result) $this->rest->success('','','取消订阅成功');
 
         $this->rest->error();
