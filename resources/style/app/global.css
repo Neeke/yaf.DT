@@ -119,13 +119,22 @@ label.validateError {
     border-radius: 6px;
 }
 
+.btn-middle {
+    width: 136px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-radius: 8px;
+}
+
 .btn-large {
     width: 180px;
     height: 54px;
     line-height: 54px;
     letter-spacing: 2px;
     font-size: 18px;
-    border-radius: 6px;
+    border-radius: 12px;
 }
 
 .btn-normal {
@@ -133,6 +142,11 @@ label.validateError {
     background: #444444;
 }
 
+.btn-strong {
+    color: #fff;
+    background: #E4007F;
+    font-weight: bold;
+}
 
 .btn-important {
     color: #e4007f;
