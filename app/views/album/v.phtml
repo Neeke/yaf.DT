@@ -24,7 +24,7 @@
                                 <a href="javascript:;"><img src="/resources/style/app/images/icos/detail.png" class="ico">
                                     <span class="js-count"><?php echo (int)$album_info['hits'];?></span>
                                 </a>
-                                <a href="javascript:;" class="js-collectbtn"><img src="/resources/style/app/images/icos/collect.png" class="ico">
+                                <a href="javascript:;" class="<?php if ($album_info['user_id'] != $config['user_id']) echo 'js-collectbtn';?>"><img src="/resources/style/app/images/icos/collect.png" class="ico">
                                     <span class="js-count"><?php echo (int)$album_info['likeit'];?></span>
                                 </a>
                                 <a href="javascript:;" class="js-replaybtn"><img src="/resources/style/app/images/icos/reply.png" class="ico">
@@ -62,7 +62,7 @@
     </div>
     <?php }?>
     <div class="quark-button">
-        <a href="javascript:;" class="js-collectbtn collection-button"></a>
+        <a href="javascript:;" class="<?php if ($album_info['user_id'] != $config['user_id']) echo 'js-collectbtn';?> collection-button"></a>
         <!--收藏按钮被选中后添加class="on"-->
         <a href="javascript:;" class="js-replaybtn comments-button"></a>
         <a href="javascript:;" class="share-button callShare"></a>

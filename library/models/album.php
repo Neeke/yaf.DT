@@ -132,6 +132,16 @@ class models_album extends Models
     }
 
     /**
+     * listed总数加-１
+     * @param $album_id
+     * @return bool
+     */
+    public function removeListened($album_id)
+    {
+        return $this->db->query('update ' . $this->_table . ' set likeit = likeit - 1 where album_id = ?', array($album_id));
+    }
+
+    /**
      * 删除album
      * @param $album_id
      * @param $user_id
