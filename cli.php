@@ -1,6 +1,6 @@
 <?php
 define ("APPLICATION_PATH", dirname(__FILE__) . "/app");
-$application = new Yaf_Application(APPLICATION_PATH."/../conf/appcrm.ini");
+$application = new Yaf_Application(APPLICATION_PATH."/../conf/app.ini");
 
 
 $response = $application->bootstrap()->getDispatcher()->dispatch(new Yaf_Request_Simple());

@@ -119,6 +119,7 @@ class rest_Server
      */
     public function error($status = rest_Code::STATUS_ERROR, $msg = NULL, $data = array())
     {
+        if ($status == '') $status = rest_Code::STATUS_ERROR;
         self::baseResponse($data, $status, $msg);
     }
 

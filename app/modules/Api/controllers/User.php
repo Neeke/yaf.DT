@@ -139,10 +139,14 @@ class UserController extends Controller
         $this->rest->paramsCanMap = array('user_name');
         $this->rest->paramsMustValid($params);
 
+        if ($this->model->exits(array('user_name' => $params['user_name']))){
+            $this->rest->error('','用户名有人抢了，换一个吧？');
+        }
+
         $result = $this->model->updateUsername($params['user_name']);
 
         if ($result == true) {
-            $this->rest->success(array('redirect' => helper_common::site_url('explore')));
+            $this->rest->success(array('redirect' => helper_common::site_url('explore')),'','确认完成');
         }else{
             $this->rest->error('',$result);
         }
