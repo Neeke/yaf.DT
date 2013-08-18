@@ -96,7 +96,10 @@ define(function(require) {
                 $el.text(amount * 1 + 1);
             }
 
-            $el.addClass('checked');
+            $el.closest('.js-albumitem').remove();
+
+            var albumsCount = Number($(".albumsCount").html());
+            $(".albumsCount").html(albumsCount - 1);
         });
 
         rest.fail(function(msg) {
@@ -117,6 +120,9 @@ define(function(require) {
             }
 
             $el.closest('.js-albumitem').remove();
+
+            var albumsCount = Number($(".albumsCount").html());
+            $(".albumsCount").html(albumsCount - 1);
         });
 
         rest.fail(function(msg) {
