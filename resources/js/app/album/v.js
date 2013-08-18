@@ -5,33 +5,55 @@ define(function(require) {
     require('lazyload');
     var keymap = require('app/common/keymap');
 
+    var locked;
+
     function gotoNext() {
+        if (locked && locked.state() === 'pending') {
+            return;
+        }
+
+        locked = $.Deferred();
+
         var _this = $('.arrow-next:visible');
         fadeobj = _this.closest('.slideritem');
         if (fadeobj.next('.slideritem').index() > 0) {
-            fadeobj.fadeOut();
-            var showing = fadeobj.next('.slideritem').fadeIn();
+            fadeobj.fadeOut(0);
+            var showing = fadeobj.next('.slideritem').fadeIn(function() {
+                locked.resolve();
+            });
 
             scaleImages(showing.find('.showing'));
 
             $('.quark-button').show();
         }
         else {
-            $('.slideritem').eq(1).fadeIn().siblings('.slideritem').fadeOut();
+            $('.slideritem').eq(1).fadeIn(function() {
+                locked.resolve();
+            }).siblings('.slideritem').fadeOut(0);
             $('.quark-button').hide();
         }
     }
 
     function gotoPrev() {
+        if (locked && locked.state() === 'pending') {
+            return;
+        }
+
+        locked = $.Deferred();
+
         var _this = $('.arrow-prev:visible');
         fadeobj = _this.closest('.slideritem');
         if (fadeobj.prev('.slideritem').index() > 0) {
-            fadeobj.fadeOut();
-            fadeobj.prev('.slideritem').fadeIn();
+            fadeobj.fadeOut(0);
+            fadeobj.prev('.slideritem').fadeIn(function() {
+                locked.resolve();
+            });
             $('.quark-button').show();
         }
         else {
-            $('.slideritem').last().fadeIn().siblings('.slideritem').fadeOut();
+            $('.slideritem').last().fadeIn(function() {
+                locked.resolve();
+            }).siblings('.slideritem').fadeOut(0);
             $('.quark-button').hide();
         }
     }

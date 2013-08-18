@@ -46,8 +46,13 @@ define(function(require) {
                     <span class="bi js_edititem"></span>\
                 </div>\
             </li>';
+            var $li = $(util.formatStr(tmpl, src));
+            $albumContainer.append($li);
+            $li.find('.js-uploadimg').imageScale({
+                width: 118,
+                height: 86
+            });
 
-            $albumContainer.append(util.formatStr(tmpl, src));
         }
     }
 

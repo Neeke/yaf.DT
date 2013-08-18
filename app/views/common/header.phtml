@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="/resources/style/app/all.css"/>
 <script type="text/javascript" src="/resources/js/lib/seajs/sea.js" ></script>
 <script type="text/javascript" src="/resources/js/lib/seajs/config.js"></script>
+<script type="text/javascript">
+    seajs.use('app/common/header');
+</script>
 <script>
     var $CONFIG = <?php if (isset($config) && is_array($config) && count($config) > 0){
         echo json_encode($config);

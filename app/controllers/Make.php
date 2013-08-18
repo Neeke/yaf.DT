@@ -25,6 +25,7 @@ class MakeController extends Controller
     public function editalbumAction()
     {
         $this->setMenu('make/album');
+        $this->set('page_title', '编辑图集');
         $album_id = $this->getRequest()->getParam('a',0);
         $this->setConfig(array('album_id' => $album_id));
     }
