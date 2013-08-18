@@ -17,7 +17,6 @@ class helper_common{
 	private function __clone() {}
 	
     /**生成链接
-     * @example  set_url('blog/11')  ->  http://yaf.my/test/blog/11.html
      * @param string $a
      * @return string
      */
@@ -25,6 +24,7 @@ class helper_common{
 		$config = Yaf_Application::app()->getConfig();
 		$ext = $config->pro->ext;
 		$site = $config->pro->site;
+        $site = !empty($site) ? $site : 'http://'.$_SERVER['HTTP_HOST'].'/';
 		return $site.$a.$ext;
 	}
 
