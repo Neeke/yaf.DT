@@ -1,4 +1,6 @@
 RewriteEngine On
+RewriteRule /album/([0-9]{1,})$ index.php/album/v/a/$1 [L]
+
 RewriteCond $1 !^(index\.php|tools|uploads|resources)
 RewriteRule ^(.*)$ index.php/$1 [L]
 
