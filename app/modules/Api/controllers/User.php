@@ -145,7 +145,7 @@ class UserController extends Controller
 
         $result = $this->model->updateUsername($params['user_name']);
 
-        if ($result == true) {
+        if ($result == TRUE) {
             $this->rest->success(array('redirect' => helper_common::site_url('register/listentag')),'','确认完成');
         }else{
             $this->rest->error('',$result);
@@ -201,6 +201,26 @@ class UserController extends Controller
         }
 
         $this->rest->success('', '', '修改成功');
+    }
+
+    /**
+     * 搜索用户
+     */
+    public function searchAction()
+    {
+        $this->rest->method('GET');
+
+        $params                    = $this->allParams();
+        $this->rest->paramsMustMap = array('user_name');
+        $this->rest->paramsMustValid($params);
+
+        $result = $this->model->searchByName($params['user_name']);
+
+        if (!is_array($result) || count($result) < 1){
+            $this->rest->error('','没有相关用户');
+        }
+
+        $this->rest->success($result);
     }
 
     /**

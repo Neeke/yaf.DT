@@ -179,6 +179,11 @@ params: tag_id
 var api_user_confirmation = '/api/user/confirmation';
 method: post
 params: user_name
+
+搜索用户名：
+var api_user_search = '/api/user/search';
+method: get
+params: user_name
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';

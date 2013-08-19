@@ -241,6 +241,24 @@ class models_user extends Models
         return FALSE;
     }
 
+    /**
+     * 搜索用户
+     * @param $username
+     * @return array|bool|string
+     */
+    public function searchByName($username)
+    {
+        $result = array();
+        $_result = $this->db->getAll("select user_id,user_name from {$this->_table} where user_name like '%{$username}%' order by {$this->_primary} desc");
+        if (is_array($_result) && count($_result)){
+            foreach($_result as $key => $info){
+                $info['avatar'] = spall_user::avatarSource($info['user_id']);
+                $result[$key] = $info;
+            }
+        }
+        return $result;
+    }
+
     public function mkdata($v)
     {
         return array(
