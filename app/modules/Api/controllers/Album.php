@@ -85,7 +85,7 @@ class AlbumController extends Controller
         if (array_key_exists('tags', $params) && strlen($params['tags']) > 0) {
             $tag_ids           = $this->model_tag->insertBatch($params['tags']);
             $_tags             = explode(',', $params['tag_ids']);
-            $_tag_ids          = $tag_ids + $_tags;
+            $_tag_ids          = array_merge($tag_ids,$_tags);
             $params['tag_ids'] = implode(',', $_tag_ids);
         }
 
