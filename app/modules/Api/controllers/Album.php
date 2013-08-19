@@ -90,7 +90,7 @@ class AlbumController extends Controller
         }
 
         $data     = $this->model_album->mkdata($params);
-        $this->db->getCache()->delete('album_mine_'.$this->user_id);
+        $this->db->getCache()->delete('album_mine_'.$this->user_id.'_0');
         $album_id = $this->model_album->insert($data);
         if ($album_id == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
@@ -411,7 +411,8 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('album_id');
         $this->rest->paramsMustValid($params);
 
-        $this->db->update_cache('album_mine_'.$this->user_id);
+        $this->db->getCache()->delete('album_mine_'.$this->user_id.'_0');
+        $this->db->update_cache('album_mine_'.$this->user_id.'_all');
         $result = $this->model_album->remove($params['album_id'],$this->user_id);
         if ($result) $this->rest->success('','','删除成功');
 
