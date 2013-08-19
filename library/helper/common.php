@@ -45,7 +45,7 @@ class helper_common{
      * @return string
      */
     public static function site_url_album($id){
-		return self::site_url('album/v/a/'.$id);
+		return self::site_url('album/'.$id);
 	}
 
     /**
