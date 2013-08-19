@@ -146,7 +146,7 @@ class UserController extends Controller
         $result = $this->model->updateUsername($params['user_name']);
 
         if ($result == true) {
-            $this->rest->success(array('redirect' => helper_common::site_url('explore')),'','确认完成');
+            $this->rest->success(array('redirect' => helper_common::site_url('register/listentag')),'','确认完成');
         }else{
             $this->rest->error('',$result);
         }

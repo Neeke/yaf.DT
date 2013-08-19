@@ -295,17 +295,20 @@ class AlbumController extends Controller
         $this->models_albumListen = models_albumListen::getInstance();
         $listened_result = $this->models_albumListen->getRow('flag',array('album_id' => $params['album_id'], 'user_id' => $this->userinfo['user_id']));
         $listened_flag = $listened_result['flag'];
-        if ($listened_flag == contast_albumlistened::FLAG_DEFAULT) {
+
+        if ($listened_result && $listened_flag == contast_albumlistened::FLAG_DEFAULT) {
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '请勿重复订阅');
         }
 
-        $this->db->update_cache('album_listened_'.$this->user_id);
-        $this->db->update_cache('album_listened_info_'.$this->user_id);
-        if ($listened_flag == contast_albumlistened::FLAG_DEL){
-            $result = $this->models_albumListen->listen($this->user_id,$params['album_id']);
+        $this->db->getCache()->delete('album_listened_'.$this->user_id);
+        $this->db->getCache()->delete('album_listened_info_'.$this->user_id);
+
+        if ($listened_result && $listened_flag == contast_albumlistened::FLAG_DEL){
+            $result = $this->models_albumListen->reListen($this->user_id,$params['album_id']);
             $this->model_album->addListened($params['album_id']);
         }else{
-            $result = $this->models_albumListen->reListen($this->user_id,$params['album_id']);
+            $result = $this->models_albumListen->listen($this->user_id,$params['album_id']);
+            $this->model_album->addListened($params['album_id']);
         }
 
         if ($result == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
