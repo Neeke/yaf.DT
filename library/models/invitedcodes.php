@@ -34,11 +34,12 @@ class models_invitedcodes extends Models
     public function createCodes($user_id)
     {
         $codes = array();
+        $time = time();
         for ($i = 0; $i < contast_invitedcodes::CODES_EVERY_MAKE_COUNT; $i++) {
-            $codes[]['code_value'] = helper_string::rand_string(contast_invitedcodes::CODES_STR_LEN);
+            $codes[$i]['code_value'] = helper_string::rand_string(contast_invitedcodes::CODES_STR_LEN);
+            $codes[$i]['create_time'] = $time;
         }
 
-        $time = time();
         foreach ($codes as $v) {
             $data = array(
                 'user_id'     => $user_id,
@@ -62,6 +63,16 @@ class models_invitedcodes extends Models
     {
         $this->db->cache_on(1);
         return $this->getAll(array('code_value','create_time','flag'), array('user_id' => $user_id),array('code_id' => 'DESC'),0,5);
+    }
+
+    /**
+     * 使某用户的所有邀请码过期
+     * @param $user_id
+     * @return bool
+     */
+    public function expiredAllCodes($user_id)
+    {
+        return $this->update(array('flag' => contast_invitedcodes::CODES_FLAG_USED),array('flag' => contast_invitedcodes::CODES_FLAG_NOT_USED,'user_id' => $user_id));
     }
 
     /**
@@ -89,7 +100,17 @@ class models_invitedcodes extends Models
      */
     public function checkCodes($codes)
     {
-        return $this->exits(array('code_value' => $codes,'flag' => contast_invitedcodes::CODES_FLAG_NOT_USED));
+        $info = $this->getRow('flag,create_time',array('code_value' => $codes));
+        if ($info)
+        {
+            $flag = $info['flag'];
+            $time = $info['create_time'];
+            if ($flag == contast_invitedcodes::CODES_FLAG_NOT_USED && $time > time() - contast_invitedcodes::CODES_LIFE_CYCLE){
+                return TRUE;
+            }
+        }
+
+        return FALSE;
     }
 
     public function mkdata($v)
@@ -99,7 +120,7 @@ class models_invitedcodes extends Models
             'code_value'  => $v['code_value'],
             'create_time' => time(),
             'update_time' => 0,
-            'flag'        => array_key_exists('flag', $v) ? $v['flag'] : 0,
+            'flag'        => array_key_exists('flag', $v) ? $v['flag'] : contast_invitedcodes::CODES_FLAG_NOT_USED,
         );
     }
 }

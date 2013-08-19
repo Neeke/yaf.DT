@@ -1,9 +1,10 @@
 <?php
 
 /**
- * 订单脚本
+ * 用户导入
  * @author ciogao@gmail.com
  *
+ * php cli.php request_uri="/scripts/excel/index" "/home/firefly/www/yaf_duitang/docs/邀请QQ号列表.xls"
  */
 class ExcelController extends Controller{
     private $excel;

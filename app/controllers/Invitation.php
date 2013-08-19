@@ -41,16 +41,26 @@ class InvitationController extends Controller
 
         $result = $this->model_invitedcodes->showCodes($this->user_id);
 
+        $create_time = 0;
+
         $count_not_used = 0;
         if (is_array($result)) {
             foreach($result as $v){
-                if ($v['flag'] == contast_invitedcodes::CODES_FLAG_NOT_USED) $count_not_used++;
+                if ($v['flag'] == contast_invitedcodes::CODES_FLAG_NOT_USED) {
+                    $count_not_used++;
+                    if ($create_time == 0) $create_time = $v['create_time'];
+                }
             }
         }
 
         if (is_array($result) && count($result) > 0)
         {
 //            $this->set('result_msg','您现在有以下邀请码，快让好友们来体验吧');
+        }
+
+        if ($create_time < time() - contast_invitedcodes::CODES_LIFE_CYCLE){
+            $this->if_make = TRUE;
+            $this->model_invitedcodes->expiredAllCodes($this->user_id);
         }
 
         if ($this->if_make){
