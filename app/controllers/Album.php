@@ -61,7 +61,7 @@ class AlbumController extends Controller
         $this->page = (int)$this->getRequest()->getParam('p', 1);
         $my_albums  = $this->model_album->myAlbum($this->user_id, ($this->page - 1) * contast_album::PAGE_SIZE_DEFAULT);
 
-        $count = $this->model_album->count(array('user_id' => $this->user_id));
+        $count = $this->model_album->count(array('user_id' => $this->user_id, 'flag' => contast_album::FLAG_DEFAULT));
 
         $sPage = helper_pages::page2(helper_common::site_url('album/mine'), $count, contast_album::PAGE_SIZE_DEFAULT, $this->page);
         $this->set('sPage', $sPage);
@@ -82,7 +82,7 @@ class AlbumController extends Controller
         $this->model_album->viewAlbum($album_id);
 
         $album_info = $this->model_album->getRow('*', $album_id);
-        $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id,'flag' => contast_items::ITEMS_FLAG_YES),'items_id',0,100);
+        $items      = $this->model_Items->getAll('*', array('album_id' => (int)$album_id,'flag' => contast_items::ITEMS_FLAG_YES),array('items_id' => 'asc'),0,100);
         $userinfo   = $this->model->getRow('user_name,user_id', $album_info['user_id']);
 
         $this->db->cache_off();

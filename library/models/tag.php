@@ -45,8 +45,8 @@ class models_tag extends Models
      */
     function getTagsSearch($tag)
     {
-        $this->db->cache_on();
-        $tags = $this->db->getAll("select tid,tag from {$this->_table} where tag like '%{$tag}%' order by {$this->_primary} desc");
+        $this->db->cache_on(1800);
+        $tags = $this->db->getAll("select tid,tag from {$this->_table} where tag like '%{$tag}%' group by tag order by {$this->_primary} desc");
         $this->db->cache_off();
         return $tags;
     }
@@ -129,8 +129,13 @@ class models_tag extends Models
         $userinfo = models_user::getInstance()->getUserInfo();
         if (count($tags) > 1){
             foreach($tags as $tag){
+                $if_have = $this->getRow('tid',array('tag' => $tag),array('tid' => 'asc'));
                 if (strlen($tag) > 0){
-                    $tag_ids[] = $this->insert(array('tag' => $tag,'user_id' => $userinfo['user_id']));
+                    if (!$if_have) {
+                        $tag_ids[] = $this->insert(array('tag' => $tag,'user_id' => $userinfo['user_id']));
+                    }else{
+                        $tag_ids[] = $if_have['tid'];
+                    }
                 }
             }
         }
