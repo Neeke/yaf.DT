@@ -12,10 +12,12 @@ class Models
     protected $userinfo;
     protected $user_id;
 
-    function __construct()
+    function __construct($key = NULL)
     {
         $this->db = db_contect::db();
-        $this->getUser();
+        if ($key == NULL){
+            $this->getUser();
+        }
     }
 
     public function getUser()
