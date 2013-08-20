@@ -90,7 +90,7 @@ class AlbumController extends Controller
         }
 
         $data     = $this->model_album->mkdata($params);
-        $this->db->getCache()->delete('album_mine_'.$this->user_id.'_0');
+        $this->db->getCache()->delete(contast_cacheKey::ALBUM_MINE.$this->user_id.'_0');
         $album_id = $this->model_album->insert($data);
         if ($album_id == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR);
 
@@ -300,8 +300,8 @@ class AlbumController extends Controller
             $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB_REPEAT, '请勿重复订阅');
         }
 
-        $this->db->getCache()->delete('album_listened_'.$this->user_id);
-        $this->db->getCache()->delete('album_listened_info_'.$this->user_id);
+        $this->db->getCache()->delete(contast_cacheKey::ALBUM_LISTENED.$this->user_id);
+        $this->db->getCache()->delete(contast_cacheKey::ALBUM_LISTENED_INFO.$this->user_id);
 
         if ($listened_result && $listened_flag == contast_albumlistened::FLAG_DEL){
             $result = $this->models_albumListen->reListen($this->user_id,$params['album_id']);
@@ -344,10 +344,10 @@ class AlbumController extends Controller
 
         $this->models_albumListen = models_albumListen::getInstance();
 
-        $this->db->update_cache('album_listened_'.$this->user_id);
+        $this->db->update_cache(contast_cacheKey::ALBUM_LISTENED.$this->user_id);
         $result = $this->models_albumListen->remove($params['album_id'],$this->user_id);
 
-        $this->db->update_cache('album_listened_info_'.$this->user_id);
+        $this->db->update_cache(contast_cacheKey::ALBUM_LISTENED_INFO.$this->user_id);
         $this->model_album->removeListened($params['album_id']);
         if ($result) $this->rest->success('','','取消订阅成功');
 
@@ -411,8 +411,8 @@ class AlbumController extends Controller
         $this->rest->paramsMustMap = array('album_id');
         $this->rest->paramsMustValid($params);
 
-        $this->db->getCache()->delete('album_mine_'.$this->user_id.'_0');
-        $this->db->update_cache('album_mine_'.$this->user_id.'_all');
+        $this->db->getCache()->delete(contast_cacheKey::ALBUM_MINE.$this->user_id.'_0');
+        $this->db->update_cache(contast_cacheKey::ALBUM_MINE.$this->user_id.'_all');
         $result = $this->model_album->remove($params['album_id'],$this->user_id);
         if ($result) $this->rest->success('','','删除成功');
 
