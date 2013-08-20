@@ -42,7 +42,7 @@ class SmsController extends Controller
         $this->rest->method('GET');
 
         $this->getStartLimit();
-        $info = $this->model_sms_feed->myFeed($this->user_id,$this->start,$this->limit);
+        $info = $this->model_sms_feed->myFeed($this->user_id, $this->start, $this->limit);
 
         $this->mkData->setOffset($this->start, $this->limit);
         $this->mkData->config(count($info), 'feed_id');
@@ -88,7 +88,7 @@ class SmsController extends Controller
         $this->model_sms_feed->readFeed($params['feed_id']);
 
         $this->getStartLimit();
-        $info = $this->model_msg->getMsgsByFeedid($this->user_id,$params['feed_id'],$this->start,$this->limit);
+        $info = $this->model_msg->getMsgsByFeedid($this->user_id, $params['feed_id'], $this->start, $this->limit);
 
         $info = spall_reply::mkDataForSmsList($info);
 
@@ -112,23 +112,23 @@ class SmsController extends Controller
         $this->rest->paramsMustMap = array('content');
         $this->rest->paramsMustValid($params);
 
-        if (array_key_exists('feed_id',$params) && (int)$params['feed_id'] < 1){
-            $params['feed_id'] = $this->model_sms_feed->createFeed($params['to_user_id'],$params['content']);
+        if (!array_key_exists('feed_id', $params) && (int)$params['feed_id'] < 1) {
+            $params['feed_id'] = $this->model_sms_feed->createFeed($params['to_user_id'], $params['content']);
         }
 
-        $result = $this->model_msg->send($params['feed_id'],$params['content']);
+        $result = $this->model_msg->send($params['feed_id'], $params['to_user_id'], $params['content']);
         if ($result) {
             $data[] = array(
-                'feed_id' => $params['feed_id'],
+                'feed_id'      => $params['feed_id'],
                 'user_id_from' => $this->user_id,
-                'content' => $params['content'],
-                'dateline' => time(),
+                'content'      => $params['content'],
+                'dateline'     => time(),
             );
 
             $info = spall_reply::mkDataForSmsList($data);
             models_smsfeed::getInstance()->sendSms($params['feed_id']);
 
-            $this->rest->success($info[0],'','发送成功');
+            $this->rest->success($info[0], '', '发送成功');
         }
 
         $this->rest->error();

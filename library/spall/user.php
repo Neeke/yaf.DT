@@ -57,7 +57,7 @@ class spall_user
     {
         $user_model = models_user::getInstance();
 
-        $user_info = $user_model->getUserInfoAll();
+        $user_info = $user_model->getUserInfoAll($uid);
         if (!empty($user_info['face_url'])) {
             $url         = 'http://' . $_SERVER['HTTP_HOST'] . $user_info['face_url'];
             $executeTime = ini_get('max_execution_time');

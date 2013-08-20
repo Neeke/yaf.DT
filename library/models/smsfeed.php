@@ -40,6 +40,7 @@ class models_smsfeed extends Models
             $user_id  = $this->user_id;
         }
 
+        $this->db->cache_key(contast_cacheKey::SMS_FEED_ALL.$user_id);
         $info = $this->getAll('*', array('user_id_to' => $user_id), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
 
         foreach ($info as $k => $v) {
@@ -87,7 +88,7 @@ class models_smsfeed extends Models
     {
         $user_id  = $this->user_id;
 
-        $this->db->getCache()->delete('sms_bubbles_'.$user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES.$user_id);
         return $this->update(array('isread' => contast_msgfeed::FEED_IS_READ_YES, 'update_time' => time()), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
     }
 
@@ -101,7 +102,7 @@ class models_smsfeed extends Models
         if ((int)$user_id < 1) {
             $user_id  = $this->user_id;
         }
-        $this->db->cache_key('sms_bubbles_'.$user_id);
+        $this->db->cache_key(contast_cacheKey::SMS_BUBBLES.$user_id);
         return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO));
     }
 

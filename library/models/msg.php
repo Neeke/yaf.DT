@@ -34,17 +34,17 @@ class models_msg extends Models
      *
      * @return array
      */
-    function getMsgsByFeedid($user_id = 0, $feed_id = 0,$start = 0, $limit = contast_album::PAGE_SIZE_DEFAULT)
+    function getMsgsByFeedid($user_id = 0, $feed_id = 0, $start = 0, $limit = contast_album::PAGE_SIZE_DEFAULT)
     {
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
-            $user_id  = $this->user_id;
+            $user_id = $this->user_id;
         }
         $info = $this->getAll('*', array('feed_id' => $feed_id), '', $start, $limit);
 
-        if (!is_array($info) || count($info) < 1) return false;
+        if (!is_array($info) || count($info) < 1) return FALSE;
 
-        if ($info[0]['user_id_from'] != $user_id && $info[0]['user_id_to'] != $user_id) return false;
+        if ($info[0]['user_id_from'] != $user_id && $info[0]['user_id_to'] != $user_id) return FALSE;
 
         foreach ($info as $k => $v) {
             $v['avatar']     = '/static/images/photo01.gif';
@@ -60,20 +60,23 @@ class models_msg extends Models
      * ＠todo 返回格式化 user_id_to
      *
      * @param $feed_id
+     * @param $user_id_to
      * @param $content
      * @return bool
      */
-    function send($feed_id,$content)
+    function send($feed_id, $user_id_to, $content)
     {
-        $user_id  = $this->user_id;
+        $user_id = $this->user_id;
 
         $data = array(
-            'feed_id' => $feed_id,
+            'feed_id'      => $feed_id,
             'user_id_from' => $user_id,
-            'content' => $content,
-            'dateline' => time(),
+            'user_id_to'   => $user_id_to,
+            'content'      => $content,
+            'dateline'     => time(),
         );
 
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL.$user_id);
         return $this->insert($data);
     }
 

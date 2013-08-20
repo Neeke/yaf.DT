@@ -59,7 +59,7 @@ class models_album extends Models
         if ((int)$user_id < 1) {
             $user_id  = $this->user_id;
         }
-        $this->db->cache_key('album_mine_'.$user_id.'_'.$start);
+        $this->db->cache_key(contast_cacheKey::ALBUM_MINE.$user_id.'_'.$start);
         return $this->getAll('*', array('user_id' => $user_id, 'flag' => contast_album::FLAG_DEFAULT), '', $start, $limit);
     }
 

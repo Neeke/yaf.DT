@@ -39,7 +39,7 @@ class models_albumListen extends Models
             $user_id  = $this->user_id;
         }
 
-        $this->db->cache_key('album_listened_info_'.$user_id);
+        $this->db->cache_key(contast_cacheKey::ALBUM_LISTENED_INFO.$user_id);
         $sql = 'select album.* from '.models_album::getInstance()->_table.' album
                 left join '. $this->_table .' listened
                 on listened.album_id = album.album_id
@@ -61,7 +61,7 @@ class models_albumListen extends Models
             $user_id  = $this->user_id;
         }
 
-        $this->db->cache_key('album_listened_'.$user_id);
+        $this->db->cache_key(contast_cacheKey::ALBUM_LISTENED.$user_id);
         $result = $this->getAll('album_id',array('user_id' => $user_id,'flag' => contast_albumlistened::FLAG_DEFAULT));
         if (!is_array($result) || count($result) < 1) return array();
 
