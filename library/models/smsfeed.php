@@ -37,8 +37,7 @@ class models_smsfeed extends Models
     {
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
-            $userinfo = models_user::getInstance()->getUserInfo();
-            $user_id  = (int)$userinfo['user_id'];
+            $user_id  = $this->user_id;
         }
 
         $info = $this->getAll('*', array('user_id_to' => $user_id), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
@@ -63,8 +62,7 @@ class models_smsfeed extends Models
     function createFeed($to_user_id, $content, $user_id = 0)
     {
         if ((int)$user_id < 1) {
-            $userinfo = models_user::getInstance()->getUserInfo();
-            $user_id  = (int)$userinfo['user_id'];
+            $user_id  = $this->user_id;
         }
 
         $rawData = array(
@@ -87,9 +85,9 @@ class models_smsfeed extends Models
      */
     function readFeed($feed_id)
     {
-        $userinfo = models_user::getInstance()->getUserInfo();
-        $user_id  = (int)$userinfo['user_id'];
+        $user_id  = $this->user_id;
 
+        $this->db->getCache()->delete('sms_bubbles_'.$user_id);
         return $this->update(array('isread' => contast_msgfeed::FEED_IS_READ_YES, 'update_time' => time()), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
     }
 
@@ -101,9 +99,9 @@ class models_smsfeed extends Models
     function bubbles($user_id)
     {
         if ((int)$user_id < 1) {
-            $userinfo = models_user::getInstance()->getUserInfo();
-            $user_id  = (int)$userinfo['user_id'];
+            $user_id  = $this->user_id;
         }
+        $this->db->cache_key('sms_bubbles_'.$user_id);
         return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO));
     }
 
@@ -114,10 +112,7 @@ class models_smsfeed extends Models
      */
     function sendSms($feed_id)
     {
-        $userinfo = models_user::getInstance()->getUserInfo();
-        $user_id  = (int)$userinfo['user_id'];
-
-        return $this->db->query('update ' . $this->_table . ' set msg_count = msg_count + 1,isread = ? where user_id_to = ? and feed_id = ?', array(contast_msgfeed::FEED_IS_READ_YES, $user_id, $feed_id));
+        return $this->db->query('update ' . $this->_table . ' set msg_count = msg_count + 1,isread = ? where user_id_to = ? and feed_id = ?', array(contast_msgfeed::FEED_IS_READ_YES, $this->user_id, $feed_id));
     }
 
     function mkdata($v)

@@ -85,6 +85,8 @@ class SmsController extends Controller
         $this->rest->paramsMustMap = array('feed_id');
         $this->rest->paramsMustValid($params);
 
+        $this->model_sms_feed->readFeed($params['feed_id']);
+
         $this->getStartLimit();
         $info = $this->model_msg->getMsgsByFeedid($this->user_id,$params['feed_id'],$this->start,$this->limit);
 
