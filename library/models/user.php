@@ -21,7 +21,7 @@ class models_user extends Models
 
     function __construct()
     {
-        parent::__construct();
+        parent::__construct('user');
         $this->_table   = 'avi_user';
         $this->_primary = 'user_id';
     }

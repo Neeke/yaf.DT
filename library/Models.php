@@ -9,12 +9,26 @@ class Models
     public $_table;
     public $_primary;
 
-    function __construct()
+    protected $userinfo;
+    protected $user_id;
+
+    function __construct($key = NULL)
     {
         $this->db = db_contect::db();
+        if ($key == NULL){
+            $this->getUser();
+        }
     }
 
-    function getDB()
+    public function getUser()
+    {
+        $this->userinfo = models_user::getInstance()->getUserInfo();
+        if ($this->userinfo) {
+            $this->user_id = $this->userinfo['user_id'];
+        }
+    }
+
+    public function getDB()
     {
         return $this->db;
     }
