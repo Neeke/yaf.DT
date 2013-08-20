@@ -38,8 +38,7 @@ class models_msg extends Models
     {
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
-            $userinfo = models_user::getInstance()->getUserInfo();
-            $user_id  = (int)$userinfo['user_id'];
+            $user_id  = $this->user_id;
         }
         $info = $this->getAll('*', array('feed_id' => $feed_id), '', $start, $limit);
 
@@ -66,8 +65,7 @@ class models_msg extends Models
      */
     function send($feed_id,$content)
     {
-        $userinfo = models_user::getInstance()->getUserInfo();
-        $user_id  = (int)$userinfo['user_id'];
+        $user_id  = $this->user_id;
 
         $data = array(
             'feed_id' => $feed_id,

@@ -36,8 +36,7 @@ class models_albumListen extends Models
     function myListenedAlbum($user_id = 0,$start = 0,$limit = contast_album::PAGE_SIZE_DEFAULT){
         $this->db->cache_on(100);
         if ((int)$user_id < 1) {
-            $userinfo = models_user::getInstance()->getUserInfo();
-            $user_id = (int)$userinfo['user_id'];
+            $user_id  = $this->user_id;
         }
 
         $this->db->cache_key('album_listened_info_'.$user_id);
@@ -59,8 +58,7 @@ class models_albumListen extends Models
     {
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
-            $userinfo = models_user::getInstance()->getUserInfo();
-            $user_id = (int)$userinfo['user_id'];
+            $user_id  = $this->user_id;
         }
 
         $this->db->cache_key('album_listened_'.$user_id);
