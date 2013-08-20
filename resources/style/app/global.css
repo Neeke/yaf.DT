@@ -154,7 +154,6 @@ label.validateError {
 }
 
 .simple-form {
-    width: 640px;
 }
 
 .simple-form th {
@@ -173,6 +172,22 @@ label.validateError {
 .inputLarge {
     width: 420px;
     height: 25px;
+    line-height: 25px;
+    background: #fff;
+    border: none;
+}
+
+.inputMiddle {
+    width: 280px;
+    height: 25px;
+    line-height: 25px;
+    background: #fff;
+    border: none;
+}
+
+.textareaMiddle {
+    width: 280px;
+    height: 124px;
     line-height: 25px;
     background: #fff;
     border: none;

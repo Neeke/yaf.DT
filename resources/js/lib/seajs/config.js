@@ -14,7 +14,9 @@ seajs.config({
         doT: 'lib/doT/doT.js',
         jcrop: 'lib/jcrop/jquery.Jcrop.js',
         tipTip: 'lib/tipTip/jquery.tipTip.js',
-        lazyload:'lib/lazyload/jquery.lazyload.js'
+        lazyload:'lib/lazyload/jquery.lazyload.js',
+        typeahead: 'lib/typeahead/typeahead.js',
+        hogan: 'lib/hogan/hogan-2.0.0.js'
     },
     shim: {
         plupload: {
