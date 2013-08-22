@@ -1,3 +1,5 @@
+var version = '2013082222';
+
 seajs.config({
     plugins: ['shim', 'text'],
     alias: {
@@ -29,6 +31,9 @@ seajs.config({
     },
     preload: ["jquery", '/resources/js/lib/seajs/seajs-text.js'],
     debug: true,
+    map: [
+        [/^(.*\.(?:css|js|tpl))(?:.*)$/i, '$1?' + version]
+    ],
     base: '/resources/js/',
     charset: 'utf-8'
 });
