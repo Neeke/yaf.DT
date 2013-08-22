@@ -38,7 +38,7 @@ class spall_msgfeed
         $album_user_id = $album_info['user_id'];
         $album_name = $album_info['album_name'];
         $feed = self::mkMsgFeed(contast_msgfeed::MSG_TEMPLATE_ALBUM_REPLY,array($user_name,helper_common::site_url_album($album_id),$album_name));
-        return models_smsfeed::getInstance()->createFeed($album_user_id,$feed);
+        return models_smsfeed::getInstance()->createFeed($album_user_id,$feed,1);
     }
 
     /**

@@ -37,11 +37,11 @@ class models_smsfeed extends Models
     {
         $this->db->cache_on(3600);
         if ((int)$user_id < 1) {
-            $user_id  = $this->user_id;
+            $user_id = $this->user_id;
         }
 
-        $this->db->cache_key(contast_cacheKey::SMS_FEED_ALL.$user_id);
-        $info = $this->getAll('*', array('user_id_to' => $user_id,'flag' => contast_msgfeed::FEEd_FLAG_DEFAULT), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
+        $this->db->cache_key(contast_cacheKey::SMS_FEED_ALL . $user_id);
+        $info = $this->getAll('*', array('user_id_to' => $user_id, 'flag' => contast_msgfeed::FEEd_FLAG_DEFAULT), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
 
         foreach ($info as $k => $v) {
             $v['avatar']     = '/static/images/photo01.gif';
@@ -57,22 +57,27 @@ class models_smsfeed extends Models
      *
      * @param $to_user_id
      * @param $content
-     * @param $user_id
+     * @param int $type
+     * @param int $user_id
      * @return int
      */
-    function createFeed($to_user_id, $content, $user_id = 0)
+    function createFeed($to_user_id, $content, $type = 0, $user_id = 0)
     {
         if ((int)$user_id < 1) {
-            $user_id  = $this->user_id;
+            $user_id = $this->user_id;
         }
 
         $rawData = array(
             'user_id_from' => $user_id,
             'user_id_to'   => $to_user_id,
             'content'      => $content,
+            'type'         => $type,
         );
 
         $insertData = $this->mkdata($rawData);
+
+        $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES . $user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL . $user_id);
 
         return $this->insert($insertData);
     }
@@ -84,11 +89,11 @@ class models_smsfeed extends Models
      */
     function readFeed($feed_id)
     {
-        $user_id  = $this->user_id;
+        $user_id = $this->user_id;
 
-        $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES.$user_id);
-        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL.$user_id);
-        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_INFO.$feed_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES . $user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL . $user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_INFO . $feed_id);
 
         return $this->update(array('isread' => contast_msgfeed::FEED_IS_READ_YES, 'update_time' => time()), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
     }
@@ -100,11 +105,11 @@ class models_smsfeed extends Models
      */
     function removeFeed($feed_id)
     {
-        $user_id  = $this->user_id;
+        $user_id = $this->user_id;
 
-        $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES.$user_id);
-        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL.$user_id);
-        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_INFO.$feed_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES . $user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL . $user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_INFO . $feed_id);
 
         return $this->update(array('flag' => contast_msgfeed::FEEd_FLAG_DELETE, 'update_time' => time()), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
     }
@@ -117,10 +122,10 @@ class models_smsfeed extends Models
     function bubbles($user_id)
     {
         if ((int)$user_id < 1) {
-            $user_id  = $this->user_id;
+            $user_id = $this->user_id;
         }
-        $this->db->cache_key(contast_cacheKey::SMS_BUBBLES.$user_id);
-        return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO,'flag' => contast_msgfeed::FEEd_FLAG_DEFAULT));
+        $this->db->cache_key(contast_cacheKey::SMS_BUBBLES . $user_id);
+        return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO, 'flag' => contast_msgfeed::FEEd_FLAG_DEFAULT));
     }
 
     /**
@@ -142,7 +147,7 @@ class models_smsfeed extends Models
             'msg_count'    => 1,
             'content'      => $v['content'],
             'isread'       => contast_msgfeed::FEED_IS_READ_NO,
-            'type'         => 0,
+            'type'         => (int)$v['type'],
         );
     }
 }
