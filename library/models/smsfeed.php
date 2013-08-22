@@ -41,7 +41,7 @@ class models_smsfeed extends Models
         }
 
         $this->db->cache_key(contast_cacheKey::SMS_FEED_ALL.$user_id);
-        $info = $this->getAll('*', array('user_id_to' => $user_id), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
+        $info = $this->getAll('*', array('isread' => contast_msgfeed::FEED_IS_READ_NO,'user_id_to' => $user_id), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
 
         foreach ($info as $k => $v) {
             $v['avatar']     = '/static/images/photo01.gif';
@@ -89,6 +89,9 @@ class models_smsfeed extends Models
         $user_id  = $this->user_id;
 
         $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES.$user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL.$user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_INFO.$feed_id);
+
         return $this->update(array('isread' => contast_msgfeed::FEED_IS_READ_YES, 'update_time' => time()), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
     }
 

@@ -40,6 +40,7 @@ class models_msg extends Models
         if ((int)$user_id < 1) {
             $user_id = $this->user_id;
         }
+        $this->db->cache_key(contast_cacheKey::SMS_FEED_INFO.$feed_id);
         $info = $this->getAll('*', array('feed_id' => $feed_id), '', $start, $limit);
 
         if (!is_array($info) || count($info) < 1) return FALSE;
@@ -77,6 +78,7 @@ class models_msg extends Models
         );
 
         $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL.$user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_INFO.$feed_id);
         return $this->insert($data);
     }
 
