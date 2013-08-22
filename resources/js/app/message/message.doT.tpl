@@ -3,7 +3,7 @@
         <a href="{{!it.source_url}}">
             <img src="{{!it.avatar}}" width="40" height="40"></div>
     </a>
-    <dl>
+    <dl {{? it.type == '0' }}class="js-detail"{{?}}>
         <dt>
             {{=it.content}}
         </dt>
