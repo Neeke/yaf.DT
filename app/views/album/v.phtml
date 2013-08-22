@@ -47,7 +47,9 @@
     <div class="itemshow slideritem">
         <!--此处可选择的class名称为left/center/right  取决于编辑图片时图片的位置-->
         <div class="center">
-            <img src="<?php echo $items_info['items_pic'];?>" class="showing"/>
+            <div class="v-middle">
+                <img data-src="<?php echo $items_info['items_pic'];?>" src="" class="showing"/>
+            </div>
         </div>
 
         <?php echo $items_info['remark'];?>
