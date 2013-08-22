@@ -1,0 +1,38 @@
+<?php include_once(VIEW_PATH . '/layout/header.phtml') ?>
+
+<?php include_once(VIEW_PATH . '/common/page_title.phtml') ?>
+
+<div class="container">
+    <h2>账户余额：</h2>
+    <div class="account-item">
+        <em>0</em>&nbsp;&nbsp;&nbsp;<span>元</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="withdraw" class="btn btn-important btn-small" href="javascript:;">提现</a>
+    </div>
+    <div class="account-item">
+        <h2>充值：</h2><input class="inputSmall" type="text"/></label>&nbsp;&nbsp;
+        <a id="recharge" class="btn btn-important btn-small" href="javascript:;">充值</a>
+    </div>
+    <br/><br/>
+    <div class="account-item">
+        <div class="account-list">
+            <table>
+                <caption>消费记录</caption>
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>项目</th>
+                    <th>金额</th>
+                </tr>
+                </thead>
+            </table>
+            <div class="account-msg">
+                无消费记录
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    seajs.use('app/account/index');
+</script>
+
+<?php include_once(VIEW_PATH . '/layout/footer.phtml') ?>
