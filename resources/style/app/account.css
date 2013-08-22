@@ -1,0 +1,41 @@
+.account-item {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.account-item em {
+    font-size: 36px;
+    font-style: normal;
+    color: #E4007F;
+    font-weight: bold;
+}
+
+.account-sp-line {
+    border-bottom: 1px solid #4a4a4a;
+    padding-bottom: 5px;
+}
+
+.account-item table {
+    width: 100%;
+}
+
+.account-item table caption {
+    border-bottom: 1px solid #4a4a4a;
+    text-align: left;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.account-item table th {
+    padding-top: 4px;
+    text-align: left;
+}
+
+.account-msg {
+    text-align: center;
+    padding: 20px;
+}
+
+.account-list {
+    width: 600px;
+}

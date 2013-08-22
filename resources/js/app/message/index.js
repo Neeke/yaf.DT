@@ -48,6 +48,11 @@ define(function(require) {
                     width: 440,
                     cls: 'win-with-typeahead',
                     height: 'auto',
+                    listeners: {
+                        beforeclose: function() {
+                            win.el.find('.js-content').val('');
+                        }
+                    },
                     bbar: [{
                         text: '确定',
                         handler: function() {
@@ -74,41 +79,43 @@ define(function(require) {
                         }
                     }]
                 });
+
+                win.show();
+
+                win.el.find('.js-change-user').on('click', function() {
+                    win.el.find('.js-search-ctnr').addClass('searching');
+                    $search.val('');
+                });
+
+                var $search = win.el.find('.js-search');
+
+                $search.typeahead({
+                    valueKey: 'user_name',
+                    engine: Hogan,
+                    remote: {
+                        url: '/api/user/search?user_name=%QUERY',
+                        filter: function(res) {
+                            if (res.code === 1000) {
+                                return res.data;
+                            } else {
+                                return [];
+                            }
+                        }
+                    },
+                    template: '<div class="tt-user">' +
+                        '<img src="{{avatar}}" alt=""/>' +
+                        '<span class="tt-user-name">{{user_name}}</span>' +
+                        '</div>'
+                });
+
+                $search.on('typeahead:selected', function(e, data) {
+                    toId = data.user_id;
+                    win.el.find('.js-label').text(data.user_name);
+                    win.el.find('.searching').removeClass('searching');
+                });
+            } else {
+                win.show();
             }
-
-            win.show();
-
-            win.el.find('.js-change-user').on('click', function() {
-                win.el.find('.js-search-ctnr').addClass('searching');
-                $search.val('');
-            });
-
-            var $search = win.el.find('.js-search');
-
-            $search.typeahead({
-                valueKey: 'user_name',
-                engine: Hogan,
-                remote: {
-                    url: '/api/user/search?user_name=%QUERY',
-                    filter: function(res) {
-                         if (res.code === 1000) {
-                            return res.data;
-                         } else {
-                             return [];
-                         }
-                    }
-                },
-                template: '<div class="tt-user">' +
-                    '<img src="{{avatar}}" alt=""/>' +
-                    '<span class="tt-user-name">{{user_name}}</span>' +
-                    '</div>'
-            });
-
-            $search.on('typeahead:selected', function(e, data) {
-                toId = data.user_id;
-                win.el.find('.js-label').text(data.user_name);
-                win.el.find('.searching').removeClass('searching');
-            });
         });
     }
 
