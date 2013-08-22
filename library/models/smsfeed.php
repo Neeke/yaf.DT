@@ -41,7 +41,7 @@ class models_smsfeed extends Models
         }
 
         $this->db->cache_key(contast_cacheKey::SMS_FEED_ALL.$user_id);
-        $info = $this->getAll('*', array('isread' => contast_msgfeed::FEED_IS_READ_NO,'user_id_to' => $user_id), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
+        $info = $this->getAll('*', array('user_id_to' => $user_id,'flag' => contast_msgfeed::FEEd_FLAG_DEFAULT), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
 
         foreach ($info as $k => $v) {
             $v['avatar']     = '/static/images/photo01.gif';
@@ -81,8 +81,6 @@ class models_smsfeed extends Models
      * feed read
      * @param $feed_id
      * @return bool
-     *
-     * @todo read const
      */
     function readFeed($feed_id)
     {
@@ -96,6 +94,22 @@ class models_smsfeed extends Models
     }
 
     /**
+     * feed read
+     * @param $feed_id
+     * @return bool
+     */
+    function removeFeed($feed_id)
+    {
+        $user_id  = $this->user_id;
+
+        $this->db->getCache()->delete(contast_cacheKey::SMS_BUBBLES.$user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_ALL.$user_id);
+        $this->db->getCache()->delete(contast_cacheKey::SMS_FEED_INFO.$feed_id);
+
+        return $this->update(array('flag' => contast_msgfeed::FEEd_FLAG_DELETE, 'update_time' => time()), array('feed_id' => $feed_id, 'user_id_to' => $user_id));
+    }
+
+    /**
      * 取得feed气泡
      * @param $user_id
      * @return int
@@ -106,7 +120,7 @@ class models_smsfeed extends Models
             $user_id  = $this->user_id;
         }
         $this->db->cache_key(contast_cacheKey::SMS_BUBBLES.$user_id);
-        return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO));
+        return (int)$this->count(array('user_id_to' => $user_id, 'isread' => contast_msgfeed::FEED_IS_READ_NO,'flag' => contast_msgfeed::FEEd_FLAG_DEFAULT));
     }
 
     /**
