@@ -41,7 +41,7 @@ class models_smsfeed extends Models
         }
 
         $this->db->cache_key(contast_cacheKey::SMS_FEED_ALL.$user_id);
-        $info = $this->getAll('*', array('isread' => contast_msgfeed::FEED_IS_READ_NO,'user_id_to' => $user_id), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
+        $info = $this->getAll('*', array('user_id_to' => $user_id), array('isread' => 'ASC', 'update_time' => 'DESC'), $start, $limit);
 
         foreach ($info as $k => $v) {
             $v['avatar']     = '/static/images/photo01.gif';
