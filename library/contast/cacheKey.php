@@ -8,6 +8,8 @@ class contast_cacheKey
 
     const SMS_FEED_ALL = 'sms_feed_all_';
 
+    const SMS_FEED_INFO = 'sms_feed_info_';
+
     const SMS_BUBBLES = 'sms_bubbles_';
 
     const ALBUM_LISTENED = 'album_listened_';
