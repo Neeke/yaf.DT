@@ -185,6 +185,14 @@ label.validateError {
     border: none;
 }
 
+.inputSmall {
+    width: 140px;
+    height: 25px;
+    line-height: 25px;
+    background: #fff;
+    border: none;
+}
+
 .textareaMiddle {
     width: 280px;
     height: 124px;
