@@ -120,7 +120,7 @@ define(function(require) {
 
         $list.on('click', '.js-markread', function() {
             var $item = $(this).closest('.js-messageitem');
-            var rest = $.restPost('/api/sms/readfeed', {
+            var rest = $.restPost('/api/sms/removefeed', {
                 feed_id: $item.attr('data-id')
             });
 

@@ -6,8 +6,10 @@
 class contast_msgfeed
 {
     const FEED_IS_READ_YES = 1;
+    const FEED_IS_READ_NO  = 0;
 
-    const FEED_IS_READ_NO = 0;
+    const FEEd_FLAG_DEFAULT = 0;
+    const FEEd_FLAG_DELETE  = 1;
 
     const MSG_TEMPLATE_ALBUM_REPLY = '{0}在图集「<a href="{1}" target="_blank">{2}</a>」中回复了你';
 

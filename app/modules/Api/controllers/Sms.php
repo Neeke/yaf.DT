@@ -73,6 +73,25 @@ class SmsController extends Controller
     }
 
     /**
+     * 忽略、删除feed
+     */
+    public function removefeedAction()
+    {
+        $this->rest->method('POST');
+
+        $params = $this->allParams();
+
+        $this->rest->paramsMustMap = array('feed_id');
+        $this->rest->paramsMustValid($params);
+
+        $info = $this->model_sms_feed->removeFeed($params['feed_id']);
+
+        if ($info == FALSE) $this->rest->error(rest_Code::STATUS_SUCCESS_DO_ERROR_DB);
+
+        $this->rest->success();
+    }
+
+    /**
      * feed詳情
      * @todo
      */
