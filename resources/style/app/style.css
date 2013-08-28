@@ -185,7 +185,7 @@
     line-height: 24px;
 }
 
-.c_top .t_con a {
+.con_a a {
     color: #fff;
 }
 
@@ -251,10 +251,6 @@
     font-family: Microsoft YaHei;
     font-size: 14px;
     line-height: 24px;
-}
-
-.c_top .t_con a {
-    color: #fff;
 }
 
 .t_con h2 {
