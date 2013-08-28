@@ -19,6 +19,7 @@
 .follows-item-username {
     display: block;
 
+    height: 36px;
     margin: 8px 0 0 80px;
     font-size: 14px;
     font-weight: bold;
@@ -27,7 +28,7 @@
 .follows-item-link {
     display: block;
 
-    margin: 16px 0 0 80px;
+    margin-left: 80px;
     font-size: 13px;
     text-decoration: underline;
     color: #fff;
