@@ -1,5 +1,5 @@
 define(function() {
-    $(document).on('contextmenu', function(e) {
+    $(document).on('contextmenu', 'img', function(e) {
         e.preventDefault();
     });
 });
