@@ -18,7 +18,7 @@ class spall_menu
             'main'       => '我的',
             'album/mine' => '我的图集',
             'subscribe'  => '我的订阅',
-            'tags/mine'   => '我的标签',
+            'follow/index'   => '我的关注',
         ),
 
 //        'nav03' => array(
