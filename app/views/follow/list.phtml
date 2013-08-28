@@ -1,9 +1,15 @@
 <ul class="follows-items clearfix">
+    <?php
+    foreach($follower_from_me_list as $info){
+    ?>
+
     <li class="follows-item">
-        <img class="follows-item-avatar" src="" alt="头像"/>
+        <img class="follows-item-avatar" src="<?php echo spall_user::avatarSource($info['to_user_id']);?>"/>
         <span class="follows-item-username">
-            小泽玛利亚
+            <?php echo spall_user::getUserName($info['to_user_id']);?>
         </span>
-        <a class="follows-item-link js-unfollow" data-userid="xxx" href="javascript:;">取消关注</a>
+        <a class="follows-item-link js-unfollow" data-userid="<?php echo $info['to_user_id'];?>" href="javascript:;">取消关注</a>
     </li>
+
+    <?php }?>
 </ul>
