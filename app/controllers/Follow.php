@@ -24,8 +24,15 @@ class FollowController extends Controller
     {
         $this->setMenu('follow/index');
 
-        $this->set('follower_from_me_list',$this->models_follower->myFollowers());
-    }
+        $this->page = (int)$this->getRequest()->getParam('p', 1);
+        $follower_from_me_list  = $this->models_follower->myFollowers(($this->page - 1) * contast_follower::PAGE_SIZE_DEFAULT);
 
+        $count = $this->models_follower->myFollowersCount();
+
+        $sPage = helper_pages::page2(helper_common::site_url('follow/index'), $count, contast_follower::PAGE_SIZE_DEFAULT, $this->page);
+        $this->set('sPage', $sPage);
+        $this->set('follower_from_me_list', $follower_from_me_list);
+        $this->set('follower_from_me_count',$count);
+    }
 
 }

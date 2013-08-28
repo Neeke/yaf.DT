@@ -5,7 +5,7 @@
     <div class="header-info-content">
         <h2><?php echo $userinfo['user_name'];?></h2>
 
-        <span>共关注<span class="albumsCount">10<!--TODO--></span>用户</span>
+        <span>共关注<span class="albumsCount"><?php echo $follower_from_me_count;?></span>用户</span>
 
         <div class="header-info-tabs">
             <a href="<?php echo helper_common::site_url('follow');?>"  class="current">我关注的用户</a>

@@ -55,7 +55,7 @@ class models_follower extends Models
             'to_user_id'   => $user_id,
         ));
 
-        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO . $this->user_id);
+        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO . $this->user_id.'_0');
         return $this->insert($data);
     }
 
@@ -75,18 +75,30 @@ class models_follower extends Models
             'to_user_id'   => $user_id,
         );
 
-        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO . $this->user_id);
+        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO . $this->user_id.'_0');
         return $this->update($data, $where);
     }
 
     /**
+     * 我关注的用户count
+     * @return array
+     */
+    public function myFollowersCount()
+    {
+        $this->db->cache_off();
+        return $this->count(array('from_user_id' => $this->user_id, 'flag' => contast_follower::FLAG_DEFAULT));
+    }
+
+    /**
      * 我关注的用户
+     * @param int $start
+     * @param int $limit
      * @return array|bool
      */
-    public function myFollowers()
+    public function myFollowers($start = 0, $limit = contast_follower::PAGE_SIZE_DEFAULT)
     {
-        $this->db->cache_key(contast_cacheKey::FOLLOWER_INFO . $this->user_id);
-        return $this->getAll('*', array('from_user_id' => $this->user_id, 'flag' => contast_follower::FLAG_DEFAULT));
+        $this->db->cache_key(contast_cacheKey::FOLLOWER_INFO . $this->user_id.'_'.$start);
+        return $this->getAll('*', array('from_user_id' => $this->user_id, 'flag' => contast_follower::FLAG_DEFAULT),'', $start, $limit);
     }
 
     public function mkdata($v)
