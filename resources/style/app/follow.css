@@ -1,0 +1,34 @@
+.follows-item {
+    display: block;
+    float: left;
+
+    width: 196px;
+    height: 70px;
+    margin: 0 32px 24px 0;
+
+    background-color: #30343a;
+}
+
+.follows-item-avatar {
+    float: left;
+
+    width: 70px;
+    height: 70px;
+}
+
+.follows-item-username {
+    display: block;
+
+    margin: 8px 0 0 80px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.follows-item-link {
+    display: block;
+
+    margin: 16px 0 0 80px;
+    font-size: 13px;
+    text-decoration: underline;
+    color: #fff;
+}
