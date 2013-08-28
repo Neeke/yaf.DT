@@ -222,7 +222,7 @@ params: items_id [user_id]
 
 
 关注某用户：
-var api_friends_listen = '/api/friends/listen';
+var api_friends_listen = '/api/friends/follow';
 method: post
 params: user_id [from_user_id]
 
@@ -232,7 +232,7 @@ method: get
 params: page [user_id]
 
 取消关注某用户：
-var api_friends_cancel = '/api/friends/cancel';
+var api_friends_cancel = '/api/friends/unfollow';
 method: post
 params: user_id [from_user_id]
 
