@@ -184,6 +184,21 @@ params: user_name
 var api_user_search = '/api/user/search';
 method: get
 params: user_name
+
+关注某用户：
+var api_friends_listen = '/api/follower/follow';
+method: post
+params: user_id [from_user_id]
+
+已经关注的用户列表：
+var api_friends_listened = '/api/follower/followed';
+method: get
+params: page [user_id]
+
+取消关注某用户：
+var api_friends_cancel = '/api/follower/unfollow';
+method: post
+params: user_id [from_user_id]
 ----------------------
 找回密码：
 var api_forget_pwd = '/api/forget/pwd';
@@ -220,21 +235,6 @@ var api_items_likeit = '/api/items/likeit';
 method: post
 params: items_id [user_id]
 
-
-关注某用户：
-var api_friends_listen = '/api/friends/follow';
-method: post
-params: user_id [from_user_id]
-
-已经关注的用户列表：
-var api_friends_listened = '/api/friends/listened';
-method: get
-params: page [user_id]
-
-取消关注某用户：
-var api_friends_cancel = '/api/friends/unfollow';
-method: post
-params: user_id [from_user_id]
 
 删除短消息：
 var api_sms_del = '/api/sms/del';
