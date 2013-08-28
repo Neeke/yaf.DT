@@ -10,7 +10,9 @@
                             </div>
                             <div class="pic-info">
                                 <dl>
-                                    <dt><?php echo $album_info['album_name'];?></dt>
+                                    <dt>
+                                        <?php echo $album_info['album_name'];?>
+                                    </dt>
                                     <dd>
                                         <?php echo date('Y/m/d',$album_info['created_time']);?>
                                         <span>[<?php echo (int)$album_info['items'];?>图]</span>
@@ -30,7 +32,11 @@
                                 <?php if ($this_menu == 'subscribe'){?>
                                 <a href="javascript:;" class="edita js-album-listened-remove">取消订阅</a>
                                 <?php }else{?>
-                                <div class="user-name"><?php echo spall_user::username($album_info['user_id']);?></div>
+                                <div class="user-name">
+                                    <a href="<?php echo helper_common::site_url_user($album_info['user_id']);?>">
+                                    <?php echo spall_user::username($album_info['user_id']);?>
+                                    </a>
+                                </div>
                                 <?php }?>
                             <?php }?>
 

@@ -1,13 +1,10 @@
 <div class="c_top">
-    <div class="t_tu"><?php echo spall_user::avatar($user_id,88);?>
+    <div class="t_tu">
+        <a href="javascript:;"><img src="<?php echo spall_user::avatarSource($user_id,88);?>" class="avatar" width="88" height="88"></a>
     </div>
     <div class="t_con">
         <h2><?php echo $userinfo['user_name'];?></h2>
-        <?php if ($this_menu == 'album/listened'){?>
-            <span>共订阅<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
-        <?php }else{?>
-            <span>共<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
-        <?php }?>
+        <span>共<span class="albumsCount"><?php echo $countAlbums;?></span>部图集</span>
 
         <div class="clear"></div>
         <a id="follow" class="btn btn-important btn-small" href="javascript:;">关注</a>
