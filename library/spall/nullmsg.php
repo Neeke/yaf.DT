@@ -12,6 +12,7 @@ class spall_nullmsg
         'album/listened' => '还没有订阅图集',
         'whats/hot' => 'sorry，暂时还没有热门图集',
         'whats/new' => 'sorry，暂时还没有最新图集',
+        'follow/index' => '您还没有关注用户'
     );
 
     static public function get_nullmsgs()

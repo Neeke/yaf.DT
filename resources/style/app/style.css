@@ -162,49 +162,6 @@
     cursor: pointer;
 }
 
-.c_top {
-    overflow: hidden;
-    padding-bottom: 35px;
-}
-
-.c_top .t_tu {
-    border: #fff 1px solid;
-    width: 90px;
-    height: 90px;
-    float: left;
-    display: inline;
-}
-
-.c_top .t_con {
-    float: left;
-    display: inline;
-    margin-left: 25px;
-    color: #fff;
-    font-family: Microsoft YaHei;
-    font-size: 14px;
-    line-height: 24px;
-}
-
-.con_a a {
-    color: #fff;
-}
-
-.t_con h2 {
-    font-size: 30px;
-    font-weight: normal;
-    padding: 8px 0 6px 0;
-}
-
-.t_con .con_a a.cur1 {
-    background: url(/resources/style/app/images/ico_01.png) no-repeat left center;
-    padding-left: 8px;
-    margin-left: 6px;
-}
-
-.t_con .con_a a.cur3 {
-    color: #e4007f;
-}
-
 /*关注的标签**/
 
 .g_left {

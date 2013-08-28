@@ -1,0 +1,16 @@
+<div class="header-info clearfix">
+    <div class="header-info-avatar">
+        <a href="javascript:;"><img src="<?php echo spall_user::avatarSource($user_id,88);?>" class="avatar" width="88" height="88"></a>
+    </div>
+    <div class="header-info-content">
+        <h2><?php echo $userinfo['user_name'];?></h2>
+
+        <span>共关注<span class="albumsCount">10<!--TODO--></span>用户</span>
+
+        <div class="header-info-tabs">
+            <a href="http://byj.me/album/mine" class="current">我制作的图集</a>
+            <span class="sp">|</span>
+            <a href="http://byj.me/subscribe" class="">我订阅的图集</a>
+        </div>
+    </div>
+</div>

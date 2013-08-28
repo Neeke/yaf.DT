@@ -1,26 +1,29 @@
-<div class="c_top">
-    <div class="t_tu"><?php echo spall_user::avatar($user_id,88);?>
+<div class="header-info clearfix">
+    <div class="header-info-avatar"><?php echo spall_user::avatar($user_id,88);?>
     </div>
-    <div class="t_con">
+    <div class="header-info-content">
         <h2><?php echo $userinfo['user_name'];?></h2>
+
         <?php if ($this_menu == 'album/listened'){?>
             <span>共订阅<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
         <?php }else{?>
             <span>共<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
         <?php }?>
 
-        <div class="clear"></div>
-            <span class="con_a">
-                <a href="<?php echo helper_common::site_url('album/mine');?>"
-                   <?php if ($this_menu == 'album/mine') echo 'class="cur3"';?>
-                    >我制作的图集</a>
-                <a href="<?php echo helper_common::site_url('subscribe');?>"
-                   <?php if ($this_menu == 'subscribe'){
-                        echo 'class="cur2"';
-                    }else{
-                        echo 'class="cur1"';
-                    }?>
-                    >我订阅的图集</a>
-            </span>
+        <div class="header-info-tabs">
+            <a href="<?php echo helper_common::site_url('album/mine');?>"
+               <?php if ($this_menu == 'album/mine') echo 'class="current"';?>
+                >
+                我制作的图集
+            </a>
+            <span class="sp">|</span>
+            <a href="<?php echo helper_common::site_url('subscribe');?>"
+               <?php if ($this_menu == 'subscribe'){
+                    echo 'class="current"';
+                }?>
+                >
+                我订阅的图集
+            </a>
+        </div>
     </div>
 </div>
