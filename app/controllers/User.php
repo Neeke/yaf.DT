@@ -47,6 +47,8 @@ class UserController extends Controller
         $this->set('user_id',$user_info['user_id']);
         $this->set('userinfo',$user_info);
 
+        $this->set('ifFollow',models_follower::getInstance()->ifFollow($this->this_user_id));
+
     }
 
 

@@ -7,8 +7,14 @@
         <span>共<span class="albumsCount"><?php echo $countAlbums;?></span>部图集</span>
 
         <div>
-            <a id="follow" class="btn btn-important btn-small" href="javascript:;">关注</a>
-            <a id="unfollow" class="btn btn-important btn-small" href="javascript:;">取消关注</a>
+            <?php
+            if ($ifFollow){
+                $class_follow = 'style="display:none;"';
+            }else{
+                $class_un_follow = 'style="display:none;"';
+            }?>
+            <a id="follow" data-userid="<?php echo $user_id;?>" class="btn btn-important btn-small" href="javascript:;" <?php echo $class_follow;?>>关注</a>
+            <a id="unfollow" data-userid="<?php echo $user_id;?>" class="btn btn-important btn-small" href="javascript:;" <?php echo $class_un_follow;?>>取消关注</a>
         </div>
     </div>
 </div>

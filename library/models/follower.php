@@ -29,6 +29,21 @@ class models_follower extends Models
     }
 
     /**
+     * 检查是否已关注
+     * @param $user_id
+     * @return array|bool
+     */
+    public function ifFollow($user_id)
+    {
+        $this->db->cache_off();
+        return $this->exits(array(
+            'from_user_id' => $this->user_id,
+            'to_user_id'   => $user_id,
+            'flag'         => contast_follower::FLAG_DEFAULT)
+        );
+    }
+
+    /**
      * 关注用户
      * @param $user_id
      * @return array|bool|string
@@ -37,10 +52,10 @@ class models_follower extends Models
     {
         $data = $this->mkdata(array(
             'from_user_id' => $this->user_id,
-            'to_user_id' => $user_id,
+            'to_user_id'   => $user_id,
         ));
 
-        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO.$this->user_id);
+        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO . $this->user_id);
         return $this->insert($data);
     }
 
@@ -52,16 +67,16 @@ class models_follower extends Models
     public function unFollow($user_id)
     {
         $data = array(
-            'flag' => contast_follower::FLAG_DEFAULT,
+            'flag' => contast_follower::FLAG_DELETE,
         );
 
         $where = array(
             'from_user_id' => $this->user_id,
-            'to_user_id' => $user_id,
+            'to_user_id'   => $user_id,
         );
 
-        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO.$this->user_id);
-        return $this->update($data,$where);
+        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO . $this->user_id);
+        return $this->update($data, $where);
     }
 
     /**
@@ -70,8 +85,8 @@ class models_follower extends Models
      */
     public function myFollowers()
     {
-        $this->db->cache_key(contast_cacheKey::FOLLOWER_INFO.$this->user_id);
-        return $this->getAll('*',array('from_user_id' => $this->user_id,'flag' => contast_follower::FLAG_DEFAULT));
+        $this->db->cache_key(contast_cacheKey::FOLLOWER_INFO . $this->user_id);
+        return $this->getAll('*', array('from_user_id' => $this->user_id, 'flag' => contast_follower::FLAG_DEFAULT));
     }
 
     public function mkdata($v)
