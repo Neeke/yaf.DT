@@ -8,7 +8,7 @@ define(function(require) {
 
         $followBtn.click(function() {
             var rest = $.restPost('/api/follower/follow', {
-                user_id: $CONFIG.user_id
+                user_id: $(this).attr('data-userid')
             });
 
             rest.done(function() {
@@ -23,7 +23,7 @@ define(function(require) {
 
         $unfollowBtn.click(function() {
             var rest = $.restPost('/api/follower/unfollow', {
-                user_id: $CONFIG.user_id
+                user_id: $(this).attr('data-userid')
             });
 
             rest.done(function() {
