@@ -1,15 +1,25 @@
-<ul class="follows-items clearfix">
-    <?php
-    foreach($follower_from_me_list as $info){
-    ?>
+<?php if (is_array($follower_from_me_list) && count($follower_from_me_list) > 0){?>
+    <ul class="follows-items clearfix">
+        <?php
+        foreach($follower_from_me_list as $info){
+        ?>
 
-    <li class="follows-item">
-        <img class="follows-item-avatar" src="<?php echo spall_user::avatarSource($info['to_user_id']);?>"/>
-        <span class="follows-item-username">
-            <?php echo spall_user::getUserName($info['to_user_id']);?>
-        </span>
-        <a class="follows-item-link js-unfollow" data-userid="<?php echo $info['to_user_id'];?>" href="javascript:;">取消关注</a>
-    </li>
+        <li class="follows-item js-follow-item">
+            <img class="follows-item-avatar" src="<?php echo spall_user::avatarSource($info['to_user_id']);?>"/>
+            <span class="follows-item-username js-name">
+                <?php echo spall_user::getUserName($info['to_user_id']);?>
+            </span>
+            <a class="follows-item-link js-unfollow" data-userid="<?php echo $info['to_user_id'];?>" href="javascript:;">取消关注</a>
+        </li>
 
-    <?php }?>
-</ul>
+        <?php }?>
+
+    </ul>
+<?php } else { ?>
+    <div class="msg-nodata">
+        <?php echo spall_nullmsg::getNullMsgs($this_menu);?>
+    </div>
+<?php } ?>
+<script type="text/javascript">
+    seajs.use('app/follow/index');
+</script>
