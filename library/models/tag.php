@@ -82,9 +82,19 @@ class models_tag extends Models
     function getTagByIds($ids){
         $this->db->cache_on();
 
-        if (count(explode(',',$ids)) < 2){
+        $ids_ = explode(',',$ids);
+
+        if ($ids_ < 2){
             $info = $this->db->getRow('select tid,tag from '.$this->_table.' where '.$this->_primary.' = ?',array($ids));
         }else{
+            $tem_ids = array();
+            foreach($ids_ as $v){
+                if (!empty($v))
+                {
+                    $tem_ids[] = $v;
+                }
+            }
+            $ids = implode(',',$tem_ids);
             $info = $this->db->getAll('select tid,tag from '.$this->_table.' where '.$this->_primary.' in ('.$ids.')');
         }
 
