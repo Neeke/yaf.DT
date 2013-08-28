@@ -40,6 +40,7 @@ class models_follower extends Models
             'to_user_id' => $user_id,
         ));
 
+        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO.$this->user_id);
         return $this->insert($data);
     }
 
@@ -59,6 +60,7 @@ class models_follower extends Models
             'to_user_id' => $user_id,
         );
 
+        $this->db->getCache()->delete(contast_cacheKey::FOLLOWER_INFO.$this->user_id);
         return $this->update($data,$where);
     }
 
@@ -68,15 +70,15 @@ class models_follower extends Models
      */
     public function myFollowers()
     {
-        $this->db->cache_key('followers_info_'.$this->user_id);
+        $this->db->cache_key(contast_cacheKey::FOLLOWER_INFO.$this->user_id);
         return $this->getAll('*',array('from_user_id' => $this->user_id,'flag' => contast_follower::FLAG_DEFAULT));
     }
 
     public function mkdata($v)
     {
         return array(
-            'from_user_id' => $v['email'],
-            'to_user_id'   => $v['user_name'],
+            'from_user_id' => $v['from_user_id'],
+            'to_user_id'   => $v['to_user_id'],
             'create_time'  => time(),
             'flag'         => contast_follower::FLAG_DEFAULT,
         );

@@ -19,4 +19,6 @@ class contast_cacheKey
     const ALBUM_MINE = 'album_mine_';
 
     const USER_INFO = 'user_info_';
+
+    const FOLLOWER_INFO = 'followers_info_';
 }
