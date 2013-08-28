@@ -15,12 +15,12 @@
                 <?php echo spall_user::avatar($user_id,25,'','class="picture"');?>
                 <div class="header-tips">
                     <span class="user-name"><?php echo $config['user_name'];?></span>
-                    <a class="tip01 js-msgcount" href="/messages" id="msgCount"></a>
+                    <a class="tip01 js-msgcount" href="<?php echo helper_common::site_url('messages');?>" id="msgCount"></a>
                     <div class="tip02">
                         <a href="<?php echo helper_common::site_url('messages');?>" class="ico01">消息<span class="js-msgcount"></span></a>
                         <a href="<?php echo helper_common::site_url('settings');?>" class="ico02">设置</a>
 
-                        <a href="<?php echo helper_common::site_url('/account/index');?>" class="ico-account">账户</a>
+                        <a href="<?php echo helper_common::site_url('account/index');?>" class="ico-account">账户</a>
                         <?php if (spall_user::haveinvitation()){?>
                         <a href="<?php echo helper_common::site_url('invitation/make');?>" class="ico-invitation">邀请码</a>
                         <?php }?>

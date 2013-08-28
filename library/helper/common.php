@@ -35,7 +35,7 @@ class helper_common{
      * @return string
      */
     public static function site_url_user($id){
-		return self::site_url('user/my/u/'.$id);
+		return self::site_url('user/'.$id);
 	}
 
     /**
