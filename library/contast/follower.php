@@ -9,4 +9,5 @@ class contast_follower
 
     const FLAG_DELETE = 1;
 
+    const PAGE_SIZE_DEFAULT = 12;
 }
