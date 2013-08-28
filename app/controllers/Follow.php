@@ -7,13 +7,14 @@
 class FollowController extends Controller
 {
     /**
-     * @var  models_album
+     * @var  models_follower
      */
-    private $model_album;
+    private $models_follower;
 
     public function init()
     {
         parent::init();
+        $this->models_follower = models_follower::getInstance();
     }
 
     /**
@@ -21,7 +22,9 @@ class FollowController extends Controller
      */
     public function indexAction()
     {
-        $this->set('page_title', '我关注的用户');
+        $this->setMenu('follow/index');
+
+        $this->set('follower_from_me_list',$this->models_follower->myFollowers());
     }
 
 

@@ -31,6 +31,7 @@ class spall_title
         'feedback'           => '提问与建议',
         'contact'            => '联系我们',
         'feedback/index'     => '提问与建议',
+        'follow/index'       => '我关注的用户',
     );
 
     public static function setTitle($title)
