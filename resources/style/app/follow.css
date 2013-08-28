@@ -25,6 +25,10 @@
     font-weight: bold;
 }
 
+.follows-item-username a{
+    color: #fff;
+}
+
 .follows-item-link {
     display: block;
 

@@ -5,9 +5,13 @@
         ?>
 
         <li class="follows-item js-follow-item">
-            <img class="follows-item-avatar" src="<?php echo spall_user::avatarSource($info['to_user_id']);?>"/>
+            <a href="<?php echo helper_common::site_url_user($info['to_user_id']);?>">
+                <img class="follows-item-avatar" src="<?php echo spall_user::avatarSource($info['to_user_id']);?>"/>
+            </a>
             <span class="follows-item-username js-name">
-                <?php echo spall_user::getUserName($info['to_user_id']);?>
+                <a href="<?php echo helper_common::site_url_user($info['to_user_id']);?>">
+                    <?php echo spall_user::getUserName($info['to_user_id']);?>
+                </a>
             </span>
             <a class="follows-item-link js-unfollow" data-userid="<?php echo $info['to_user_id'];?>" href="javascript:;">取消关注</a>
         </li>
