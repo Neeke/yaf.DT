@@ -19,12 +19,10 @@ class UserController extends Controller
     }
 
     /**
-     * 个人设置
+     * 查看其他用户
      */
-    public function setAction()
+    public function indexAction()
     {
-        $this->set('userinfo_all', $this->model->getUserInfoAll());
-        $this->set('albums', $this->model_album->myAlbum());
         $this->set('page_title', '个人设置');
     }
 

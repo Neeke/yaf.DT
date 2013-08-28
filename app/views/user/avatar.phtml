@@ -1,0 +1,16 @@
+<div class="c_top">
+    <div class="t_tu"><?php echo spall_user::avatar($user_id,88);?>
+    </div>
+    <div class="t_con">
+        <h2><?php echo $userinfo['user_name'];?></h2>
+        <?php if ($this_menu == 'album/listened'){?>
+            <span>共订阅<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
+        <?php }else{?>
+            <span>共<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
+        <?php }?>
+
+        <div class="clear"></div>
+            <span class="con_a">
+            </span>
+    </div>
+</div>
