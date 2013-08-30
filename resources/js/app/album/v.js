@@ -81,6 +81,9 @@ define(function(require) {
             });
         } else {
             scaleImages($img);
+            if (typeof callback === 'function') {
+                callback();
+            }
         }
     }
 
