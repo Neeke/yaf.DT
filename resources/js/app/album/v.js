@@ -1,9 +1,11 @@
 define(function(require) {
     var Talk = require('app/common/talk');
     var util = require('util');
+    var keymap = require('app/common/keymap');
     require('rest');
     require('lazyload');
-    var keymap = require('app/common/keymap');
+
+    var $imageList;
 
     var locked;
 
@@ -58,7 +60,8 @@ define(function(require) {
         }
     }
 
-    function process($img) {
+    function process($img, callback) {
+
         var src = $img.attr('data-src');
 
         if (src) {
@@ -69,6 +72,10 @@ define(function(require) {
             $img.load(function() {
                 clearTimeout(timer);
                 timer = setTimeout(function() {
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
+
                     scaleImages($img);
                 }, 0);
             });
@@ -78,6 +85,9 @@ define(function(require) {
     }
 
     $(function () {
+
+        $imageList = $('.showing');
+        setTimeout(loadImages, 200);
 
         $(document).on('click', '.arrow-next', function () {
             gotoNext();
@@ -102,7 +112,17 @@ define(function(require) {
             //(_index+1)+'/'+size
             _this.append('<div class="curnum"><a href="javascript:;" class="arrow-prev">&lt;&lt;</a>' + _index + '&nbsp;/&nbsp;' + size + '<a href="javascript:;" class="arrow-next">&gt;&gt;</a></div>');
         });
+
     });
+
+    var index = 0;
+    function loadImages() {
+        if (index < $imageList.length) {
+            process($imageList.eq(index++), function() {
+                loadImages();
+            });
+        }
+    }
 
     function scaleImages($img) {
         var $window = $(window);
