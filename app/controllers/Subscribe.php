@@ -47,6 +47,7 @@ class SubscribeController extends Controller
         $sPage = helper_pages::page2(helper_common::site_url('album/listened'), $count, contast_album::PAGE_SIZE_DEFAULT, $this->page);
         $this->set('sPage', $sPage);
         $this->set('myalbums', $my_albums);
+        $this->set('albumsCount',$count);
 
         $this->setListededAlbumIds();
     }
