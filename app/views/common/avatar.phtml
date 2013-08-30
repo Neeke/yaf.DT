@@ -5,9 +5,9 @@
         <h2><?php echo $userinfo['user_name'];?></h2>
 
         <?php if ($this_menu == 'album/listened'){?>
-            <span>共订阅<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
+            <span>共订阅<span class="albumsCount"><?php echo $albumsCount;?></span>部图集</span>
         <?php }else{?>
-            <span>共<span class="albumsCount"><?php echo (int)count($myalbums);?></span>部图集</span>
+            <span>共<span class="albumsCount"><?php echo $albumsCount;?></span>部图集</span>
         <?php }?>
 
         <div class="header-info-tabs">
